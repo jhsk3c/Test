@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns = "http://www.springframework.org/schema/beans"
+	   xmlns:xsi ="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation = "
+	    http://www.springframework.org/schema/beans 
+	    http://www.springframework.org/schema/beans/spring-beans.xsd
+	   "
+>
+
+<!-- mail 불러오기/설정 (자동주입설정) 
+	host : 보낼이메일종류?
+	post : 
+	protocol : 규칙 
+	defaultEncoding : 엔코딩타입
+	name : 해당호스트의 이메일아이디 
+	password : 해당호스트의 이메일비밀번호
+	javaMailProperties : 보안 설정  (Map형식으로 되어 있는 멤버필드) -->
+<bean id = "mailSender" 
+	class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="465" />
+		<property name="protocol" value="smtps" />
+		<property name="defaultEncoding" value="utf-8"/>
+		<property name="username" value="a66141227@gmail.com" />
+		<property name="password" value="ghdentjr93@@" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.starttls.enable" >true</prop>
+    			<prop key="mail.smtp.auth" >true</prop>
+    			<prop key="mail.smtps.ssl.checkserveridentity">true</prop>
+    			<prop key="mail.smtps.debug" >true</prop>
+    			<prop key="mail.smtps.ssl.trust">*</prop>
+			</props>
+		</property>
+</bean>
+</beans>
