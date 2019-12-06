@@ -43,32 +43,33 @@ text-align:left;
 				<li>여행
 					<ul class="mainmenu">
 						<li><a href="Recreation/recreation">휴양지 정보</a></li>
-						<li><a href="" >휴양지 등록</a></li>
+						
 					</ul></li>
-				<li>carcar
+				<li>
 					<ul class="mainmenu">
-						<li><a href="#">차 등록</a></li>
+				
 						<li><a href="Car/carList">차 목록</a></li>
 					</ul></li>
 				<li>활동
 					<ul class="mainmenu">
-						<li><a href="#">활동 등록</a></li>
+					
 						<li><a href="#">활동 목록</a></li>
 					</ul></li>
 				<li>아토shop
 					<ul class="mainmenu">
-						<li><a href="">상품 등록</a></li>
+						
 						<li><a href="Shop/shopList">상품 목록</a></li>
 					</ul></li>
 					<li>숙소
 					<ul class="mainmenu">
-						<li><a href="">숙소 등록</a></li>
+					
 						<li><a href="rommsList">숙소 목록</a></li>
 					</ul></li>
 				<li>고객센터
 					<ul class="mainmenu">
 						<li><a href="">1:1 상담</a></li>
 						<li><a href="">신고 센터</a></li>
+						<li><a href="member/memberInfo">회원 가입</a></li>
 					</ul></li>	
 			</ul>
 		</nav>

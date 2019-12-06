@@ -23,9 +23,7 @@ http://www.springframework.org/schema/mvc/spring-mvc.xsd"
 	</mvc:interceptor>
 </mvc:interceptors> -->
 
-<!-- <bean id="messageSource" 
-class = "org.springframework.context.support.ResourceBundleMessageSource"
->
+<bean id="messageSource" class = "org.springframework.context.support.ResourceBundleMessageSource">
 	<property name="basenames">
 		<list>
 			<value>message.label</value>
@@ -33,7 +31,8 @@ class = "org.springframework.context.support.ResourceBundleMessageSource"
 		</list>
 	</property>
 	<property name="defaultEncoding" value="UTF-8" />
-</bean> -->
+</bean> 
+
 
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="100000000" />

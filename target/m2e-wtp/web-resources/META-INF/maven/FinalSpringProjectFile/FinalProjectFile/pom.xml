@@ -8,18 +8,27 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>FinalProjectFile Maven Webapp</name>
 	<url>http://maven.apache.org</url>
-	<properties>
-		<java-version>1.8</java-version>
-		<!-- 최신 버전은 4.3.3이지만 호환성을 위해 4.3.0으로 조정함 -->
-		<org.springframework-version>4.3.0.RELEASE</org.springframework-version>
-		<org.slf4j-version>1.7.21</org.slf4j-version>
-	</properties>
-	<repositories>
+	
+	<!-- 요거는 또 메인에 form태그가 오류가 나면 이거 없어서야!! 그니까 버전을 적어줘야 라이브러리가 먹지 -->
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!-- 최신 버전은 4.3.3이지만 호환성을 위해 4.3.0으로 조정 -->
+    <java-version>1.8</java-version>
+    <org.springframework-version>4.3.0.RELEASE</org.springframework-version>
+    <org.aspectj-version>1.6.10</org.aspectj-version>
+    <org.slf4j-version>1.7.21</org.slf4j-version>
+  </properties>
+	
+	
+	<!-- jdbc나 oracle 사용해여죠!! 얘를 적어줍시다  -->
+ 	<repositories>
 		<repository>
 			<id>codeId</id>
 			<url>https://code.lds.org/nexus/content/groups/main-repo</url>
 		</repository>
 	</repositories>
+	
+	
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -27,87 +36,111 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
+		
 		<!-- oracle -->
-		<dependency>
-			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc6</artifactId>
-			<version>11.2.0.3</version>
-		</dependency>
-		<!-- mybatis -->
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis</artifactId>
-			<version>3.2.8</version>
-		</dependency>
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis-spring</artifactId>
-			<version>1.2.2</version>
-		</dependency>
-		<!-- Spring -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-			<version>4.3.0.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>4.3.0.RELEASE</version>
-		</dependency>
-		<!-- jdbc -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jdbc</artifactId>
-			<version>4.3.0.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>com.mchange</groupId>
-			<artifactId>c3p0</artifactId>
-			<version>0.9.2.1</version>
-		</dependency>
-		<!-- Servlet -->
-		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>jsp-api</artifactId>
-			<version>2.1</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>3.1.0</version>
-		</dependency>
-		<!-- jstl -->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
-		</dependency>
-		<!-- email -->
-		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>mail</artifactId>
-			<version>1.4.7</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context-support</artifactId>
-			<version>4.1.0.RELEASE</version>
-		</dependency>
-		<!-- 파일 객체 -->
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>2.0.1</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-fileupload</groupId>
-			<artifactId>commons-fileupload</artifactId>
-			<version>1.2.2</version>
-		</dependency>
-	</dependencies>
+    <dependency>
+  		<groupId>com.oracle</groupId>
+     	<artifactId>ojdbc6</artifactId>
+     	<version>11.2.0.3</version>	
+    </dependency>
+    
+     <!-- JDBC -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>${org.springframework-version}</version>
+    </dependency>
+    <dependency>
+  		<groupId>com.mchange</groupId>
+     	<artifactId>c3p0</artifactId>
+     	<version>0.9.2.1</version>	
+  	</dependency>
+    
+    <!-- Mybatis -->
+    <dependency>
+    	<groupId>org.mybatis</groupId>
+    	<artifactId>mybatis</artifactId>
+    	<version>3.2.8</version>
+    </dependency>
+    
+    <dependency>
+    	<groupId>org.mybatis</groupId>
+    	<artifactId>mybatis-spring</artifactId>
+    	<version>1.2.2</version>
+    </dependency>
+    
+    <!-- servlet-api -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.1.0</version>
+    </dependency>
+    
+     <dependency>
+      <groupId>javax.servlet.jsp</groupId>
+      <artifactId>jsp-api</artifactId>
+      <version>2.1</version>
+    </dependency>
+    
+    <!-- jstl -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+    </dependency>
+    
+    <!-- spring 사용 -->
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-context</artifactId>
+    	<version>4.3.0.RELEASE</version>
+    </dependency>
+    
+     <!-- MVC 사용(웹관련) -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>${org.springframework-version}</version>
+    </dependency>
+
+	<!-- email -->
+    <dependency>
+    	<groupId>javax.mail</groupId>
+    	<artifactId>mail</artifactId>
+    	<version>1.4.7</version>
+    </dependency>
+    
+    <!-- email을 사용하기 위해서 -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context-support</artifactId>
+      <version>4.1.0.RELEASE</version>
+    </dependency>
+    
+    <!-- cos 사용하지 않고 파일업로드 하는거. -->
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.0.1</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>commons-fileupload</groupId>
+      <artifactId>commons-fileupload</artifactId>
+      <version>1.2.2</version>
+    </dependency>
+    
+    <!-- Logging -->
+    <dependency>
+    	<groupId>log4j</groupId>
+    	<artifactId>log4j</artifactId>
+    	<version>1.2.17</version>
+    </dependency>
+  </dependencies>
+  
+  
 	<build>
-		<finalName>FinalProjectFile</finalName>
+		<finalName>HaeYum</finalName>
 		<plugins>
 		 <!-- comfiler -->
 		<plugin>

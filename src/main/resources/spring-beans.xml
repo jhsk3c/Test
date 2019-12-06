@@ -9,6 +9,7 @@
 >
 <context:annotation-config />
 
-
-
+<bean id="memberJoinService" class="Service.Member.MemberJoinService" />
+<bean id="memberRepository" class="Repository.Member.MemberRepository" />
+<bean id="memberJoinUserCheckService" class="Service.Member.MemberJoinUserCheckService" />
 </beans>

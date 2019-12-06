@@ -9,27 +9,28 @@
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
 		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver" />
 		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe" />
-		<property name="user" value="STUDY2" />
-		<property name="password" value="STUDY2" />
+		<property name="user" value="FINAL" />
+		<property name="password" value="FINAL" />
 	</bean>
 	
 	
 	<!-- SqlSessionFactory 객체 주입 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="configLocation"	value="classpath:mybatis-config.xml" />
-		<!-- 쿼리문을 가지고 있는 파일은 무엇인가. -->
-		<property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml" />
-	</bean>
+	<property name="dataSource" ref="dataSource" />
+	<property name="configLocation" value="classpath:mybatis-config.xml" />
+	<property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml" /> <!-- 얘는 쿼리문을 가지고 있는 파일은 무언인가를 이야기 하는 것. -->
+	<!-- classpath는 resources를 말하는거잖아 이거는 이안에 mappers 폴더안에 어떠한 경로든 어떤 폴더가 있든 뒤에 Mapper.xml가 있으면 된다.-->
+	
+	<!-- sqpSessionFactory가  Mapper.xml을 읽어서 sqlSession에 보내줘서 얘가 읽어서  쿼리사용. 결국 Mapper.xml에다가 쿼리문 잘 작성-->
+</bean>
 	
 	
 	
-	
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate"	destroy-method="clearCache">
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
-	
-	
+	<!-- dataSource얘를  sqpSessionFactory얘가 쓰고 얘를 sqlSession얘가 써서 DB 사용-->
+		
 	
 	
 </beans>

@@ -13,5 +13,6 @@
 <bean class="Controller.Recreation.RecreationController" />
 <bean class="Controller.Car.CarController" />
 <bean class="Controller.Rooms.RoomsController" />
+<bean class="Controller.Member.MemberController" />
 
 </beans>
