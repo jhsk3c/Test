@@ -61,15 +61,17 @@ public class MemberCommandValidator implements Validator{
 			}
 		}
 		
-
-		ValidationUtils.rejectIfEmpty(errors, "memId", "required");
 		ValidationUtils.rejectIfEmpty(errors, "memPw", "required");
 		ValidationUtils.rejectIfEmpty(errors, "memPwCon", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "memName", "required"); 
 		ValidationUtils.rejectIfEmpty(errors, "memAddr2", "required");
 		
 		
-		
+		if(!memCmd.getMemPw().isEmpty()){
+			if(!memCmd.isPwEqualToPwCon()) {
+				errors.rejectValue("memPwCon", "bad3");
+			}
+		}
 	}
 
 }

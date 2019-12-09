@@ -70,6 +70,7 @@ text-align:left;
 						<li><a href="">1:1 상담</a></li>
 						<li><a href="">신고 센터</a></li>
 						<li><a href="member/memberInfo">회원 가입</a></li>
+						<li><a href="comMember/comMemberInfo">기업회원 가입</a></li>
 					</ul></li>	
 			</ul>
 		</nav>

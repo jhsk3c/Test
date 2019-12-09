@@ -9,7 +9,6 @@ public class MemberCommand {
 	String memBirth;
 	String memSex;
 	String memNationality;
-	String memLoc;
 	String memEmail;
 	String memAddr1;
 	String memAddr2;
@@ -60,12 +59,6 @@ public class MemberCommand {
 	public void setMemNationality(String memNationality) {
 		this.memNationality = memNationality;
 	}
-	public String getMemLoc() {
-		return memLoc;
-	}
-	public void setMemLoc(String memLoc) {
-		this.memLoc = memLoc;
-	}
 	public String getMemEmail() {
 		return memEmail;
 	}
@@ -104,7 +97,10 @@ public class MemberCommand {
 		this.memPreferTrip = memPreferTrip;
 	}
 	
-	
+	public boolean isPwEqualToPwCon() {
+		if(memPw.equals(memPwCon)) return true;
+		return false;
+	}
 	
 	
 	

@@ -1,33 +1,25 @@
 package Service.Member;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import CommandMember.MemberCommand;
 import Model.DTO.MemberDTO;
 import Repository.Member.MemberRepository;
 
+@Service
 public class MemberJoinUserCheckService {
 	
 	@Autowired
 	private MemberRepository memberRepository;
 
-	public Integer getUserCheck(MemberCommand memberCommand) {
+	public Integer getMemCheck(String memId) {
+		System.out.println("service 접근확인 및 아이디" + memId);
+		int idcheck = memberRepository.MemCheck(memId);
+		System.out.println(" 넘어온 memId 개수 확인. " + idcheck);
+		return idcheck;
 		
-		MemberDTO member = new MemberDTO();
 		
-		member.setMemId(memberCommand.getMemId());
-		
-		member = memberRepository.UserCheck(member);
-		
-		Integer result = 0;
-		
-		if(member == null) {
-			result = 0;
-		} else {
-			result = 1;
-		}
-		
-		return result;
 	}
-
+	
 }

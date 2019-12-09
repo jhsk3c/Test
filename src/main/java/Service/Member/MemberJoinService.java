@@ -38,7 +38,6 @@ public class MemberJoinService {
 		
 		member.setMemSex(memberCommand.getMemSex());
 		member.setMemNationality(memberCommand.getMemNationality());
-		member.setMemLoc(memberCommand.getMemLoc());
 		member.setMemEmail(memberCommand.getMemEmail());
 		member.setMemAddr(memberCommand.getMemAddr1() + memberCommand.getMemAddr2() + memberCommand.getMemAddr3());
 		member.setMemTel(memberCommand.getMemTel());

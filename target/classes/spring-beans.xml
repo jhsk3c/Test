@@ -12,4 +12,7 @@
 <bean id="memberJoinService" class="Service.Member.MemberJoinService" />
 <bean id="memberRepository" class="Repository.Member.MemberRepository" />
 <bean id="memberJoinUserCheckService" class="Service.Member.MemberJoinUserCheckService" />
+<bean id="comMemberInfoService" class="Service.Member.ComMemberInfoService" />
+<bean id="comMemberJoinUserCheckService" class="Service.Member.ComMemberJoinUserCheckService" />
+
 </beans>

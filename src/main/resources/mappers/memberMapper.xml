@@ -6,18 +6,31 @@
 	<cache />
 	
 	<sql id="basecolumn">
-		mem_num, mem_id, mem_pw, mem_name, mem_birth, mem_sex, mem_nationality, mem_loc, mem_email, mem_addr, mem_tel, mem_prefer_trip, mem_date
+		mem_num, mem_id, mem_pw, mem_name, mem_birth, mem_sex, mem_nationality, mem_email, mem_addr, mem_tel, mem_prefer_trip, mem_date
+	</sql>
+	
+	<sql id="combasecolumn">
+		com_num, com_id, com_pw, com_rep_name, license_number, com_name, com_addr, contact_phone_num, contact_email, com_approval, approval_date, com_date
 	</sql>
 	
 	<insert id="JoinInsert" parameterType="memDTO">
-		insert into member(<include refid="basecolumn" />) values((select nvl(max(mem_num)+1,1) from member),#{memId}, #{memPw}, #{memName}, #{memBirth}, #{memSex}, #{memNationality}, #{memLoc}, #{memEmail}, #{memAddr}, #{memTel}, #{memPreferTrip}, sysdate )
+		insert into member(<include refid="basecolumn" />) values((select nvl(max(mem_num)+1,1) from member),#{memId}, #{memPw}, #{memName}, #{memBirth}, #{memSex}, #{memNationality}, #{memEmail}, #{memAddr}, #{memTel}, #{memPreferTrip}, sysdate )
 	</insert>
 
-	<select id="memCheck">
-		select <include refid="basecolumn" />
+	<select id="memCheck" parameterType="String" resultType="int">
+		select count(*)
 		from member
-		where mem_id = #{memID}
+		where mem_id = #{memId}
 	</select>
 	
+	<insert id="InfoInsert" parameterType="comDTO">
+		insert into company_member(<include refid="combasecolumn" />) values((select nvl(max(com_num)+1,1) from company_member), #{comId}, #{comPw}, #{comRepName}, #{licenseNumber}, #{comName}, #{comAddr}, #{contactPhoneNum}, #{contactEmail}, '미승인', null, sysdate )
+	</insert>
+	
+	<select id="ComCheck" parameterType="String" resultType="int">
+		select count(*)
+		from company_member
+		where com_id = #{comId}
+	</select>
 	
 </mapper>

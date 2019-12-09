@@ -9,6 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import CommandMember.MemberCommand;
 import Model.DTO.MemberDTO;
@@ -28,6 +31,7 @@ public class MemberController {
 	
 	@RequestMapping("member/memberInfo")
 	public String Info(Model model, MemberCommand memberCommand) {
+		 System.out.println("memberInfo접근 확인");
 		return "Member/memberInfo";
 	}
 	
@@ -41,7 +45,7 @@ public class MemberController {
 		Integer result = memberJoinService.JoinInsert(memberCommand);
 		
 		if(result != 0) {
-			return "Main/mainView";
+			return "redirect:/main";
 		}
 		else {
 			return "Member/memberInfo";
@@ -49,20 +53,21 @@ public class MemberController {
 		
 	}
 	
-	@RequestMapping("member/userCheck")
-	public String userCheck(MemberCommand memberCommand) {
-		
-		Integer result = memberJoinUserCheckService.getUserCheck(memberCommand);
-		
-		
-		return "Member/memberInfo";
+	@RequestMapping(value = "member/memCheck", method = RequestMethod.POST)
+	@ResponseBody
+	public String memCheck(@RequestParam("memId") String memId) {
+		 System.out.println("컨트롤러 접근 확인");
+		 String str = "";
+		 Integer idcheck = memberJoinUserCheckService.getMemCheck(memId);
+		 if(idcheck == 1) {
+			 str ="NO"; // 중복ID
+		 } else {
+			 str ="YES";
+		 }
+		return str;
 	}
 	
-	
-	
-	
-	
-	
+
 	
 	
 	
@@ -122,100 +127,6 @@ public class MemberController {
 		
 	} 
 	
-	//회원가입 지역에 대한 SELECT 만들기..
-	@ModelAttribute("memLoc")
-	protected List<String> referData1() throws Exception {
-		List<String> memLoc = new ArrayList<String>();
-		    
-		memLoc.add("강릉");                        
-		memLoc.add("거제");
-		memLoc.add("경산");
-		memLoc.add("경주");
-		memLoc.add("계룡");                        
-		memLoc.add("고양");
-		memLoc.add("공주");
-		memLoc.add("과천");
-		memLoc.add("광명");                        
-		memLoc.add("광양");
-		memLoc.add("광주");
-		memLoc.add("광주광역시");
-		memLoc.add("구리");                        
-		memLoc.add("구미");
-		memLoc.add("군산");
-		memLoc.add("군포");
-		memLoc.add("김제");                        
-		memLoc.add("김천");
-		memLoc.add("김포");
-		memLoc.add("김해");
-		memLoc.add("나주");                        
-		memLoc.add("남양주");
-		memLoc.add("남원");
-		memLoc.add("논산");
-		memLoc.add("당진");                        
-		memLoc.add("대구광역시");
-		memLoc.add("대전광역시");
-		memLoc.add("동두천");
-		memLoc.add("동해");                        
-		memLoc.add("목포");
-		memLoc.add("문경");
-		memLoc.add("밀양");
-		memLoc.add("보령");                        
-		memLoc.add("부산광역시");
-		memLoc.add("부천");
-		memLoc.add("사천");
-		memLoc.add("삼척");                        
-		memLoc.add("상주");
-		memLoc.add("서귀포");
-		memLoc.add("서산");
-		memLoc.add("서울특별시");                        
-		memLoc.add("성남");
-		memLoc.add("세종특별자치시");
-		memLoc.add("속초");
-		memLoc.add("수원");                        
-		memLoc.add("순천");
-		memLoc.add("시흥");
-		memLoc.add("아산");
-		memLoc.add("안동");                        
-		memLoc.add("안산");
-		memLoc.add("안성");
-		memLoc.add("안양");
-		memLoc.add("양산");                        
-		memLoc.add("양주");
-		memLoc.add("여수");
-		memLoc.add("영주");
-		memLoc.add("영천");
-		memLoc.add("오산");
-		memLoc.add("용인");                        
-		memLoc.add("울산광역시");
-		memLoc.add("원주");
-		memLoc.add("의왕");
-		memLoc.add("의정부");
-		memLoc.add("이천");
-		memLoc.add("익산");                        
-		memLoc.add("인천광역시");
-		memLoc.add("전주시");
-		memLoc.add("정읍");
-		memLoc.add("제주도");
-		memLoc.add("제천");
-		memLoc.add("진주");                        
-		memLoc.add("창원");
-		memLoc.add("천안");
-		memLoc.add("청주");
-		memLoc.add("춘천");
-		memLoc.add("충주");
-		memLoc.add("태백");                        
-		memLoc.add("통영");
-		memLoc.add("평택");
-		memLoc.add("포천");
-		memLoc.add("포항");
-		memLoc.add("하남");
-		memLoc.add("화성");                        
-	
-		           
-		return memLoc;
-		
-		
-	} 
 		
 	//회원가입 여행법에 대한 SELECT 만들기..
 	@ModelAttribute("memPreferTrip")
