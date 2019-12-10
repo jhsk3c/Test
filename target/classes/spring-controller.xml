@@ -15,5 +15,6 @@
 <bean class="Controller.Rooms.RoomsController" />
 <bean class="Controller.Member.MemberController" />
 <bean class="Controller.Member.ComMemberController" />
-
+<bean class="Controller.Login.LoginController" />
+<bean class="Controller.Login.LogoutController" />
 </beans>

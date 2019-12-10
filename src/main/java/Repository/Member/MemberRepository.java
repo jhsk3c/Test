@@ -32,10 +32,31 @@ public class MemberRepository {
 	}
 	
 	//회원가입 시 아이디 중복체크 (기업 회원)
-	public int ComCheck(String comId) {
+	public Integer ComCheck(String comId) {
 		String statement = namespace + ".ComCheck";
 		return sqlSession.selectOne(statement, comId);
 	}
+	// 로그인에 대한 
+	public MemberDTO memLogin(MemberDTO member) {
+		String statement = namespace + ".memLogin";
+		return sqlSession.selectOne(statement, member);
+	}
 	
-
+	
+	public Integer LevCheck(String Lev) {
+		String statement = namespace + ".LevCheck";
+		return sqlSession.selectOne(statement, Lev);
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	public Integer LevComCheck(String Lev) {
+		String statement = namespace + ".LevComCheck";
+		return sqlSession.selectOne(statement, Lev);
+	}
+	public ComMemberDTO comLogin(ComMemberDTO comMember) {
+		String statement = namespace + ".comLogin";
+		return sqlSession.selectOne(statement, comMember);
+	}
 }

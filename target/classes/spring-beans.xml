@@ -14,5 +14,9 @@
 <bean id="memberJoinUserCheckService" class="Service.Member.MemberJoinUserCheckService" />
 <bean id="comMemberInfoService" class="Service.Member.ComMemberInfoService" />
 <bean id="comMemberJoinUserCheckService" class="Service.Member.ComMemberJoinUserCheckService" />
+<bean id="loginService" class="Service.Login.LoginService" /> 
+<bean id="loginMainService" class="Service.Login.LoginMainService" /> 
+<bean id="memberLogoutService" class="Service.Login.MemberLogoutService" /> 
+
 
 </beans>

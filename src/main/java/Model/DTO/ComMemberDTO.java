@@ -1,8 +1,9 @@
 package Model.DTO;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
-
-public class ComMemberDTO {
+@SuppressWarnings("serial")
+public class ComMemberDTO  implements Serializable{
 
 	String comNum;
 	String comId;
@@ -16,6 +17,8 @@ public class ComMemberDTO {
     String comApproval; // ?? 승인 여부
     Timestamp approvalDate; //?? 승인 날짜
     Timestamp comDate;
+    Integer comLev;
+
 	public String getComNum() {
 		return comNum;
 	}
@@ -89,6 +92,11 @@ public class ComMemberDTO {
 		this.comDate = comDate;
 	} 
     
-    
+	public Integer getComLev() {
+		return comLev;
+	}
+	public void setComLev(Integer comLev) {
+		this.comLev = comLev;
+	}
 	
 }

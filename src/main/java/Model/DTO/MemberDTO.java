@@ -1,8 +1,10 @@
 package Model.DTO;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class MemberDTO {
+@SuppressWarnings("serial")
+public class MemberDTO  implements Serializable{
 
 	
 	String memNum;
@@ -18,7 +20,10 @@ public class MemberDTO {
 	String memTel;
 	String memPreferTrip;
 	Timestamp memDate;
+	Integer memLev;
 	
+	
+
 	public String getMemNum() {
 		return memNum;
 	}
@@ -98,7 +103,12 @@ public class MemberDTO {
 		this.memDate = memDate;
 	}
 	
-	
+	public Integer getMemLev() {
+		return memLev;
+	}
+	public void setMemLev(Integer memLev) {
+		this.memLev = memLev;
+	}
 	
 	
 
