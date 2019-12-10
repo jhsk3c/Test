@@ -1,0 +1,5 @@
+회원을 보면 주민등록번호 제거 ->국가(mem_nationality VARCHAR2(50) not null,) 추가 후 
+선호 여행법 이름(mem_prefer_trip VARCHAR2(20),) 번경
+
+
+기업회원 -licenseNumber를 String으로 바꾸기 결국 varchar2(20)으로 <<<< 사업자번호 - 를 주기 위하여

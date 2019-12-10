@@ -21,8 +21,7 @@
 			<td> ${list.comId} </td>
 			<td>${list.contactEmail}</td>
 			<td>${list.comName}</td>
-			<td><fmt:formatDate value="${list.comDate}"
-			   pattern="yyyy-MM-dd"/></td>
+			<td><fmt:formatDate value="${list.comDate}" pattern="yyyy-MM-dd"/></td>
 		</tr>
 	</c:forEach>
 		
