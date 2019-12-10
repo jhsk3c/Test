@@ -1,0 +1,38 @@
+
+-- 일반회원 TABLE
+CREATE TABLE member ( 
+    mem_num VARCHAR2(10),
+    mem_id VARCHAR2(20) not null,
+    mem_pw VARCHAR2(1000) not null,
+    mem_name VARCHAR2(50) not null,
+    mem_birth TIMESTAMP not null,
+    mem_sex VARCHAR2(10) not null,
+    mem_nationality VARCHAR2(50) not null,
+    mem_email VARCHAR2(40) not null,
+    mem_addr VARCHAR2(255) not null,
+    mem_tel VARCHAR2(30) not null,
+    mem_prefer_trip VARCHAR2(20),
+    mem_date TIMESTAMP,
+    mem_lev number not null
+);
+
+alter table member add CONSTRAINT pk_mem_num PRIMARY KEY (mem_num);
+
+-- 기업회원 TABLE
+CREATE TABLE company_member(
+    com_num varchar2(10), --기업 회원번호
+    com_id varchar2(20) not null, -- 기업 ID
+    com_pw varchar2(1000) not null, -- 기업 PW
+    com_rep_name varchar2(50) not null, -- 대표자명
+    license_number varchar2(20) not null, -- 사업자 번호
+    com_name varchar2(50) not null, -- 기업 이름
+    com_addr varchar2(255) not null, -- 기업 주소
+    contact_phone_num varchar2(30) not null, -- 담당자 번호(기업 담당자인듯)
+    contact_email varchar2(40) not null, -- 담당자 이메일
+    com_approval varchar2(10) not null, -- 승인여부
+    approval_date TIMESTAMP, -- 승인 날짜
+    com_date TIMESTAMP, -- 가입 날짜
+    com_lev numeber -- 레벨
+);
+
+alter table company_member add CONSTRAINT pk_com_num PRIMARY KEY (com_num);
