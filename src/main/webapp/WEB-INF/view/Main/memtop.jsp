@@ -8,7 +8,7 @@
 <style>
 body {
   font-family: Arial, Helvetica, sans-serif;
-}
+} 
 
 .navbar {
   overflow: hidden;
@@ -76,9 +76,8 @@ body {
 <div class="navbar">
   <a href="#">Home</a>
   <a href="#">고객 센터</a>
-  <a href="login">로그인</a>
-  <a href="member/memberInfo">회원가입</a>
-  <a href="comMember/comMemberInfo">기업 회원가입</a>
+  <a href="logout">로그아웃</a>
+
   
   <div class="dropdown">
     <button class="dropbtn">Dropdown 

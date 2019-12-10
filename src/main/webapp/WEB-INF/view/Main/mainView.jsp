@@ -8,21 +8,25 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:include page="top.jsp" />
-	
+	<c:if test="${empty authInfo}">
+		<jsp:include page="top.jsp" />
+	</c:if>	
 	<c:if test="${Lev eq 1}">
-	asdasdsa 일반
-		<a href ="logout">로그아웃</a>
+	
+		<jsp:include page="memtop.jsp" />
+		asdasdsa 일반
 	</c:if> 
 	
 	<c:if test="${Lev eq 2}">
-	asdasdsa 선생님
+	
 		<a href ="logout">로그아웃</a>
+		asdasdsa 선생님
 	</c:if> 
 	
 	<c:if test="${Lev eq 4}">
-	asdasdsa  관리자
+	
 		<a href ="logout">로그아웃</a>
+		asdasdsa  관리자
 	</c:if> 
 	
 </body>

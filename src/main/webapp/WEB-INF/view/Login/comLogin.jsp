@@ -15,8 +15,8 @@
 		<form:form id="frm" name="frm" action="comLogin" method="post" commandName="comLoginCommand">
 			<table border =1 align=center>
 				<tr>
-					<td colspan="2"><a href="login" >일반 회원 </a></td>
-					<td colspan="2"> 기업 회원 </td>
+					<td colspan="2"><a href="login" >일반회원 </a></td>
+					<td colspan="2"> 기업회원 </td>
 				</tr>
 				
 					<tr>
@@ -45,7 +45,8 @@
 						|
 						<a href="#">비밀번호 찾기</a>
 								&nbsp;&nbsp;&nbsp;&nbsp;
-						<a href="member/memberInfo">회원가입</a>
+						<a href="member/memberInfo">일반 회원가입</a>
+						<a href="comMember/comMemberInfo">기업 회원가입</a>
 				    </td>
 				</tr>
 			</table>
