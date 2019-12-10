@@ -25,7 +25,7 @@
 	
 	<c:if test="${Lev eq 4}">
 	
-		<a href ="logout">로그아웃</a>
+		<jsp:include page="admintop.jsp" />
 		asdasdsa  관리자
 	</c:if> 
 	

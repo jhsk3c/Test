@@ -17,4 +17,5 @@
 <bean class="Controller.Member.ComMemberController" />
 <bean class="Controller.Login.LoginController" />
 <bean class="Controller.Login.LogoutController" />
+<bean class="Controller.ComManagement.ComManagementController" />
 </beans>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-/mybatis.org/DTO Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="adminMapper">
+
+	<cache />
+	
+	<sql id="basecolumn"> <!-- 일반회원의 컬럼들 -->
+		mem_num, mem_id, mem_pw, mem_name, mem_birth, mem_sex, mem_nationality, mem_email, mem_addr, mem_tel, mem_prefer_trip, mem_date, mem_lev
+	</sql>
+	
+	<resultMap type="memDTO" id="baseMember"> <!-- 일반회원의 Map -->
+		<id column="MEM_NUM" jdbcType="VARCHAR" property="memNum" />
+		<result column="MEM_ID" jdbcType="VARCHAR" property="memId" />		<!-- PK면 id , 나머지는 result -->	<!-- jdbcType == rs.getString -->
+		<result column="MEM_PW" jdbcType="VARCHAR" property="memPw"/>		
+		<result column="MEM_NAME" jdbcType="VARCHAR" property="memName" />
+		<result column="MEM_BIRTH" jdbcType="TIMESTAMP" property="memBirth" />		<!-- 이거 jsp로 어떻게 받아오더라? timestamp가 있었나? ㅇㅇㅇㅇ -->
+		<result column="MEM_SEX" jdbcType="VARCHAR" property="memSex" />
+		<result column="MEM_NATIONALITY" jdbcType="VARCHAR" property="memNationality" />
+		<result column="MEM_EMAIL" jdbcType="VARCHAR" property="memEmail" />
+		<result column="MEM_ADDR" jdbcType="VARCHAR" property="memAddr" />
+		<result column="MEM_TEL" jdbcType="TIMESTAMP" property="memTel" />	
+		<result column="MEM_PREFER_TRIP" jdbcType="VARCHAR" property="memPreferTrip" />
+		<result column="MEM_DATE" jdbcType="TIMESTAMP" property="memDate" />
+		<result column="MEM_LEV" jdbcType="INTEGER" property="memLev" />
+	</resultMap>	
+	
+	
+	<sql id="combasecolumn"> <!-- 기업회원의 컬럼들 -->
+		com_num, com_id, com_pw, com_rep_name, license_number, com_name, com_addr, contact_phone_num, contact_email, com_approval, approval_date, com_date, com_lev
+	</sql>
+	
+	
+	<resultMap type="comDTO" id="baseComMember">
+		<id column="COM_NUM" jdbcType="VARCHAR" property="comNum" />
+		<result column="COM_ID" jdbcType="VARCHAR" property="comId" />		<!-- PK면 id , 나머지는 result -->	<!-- jdbcType == rs.getString -->
+		<result column="COM_PW" jdbcType="VARCHAR" property="comPw"/>		
+		<result column="COM_REP_NAME" jdbcType="VARCHAR" property="comRepName" />
+		<result column="LICENSE_NUMBER" jdbcType="TIMESTAMP" property="licenseNumber" />		<!-- 이거 jsp로 어떻게 받아오더라? timestamp가 있었나? ㅇㅇㅇㅇ -->
+		<result column="COM_NAME" jdbcType="VARCHAR" property="comName" />
+		<result column="COM_ADDR" jdbcType="VARCHAR" property="comAddr" />
+		<result column="CONTACT_PHONE_NUM" jdbcType="VARCHAR" property="contactPhoneNum" />	
+		<result column="CONTACT_EMAIL" jdbcType="VARCHAR" property="contactEmail" />
+		<result column="COM_APPROVAL" jdbcType="VARCHAR" property="comApproval" />
+		<result column="APPROVAL_DATE" jdbcType="TIMESTAMP" property="approvalDate" />	
+		<result column="COM_DATE" jdbcType="TIMESTAMP" property="comDate" />
+		<result column="COM_LEV" jdbcType="INTEGER" property="comLev" />
+	
+	</resultMap>
+	
+	<select id="comList" parameterType="comDTO" resultMap="baseComMember">
+		select <include refid="combasecolumn" />
+		from company_member
+		where com_lev = 2
+	</select>
+
+	</mapper>

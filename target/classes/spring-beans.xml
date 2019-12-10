@@ -17,6 +17,7 @@
 <bean id="loginService" class="Service.Login.LoginService" /> 
 <bean id="loginMainService" class="Service.Login.LoginMainService" /> 
 <bean id="memberLogoutService" class="Service.Login.MemberLogoutService" /> 
-
+<bean id="comManaService" class="Service.ComManagement.ComManaService" /> 
+<bean id="adminRepository" class="Repository.Admin.AdminRepository" /> 
 
 </beans>
