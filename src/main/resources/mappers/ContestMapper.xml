@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Repository.Contest.ContestMapper">
+	<cache />
+
+	<sql id="basecolumn">
+		contest_num, user_id, contest_organizer, contest_name, contest_subject, contest_poster, contest_store_poster,contest_content, 
+		contest_condition, contest_entry_way, contest_peoples, contest_start, contest_end, contest_prize_way, contest_prize
+	</sql>
+
+	<insert id="insertContest" parameterType="Model.DTO.ContestDTO">
+		insert into contest(<include refid="basecolumn" />) values((SELECT NVL(MAX(contest_num),0)+1 FROM contest),null,
+		#{contestOrganizer},#{contestName},#{contestSubject},#{contestPoster},#{contestStorePoster},#{contestContent},
+		#{contestCondition},#{contestEntryWay},#{contestPeoples},#{contestStart},#{contestEnd},#{contestPrizeWay},#{contestPrize})
+	</insert>
+	
+	<resultMap type="Model.DTO.ContestDTO" id="contestMap">
+		<id column="contest_num" jdbcType="VARCHAR" property="contestNum" />
+		<result column="user_id" jdbcType="VARCHAR" property="userId" />
+		<result column="contest_organizer" jdbcType="VARCHAR" property="contestOrganizer" />
+		<result column="contest_name" jdbcType="VARCHAR" property="contestName" />
+		<result column="contest_subject" jdbcType="VARCHAR" property="contestSubject" />
+		<result column="contest_poster" jdbcType="VARCHAR" property="contestPoster" />
+		<result column="contest_store_poster" jdbcType="VARCHAR" property="contestStorePoster" />
+		<result column="contest_content" jdbcType="VARCHAR" property="contestContent" />
+		<result column="contest_condition" jdbcType="VARCHAR" property="contestCondition" />
+		<result column="contest_entry_way" jdbcType="VARCHAR" property="contestEntryWay" />
+		<result column="contest_peoples" jdbcType="INTEGER" property="contestPeoples" />
+		<result column="contest_start" jdbcType="DATE" property="contestStart" />
+		<result column="contest_end" jdbcType="DATE" property="contestEnd" />
+		<result column="contest_prize_way" jdbcType="VARCHAR" property="contestPrizeWay" />
+		<result column="contest_prize" jdbcType="INTEGER" property="contestPrize" />
+	</resultMap>
+	
+	<select id="listContest" parameterType="Model.DTO.ContestDTO" resultMap="contestMap">
+		select <include refid="basecolumn" /> from contest
+	</select>
+</mapper>

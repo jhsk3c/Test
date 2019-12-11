@@ -3,3 +3,6 @@
 
 
 기업회원 -licenseNumber를 String으로 바꾸기 결국 varchar2(20)으로 <<<< 사업자번호 - 를 주기 위하여
+
+
+
