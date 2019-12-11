@@ -17,7 +17,8 @@
   			classpath:spring-mail-config.xml
   			classpath:spring-beans.xml
   			classpath:spring-controller.xml
-  			
+  			classpath:contest-beans.xml <!-- 공모전 빈 -->
+  			classpath:contest-controller.xml <!-- 공모전 컨트롤러 -->
   		</param-value>
   	</init-param>
   	<load-on-startup>1</load-on-startup>

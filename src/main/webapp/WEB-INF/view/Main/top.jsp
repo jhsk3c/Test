@@ -76,6 +76,7 @@ body {
 <div class="navbar">
   <a href="#">Home</a>
   <a href="#">고객 센터</a>
+  <a href="contestInsertForm">Contest</a>
   <a href="login">로그인</a>
   <a href="member/memberInfo">회원가입</a>
   <a href="comMember/comMemberInfo">기업 회원가입</a>
