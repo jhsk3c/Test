@@ -72,7 +72,7 @@
 		
 	</select>
 	
-	<select id="memLogin" parameterType="memDTO" resultMap="baseMember" > <!-- 로그인  -->
+	<select id="memLogin" parameterType="memDTO" resultMap="baseMember" > <!-- 일밭 회원 로그인  -->
 		select <include refid="basecolumn" />
 		from member 
 		where mem_id = #{memId}
@@ -88,7 +88,7 @@
 		select com_lev from company_member where com_id = #{memId}
 	</select>
 	
-	<select id="comLogin" parameterType="comDTO" resultMap="baseComMember" > <!-- 로그인  -->
+	<select id="comLogin" parameterType="comDTO" resultMap="baseComMember" > <!-- 기업 회원 로그인  -->
 		select <include refid="combasecolumn" />
 		from company_member 
 		where com_id = #{comId}

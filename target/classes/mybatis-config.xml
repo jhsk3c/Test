@@ -6,5 +6,7 @@
 	<typeAliases>
 		<typeAlias type="Model.DTO.MemberDTO" alias="memDTO"/>
 		<typeAlias type="Model.DTO.ComMemberDTO" alias="comDTO"/>
+		<typeAlias type="Model.DTO.StartEndPageDTO" alias="spageDTO"/> 
+		
 	</typeAliases>
 </configuration>

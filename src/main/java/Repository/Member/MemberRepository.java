@@ -18,6 +18,7 @@ public class MemberRepository {
 		String statement = namespace + ".JoinInsert";
 		return sqlSession.insert(statement, member);
 	}
+	
 	//회원가입 시 아이디 중복체크  (일반 회원)
 	public Integer MemCheck(String memId) {	
 		String statement = namespace + ".memCheck";
@@ -36,25 +37,26 @@ public class MemberRepository {
 		String statement = namespace + ".ComCheck";
 		return sqlSession.selectOne(statement, comId);
 	}
-	// 로그인에 대한 
+	
+	// 일반회원 로그인
 	public MemberDTO memLogin(MemberDTO member) {
 		String statement = namespace + ".memLogin";
 		return sqlSession.selectOne(statement, member);
 	}
 	
-	
+	// 일반회원 로그인 체크
 	public Integer LevCheck(String Lev) {
 		String statement = namespace + ".LevCheck";
 		return sqlSession.selectOne(statement, Lev);
-		// TODO Auto-generated method stub
-		
 	}
 	
-	
+	// 기업회원 로그인 체크
 	public Integer LevComCheck(String Lev) {
 		String statement = namespace + ".LevComCheck";
 		return sqlSession.selectOne(statement, Lev);
 	}
+	
+	// 기업회원 로그인
 	public ComMemberDTO comLogin(ComMemberDTO comMember) {
 		String statement = namespace + ".comLogin";
 		return sqlSession.selectOne(statement, comMember);

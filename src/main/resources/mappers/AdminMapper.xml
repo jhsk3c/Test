@@ -11,10 +11,10 @@
 	
 	<resultMap type="memDTO" id="baseMember"> <!-- 일반회원의 Map -->
 		<id column="MEM_NUM" jdbcType="VARCHAR" property="memNum" />
-		<result column="MEM_ID" jdbcType="VARCHAR" property="memId" />		<!-- PK면 id , 나머지는 result -->	<!-- jdbcType == rs.getString -->
+		<result column="MEM_ID" jdbcType="VARCHAR" property="memId" />		
 		<result column="MEM_PW" jdbcType="VARCHAR" property="memPw"/>		
 		<result column="MEM_NAME" jdbcType="VARCHAR" property="memName" />
-		<result column="MEM_BIRTH" jdbcType="TIMESTAMP" property="memBirth" />		<!-- 이거 jsp로 어떻게 받아오더라? timestamp가 있었나? ㅇㅇㅇㅇ -->
+		<result column="MEM_BIRTH" jdbcType="TIMESTAMP" property="memBirth" />		
 		<result column="MEM_SEX" jdbcType="VARCHAR" property="memSex" />
 		<result column="MEM_NATIONALITY" jdbcType="VARCHAR" property="memNationality" />
 		<result column="MEM_EMAIL" jdbcType="VARCHAR" property="memEmail" />
@@ -31,12 +31,12 @@
 	</sql>
 	
 	
-	<resultMap type="comDTO" id="baseComMember">
+	<resultMap type="comDTO" id="baseComMember"> <!-- 기업회원의 Map -->
 		<id column="COM_NUM" jdbcType="VARCHAR" property="comNum" />
-		<result column="COM_ID" jdbcType="VARCHAR" property="comId" />		<!-- PK면 id , 나머지는 result -->	<!-- jdbcType == rs.getString -->
+		<result column="COM_ID" jdbcType="VARCHAR" property="comId" />		
 		<result column="COM_PW" jdbcType="VARCHAR" property="comPw"/>		
 		<result column="COM_REP_NAME" jdbcType="VARCHAR" property="comRepName" />
-		<result column="LICENSE_NUMBER" jdbcType="TIMESTAMP" property="licenseNumber" />		<!-- 이거 jsp로 어떻게 받아오더라? timestamp가 있었나? ㅇㅇㅇㅇ -->
+		<result column="LICENSE_NUMBER" jdbcType="TIMESTAMP" property="licenseNumber" />		
 		<result column="COM_NAME" jdbcType="VARCHAR" property="comName" />
 		<result column="COM_ADDR" jdbcType="VARCHAR" property="comAddr" />
 		<result column="CONTACT_PHONE_NUM" jdbcType="VARCHAR" property="contactPhoneNum" />	
@@ -48,10 +48,35 @@
 	
 	</resultMap>
 	
-	<select id="comList" parameterType="comDTO" resultMap="baseComMember">
-		select <include refid="combasecolumn" />
-		from company_member
-		where com_lev = 2
+	<!-- 승인 미승인 처리를 기다리는 기업회원의 리스트 항목  -->
+	<select id="comList" parameterType="spageDTO" resultMap="baseComMember">
+	
+		select rownum rn, <include refid="combasecolumn" />
+		from(select rownum rn, <include refid="combasecolumn" />
+			from(select <include refid="combasecolumn" />
+				from company_member order by COM_DATE desc))
+		where com_lev = ${su1} and rn &gt;= #{startRow} and rn &lt;= #{endRow}
+		
 	</select>
+	
+	<!-- 승인 미승인 처리를 기다리는 기업회원의 수 -->
+	<select id="listCount" parameterType="String" resultType="int">
+		select count(*)
+		from company_member
+		where com_lev = ${comLev}
+	</select>
+	
+	<!-- 리스트에서 승인을 클릭하면 레벨이 증가.  -->
+	<update id="comTrue" parameterType="String"  >
+		update company_member
+			set com_lev = 3
+			where com_num = ${comNum}
+	</update>
+	
+	<!-- 리스트에서 미승인을 클릭하면 삭제.  -->
+	<delete id="comFalse" parameterType="String"  >
+		delete from company_member
+			where com_num = ${comNum}
+	</delete>
 
 	</mapper>

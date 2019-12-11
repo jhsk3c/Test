@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 @SuppressWarnings("serial")
-public class MemberDTO  implements Serializable{
+public class MemberDTO implements Serializable{
 
 	
 	String memNum;
