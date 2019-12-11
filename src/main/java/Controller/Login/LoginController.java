@@ -83,10 +83,10 @@ public class LoginController {
 			return "Login/comLogin"; 
 	 	} 	
 	}
+	//해야할 일 : LEV 2로 로그인을하면  알림창?? 아직 승인처리 되지 않았다고. => 1~2시간.. 후 등록 가자(그리고 승인눌렀을떄 승인 날짜와 승인으로 변경하기)
 	 
 	 Integer result = loginMainService.LevComCheck(model, comLoginCommand);
 	 model.addAttribute("Lev",result);
-	 
 	 
 	 
 	return "Main/mainView";

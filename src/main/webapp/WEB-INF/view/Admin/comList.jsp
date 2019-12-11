@@ -12,6 +12,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="../Main/admintop.jsp" />
 	<table border="1" width="80%" align="center">
 		<tr>
 		<td colspan="8" align="right"> 글 개수 : ${Count} </td>
