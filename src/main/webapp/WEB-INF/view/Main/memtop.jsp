@@ -76,7 +76,7 @@ body {
 <div class="navbar">
   <a href="#">Home</a>
   <a href="#">고객 센터</a>
-  <a href="contestInsertForm">Contest</a>
+  <a href="contest">Contest</a>
   <a href="logout">로그아웃</a>
   
   <div class="dropdown">
