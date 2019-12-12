@@ -75,7 +75,7 @@ body {
 
 <div class="navbar">
   <a href="#">Home</a>
-  <a href="#">고객 센터</a>
+  <a href="QnA/qnaList">고객 센터</a>
   <a href="logout">로그아웃</a>
 
   

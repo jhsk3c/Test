@@ -5,18 +5,16 @@ public class AuthInfo {
 	private String Pw;
 	private String Email;
 	private String Name;
-	public AuthInfo() {}
 	
-	public AuthInfo(String Id, String Email, String Name, String Pw) {
-			super();
-			this.Id = Id;
-			this.Email= Email;
-			this.Name = Name;
-			this.Pw = Pw;
+	
+	
+	public AuthInfo( String id, String pw, String email, String name) {
+		super();
+		Id = id;
+		Pw = pw;
+		Email = email;
+		Name = name;
 	}
-	
-	
-		
 	public String getId() {
 		return Id;
 	}
@@ -43,4 +41,7 @@ public class AuthInfo {
 	}
 	
 	
+	
+	
+
 }

@@ -17,7 +17,8 @@
   			classpath:spring-mail-config.xml
   			classpath:spring-beans.xml
   			classpath:spring-controller.xml
-  			
+  			classpath:spring-qna-beans.xml
+  			classpath:spring-qna-controller.xml
   		</param-value>
   	</init-param>
   	<load-on-startup>1</load-on-startup>
