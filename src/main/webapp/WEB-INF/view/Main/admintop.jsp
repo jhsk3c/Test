@@ -72,7 +72,7 @@ body {
 </style>
 </head>
 <body>
-
+<!-- 지금 문제는 경로문제 결국에는 기업회원 관리에 들어가면.. 현재 admin/comMana잖아 여기서 또 누르면 또 admin/admin/comMana.. -->
 <div class="navbar">
   <a href="#">Home</a>
   <a href="contest">Contest</a>
