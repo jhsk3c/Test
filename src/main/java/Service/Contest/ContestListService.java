@@ -16,10 +16,8 @@ public class ContestListService {
 
 	public void contestList(Model model) {
 		List<ContestDTO> list = contestRepository.contestList();
-		for(ContestDTO str : list) {
-			System.out.println("리스트" + str);
-		}
 		model.addAttribute("contest", list);
+		
 	}
 
 }

@@ -39,8 +39,10 @@
 	</tr>
 	<c:forEach var="contest" items="${contest }">
 	<div id="banner-list">
-		<p id="img"><img src="../Contest/upload/${contest.contestStorePoster}" /></p>
+	<a href="contestDetail?contestNum=${contest.contestNum }">
+		<p id="img"><img src="../Contest/upload/${contest.contestPoster}" /></p>
 		<p id="contest-name"><h4>${contest.contestName }</h4></p>
+	</a>
 		<p id="contest-time"><fmt:formatDate value="${contest.contestStart }" pattern="yyyy.MM.dd"/> ~ <fmt:formatDate value="${contest.contestEnd }" pattern="yyyy.MM.dd"/></p>
 		<p id="contest-organizer">${contest.contestOrganizer }</p>
 	</div>

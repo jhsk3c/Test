@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 
+@SuppressWarnings("serial")
 public class ContestDTO implements Serializable {
 	String contestNum; // 공모전번호
+
 	String userId; // admin id
 	String contestOrganizer; // 담당자
 	String contestName; // 공모전이름
@@ -20,6 +22,14 @@ public class ContestDTO implements Serializable {
 	Date contestEnd; // 모집종료기간
 	String contestPrizeWay; // 시상방법
 	Integer contestPrize; // 시상금
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 
 	public String getContestStorePoster() {
 		return contestStorePoster;
