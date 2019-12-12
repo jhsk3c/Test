@@ -27,4 +27,11 @@ public class ContestRepository {
 		return list;
 	}
 
+
+	public ContestDTO detail(ContestDTO contest) {
+		String statement = namespace + ".detailContest";
+		System.out.println("cccccccccccccccccccccccccc2 :: "+contest.getContestName());
+		return sqlSession.selectOne(statement, contest);
+	}
+
 }

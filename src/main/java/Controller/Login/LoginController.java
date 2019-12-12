@@ -47,6 +47,7 @@ public class LoginController {
 		}
 		 
 		 Integer result = loginMainService.LevCheck(model, loginCommand);
+		 session.setAttribute("memLev", result);
 		 model.addAttribute("Lev",result);
 		 
 		 
