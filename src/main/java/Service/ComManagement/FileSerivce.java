@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletContext;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,18 +15,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class FileSerivce {
 
-	public void upload(String vspotStore, HttpServletRequest request, HttpServletResponse response) {
+	public void upload(String original, String store, HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
+		
 		try {
 			
-			//store = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension; 
+			String fileName = original;
+			String fileName1 = store;
+			
 			// 서버에 올라간 경로를 가져옴
 			ServletContext context = request.getServletContext();
 			String uploadFilePath = context.getRealPath("WEB-INF/view/Spot/upload");
-			String filePath = uploadFilePath + File.separator + vspotStore.replaceAll("-", "");
-			System.out.println(context);
-			System.out.println(uploadFilePath);
-			System.out.println(filePath);
+			String filePath = uploadFilePath + File.separator + fileName1;
 			
 			byte[] b = new byte[4096];
 			FileInputStream fileInputStream = new FileInputStream(filePath);
@@ -37,18 +38,16 @@ public class FileSerivce {
 			response.setContentType(mimeType);
 			
 	        // 파일명 UTF-8로 인코딩(한글일 경우를 대비)
-	        String sEncoding = new String(vspotStore.getBytes("UTF-8"));
+	        String sEncoding = new String(fileName.getBytes("UTF-8"));
 	        response.setHeader("Content-Disposition", "attachment; fileName= " + sEncoding);
 	        
 	        // 파일 쓰기 OutputStream
-	        PrintWriter servletOutStream = response.getWriter();
-	        
+	        ServletOutputStream servletOutStream = response.getOutputStream();
 	        
 	        int read;
 	        while((read = fileInputStream.read(b,0,b.length))!= -1){
-	            servletOutStream.write(0);            
+	            servletOutStream.write(b,0,read);            
 	        }
-	        
 	        servletOutStream.flush();
 	        servletOutStream.close();
 	        fileInputStream.close();
@@ -59,6 +58,8 @@ public class FileSerivce {
 			e.printStackTrace();
 			
 		}
+		
+		
 	}
 
 }

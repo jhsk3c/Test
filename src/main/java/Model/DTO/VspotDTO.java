@@ -9,6 +9,7 @@ public class VspotDTO implements Serializable{
 	Integer vspotNum;
 	String memNum;
 	String memId;
+	String vspotTitle;
 	String vspotName;
 	String vspotOriginal;
 	String vspotStore;
@@ -36,6 +37,12 @@ public class VspotDTO implements Serializable{
 	}
 	public void setMemId(String memId) {
 		this.memId = memId;
+	}
+	public String getVspotTitle() {
+		return vspotTitle;
+	}
+	public void setVspotTitle(String vspotTitle) {
+		this.vspotTitle = vspotTitle;
 	}
 	public String getVspotName() {
 		return vspotName;

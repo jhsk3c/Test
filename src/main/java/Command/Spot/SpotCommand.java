@@ -4,7 +4,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class SpotCommand {
 	
-	
+	String vspotTitle;
 	String vspotName;
 	String vspotLocation1;
 	String vspotLocation2;
@@ -12,7 +12,13 @@ public class SpotCommand {
 	String vspotIntroduce;
 	String vspotFeature;
 	MultipartFile[] vspotReport;
-	
+
+	public String getVspotTitle() {
+		return vspotTitle;
+	}
+	public void setVspotTitle(String vspotTitle) {
+		this.vspotTitle = vspotTitle;
+	}
 	public String getVspotName() {
 		return vspotName;
 	}

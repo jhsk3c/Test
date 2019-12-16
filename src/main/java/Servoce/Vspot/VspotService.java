@@ -33,10 +33,10 @@ public class VspotService {
 		spot.setMemNum(((AuthInfo)session.getAttribute("authInfo")).getNum());
 		spot.setMemId(((AuthInfo)session.getAttribute("authInfo")).getId());
 		
-		
+		spot.setVspotTitle(spotCommand.getVspotTitle());
 		spot.setVspotName(spotCommand.getVspotName());
-		spot.setVspotLocation("("+spotCommand.getVspotLocation1() +")" +"&nbsp;&nbsp;&nbsp;" + spotCommand.getVspotLocation2()+ "\n" + spotCommand.getVspotLocation3());
-		spot.setVspotIntroduce(spotCommand.getVspotIntroduce());
+		spot.setVspotLocation("("+spotCommand.getVspotLocation1() +")" +" " + spotCommand.getVspotLocation2()+"<br/>"  + spotCommand.getVspotLocation3());
+		spot.setVspotIntroduce(spotCommand.getVspotIntroduce().replace("\n", "<br/>"));
 		spot.setVspotFeature(spotCommand.getVspotFeature());
 		
 		

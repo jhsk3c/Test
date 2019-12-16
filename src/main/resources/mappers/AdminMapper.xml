@@ -48,13 +48,14 @@
 	</resultMap>
 	
 	<sql id="vspotbasecolumn"> <!-- 휴양지 등록의 컬럼들 -->
-		vspot_num, mem_num, mem_id, vspot_name, vspot_original, vspot_store, vspot_location, vspot_introduce, vspot_feature, vspot_approval, approval_date, vspot_date
+		vspot_num, mem_num, mem_id, vspot_title, vspot_name, vspot_original, vspot_store, vspot_location, vspot_introduce, vspot_feature, vspot_approval, approval_date, vspot_date
 	</sql>
 	
 	<resultMap type="vDTO" id="baseVspotMember"> <!-- 휴양지 등록 Map -->
 		<id column="VSPOT_NUM" jdbcType="INTEGER" property="vspotNum" />
 		<result column="MEM_NUM" jdbcType="VARCHAR" property="memNum" />
-		<result column="MEM_ID" jdbcType="VARCHAR" property="memId" />		
+		<result column="MEM_ID" jdbcType="VARCHAR" property="memId" />
+		<result column="VSPOT_TITLE" jdbcType="VARCHAR" property="vspotTitle" />			
 		<result column="VSPOT_NAME" jdbcType="VARCHAR" property="vspotName"/>		
 		<result column="VSPOT_ORIGINAL" jdbcType="VARCHAR" property="vspotOriginal" />
 		<result column="VSPOT_STORE" jdbcType="VARCHAR" property="vspotStore" />		
@@ -116,5 +117,13 @@
 		from vspot
 		where VSPOT_APPROVAL='미승인'
 	</select>
+	
+	<!-- 디테일 -->
+	<select id="vspotDetail" parameterType="vDTO" resultMap="baseVspotMember">
+		select <include refid="vspotbasecolumn" />
+		from vspot
+		where vspot_num = #{count}
+	</select>
+	
 
 	</mapper>

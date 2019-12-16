@@ -58,19 +58,25 @@
 	 
 	<form:form action="vspotPro" method="post" enctype="multipart/form-data" commandName="spotCommand">
 		<table>
+		
+			<tr>
+				<td> 신청 제목 </td>
+				<td> <form:input path="vspotTitle" id="vspotTitle" size="20" maxlength="25" /> </td>
+			</tr>
+		
 			<tr>
 				<td> 휴양지 이름 </td>
-				<td> <form:input path="vspotName" id="vspotName" size="15" maxlength="25" /> </td>
+				<td> <form:input path="vspotName" id="vspotName" size="20" maxlength="25" /> </td>
 			</tr>
 			
 			<tr>
 				<td> 휴양지 소개 </td>
-				<td> <form:textarea path="vspotIntroduce" rows="60" cols="25" id="vspotIntroduce"/> </td>
+				<td> <form:textarea path="vspotIntroduce" rows="30" cols="35" id="vspotIntroduce"/> </td>
 			</tr>
 			
 			<tr>
 				<td> 휴양지 특장점 </td>
-				<td> <form:input path="vspotFeature" id="vspotFeature" size="15" maxlength="50" /> </td>
+				<td> <form:input path="vspotFeature" id="vspotFeature" size="20" maxlength="50" /> </td>
 			</tr>
 			
 			<tr>

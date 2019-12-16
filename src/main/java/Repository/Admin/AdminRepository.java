@@ -67,4 +67,11 @@ public class AdminRepository {
 		return sqlSession.selectOne(statement);
 	}
 
+	public VspotDTO vspotDetail(String count) {
+		
+		String statement = namespace + ".vspotDetail";
+		return sqlSession.selectOne(statement, count);
+		
+	}
+
 }

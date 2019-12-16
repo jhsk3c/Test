@@ -2,11 +2,12 @@ package Service.ComManagement;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import Model.DTO.ComMemberDTO;
 import Model.DTO.VspotDTO;
 import Repository.Admin.AdminRepository;
 
@@ -28,28 +29,7 @@ public class MemVspotListService {
 		int endPage = startPage + 10 -1;
 		
 		if(endPage > maxPage)endPage= maxPage;
-		
-		for(int i = 0; i < list.size(); i++) {
-			VspotDTO str = list.get(i);
-			
-			
-		}
-	
-			String aa = list.get(1).getVspotOriginal();
-			System.out.println(list.get(1).getVspotOriginal());
-	
-				
-			
-			System.out.println(list.get(1).getVspotOriginal());
-		
-		//String [] original = vspot.getVspotOriginal().split("-"); 
-		//String [] store = vspot.getVspotStore().split("-");
-		
-		
-		//System.out.println(original);
-		//System.out.println(store);
-		
-		
+
 		model.addAttribute("maxPage", maxPage);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
@@ -57,10 +37,28 @@ public class MemVspotListService {
 		model.addAttribute("list", list);
 		model.addAttribute("Count", Count);
 		model.addAttribute("list", list);
-		model.addAttribute("original", aa);
+
 		//model.addAttribute("store", store);
 		
 		return "Admin/vspotList";
+	}
+
+
+	public void vspotDetail(String count, Model model) {
+		
+		VspotDTO vdto = adminRepository.vspotDetail(count);
+		
+		if(vdto.getVspotOriginal() != null) {
+			
+				String [] original = vdto.getVspotOriginal().split("-"); 
+				String [] store = vdto.getVspotStore().split("-");
+				
+				model.addAttribute("original", original);
+				model.addAttribute("store", store);
+			}
+		
+		model.addAttribute("list", vdto);
+		
 	}
 
 }

@@ -42,6 +42,7 @@ CREATE TABLE vspot(
     vspot_num NUMBER, -- 휴양지 등록번호
     mem_num varchar2(10) not null, -- 회원번호
     mem_id varchar2(100) not null, -- 회원아이디
+    vspot_title varchar2(100) not null, -- 신청 제목
     vspot_name varchar2(50) not null, -- 휴양지 이름
     vspot_original varchar2(1000) not null, -- 휴양지 사진
     vspot_store varchar2(1000) not null, -- 휴양지 시스템 사진
