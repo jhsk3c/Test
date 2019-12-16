@@ -77,6 +77,7 @@ body {
   <a href="#">Home</a>
   <a href="contest">Contest</a>
   <a href="admin/comMana">기업 회원 관리</a>
+   <a href="admin/memVspot">휴양지 관리</a>
   <a href="logout">로그아웃</a>
 
   

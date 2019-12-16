@@ -18,4 +18,7 @@
 <bean class="Controller.Login.LoginController" />
 <bean class="Controller.Login.LogoutController" />
 <bean class="Controller.ComManagement.ComManagementController" />
+<bean class="Controller.Spot.SpotController" />
+<bean class="Controller.ComManagement.memVspotController" />
+
 </beans>

@@ -1,8 +1,8 @@
-È¸¿øÀ» º¸¸é ÁÖ¹Îµî·Ï¹øÈ£ Á¦°Å ->±¹°¡(mem_nationality VARCHAR2(50) not null,) Ãß°¡ ÈÄ 
-¼±È£ ¿©Çà¹ı ÀÌ¸§(mem_prefer_trip VARCHAR2(20),) ¹ø°æ
+íšŒì›ì„ ë³´ë©´ ì£¼ë¯¼ë“±ë¡ë²ˆí˜¸ ì œê±° ->êµ­ê°€(mem_nationality VARCHAR2(50) not null,) ì¶”ê°€ í›„ 
+ì„ í˜¸ ì—¬í–‰ë²• ì´ë¦„(mem_prefer_trip VARCHAR2(20),) ë²ˆê²½
 
 
-±â¾÷È¸¿ø -licenseNumber¸¦ StringÀ¸·Î ¹Ù²Ù±â °á±¹ varchar2(20)À¸·Î <<<< »ç¾÷ÀÚ¹øÈ£ - ¸¦ ÁÖ±â À§ÇÏ¿©
+ê¸°ì—…íšŒì› -licenseNumberë¥¼ Stringìœ¼ë¡œ ë°”ê¾¸ê¸° ê²°êµ­ varchar2(20)ìœ¼ë¡œ <<<< ì‚¬ì—…ìë²ˆí˜¸ - ë¥¼ ì£¼ê¸° ìœ„í•˜ì—¬
 
 
 
