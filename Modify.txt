@@ -1,8 +1,24 @@
+
+***정영진(임대 , 여행 관련 수정 )
+<회원 테이블>
 회원을 보면 주민등록번호 제거 ->국가(mem_nationality VARCHAR2(50) not null,) 추가 후 
 선호 여행법 이름(mem_prefer_trip VARCHAR2(20),) 번경
 
-
+<기업회원 테이블>
 기업회원 -licenseNumber를 String으로 바꾸기 결국 varchar2(20)으로 <<<< 사업자번호 - 를 주기 위하여
 
+<휴양지 등록 테이블(휴양지 정보)>
+추가 -   mem_id varchar2(100) not null, -- 회원아이디, 
+	   vspot_title varchar2(100) not null, -- 신청 제목
+	   vspot_approval varchar2(30) not null, -- 승인여부
+       approval_date TIMESTAMP, -- 휴양지 승인 날짜
+	   
+수정 - 휴양지 사진	vspot_image	사진	VARCHAR2(1000)	NOT NULL ==>
+	   vspot_original varchar2(1000) not null, -- 휴양지 사진
+  	   vspot_store varchar2(1000) not null, -- 휴양지 시스템 사진
+  	   
+삭제 - 추천장소, 추천음식, 추천활동
+  	   
+  	   
 
 

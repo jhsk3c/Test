@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-/mybatis.org/DTO Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="actiMapper">
+
+<cache />
+	
+	<sql id="basecolumn"> <!-- 활동이다 건들지마 -->
+	</sql>
+	
+	<sql id="insert1" >
+			mem_num, activity_name, activity_lev, activity_start_date, activity_end_date, 
+			recruit_start_date, recruit_end_date, recruit_people, activity_text, 
+			limit_age, original_filename, store_filename
+			
+	</sql>
+	
+
+<!-- sql -->
+
+	<insert id="activityInsert1" parameterType="actiDTO">
+		insert into activity(<include refid="insert1" />) 
+		values(#{memNum}, #{activityName}, '1', sysdate, sysdate, sysdate, sysdate, #{recruitPeople}, #{activityText}, #{limitAge}, #{originalFilename}, #{storeFilename})
+	</insert>
+	
+	
+	
+	
+</mapper>

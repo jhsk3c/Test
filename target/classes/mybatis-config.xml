@@ -8,6 +8,7 @@
 		<typeAlias type="Model.DTO.ComMemberDTO" alias="comDTO"/>
 		<typeAlias type="Model.DTO.StartEndPageDTO" alias="spageDTO"/> 
 		<typeAlias type="Model.DTO.VspotDTO" alias="vDTO"/> 
+		<typeAlias type="DTO.Activity.ActivityDTO" alias="actiDTO"/>
 		
 	</typeAliases>
 </configuration>

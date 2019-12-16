@@ -85,7 +85,7 @@ body {
     </button>
     <div class="dropdown-content">
       <a href="travel/spot">휴양지 신청</a>
-      <a href="#">Link 2</a>
+       <a href="Activity/ActivityList">활동</a>
       <a href="#">Link 3</a>
     </div>
   </div> 
