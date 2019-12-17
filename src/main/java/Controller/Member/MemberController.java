@@ -29,13 +29,13 @@ public class MemberController {
 	private MemberJoinUserCheckService memberJoinUserCheckService;
 	
 	
-	@RequestMapping("member/memberInfo")
+	@RequestMapping("/memberInfo")
 	public String Info(Model model, MemberCommand memberCommand) {
 		 System.out.println("memberInfo접근 확인");
 		return "Member/memberInfo";
 	}
 	
-	@RequestMapping("member/memberInfoPro")
+	@RequestMapping("/memberInfoPro")
 	public String InfoPro(MemberCommand memberCommand, Errors errors) {
 		
 		new MemberCommandValidator().validate(memberCommand, errors);
@@ -53,7 +53,7 @@ public class MemberController {
 		
 	}
 	
-	@RequestMapping(value = "member/memCheck", method = RequestMethod.POST)
+	@RequestMapping(value = "/memCheck", method = RequestMethod.POST)
 	@ResponseBody
 	public String memCheck(@RequestParam("memId") String memId) {
 		 System.out.println("컨트롤러 접근 확인");

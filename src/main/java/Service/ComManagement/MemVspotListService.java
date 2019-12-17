@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
 import Model.DTO.VspotDTO;
@@ -20,6 +21,7 @@ public class MemVspotListService {
 	private AdminRepository adminRepository;
 	
 	//리스트 출력하기
+	@Transactional
 	public String vspotList(Integer page, Model model) {
 		int limit = 10;
 		
@@ -46,6 +48,7 @@ public class MemVspotListService {
 	}
 
 	//상세보기
+	@Transactional
 	public void vspotDetail(String vspotNum, Model model) {
 		
 		VspotDTO vdto = adminRepository.FileDelete(vspotNum); //상세보기나 파일삭제나 같아서
@@ -64,6 +67,7 @@ public class MemVspotListService {
 	}
 
 	// 승인버튼을 클릭시.
+	@Transactional
 	public Integer vspotTrue(String vspotNum) {
 		
 		System.out.println(vspotNum);
@@ -73,6 +77,7 @@ public class MemVspotListService {
 	}
 
 	// 비승인버튼을 클릭시.
+	@Transactional
 	public Integer vspotFalse(String vspotNum,  HttpServletRequest request) {
 		
 		System.out.println(vspotNum);

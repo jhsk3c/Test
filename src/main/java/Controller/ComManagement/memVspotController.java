@@ -23,14 +23,14 @@ public class memVspotController {
 	private FileSerivce fileSerivce;
 	
 	//휴양지 리스트 보기(관리자가)
-	@RequestMapping("admin/memVspot")
+	@RequestMapping("/memVspot")
 	public String memvspot(@RequestParam(value = "page", defaultValue = "1") Integer page, Model model) {
 		
 		return memVspotListService.vspotList(page, model);
 	}
 	
 	
-	@RequestMapping("admin/vspotListTrue") // 승인을 눌렀을  승인업데이트와 함께 리스트 출력
+	@RequestMapping("/vspotListTrue") // 승인을 눌렀을  승인업데이트와 함께 리스트 출력
 	public String True(Model model, @RequestParam(value = "num") String vspotNum, @RequestParam(value = "page", defaultValue = "1") Integer page)  {
 		System.out.println(vspotNum);
 		Integer result = memVspotListService.vspotTrue(vspotNum);
@@ -43,7 +43,7 @@ public class memVspotController {
 		
 	}
 	
-	@RequestMapping("admin/vspotListFalse") // 비승인을 눌렀을  삭제와 함께 리스트 출력
+	@RequestMapping("/vspotListFalse") // 비승인을 눌렀을  삭제와 함께 리스트 출력
 	public String False(Model model, @RequestParam(value = "num") String vspotNum, @RequestParam(value = "page", defaultValue = "1") Integer page, HttpServletRequest request)  {
 		System.out.println(vspotNum);
 		Integer result = memVspotListService.vspotFalse(vspotNum, request);
@@ -59,7 +59,7 @@ public class memVspotController {
 	
 	
 	//휴양지 클릭 시 상세보기
-	@RequestMapping("admin/Detail")
+	@RequestMapping("/Detail")
 	public String Datil(@RequestParam(value = "num") String vspotNum, Model model) {
 		
 		memVspotListService.vspotDetail(vspotNum, model);
@@ -68,7 +68,7 @@ public class memVspotController {
 	}
 	
 	//휴양지 상세보기 내용에서 파일을 다운로드 하는 내용
-	@RequestMapping("admin/fileUpload")
+	@RequestMapping("/fileUpload")
 	public String file(@RequestParam(value = "filename") String original,@RequestParam(value = "filename1") String store , Model model, HttpServletRequest request, HttpServletResponse response) {
 		
 		System.out.println("접근접근접근접근접근접근접근접근접근접근접근접근");

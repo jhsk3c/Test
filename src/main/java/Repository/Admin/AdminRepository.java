@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import Model.DTO.ComMemberDTO;
 import Model.DTO.StartEndPageDTO;
 import Model.DTO.VspotDTO;
 
+@Repository
 public class AdminRepository {
 
 	@Autowired

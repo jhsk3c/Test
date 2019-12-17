@@ -16,14 +16,14 @@ public class SpotController {
 	@Autowired
 	private VspotService vspotService;
 	
-	@RequestMapping("travel/spot")
+	@RequestMapping("/spot")
 	public String gorm(SpotCommand spotCommand) {
 		
 		return "Spot/Vspot";
 	}
 	 
 
-	@RequestMapping("travel/vspotPro") //경로를 잡아봅시다.
+	@RequestMapping("/vspotPro") //경로를 잡아봅시다.
 	public String vspot(SpotCommand spotCommand, HttpServletRequest request, HttpSession session ) {
 		
 		vspotService.vspotWrite(spotCommand, request, session);

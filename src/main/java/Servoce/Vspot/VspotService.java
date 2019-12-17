@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import Command.Spot.SpotCommand;
@@ -25,7 +26,7 @@ public class VspotService {
 	String originalFileExtension = null;
 	String store = null;
 	
-	
+	@Transactional
 	public Integer vspotWrite(SpotCommand spotCommand, HttpServletRequest request, HttpSession session) {
 		
 		VspotDTO spot = new VspotDTO();
