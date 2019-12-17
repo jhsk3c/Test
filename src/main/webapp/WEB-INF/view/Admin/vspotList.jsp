@@ -24,18 +24,17 @@
 			<th>가입일</th>
 			<th>구분</th>
 		</tr>
-	
-		<!-- 해야 할일 : 파일 다운로드와 / 미승인 눌렀을 시 파일이 폴더에서 삭제되게 하는게====>>>>> -->
+
 		<c:forEach var="list" items="${list}" varStatus="status"> 
 			<tr align="center">
-				<td> <a href="Detail?num=${status.count }">${status.count } </a></td>
+				<td> <a href="Detail?num=${list.vspotNum }">${status.count } </a></td>
 				<td> ${list.memId} </td>
 				<td> ${list.vspotTitle} </td>
 				<td> ${list.vspotName} </td>
 				<td><fmt:formatDate value="${list.vspotDate}" pattern="yyyy-MM-dd"/></td>
 				<td>
-					<a href="#">승인</a>
-					<a href="#">미승인</a>
+					<a href="vspotListTrue?num=${list.vspotNum}&page=${page}">승인</a>
+					<a href="vspotListFalse?num=${list.vspotNum}&page=${page}">미승인</a>
 				</td>
 			</tr>
 		</c:forEach>

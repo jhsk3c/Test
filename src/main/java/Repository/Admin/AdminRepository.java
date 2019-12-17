@@ -62,15 +62,42 @@ public class AdminRepository {
 		
 	}
 
-	public Integer vspotListCount() {
+	public Integer vspotListCount() { //회원이 휴양지 등록 신청한 개수
 		String statement = namespace + ".vspotListCount";
 		return sqlSession.selectOne(statement);
 	}
 
-	public VspotDTO vspotDetail(String count) {
-		
-		String statement = namespace + ".vspotDetail";
-		return sqlSession.selectOne(statement, count);
+	/*
+	 * public VspotDTO vspotDetail(String count) { // 회원의 휴양지 등록을 상세보기
+	 * 
+	 * String statement = namespace + ".vspotDetail"; return
+	 * sqlSession.selectOne(statement, count);
+	 * 
+	 * }
+	 */
+
+	public Integer vspotTrue(String vspotNum) { //리스트에서 승인을 누를시..(휴양지)
+		System.out.println(vspotNum);
+		VspotDTO vspot = new VspotDTO();
+		vspot.setVspotNum(Integer.parseInt(vspotNum));
+		String statement = namespace + ".vspotTrue";
+		return sqlSession.update(statement, vspot);
+	}
+
+	public Integer vspotFalse(String vspotNum) { // 리스트에서 미승인을 누를시 (휴양지)
+		System.out.println(vspotNum);
+		VspotDTO vspot = new VspotDTO();
+		vspot.setVspotNum(Integer.parseInt(vspotNum));
+		String statement = namespace + ".vspotFalse";
+		return sqlSession.delete(statement, vspot);
+	}
+
+	public VspotDTO FileDelete(String vspotNum) { // 리스트에서 미승인을 누를 시 업로드 된 파일이 삭제되기 위해서 
+		System.out.println(vspotNum);
+		VspotDTO vspot = new VspotDTO();
+		vspot.setVspotNum(Integer.parseInt(vspotNum));
+		String statement = namespace + ".FileDelete";
+		return sqlSession.selectOne(statement, vspot);
 		
 	}
 

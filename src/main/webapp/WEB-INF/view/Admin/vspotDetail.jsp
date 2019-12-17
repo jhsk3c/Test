@@ -65,8 +65,12 @@
 			
 			</td>
 		</tr>
-		<tr>
-			<td colspan="2"> <input type="button" value="승인"/> <input type="button" value="미승인"/>  </td>
+		<tr align="center">
+			<td colspan="2"> 
+				<input type="button" value="승인" onClick="location.href='vspotListTrue?num=${list.vspotNum}&page=${page}';"/> 
+				<input type="button" value="미승인" onClick="location.href='vspotListFalse?num=${list.vspotNum}&page=${page}';"/>  
+				<input type="button" value="뒤로가기" onClick="location.href='memVspot?&page=${page}';"/>  
+			</td>
 
 		</tr>
 		

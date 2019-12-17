@@ -86,14 +86,14 @@
 		where com_lev = ${comLev}
 	</select>
 	
-	<!-- 리스트에서 승인을 클릭하면 레벨이 증가.  -->
+	<!-- 리스트에서 승인을 클릭하면 레벨이 증가. (선생님 회원가입)  -->
 	<update id="comTrue" parameterType="String"  >
 		update company_member
 			set com_lev = 3, com_approval = '승인', approval_date = sysdate
 			where com_num = ${comNum}
 	</update>
 	
-	<!-- 리스트에서 미승인을 클릭하면 삭제.  -->
+	<!-- 리스트에서 미승인을 클릭하면 삭제. (선생님 회원가입)  -->
 	<delete id="comFalse" parameterType="String"  >
 		delete from company_member
 			where com_num = ${comNum}
@@ -118,12 +118,25 @@
 		where VSPOT_APPROVAL='미승인'
 	</select>
 	
-	<!-- 디테일 -->
-	<select id="vspotDetail" parameterType="vDTO" resultMap="baseVspotMember">
+
+	<!-- 리스트에서 승인을 클릭하면 승인으로 변경 (휴양지 등록)  -->
+	<update id="vspotTrue" parameterType="String"  >
+		update vspot
+			set vspot_approval = '승인', approval_date = sysdate
+			where vspot_num = ${vspotNum}
+	</update>
+	
+	<!-- 리스트에서 미승인을 클릭하면 삭제(휴양지 등록)  -->
+	<delete id="vspotFalse" parameterType="String"  >
+		delete from vspot
+			where vspot_num = ${vspotNum}
+	</delete>
+	
+	<!-- 리스트에서 미승인을 눌렀을시 파일 삭제하기 위해서 ********* 디테일도 이거씁니다.***** -->
+	<select id="FileDelete" parameterType="vDTO" resultMap="baseVspotMember">
 		select <include refid="vspotbasecolumn" />
 		from vspot
-		where vspot_num = #{count}
+		where vspot_num = ${vspotNum}
 	</select>
-	
 
 	</mapper>

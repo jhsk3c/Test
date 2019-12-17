@@ -67,6 +67,7 @@ public class VspotService {
 			try {
 				mf.transferTo(file); 
 				
+				
 			} catch (Exception e) {
 			
 				e.printStackTrace();
