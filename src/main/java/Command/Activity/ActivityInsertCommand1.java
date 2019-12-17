@@ -10,7 +10,6 @@ public class ActivityInsertCommand1 {
 	//String recruitEndDate;
 	String recruitPeople;
 	String activityText;
-	//String limitgender;
 	String limitAge;
 	MultipartFile[] actiImage;
 	

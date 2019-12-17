@@ -4,15 +4,33 @@
 <mapper namespace="actiMapper">
 
 <cache />
+	<resultMap type="memDTO" id="baseMember">
+	 
+		<id column="USER_ID" jdbcType="VARCHAR" property="userId"/>
+		<result column="USER_PW" jdbcType="VARCHAR" property="userPw"/>
+		<result column="USER_NAME" jdbcType = "VARCHAR" property="userName"/>
+		<result column="USER_BIRTH" jdbcType="TIMESTAMP" property="userBirth"/>
+		<result column="USER_GENDER" jdbcType="CHAR" property="userGender"/>
+		<result column="USER_EMAIL" jdbcType="VARCHAR" property="userEmail"/>
+		<result column="USER_ADDR" jdbcType="VARCHAR" property="userAddr"/>
+		<result column="USER_PH1" jdbcType="VARCHAR" property="userPh1"/>
+		<result column="USER_PH2" jdbcType="VARCHAR" property="userPh2"/>
+		<result column="USER_REGIST" jdbcType="TIMESTAMP" property="userRegist"/>
+	</resultMap>
+	
+	
 	
 	<sql id="basecolumn"> <!-- 활동이다 건들지마 -->
+	
 	</sql>
 	
 	<sql id="insert1" >
 			mem_num, activity_name, activity_lev, activity_start_date, activity_end_date, 
 			recruit_start_date, recruit_end_date, recruit_people, activity_text, 
 			limit_age, original_filename, store_filename
-			
+	</sql>
+	<sql id="insert2">
+		mem_num, activity_lev, activity_Product, acivity_cost
 	</sql>
 	
 
@@ -23,7 +41,20 @@
 		values(#{memNum}, #{activityName}, '1', sysdate, sysdate, sysdate, sysdate, #{recruitPeople}, #{activityText}, #{limitAge}, #{originalFilename}, #{storeFilename})
 	</insert>
 	
+	<insert id="activityInsert2" parameterType="actiDTO">
+		insert into activity(<include refid="insert2" />)
+		values(#{memNum}, (SELECT NVL(MAX(activity_lev),0)+1 FROM activity), #{activityProduct}, #{activityCost})
+	</insert>
 	
-	
-	
+	<select id="activityList" parameterType="actiDTO" resultMap="baseMember" >
+		select 
+			<include refid="basecolumn" />
+		from member
+		<trim prefix="where" prefixOverrides="AND |OR ">
+			<if test="userPw != null">
+			user_pw = #{userPw}
+			</if>
+			and user_id = #{userId} 
+		</trim>
+	</select> 
 </mapper>

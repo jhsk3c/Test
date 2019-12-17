@@ -11,5 +11,6 @@
 
 <bean id="activityInsertService" class="Service.Activity.ActivityInsertService"/>
 <bean id="activityRepository"  class="Repository.Activity.ActivityRepository" />
-
+<bean id="activityInsertService2" class="Service.Activity.ActivityInsertService2" />
+<bean id="activityListService" class="Service.Activity.ActivityListService" />
 </beans>
