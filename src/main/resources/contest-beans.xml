@@ -9,4 +9,7 @@
 	<bean id="contestRepository" class="Repository.Contest.ContestRepository"></bean>
 	<bean id="contestListService" class="Service.Contest.ContestListService" />
 	<bean id="contestDetailService" class="Service.Contest.ContestDetailService" />
+	<bean id="contestModifyService" class="Service.Contest.ContestModifyService" />
+	<bean id="contestDeleteService" class="Service.Contest.ContestDeleteService" />
+	
 </beans>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Repository.Particitpation.ParticitpationMapper">
+	<cache />
+	<sql id="basecolumn">
+		participation_num, mem_num, contest_num, work_name, work_outline, work_content, work_image
+	</sql>
+	
+	<insert id="insertParticitpation" parameterType="Model.DTO.ParticipationDTO">
+		insert into 
+	</insert>
+</mapper>

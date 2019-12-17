@@ -23,8 +23,8 @@ public class ContestListController {
 		return "Contest/contestListForm";
 	}
 
-	@RequestMapping() // 공모전 상세정보
-	public String contestDetail(@RequestParam(value = "contestNum", required = false) String contestNum, Model model) {
+	@RequestMapping("/contestDetail") // 공모전 상세정보
+	public String contestDetail(@RequestParam(value = "contestNum") String contestNum, Model model) {
 		contestDetailService.contestDetail(contestNum, model);
 		return "Contest/contestDetail";
 	}

@@ -48,8 +48,7 @@ public class LoginController {
 		 
 		 Integer result = loginMainService.LevCheck(model, loginCommand);
 		 session.setAttribute("memLev", result);
-		 model.addAttribute("Lev",result);
-		 
+		 session.setAttribute("Lev", result);
 		 
 		 
 		return "Main/mainView";
@@ -86,7 +85,7 @@ public class LoginController {
 	}
 	 
 	 Integer result = loginMainService.LevComCheck(model, comLoginCommand);
-	 model.addAttribute("Lev",result);
+	 session.setAttribute("Lev",result);
 	 
 	 
 	 

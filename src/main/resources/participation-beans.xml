@@ -4,9 +4,6 @@
 	   xsi:schemaLocation = "http://www.springframework.org/schema/beans 
 	    http://www.springframework.org/schema/beans/spring-beans.xsd"
 >
-
-<bean class="Controller.Contest.ContestController" />
-<bean class="Controller.Contest.ContestListController" />
-<bean class="Controller.Contest.ContestModifyController" />
-<bean class="Controller.Contest.ContestDeleteController" />
+	<bean id="participationRepository" class="Repository.Particitpation.ParticipationRepository" />
+	<bean id="writeService" class="Service.Participation.WriteService" />	
 </beans>

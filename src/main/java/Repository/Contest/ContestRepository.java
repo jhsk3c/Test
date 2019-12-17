@@ -30,8 +30,17 @@ public class ContestRepository {
 
 	public ContestDTO detail(ContestDTO contest) {
 		String statement = namespace + ".detailContest";
-		System.out.println("cccccccccccccccccccccccccc2 :: "+contest.getContestName());
 		return sqlSession.selectOne(statement, contest);
+	}
+
+	public Integer contestModify(ContestDTO contest) {
+		String statement = namespace + ".modifyContest";
+		return sqlSession.update(statement, contest);
+	}
+
+	public Integer delete(String contestNum) {
+		String statement = namespace + ".deleteContest";
+		return sqlSession.delete(statement, contestNum);
 	}
 
 }

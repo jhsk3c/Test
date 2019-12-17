@@ -41,4 +41,16 @@
 		select <include refid="basecolumn" /> from contest
 		where contest_num = #{contestNum}
 	</select>
+	
+	<update id="modifyContest" parameterType="Model.DTO.ContestDTO">
+		update contest 
+		set contest_subject = #{contestSubject}, contest_content = #{contestContent}, contest_condition = #{contestCondition}, 
+		contest_entry_way = #{contestEntryWay}, contest_peoples = #{contestPeoples}, contest_end = #{contestEnd},
+		contest_prize_way = #{contestPrizeWay}, contest_prize = #{contestPrize} 
+		where contest_num = #{contestNum} 
+	</update>
+	
+	<delete id="deleteContest" parameterType="String">
+		delete from contest where contest_num = #{contestNum}
+	</delete>
 </mapper>
