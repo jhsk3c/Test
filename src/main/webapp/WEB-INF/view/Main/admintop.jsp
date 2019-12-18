@@ -76,8 +76,6 @@ body {
 <div class="navbar">
   <a href="#">Home</a>
   <a href="contest">Contest</a>
-  <a href="admin/comMana">기업 회원 관리</a>
-   <a href="admin/memVspot">휴양지 관리</a>
   <a href="logout">로그아웃</a>
 
   
@@ -86,9 +84,9 @@ body {
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-      <a href="#">Link 1</a>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a>
+      <a href="activity">활동관리</a>
+      <a href="comMana">기업 회원 관리</a>
+      <a href="memVspot">휴양지 관리</a>
     </div>
   </div> 
 </div>

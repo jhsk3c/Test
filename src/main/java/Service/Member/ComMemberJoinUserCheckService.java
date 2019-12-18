@@ -2,6 +2,7 @@ package Service.Member;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import Repository.Member.MemberRepository;
 
@@ -11,6 +12,7 @@ public class ComMemberJoinUserCheckService {
 	@Autowired
 	private MemberRepository memberRepository;
 	
+	@Transactional
 	public Integer getComCheck(String comId) {
 	
 		System.out.println("service 접근확인 및 아이디" + comId);

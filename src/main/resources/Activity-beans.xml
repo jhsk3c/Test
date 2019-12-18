@@ -10,7 +10,18 @@
 <context:annotation-config />
 
 <bean id="activityInsertService" class="Service.Activity.ActivityInsertService"/>
-<bean id="activityRepository"  class="Repository.Activity.ActivityRepository" />
 <bean id="activityInsertService2" class="Service.Activity.ActivityInsertService2" />
 <bean id="activityListService" class="Service.Activity.ActivityListService" />
+
+
+<bean id="activityRepository"  class="Repository.Activity.ActivityRepository" />
+
+
+
+
+
+<!-- 관리자  -->
+<bean id="activityAcceptService" class="Service.ComManagement.ActivityAcceptService" />
+<bean id="activityListTrueService" class="Service.ComManagement.ActivityListTrueService" />
+<bean id="activityListFalseService" class="Service.ComManagement.ActivityListFalseService" />
 </beans>

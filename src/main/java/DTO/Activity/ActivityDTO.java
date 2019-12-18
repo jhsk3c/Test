@@ -24,6 +24,28 @@ public class ActivityDTO implements Serializable{
 	String originalFilename; 
 	String storeFilename;
 	String activityLev;
+	String sortOfActivity;
+	String whichProduct;
+	String activityCity;
+	
+	public String getActivityCity() {
+		return activityCity;
+	}
+	public void setActivityCity(String activityCity) {
+		this.activityCity = activityCity;
+	}
+	public String getWhichProduct() {
+		return whichProduct;
+	}
+	public void setWhichProduct(String whichProduct) {
+		this.whichProduct = whichProduct;
+	}
+	public String getSortOfActivity() {
+		return sortOfActivity;
+	}
+	public void setSortOfActivity(String sortOfActivity) {
+		this.sortOfActivity = sortOfActivity;
+	}
 	public String getActivityNum() {
 		return activityNum;
 	}

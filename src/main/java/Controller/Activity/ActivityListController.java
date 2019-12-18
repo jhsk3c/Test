@@ -2,8 +2,11 @@ package Controller.Activity;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import DTO.Activity.ActivityDTO;
@@ -18,10 +21,10 @@ public class ActivityListController { //휴양지 컨트롤
 	
 	
 	@RequestMapping("Activity/ActivityList")
-	public String recreation(){// 휴양지 
+	public String recreation(Model model, HttpServletRequest request){// 휴양지 
 
 		
-		return "activityListService.actiList()";
+		return activityListService.actiList(model, request);
 	}
 	
 	

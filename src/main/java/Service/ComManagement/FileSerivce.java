@@ -11,10 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.jasper.compiler.ServletWriter;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class FileSerivce {
 
+	@Transactional
 	public void upload(String original, String store, HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		

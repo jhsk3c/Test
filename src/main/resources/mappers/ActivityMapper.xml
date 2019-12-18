@@ -4,57 +4,83 @@
 <mapper namespace="actiMapper">
 
 <cache />
-	<resultMap type="memDTO" id="baseMember">
-	 
-		<id column="USER_ID" jdbcType="VARCHAR" property="userId"/>
-		<result column="USER_PW" jdbcType="VARCHAR" property="userPw"/>
-		<result column="USER_NAME" jdbcType = "VARCHAR" property="userName"/>
-		<result column="USER_BIRTH" jdbcType="TIMESTAMP" property="userBirth"/>
-		<result column="USER_GENDER" jdbcType="CHAR" property="userGender"/>
-		<result column="USER_EMAIL" jdbcType="VARCHAR" property="userEmail"/>
-		<result column="USER_ADDR" jdbcType="VARCHAR" property="userAddr"/>
-		<result column="USER_PH1" jdbcType="VARCHAR" property="userPh1"/>
-		<result column="USER_PH2" jdbcType="VARCHAR" property="userPh2"/>
-		<result column="USER_REGIST" jdbcType="TIMESTAMP" property="userRegist"/>
-	</resultMap>
+	 <resultMap type="memDTO" id="baseActivity">
+		<id column="activity_num" jdbcType="VARCHAR" property="activityNum"/>
+		<result column="product_num" jdbcType="VARCHAR" property="productNum"/>
+		<result column="store_num" jdbcType = "VARCHAR" property="storeNum"/>
+		<result column="mem_num" jdbcType="VARCHAR" property="memNum"/>
+		<result column="activity_lev" jdbcType="INTEGER" property="activityLev"/>
+		<result column="activity_name" jdbcType="VARCHAR" property="activityName"/>
+		<result column="activity_start_date" jdbcType="TIMESTAMP" property="activityStartDate"/>
+		<result column="activity_end_date" jdbcType="TIMESTAMP" property="activityEndDate"/>
+		<result column="recruit_start_date" jdbcType="TIMESTAMP" property="recruitStartDate"/>
+		<result column="recruit_end_date" jdbcType="TIMESTAMP" property="recruitEndDate"/>
+		<result column="recruit_People" jdbcType="INTEGER" property="recruitPeople"/>
+		<result column="activity_Current_People" jdbcType="INTEGER" property="activityCurrentPeople"/>
+		<result column="activity_Product" jdbcType="VARCHAR" property="activityProduct"/>
+		<result column="activity_state" jdbcType="VARCHAR" property="actiState"/>
+		<result column="activity_text" jdbcType="VARCHAR" property="activityText"/>
+		<result column="limit_age" jdbcType="VARCHAR" property="limitAge"/>
+		<result column="acivity_cost" jdbcType="VARCHAR" property="activityCost"/>
+		<result column="original_filename" jdbcType="VARCHAR" property="originalFilename"/>
+		<result column="store_filename" jdbcType="VARCHAR" property="storeFilename"/>
+		<result column="sort_of_activity" jdbcType="VARCHAR" property="sortOfActivity" />
+		<result column="which_product" jdbcType="VARCHAR" property="whichProduct" />
+		<result column="activity_city" jdbcType="VARCHAR" property="activityCity" />
+	</resultMap> 
 	
-	
-	
-	<sql id="basecolumn"> <!-- 활동이다 건들지마 -->
-	
+ 	<sql id="basecolumn"> 
+		mem_num, activity_name, activity_lev, activity_start_date, activity_end_date, 
+			recruit_start_date, recruit_end_date, recruit_people, activity_text, 
+			limit_age, original_filename, store_filename, activity_Product, acivity_cost, sort_of_activity, which_product, activity_city
 	</sql>
 	
 	<sql id="insert1" >
-			mem_num, activity_name, activity_lev, activity_start_date, activity_end_date, 
+			activity_num, mem_num, activity_name, activity_lev, activity_start_date, activity_end_date, 
 			recruit_start_date, recruit_end_date, recruit_people, activity_text, 
-			limit_age, original_filename, store_filename
+			limit_age, original_filename, store_filename, sort_of_activity, which_product, activity_city
 	</sql>
+	
 	<sql id="insert2">
 		mem_num, activity_lev, activity_Product, acivity_cost
 	</sql>
 	
+	
+	
+	
 
-<!-- sql -->
-
+<!-- sql 일반-->
+	<!-- 활동등록 1,2차 -->
 	<insert id="activityInsert1" parameterType="actiDTO">
-		insert into activity(<include refid="insert1" />) 
-		values(#{memNum}, #{activityName}, '1', sysdate, sysdate, sysdate, sysdate, #{recruitPeople}, #{activityText}, #{limitAge}, #{originalFilename}, #{storeFilename})
+		insert into 
+			activity(<include refid="insert1" />) 
+			values((select nvl(max(activity_num)+1,1) from activity), #{memNum}, #{activityName}, '1', sysdate, sysdate, sysdate, sysdate, 
+			#{recruitPeople}, #{activityText}, #{limitAge}, #{originalFilename}, #{storeFilename}, #{sortOfActivity}, 
+			#{whichProduct}, #{activityCity})
 	</insert>
+	
 	
 	<insert id="activityInsert2" parameterType="actiDTO">
 		insert into activity(<include refid="insert2" />)
 		values(#{memNum}, (SELECT NVL(MAX(activity_lev),0)+1 FROM activity), #{activityProduct}, #{activityCost})
 	</insert>
 	
-	<select id="activityList" parameterType="actiDTO" resultMap="baseMember" >
+
+	<!-- 활동목록 -->
+	<select id="activityList" parameterType="actiDTO" resultMap="baseActivity" >
 		select 
-			<include refid="basecolumn" />
-		from member
-		<trim prefix="where" prefixOverrides="AND |OR ">
-			<if test="userPw != null">
-			user_pw = #{userPw}
-			</if>
-			and user_id = #{userId} 
-		</trim>
-	</select> 
+			activity_name, original_filename, store_filename, acivity_cost
+		from ACTIVITY		
+			where activity_lev = 2
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper>

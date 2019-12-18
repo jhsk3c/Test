@@ -34,6 +34,8 @@ public class ActivityRepository {
 			String statement = namespace + ".activityList";
 			return sqlSession.selectList(statement);
 		}
+
+	
 		
 		
 		

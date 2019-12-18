@@ -8,6 +8,10 @@
 	    http://www.springframework.org/schema/context/spring-context.xsd">
 <context:annotation-config />
 
+<bean class="Controller.ComManagement.ActivityManagementController" />
+
+
 <bean class="Controller.Activity.ActivityInsertController" />
 <bean class="Controller.Activity.ActivityListController" />
+
 </beans>

@@ -6,6 +6,7 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import CommandMember.MemberCommand;
 import Encrypt.Encrypt;
@@ -18,6 +19,7 @@ public class MemberJoinService {
 	@Autowired
 	private MemberRepository memberRepository;
 
+	@Transactional
 	public Integer JoinInsert(MemberCommand memberCommand) {
 		
 		MemberDTO member = new MemberDTO();

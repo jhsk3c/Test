@@ -61,6 +61,9 @@ public class ActivityInsertService {
 		acti.setRecruitPeople(Integer.parseInt(activityCommand1.getRecruitPeople()));
 		acti.setActivityText(activityCommand1.getActivityText());
 		acti.setLimitAge(activityCommand1.getLimitAge());
+		acti.setSortOfActivity(activityCommand1.getSortOfActivity());
+		acti.setActivityCity(activityCommand1.getActivityCity());
+		acti.setWhichProduct(activityCommand1.getWhichProduct());		
 		
 		System.out.println(authInfo.getNum());
 		System.out.println(activityCommand1.getActivityName());
@@ -92,6 +95,8 @@ public class ActivityInsertService {
 			
 			acti.setOriginalFilename(originalTotal);
 			acti.setStoreFilename(storeTotal);
+			acti.setSortOfActivity(activityCommand1.getSortOfActivity());
+			
 			
 			System.out.println(originalTotal);
 			System.out.println(storeTotal);

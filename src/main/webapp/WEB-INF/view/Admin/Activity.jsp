@@ -8,33 +8,33 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>활동 관리</title>
 </head>
 <body>
+<!-- 상단 -->
 <jsp:include page="../Main/admintop.jsp" />
+
+<!-- 중단 -->
 	<table border="1" width="80%" align="center">
 		<tr>
 			<td colspan="8" align="right"> 글 개수 : ${Count} </td> 
 		</tr>
 		<tr>
 			<th>번호</th>
-			<th> 회원 아이디 </th>
-			<th>신청 제목</th>
-			<th>휴양지 이름</th>	
-			<th>가입일</th>
+			<th>활동 소개</th>	
 			<th>구분</th>
 		</tr>
 
 		<c:forEach var="list" items="${list}" varStatus="status"> 
 			<tr align="center">
-				<td> <a href="Detail?num=${list.vspotNum }">${status.count } </a></td>
-				<td> ${list.memId} </td>
-				<td> ${list.vspotTitle} </td>
-				<td> ${list.vspotName} </td>
-				<td><fmt:formatDate value="${list.vspotDate}" pattern="yyyy-MM-dd"/></td>
+				<td> <a href="Detail?num=${list.activityNum }">${status.count } </a></td>
+				
+				<td> ${list.activityName} </td>
+				<td> ${list.sortOfActivity} </td>
+				
 				<td>
-					<a href="vspotListTrue?num=${list.vspotNum}&page=${page}">승인</a>
-					<a href="vspotListFalse?num=${list.vspotNum}&page=${page}">미승인</a>
+					<a href="activityListTrue?num=${list.activityNum}&page=${page}">승인</a>
+					<a href="activityListFalse?num=${list.activityNum}&page=${page}">미승인</a>
 				</td>
 			</tr>
 		</c:forEach>
@@ -45,23 +45,30 @@
 				[이전]&nbsp; <!-- 첫 페이지  -->
 			</c:if>
 			<c:if test="${page > 1}">
-				<a href = "memVspot?page=${page -1}">[이전]</a>&nbsp;
+				<a href = "activity?page=${page -1}">[이전]</a>&nbsp;
 			</c:if>
 			
 			<c:forEach var = "i" begin="${startPage }" end ="${endPage}" >
-				<a href = "memVspot?page=${i}">[ ${i} ]</a>&nbsp;
+				<a href = "activity?page=${i}">[ ${i} ]</a>&nbsp;
 			</c:forEach>
 			
 			<c:if test="${page >= maxPage}">	
 				[다음]&nbsp; <!-- 마지막 페이지  -->
 			</c:if>
 			<c:if test="${page < maxPage}">	
-				<a href = "memVspot?page=${page +1}">[다음]</a>&nbsp;
+				<a href = "activity?page=${page +1}">[다음]</a>&nbsp;
 			</c:if>
 			</td>
 		</tr> 
 		
 	</table>
+
+
+
+<input type="button" value="활동 승인" onClick="location.href='activityAccept?&page=${page}';"/> 	<!-- Controller에 적을 필요? -->
+
+<!-- 하단 -->
+
 
 </body>
 </html>

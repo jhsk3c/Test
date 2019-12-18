@@ -12,7 +12,29 @@ public class ActivityInsertCommand1 {
 	String activityText;
 	String limitAge;
 	MultipartFile[] actiImage;
+	String sortOfActivity;
+	String whichProduct;
+	String activityCity;
 	
+	
+	public String getActivityCity() {
+		return activityCity;
+	}
+	public void setActivityCity(String activityCity) {
+		this.activityCity = activityCity;
+	}
+	public String getWhichProduct() {
+		return whichProduct;
+	}
+	public void setWhichProduct(String whichProduct) {
+		this.whichProduct = whichProduct;
+	}
+	public String getSortOfActivity() {
+		return sortOfActivity;
+	}
+	public void setSortOfActivity(String sortOfActivity) {
+		this.sortOfActivity = sortOfActivity;
+	}
 	public String getActivityName() {
 		return activityName;
 	}

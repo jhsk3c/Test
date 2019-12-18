@@ -67,7 +67,45 @@
 		<result column="VSPOT_DATE" jdbcType="TIMESTAMP" property="vspotDate" />	
 	</resultMap>
 	
+	
+	
+	<!-- 활동 등록 컬럼  -->
+	<resultMap type="actiDTO" id="baseActivity">
+		<id column="activity_num" jdbcType="VARCHAR" property="activityNum"/>
+		<result column="product_num" jdbcType="VARCHAR" property="productNum"/>
+		<result column="store_num" jdbcType = "VARCHAR" property="storeNum"/>
+		<result column="mem_num" jdbcType="VARCHAR" property="memNum"/>
+		<result column="activity_lev" jdbcType="INTEGER" property="activityLev"/>
+		<result column="activity_name" jdbcType="VARCHAR" property="activityName"/>		
+		<result column="activity_start_date" jdbcType="TIMESTAMP" property="activityStartDate"/>
+		<result column="activity_end_date" jdbcType="TIMESTAMP" property="activityEndDate"/>
+		<result column="recruit_start_date" jdbcType="TIMESTAMP" property="recruitStartDate"/>
+		<result column="recruit_end_date" jdbcType="TIMESTAMP" property="recruitEndDate"/>		
+		<result column="recruit_People" jdbcType="INTEGER" property="recruitPeople"/>
+		<result column="activity_Current_People" jdbcType="INTEGER" property="activityCurrentPeople"/>
+		<result column="activity_Product" jdbcType="VARCHAR" property="activityProduct"/>
+		<result column="activity_state" jdbcType="VARCHAR" property="actiState"/>
+		<result column="activity_text" jdbcType="VARCHAR" property="activityText"/>
+		<result column="limit_age" jdbcType="VARCHAR" property="limitAge" />
+		<result column="acivity_cost" jdbcType="INTEGER" property="activityCost" />
+		<result column="original_filename" jdbcType="VARCHAR" property="originalFilename" />
+		<result column="store_filename" jdbcType="VARCHAR" property="storeFilename" />
+		<result column="sort_of_activity" jdbcType="VARCHAR" property="sortOfActivity" />
+		<result column="which_product" jdbcType="VARCHAR" property="whichProduct" />
+		<result column="activity_city" jdbcType="VARCHAR" property="activityCity" />
+	</resultMap>
 
+	<sql id="baseclumnOfActivity">
+		activity_num,  mem_num, activity_name, activity_lev, activity_start_date, activity_end_date, 
+			recruit_start_date, recruit_end_date, recruit_people, activity_text, 
+			limit_age, original_filename, store_filename, activity_Product, acivity_cost, sort_of_activity, which_product, activity_city
+	</sql>
+
+
+
+
+
+<!--  sql  -->
 	<!-- 승인 미승인 처리를 기다리는 기업회원의 리스트 항목  -->
 	<select id="comList" parameterType="spageDTO" resultMap="baseComMember">
 	
@@ -86,14 +124,14 @@
 		where com_lev = ${comLev}
 	</select>
 	
-	<!-- 리스트에서 승인을 클릭하면 레벨이 증가.  -->
+	<!-- 리스트에서 승인을 클릭하면 레벨이 증가. (선생님 회원가입)  -->
 	<update id="comTrue" parameterType="String"  >
 		update company_member
 			set com_lev = 3, com_approval = '승인', approval_date = sysdate
 			where com_num = ${comNum}
 	</update>
 	
-	<!-- 리스트에서 미승인을 클릭하면 삭제.  -->
+	<!-- 리스트에서 미승인을 클릭하면 삭제. (선생님 회원가입)  -->
 	<delete id="comFalse" parameterType="String"  >
 		delete from company_member
 			where com_num = ${comNum}
@@ -118,12 +156,77 @@
 		where VSPOT_APPROVAL='미승인'
 	</select>
 	
-	<!-- 디테일 -->
-	<select id="vspotDetail" parameterType="vDTO" resultMap="baseVspotMember">
+
+	<!-- 리스트에서 승인을 클릭하면 승인으로 변경 (휴양지 등록)  -->
+	<update id="vspotTrue" parameterType="String"  >
+		update vspot
+			set vspot_approval = '승인', approval_date = sysdate
+			where vspot_num = ${vspotNum}
+	</update>
+	
+	<!-- 리스트에서 미승인을 클릭하면 삭제(휴양지 등록)  -->
+	<delete id="vspotFalse" parameterType="String"  >
+		delete from vspot
+			where vspot_num = ${vspotNum}
+	</delete>
+	
+	<!-- 리스트에서 미승인을 눌렀을시 파일 삭제하기 위해서 ********* 디테일도 이거씁니다.***** -->
+	<select id="FileDelete" parameterType="vDTO" resultMap="baseVspotMember">
 		select <include refid="vspotbasecolumn" />
 		from vspot
-		where vspot_num = #{count}
+		where vspot_num = ${vspotNum}
 	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+ 	<!-- 활동활동 -->
+	<select id="activityListADMIN" parameterType="spageDTO" resultMap="baseActivity"> <!-- 1차 제출한 거 뽑기 -->
+			select rownum rn, <include refid="baseclumnOfActivity" />
+		from(select rownum rn, <include refid="baseclumnOfActivity" />
+			from(select <include refid="baseclumnOfActivity" />
+				from activity order by activity_start_date desc))
+		where rn &gt;= #{startRow} and rn &lt;= #{endRow} and activity_lev = 1
+	</select>
+
+	
+	<select id="ActivityCount" parameterType="String" resultType="int">	<!-- 승인 미승인 처리를 기다리는 활동 등록 개수 -->
+		select count(*)
+		from ACTIVITY
+		where activity_lev=1
+	</select>
+	
+	 
+	<update id="activityTrue" parameterType="String"  ><!-- 스트에서 승인을 클릭하면 승인으로 변경 (활동 등록) -->
+		update activity
+			set activity_lev = 2 where activity_num = ${activityNum}
+	</update>
+	
+	<delete id="activityFalse" parameterType="String"  >	<!-- 미승인 삭제 -->
+		delete from activity
+			where activity_num = ${activityNum}
+	</delete>
+	
+		<select id="actFileDelete" parameterType="actiDTO" resultMap="baseActivity">
+		select <include refid="baseclumnOfActivity" />
+		from activity
+			where activity_num = ${activityNum}
+	</select>
+	
+	
+	
+	
+	
+	
+	
 	
 
 	</mapper>

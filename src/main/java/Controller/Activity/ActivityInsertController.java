@@ -24,6 +24,10 @@ public class ActivityInsertController {
 	@RequestMapping("/Activity/ActivityInsert")
 	public String ActivityForm(Model model) {
 		System.out.println("aaaaaa");
+		System.out.println("aaaaaa");
+		System.out.println("aaaaaa");
+		System.out.println("aaaaaa");
+		System.out.println("aaaaaa");
 		model.addAttribute("activityCommand1", new ActivityInsertCommand1());
 		return "Activity/ActivityInsertForm1";
 	}

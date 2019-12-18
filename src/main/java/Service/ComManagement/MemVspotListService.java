@@ -1,11 +1,14 @@
 package Service.ComManagement;
 
+import java.io.File;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
 import Model.DTO.VspotDTO;
@@ -17,7 +20,8 @@ public class MemVspotListService {
 	@Autowired
 	private AdminRepository adminRepository;
 	
-
+	//리스트 출력하기
+	@Transactional
 	public String vspotList(Integer page, Model model) {
 		int limit = 10;
 		
@@ -43,10 +47,11 @@ public class MemVspotListService {
 		return "Admin/vspotList";
 	}
 
-
-	public void vspotDetail(String count, Model model) {
+	//상세보기
+	@Transactional
+	public void vspotDetail(String vspotNum, Model model) {
 		
-		VspotDTO vdto = adminRepository.vspotDetail(count);
+		VspotDTO vdto = adminRepository.FileDelete(vspotNum); //상세보기나 파일삭제나 같아서
 		
 		if(vdto.getVspotOriginal() != null) {
 			
@@ -59,6 +64,46 @@ public class MemVspotListService {
 		
 		model.addAttribute("list", vdto);
 		
+	}
+
+	// 승인버튼을 클릭시.
+	@Transactional
+	public Integer vspotTrue(String vspotNum) {
+		
+		System.out.println(vspotNum);
+		Integer result = adminRepository.vspotTrue(vspotNum);
+		System.out.println(result);
+		return result;
+	}
+
+	// 비승인버튼을 클릭시.
+	@Transactional
+	public Integer vspotFalse(String vspotNum,  HttpServletRequest request) {
+		
+		System.out.println(vspotNum);
+		
+		VspotDTO vdto = adminRepository.FileDelete(vspotNum);
+		
+		
+		String[] store = vdto.getVspotStore().split("-"); //얘를 어케 뽑아야할까 .
+		
+		String filedelete = null;
+		
+		for(String list : store) {
+			filedelete = list;
+
+			String path = request.getServletContext().getRealPath("/"); 
+			path += "WEB-INF/view/Spot/upload/"; 
+			File file = new File(path+ filedelete); 
+			if(file.exists()) {
+				file.delete();
+			}
+		
+		}
+
+		Integer result = adminRepository.vspotFalse(vspotNum);
+		System.out.println(result);
+		return result;
 	}
 
 }

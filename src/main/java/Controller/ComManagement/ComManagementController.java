@@ -22,13 +22,13 @@ public class ComManagementController {
 	@Autowired
 	private ComFalseService comFalseService;
 	
-	@RequestMapping("admin/comMana") //리스트를 뽑는 내용
+	@RequestMapping("/comMana") //리스트를 뽑는 내용
 	public String comMana(@RequestParam(value = "page", defaultValue = "1")	Integer page, Model model) {
 		
 		return comManaService.comList(page, model);
 	}
 	
-	@RequestMapping("admin/listTrue") // 승인을 눌렀을 시 LEV이 상승과 함께 리스트 출력
+	@RequestMapping("/listTrue") // 승인을 눌렀을 시 LEV이 상승과 함께 리스트 출력
 	public String True(Model model, @RequestParam(value = "num") String comNum, @RequestParam(value = "page", defaultValue = "1") Integer page)  {
 		System.out.println(comNum);
 		Integer result = comTrueService.comTrue(comNum);
@@ -41,7 +41,7 @@ public class ComManagementController {
 		
 	}
 	
-	@RequestMapping("admin/listFalse") // 미승은을 눌렀을 시 삭제와 함께 리스트 출력
+	@RequestMapping("/listFalse") // 미승은을 눌렀을 시 삭제와 함께 리스트 출력
 	public String False(Model model, @RequestParam(value = "num") String comNum, @RequestParam(value = "page", defaultValue = "1") Integer page)  {
 		System.out.println(comNum);
 		Integer result = comFalseService.comFalse(comNum);
@@ -53,5 +53,7 @@ public class ComManagementController {
 		}
 		
 	}
+	
+	
 
 }
