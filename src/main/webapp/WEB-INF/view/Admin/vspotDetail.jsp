@@ -11,7 +11,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<%= request.getRealPath("/upload") %>
+<img width="300" height="200" src="http://localhost:8080/FinalProjectFile/upload/758db3da69f8479791f0888ecd352bdc.png" alt="선생님 안되여!!!">
 	<table border="1" width="60%" align="center">
 		
 		<tr>
@@ -40,6 +41,11 @@
 		</tr>
 		
 		<tr>
+			<td> 휴양지 지역 </td>
+			<td> ${list.vspotLoc} </td>
+		</tr>
+		
+		<tr>
 			<td> 휴양지 특장점 </td>
 			<td> ${list.vspotFeature} </td>
 		</tr>
@@ -57,10 +63,16 @@
 		<tr>
 			<td> 휴양지 사진 </td>
 			<td> 
-				<c:forEach var="store" items="${store}" varStatus="status"  >
-					<a href="fileUpload?filename=${original[status.index] }&filename1=${store}"> ${original[status.index] } </a><br/> 
-					<%-- <a href="../Spot/upload/${store}"> ${store[status.index] } </a><br/>  --%>
-					<img width="300" height="200" src="../Spot/upload/${store}"><br/>
+				<c:forEach var="store1" items="${store}" varStatus="status"  >
+					<a href="fileUpload?filename=${original[status.index] }&filename1=${store1}"> ${original[status.index] } </a><br/> 
+					
+					<%-- <img width="300" height="200" src="/upload/${store1}" alt="아니요"><br/> --%>
+			
+					<img width="300" height="200" src="upload/758db3da69f8479791f0888ecd352bdc.png" alt="선생님 안되여!!!"><br/>
+	
+					<img width="300" height="200" src="http://localhost:8080//FinalProjectFile/upload/758db3da69f8479791f0888ecd352bdc.png" alt="선생님 안돼여!!!"><br/>
+					
+					<img width="300" height="200" src="upload/${store1}" alt="선생님 안되여!!!"><br/>		
 				</c:forEach>
 			
 			</td>

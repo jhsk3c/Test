@@ -70,6 +70,17 @@
 			</tr>
 			
 			<tr>
+				<td width = "200"> <spring:message code="Loc" /> </td>
+				<td width = "400"> <!-- 지역 -->
+					<form:select path="vspotLoc" id="vspotLoc">
+					    <option value="">-----선택해주세요-------</option>
+					    <form:options items="${vspotLoc}" />
+					</form:select>
+					<form:errors path="vspotLoc" />
+				</td>
+			</tr>
+			
+			<tr>
 				<td> 휴양지 소개 </td>
 				<td> <form:textarea path="vspotIntroduce" rows="30" cols="35" id="vspotIntroduce"/> </td>
 			</tr>

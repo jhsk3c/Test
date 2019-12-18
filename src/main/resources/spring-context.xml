@@ -12,6 +12,8 @@ http://www.springframework.org/schema/mvc/spring-mvc.xsd"
 	<mvc:default-servlet-handler />
 	<mvc:annotation-driven />
 	
+	<mvc:resources location="/WEB-INF/view/" mapping="/**" cache-period="31556926" />
+	
 	<mvc:view-resolvers>
 		<mvc:jsp prefix="/WEB-INF/view/" />
 	</mvc:view-resolvers>
@@ -38,4 +40,6 @@ http://www.springframework.org/schema/mvc/spring-mvc.xsd"
 		<property name="maxUploadSize" value="100000000" />
 	    <property name="maxInMemorySize" value="100000000" />
 	</bean>
+	
+	
 </beans>

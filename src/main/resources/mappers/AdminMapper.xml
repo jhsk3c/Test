@@ -6,7 +6,7 @@
 	<cache />
 	
 	<sql id="basecolumn"> <!-- 일반회원의 컬럼들 -->
-		mem_num, mem_id, mem_pw, mem_name, mem_birth, mem_sex, mem_nationality, mem_email, mem_addr, mem_tel, mem_prefer_trip, mem_date, mem_lev
+		mem_num, mem_id, mem_pw, mem_name, mem_birth, mem_sex, mem_nationality,  mem_email, mem_addr, mem_tel, mem_prefer_trip, mem_date, mem_lev
 	</sql>
 	
 	<resultMap type="memDTO" id="baseMember"> <!-- 일반회원의 Map -->
@@ -48,7 +48,7 @@
 	</resultMap>
 	
 	<sql id="vspotbasecolumn"> <!-- 휴양지 등록의 컬럼들 -->
-		vspot_num, mem_num, mem_id, vspot_title, vspot_name, vspot_original, vspot_store, vspot_location, vspot_introduce, vspot_feature, vspot_approval, approval_date, vspot_date
+		vspot_num, mem_num, mem_id, vspot_title, vspot_name, vspot_original, vspot_store, vspot_location, vspot_loc, vspot_introduce, vspot_feature, vspot_approval, approval_date, vspot_date
 	</sql>
 	
 	<resultMap type="vDTO" id="baseVspotMember"> <!-- 휴양지 등록 Map -->
@@ -60,6 +60,7 @@
 		<result column="VSPOT_ORIGINAL" jdbcType="VARCHAR" property="vspotOriginal" />
 		<result column="VSPOT_STORE" jdbcType="VARCHAR" property="vspotStore" />		
 		<result column="VSPOT_LOCATION" jdbcType="VARCHAR" property="vspotLocation" />
+		<result column="VSPOT_LOC" jdbcType="VARCHAR" property="vspotLoc" />
 		<result column="VSPOT_INTRODUCE" jdbcType="VARCHAR" property="vspotIntroduce" />
 		<result column="VSPOT_FEATURE" jdbcType="VARCHAR" property="vspotFeature" />	
 		<result column="VSPOT_APPROVAL" jdbcType="VARCHAR" property="vspotApproval" />

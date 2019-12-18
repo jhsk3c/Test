@@ -1,4 +1,4 @@
-package Servoce.Vspot;
+package Service.Vspot;
 
 import java.io.File;
 import java.util.UUID;
@@ -36,6 +36,7 @@ public class VspotService {
 		
 		spot.setVspotTitle(spotCommand.getVspotTitle());
 		spot.setVspotName(spotCommand.getVspotName());
+		spot.setVspotLoc(spotCommand.getVspotLoc());
 		spot.setVspotLocation("("+spotCommand.getVspotLocation1() +")" +" " + spotCommand.getVspotLocation2()+"<br/>"  + spotCommand.getVspotLocation3());
 		spot.setVspotIntroduce(spotCommand.getVspotIntroduce().replace("\n", "<br/>"));
 		spot.setVspotFeature(spotCommand.getVspotFeature());
@@ -58,7 +59,7 @@ public class VspotService {
 		
 			String path = request.getServletContext().getRealPath("/"); 
 			 
-			path += "WEB-INF/view/Spot/upload/"; 
+			path += "upload/"; 
 			File file = new File(path+ store); 
 			System.out.println();
 			System.out.println(path);

@@ -6,6 +6,7 @@ public class SpotCommand {
 	
 	String vspotTitle;
 	String vspotName;
+	String vspotLoc;
 	String vspotLocation1;
 	String vspotLocation2;
 	String vspotLocation3;
@@ -24,6 +25,12 @@ public class SpotCommand {
 	}
 	public void setVspotName(String vspotName) {
 		this.vspotName = vspotName;
+	}
+	public String getVspotLoc() {
+		return vspotLoc;
+	}
+	public void setVspotLoc(String vspotLoc) {
+		this.vspotLoc = vspotLoc;
 	}
 	public String getVspotLocation1() {
 		return vspotLocation1;
