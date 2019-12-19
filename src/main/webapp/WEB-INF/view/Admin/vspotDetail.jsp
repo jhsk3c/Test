@@ -11,8 +11,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%= request.getRealPath("/upload") %>
-<img width="300" height="200" src="http://localhost:8080/FinalProjectFile/upload/758db3da69f8479791f0888ecd352bdc.png" alt="선생님 안되여!!!">
 	<table border="1" width="60%" align="center">
 		
 		<tr>
@@ -66,13 +64,8 @@
 				<c:forEach var="store1" items="${store}" varStatus="status"  >
 					<a href="fileUpload?filename=${original[status.index] }&filename1=${store1}"> ${original[status.index] } </a><br/> 
 					
-					<%-- <img width="300" height="200" src="/upload/${store1}" alt="아니요"><br/> --%>
-			
-					<img width="300" height="200" src="upload/758db3da69f8479791f0888ecd352bdc.png" alt="선생님 안되여!!!"><br/>
-	
-					<img width="300" height="200" src="http://localhost:8080//FinalProjectFile/upload/758db3da69f8479791f0888ecd352bdc.png" alt="선생님 안돼여!!!"><br/>
-					
-					<img width="300" height="200" src="upload/${store1}" alt="선생님 안되여!!!"><br/>		
+				
+					<img width="300" height="200" src="Spot/upload/${store1}" alt="선생님 안되여!!!"><br/>
 				</c:forEach>
 			
 			</td>
@@ -87,5 +80,64 @@
 		</tr>
 		
 	</table>
+	
+	
+	<div id="map" style="width:500px;height:400px;"></div>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a17042a026e1300983cdbc1ee68e6794&libraries=services"></script>
+	<script>
+		var geocoder = new kakao.maps.services.Geocoder();
+		
+		var gap = "";
+		var lat = "";
+		var lng = "";
+		var compName = "";
+		
+		geocoder.addressSearch(gap, function(result, status) {
+			if(status == daum.maps.services.Status.OK) {
+				var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+				
+				lat = result[0].y;
+				lng = result[0].x;
+			}
+	
+			var mapContainer = document.getElementById('map');
+			var mapOption = {
+					center : new daum.maps.LatLng(lat, lng),
+					level : 3
+			};
+			
+			var map = new daum.maps.Map(mapContainer, mapOption);
+			
+			var mapTypeControl = new kakao.maps.MapTypeControl();
+			
+			map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+			
+			var zoomControl = new kakao.maps.ZoomControl();
+			map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+			
+			var position = {
+					title : compName,
+					latlng : new daum.maps.LatLng(lat, lng)
+			};
+			
+			var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+			
+			var imageSize = new daum.maps.Size(24, 35);
+			
+			var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize);
+			
+			var marker = new daum.maps.Marker({
+				map : map,
+				position : position.latlng,
+				title : position.title,
+				image : markerImage
+			});
+			
+			daum.maps.event.addListener(marker, 'click', function() {
+				window.open("http://map.daum.net/link/map/" + lat + "," + lng);
+			});
+		});
+		
+	</script>
 </body>
 </html>

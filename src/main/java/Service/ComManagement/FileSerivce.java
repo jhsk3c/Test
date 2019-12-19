@@ -27,7 +27,7 @@ public class FileSerivce {
 			
 			// 서버에 올라간 경로를 가져옴
 			ServletContext context = request.getServletContext();
-			String uploadFilePath = context.getRealPath("upload");
+			String uploadFilePath = context.getRealPath("WEB-INF/view/Spot/upload/");
 			String filePath = uploadFilePath + File.separator + fileName1;
 			
 			byte[] b = new byte[4096];

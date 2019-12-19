@@ -13,47 +13,34 @@
 <body>
 	<jsp:include page="../Main/top.jsp" />
 	<table border="1" width="80%" align="center">
-	
-
+		<c:set var="i" value="0" />
+		<c:set var="j" value="2" />
 		<c:forEach var="list" items="${list}" varStatus="status"> 
-			<tr align="center">
-				<td> <a href="#">${status.count } </a></td>
-				<td> ${list.memId} </td>
-				<td> ${list.vspotTitle} </td>
-				<td> ${list.vspotName} </td>
-				<td> <img alt="ss" src="" /> </td>
-			</tr>
+
+			<c:if test="${i%j == 0 }" >
+				<tr align="center">
+			</c:if>	
+					<td> 
+						<%-- <c:forEach var="store1" items="${Store}" varStatus="status"  >
+							<a href="#"> ${Original[status.index] } </a><br/> 	
+						</c:forEach> --%>
+						<c:forTokens items="${list.vspotStore}" delims="-" var="store" end="0">
+							<img src="Spot/upload/${store}" alt="X" width="100" height="100">
+						</c:forTokens>
+					
+					</td>
+					<td> ${list.vspotTitle} </td>
+					<td> ${list.vspotLoc} </td>
+				
+					
+			<c:if test="${i%j == j-1 }" > 
+				 </tr>
+			</c:if> 
+			
+			<c:set var="i" value="${i+1 }" />
+
 		</c:forEach>
 	</table>
-
-<%-- <table width="100%" celladding="0" cellspacing="0">	
-			<%
-			   int j=0;
-			for(int i = 0; i < list.size(); i ++) {
-				JoinDTO dto1 = list.get(i);
-				if(j%4 == 0) {
-			
-			%>
-		
-		
-		<tr align="center">
-
-			<%}	%>
-			<td align="center">
-				<a href="TeacherDetail.to?num=<%= dto1.getJoinNum() %>"><img src="Join/upload/<%= dto1.getJoinImage() %>" width="300" height="300"></a>
-				<p><%= dto1.getJoinName() %></p>
-				<p><%= dto1.getJoinLoc() %></p>
-				<p><%= dto1.getJoinPrice() %></p>
-				<p><%= dto1.getJoinIntro() %></p>
-			</td>
-			
-			<%j = j+1; } %>
-			</tr>
-		</table>
-		</div>
-	<div>		
-		<table class="table table-borderless">
-			<tr> --%>
 
 </body>
 </html>

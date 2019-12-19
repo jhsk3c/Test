@@ -93,7 +93,7 @@ public class MemVspotListService {
 			filedelete = list;
 
 			String path = request.getServletContext().getRealPath("/"); 
-			path += "upload/"; 
+			path += "WEB-INF/view/Spot/upload/"; 
 			File file = new File(path+ filedelete); 
 			if(file.exists()) {
 				file.delete();

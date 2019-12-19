@@ -59,7 +59,7 @@ public class VspotService {
 		
 			String path = request.getServletContext().getRealPath("/"); 
 			 
-			path += "upload/"; 
+			path += "WEB-INF/view/Spot/upload/"; 
 			File file = new File(path+ store); 
 			System.out.println();
 			System.out.println(path);
