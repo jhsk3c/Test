@@ -8,12 +8,21 @@ public class ParticipationDTO implements Serializable {
 	Integer participationNum; // 참가번호
 	String memNum; // 회원번호
 	Integer contestNum; // 공모전번호
+	String memId; // 회원아이디
 	String memName; // 참가자이름
 	String workName; // 작품명
 	String workOutline; // 작품개요
 	String workContent; // 작품내용
 	String workImage; // 작품이미지
 	Date participationDate; // 참가신청 날짜
+
+	public String getMemId() {
+		return memId;
+	}
+
+	public void setMemId(String memId) {
+		this.memId = memId;
+	}
 
 	public Date getParticipationDate() {
 		return participationDate;

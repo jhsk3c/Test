@@ -2,10 +2,12 @@ package Repository.Member;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import Model.DTO.ComMemberDTO;
 import Model.DTO.MemberDTO;
 
+@Repository
 public class MemberRepository {
 	
 	@Autowired

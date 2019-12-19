@@ -1,6 +1,7 @@
 package Model.DTO;
 
 public class AuthInfo {
+	private String num;
 	private String Id;
 	private String Pw;
 	private String Email;
@@ -10,23 +11,23 @@ public class AuthInfo {
 	public AuthInfo() {
 	}
 
-	public AuthInfo(String Id, String Email, String Name, String Pw, Integer memLev) {
+	public AuthInfo(String num, String Id, String Email, String Name, String Pw, Integer memLev) {
 		super();
+		this.num = num;
 		this.Id = Id;
 		this.Email = Email;
 		this.Name = Name;
 		this.Pw = Pw;
 		this.memLev = memLev;
 	}
-
-	public Integer getMemLev() {
-		return memLev;
+	public String getNum() {
+		return num;
 	}
 
-	public void setMemLev(Integer memLev) {
-		this.memLev = memLev;
+	public void setNum(String num) {
+		this.num = num;
 	}
-
+	
 	public String getId() {
 		return Id;
 	}
@@ -57,6 +58,14 @@ public class AuthInfo {
 
 	public void setName(String name) {
 		Name = name;
+	}
+	
+	public Integer getMemLev() {
+		return memLev;
+	}
+
+	public void setMemLev(Integer memLev) {
+		this.memLev = memLev;
 	}
 
 }

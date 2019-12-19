@@ -33,10 +33,10 @@ public class LoginService {
 			result = 0; // 아이디 없을 때
 		} else {
 			if (member.getMemPw().equals(Encrypt.getEncryption(loginCommand.getMemPw()))) {
-				authInfo = new AuthInfo(member.getMemId(), member.getMemEmail(), member.getMemName(), member.getMemPw(),
+				authInfo = new AuthInfo(member.getMemNum(), member.getMemId(), member.getMemEmail(), member.getMemName(), member.getMemPw(),
 						member.getMemLev()); // 로그인 정보 저장
 				session.setAttribute("authInfo", authInfo);
-//				System.out.println("유저 LEV :::::::::" + member.getMemLev());
+					System.out.println("유저 LEV :::::::::" + member.getMemNum());
 				setCookie(loginCommand, response);
 				result = 1;
 			} else {
@@ -71,10 +71,10 @@ public class LoginService {
 			result = 0; // 아이디 없을 때
 		} else {
 			if (comMember.getComPw().equals(Encrypt.getEncryption(comloginCommand.getComPw()))) {
-				authInfo = new AuthInfo(comMember.getComId(), comMember.getContactEmail(), comMember.getComRepName(),
+				authInfo = new AuthInfo(comMember.getComNum(), comMember.getComId(), comMember.getContactEmail(), comMember.getComRepName(),
 						comMember.getComPw(), comMember.getComLev()); // 로그인 정보 저장
 				session.setAttribute("authInfo", authInfo);
-
+				System.out.println("기업 LEV :::::::::" + comMember.getComNum());
 				setCookie(comloginCommand, response);
 				result = 1;
 			} else {

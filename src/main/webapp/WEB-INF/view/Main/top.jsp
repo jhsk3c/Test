@@ -78,8 +78,8 @@ body {
   <a href="#">고객 센터</a>
   <a href="contest">Contest</a>
   <a href="login">로그인</a>
-  <a href="member/memberInfo">회원가입</a>
-  <a href="comMember/comMemberInfo">기업 회원가입</a>
+  <a href="memberInfo">회원가입</a>
+  <a href="comMemberInfo">기업 회원가입</a>
   
   <div class="dropdown">
     <button class="dropbtn">Dropdown 

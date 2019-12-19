@@ -3,11 +3,20 @@ package Command.Participation;
 import org.springframework.web.multipart.MultipartFile;
 
 public class ParticipationCommand {
+	String contestNum;
 	String memName;
 	String workName;
 	String workOutline;
 	String workContent;
-	String workImage;
+	MultipartFile[] workImage;
+
+	public String getContestNum() {
+		return contestNum;
+	}
+
+	public void setContestNum(String contestNum) {
+		this.contestNum = contestNum;
+	}
 
 	public String getMemName() {
 		return memName;
@@ -41,11 +50,11 @@ public class ParticipationCommand {
 		this.workContent = workContent;
 	}
 
-	public String getWorkImage() {
+	public MultipartFile[] getWorkImage() {
 		return workImage;
 	}
 
-	public void setWorkImage(String workImage) {
+	public void setWorkImage(MultipartFile[] workImage) {
 		this.workImage = workImage;
 	}
 

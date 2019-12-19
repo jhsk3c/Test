@@ -21,5 +21,9 @@
 <bean id="adminRepository" class="Repository.Admin.AdminRepository" /> 
 <bean id="comTrueService" class="Service.ComManagement.ComTrueService" /> 
 <bean id="comFalseService" class="Service.ComManagement.ComFalseService" />
+<bean id="vspotService" class="Servoce.Vspot.VspotService" />
+<bean id="vspotRepository" class="Repository.Vspot.VspotRepository" />
+<bean id="memVspotListService" class="Service.ComManagement.MemVspotListService" />
+<bean id="fileSerivce" class="Service.ComManagement.FileSerivce" />
 
 </beans>

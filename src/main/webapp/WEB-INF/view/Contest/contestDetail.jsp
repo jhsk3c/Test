@@ -40,13 +40,13 @@ th {
 	function goDelete(){
 		location.href="contestDelete?contestNum=${contest.contestNum}";
 	}
-	
+
 	function goParticipation(){
-		if(<%= session.getAttribute("authInfo") %> == null){
+		if(<%=session.getAttribute("memLev")%> == null){
 			alert("로그인 후 사용가능합니다.");
 			location.href="login";
 		} else{
-			location.href="participationPage?contestNum=${contest.contestNum}";
+			location.href="participation?contestNum=${contest.contestNum}";
 		}
 	}
 </script>

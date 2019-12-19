@@ -3,11 +3,51 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Repository.Particitpation.ParticitpationMapper">
 	<cache />
+	
+	<resultMap type="Model.DTO.ParticipationDTO" id="participationMap">
+		<id column="participation_num" jdbcType="VARCHAR" property="participationNum" />
+		<result column="mem_num" jdbcType="INTEGER" property="memNum" />
+		<result column="contest_num" jdbcType="VARCHAR" property="contestNum" />
+		<result column="mem_id" jdbcType="VARCHAR" property="memId" />
+		<result column="mem_name" jdbcType="VARCHAR" property="memName" />
+		<result column="work_name" jdbcType="VARCHAR" property="workName" />
+		<result column="work_outline" jdbcType="VARCHAR" property="workOutline" />
+		<result column="work_content" jdbcType="VARCHAR" property="workContent" />
+		<result column="work_image" jdbcType="VARCHAR" property="workImage" />
+		<result column="participation_date" jdbcType="DATE" property="participationDate" />
+	</resultMap>
+	
 	<sql id="basecolumn">
-		participation_num, mem_num, contest_num, work_name, work_outline, work_content, work_image
+		participation_num, mem_num, contest_num, mem_id, mem_name, work_name, work_outline, work_content, work_image, participation_date
 	</sql>
 	
+	<select id="memNumCheck" parameterType="Model.DTO.ParticipationDTO" resultType="int" >
+		select mem_num from participation 
+		where mem_num = #{memNum} and contest_num = #{contestNum}
+	</select>
+	
 	<insert id="insertParticitpation" parameterType="Model.DTO.ParticipationDTO">
-		insert into 
+		insert into participation(<include refid="basecolumn" />) 
+		values((SELECT NVL(MAX(participation_num),0)+1 FROM participation), #{memNum}, 
+		#{contestNum}, #{memId}, #{memName}, #{workName}, #{workOutline}, #{workContent}, #{workImage}, sysdate)
 	</insert>
+	
+	<select id="selectPeople" parameterType="Model.DTO.ParticipationDTO" resultMap="participationMap">
+		select <include refid="basecolumn" /> from participation 
+		where contest_num = #{contestNum}
+	</select>
+	
+<!-- 	<select id="selectUserId" parameterType="String" resultMap="participationMap"> -->
+<!-- 		select p.mem_id from contest c  -->
+<!-- 		join participation p  -->
+<!-- 		on p.contest_num = c.contest_num -->
+<!-- 		and c.contest_num = #{contestnum} and p.mem_id = #{memid} -->
+<!-- 	</select> -->
+	
+<!-- 	<select id="selectContestName" parameterType="Model.DTO.ParticipationDTO" resultMap="participationMap"> -->
+<!-- 		select c.contest_name from contest c  -->
+<!-- 		join participation p -->
+<!-- 		on p.contest_num = c.contest_num -->
+<!-- 		and p.contest_num = #{contestNum} and p.mem_id = #{memId} -->
+<!-- 	</select> -->
 </mapper>

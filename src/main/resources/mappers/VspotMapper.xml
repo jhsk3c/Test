@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-/mybatis.org/DTO Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spotMapper">
+
+	<cache />
+	
+	<sql id="basecolumn"> <!-- 휴양지 등록의 컬럼들 -->
+		vspot_num, mem_num, mem_id, vspot_title, vspot_name, vspot_original, vspot_store, vspot_location, vspot_introduce, vspot_feature, vspot_approval, approval_date, vspot_date
+	</sql>
+	
+	<!-- 휴양지 등록하는 내용 -->
+	<insert id="vspotInsert" parameterType="vDTO">
+		insert into vspot(<include refid="basecolumn" />) values((select nvl(max(vspot_num)+1,1) from vspot), #{memNum}, #{memId}, #{vspotTitle}, #{vspotName}, #{vspotOriginal}, #{vspotStore}, #{vspotLocation}, #{vspotIntroduce}, #{vspotFeature}, '미승인', null, sysdate)
+	</insert>
+	
+	
+</mapper>

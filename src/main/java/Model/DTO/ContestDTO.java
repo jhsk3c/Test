@@ -7,7 +7,6 @@ import java.util.Date;
 @SuppressWarnings("serial")
 public class ContestDTO implements Serializable {
 	String contestNum; // 공모전번호
-
 	String userId; // admin id
 	String contestOrganizer; // 담당자
 	String contestName; // 공모전이름

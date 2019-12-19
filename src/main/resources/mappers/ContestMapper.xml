@@ -53,4 +53,8 @@
 	<delete id="deleteContest" parameterType="String">
 		delete from contest where contest_num = #{contestNum}
 	</delete>
+	
+	<select id="countPeople" parameterType="Model.DTO.ParticipationDTO" resultType="Integer">
+		select count(*) from participation where contest_num = #{contestNum}
+	</select>
 </mapper>

@@ -17,6 +17,17 @@ public class ContestListController {
 	@Autowired
 	ContestDetailService contestDetailService;
 
+	@RequestMapping(value= "/contestCheck") // 관리자메뉴 공모전조회
+	public String contestCheck(Model model) {
+		contestListService.contestList(model);
+		return "Contest/contestCheck";
+	}
+	@RequestMapping("/contestAdminDetail") // 공모전 상세정보
+	public String contestAdminDetail(@RequestParam(value = "contestNum") String contestNum, Model model) {
+		contestDetailService.contestDetail(contestNum, model);
+		return "Contest/contestAdminDetail";
+	}
+	
 	@RequestMapping(value = "/contestList", method = RequestMethod.GET) // 공모전 리스트
 	public String contestList(Model model) {
 		contestListService.contestList(model);

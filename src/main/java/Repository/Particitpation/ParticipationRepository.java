@@ -1,5 +1,7 @@
 package Repository.Particitpation;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -12,9 +14,35 @@ public class ParticipationRepository {
 	private SqlSession sqlSession;
 	private final String namespace = "Repository.Particitpation.ParticitpationMapper";
 
-	public Integer writeInsert(ParticipationDTO dto) {
+	public Integer memNumCheck(ParticipationDTO dto) { // 참가시 중복검사
+		String statement = namespace + ".memNumCheck";
+		return sqlSession.selectOne(statement, dto);
+	}
+	
+	public Integer writeInsert(ParticipationDTO dto) { // 참가등록
 		String statement = namespace + ".insertParticitpation";
 		return sqlSession.insert(statement, dto);
 	}
+
+	public List<ParticipationDTO> peopleList(ParticipationDTO dto) {
+		String statement = namespace + ".selectPeople";
+		System.out.println("dto안에 넘버 ::: " + dto.getParticipationNum());
+		return sqlSession.selectList(statement, dto);
+	}
+
+//	public List<ParticipationDTO> memIdList(String contestNum) { // memId 리스트로 받아오기
+//		String statement = namespace + ".selectUserId";
+//		return sqlSession.selectList(statement, contestNum);
+//	}
+//
+//	public String contestNameList(String contestNum) { // contestName 리스트로 받아오기
+//		String statement = namespace + ".selectContestName";
+//		ParticipationDTO dto = new ParticipationDTO();
+//		dto.setContestNum(Integer.parseInt(contestNum));
+//		return sqlSession.selectOne(statement, dto);
+//	}
+
+
+
 
 }

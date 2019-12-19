@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import Model.DTO.ContestDTO;
+import Model.DTO.ParticipationDTO;
 
 @Repository
 public class ContestRepository {
@@ -41,6 +42,11 @@ public class ContestRepository {
 	public Integer delete(String contestNum) {
 		String statement = namespace + ".deleteContest";
 		return sqlSession.delete(statement, contestNum);
+	}
+
+	public Integer countPeople(ParticipationDTO dto) {
+		String statement = namespace + ".countPeople";
+		return sqlSession.selectOne(statement, dto);
 	}
 
 }
