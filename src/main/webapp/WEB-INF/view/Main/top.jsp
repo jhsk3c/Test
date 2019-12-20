@@ -86,7 +86,7 @@ body {
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-      <a href="#">Link 1</a>
+      <a href="memvspotList">수정해야 함!! 일단 휴양지 리스트 조회</a>
       <a href="#">Link 2</a>
       <a href="#">Link 3</a>
     </div>

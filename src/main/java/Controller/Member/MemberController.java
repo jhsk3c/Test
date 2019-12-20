@@ -78,6 +78,7 @@ public class MemberController {
 	
 	
 	
+	
 	//회원가입 국가에 대한 SELECT 만들기..
 	@ModelAttribute("memNationality")
 	protected List<String> referData() throws Exception {
@@ -127,7 +128,6 @@ public class MemberController {
 		
 	} 
 	
-		
 	//회원가입 여행법에 대한 SELECT 만들기..
 	@ModelAttribute("memPreferTrip")
 	protected List<String> referData2() throws Exception {

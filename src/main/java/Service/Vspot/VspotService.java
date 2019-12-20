@@ -1,4 +1,4 @@
-package Servoce.Vspot;
+package Service.Vspot;
 
 import java.io.File;
 import java.util.UUID;
@@ -36,7 +36,9 @@ public class VspotService {
 		
 		spot.setVspotTitle(spotCommand.getVspotTitle());
 		spot.setVspotName(spotCommand.getVspotName());
-		spot.setVspotLocation("("+spotCommand.getVspotLocation1() +")" +" " + spotCommand.getVspotLocation2()+"<br/>"  + spotCommand.getVspotLocation3());
+		spot.setVspotLoc(spotCommand.getVspotLoc());
+		spot.setVspotLocationMap(spotCommand.getVspotLocation2());
+		spot.setVspotLocation("("+spotCommand.getVspotLocation1() +")"  + spotCommand.getVspotLocation2()+ spotCommand.getVspotLocation3());
 		spot.setVspotIntroduce(spotCommand.getVspotIntroduce().replace("\n", "<br/>"));
 		spot.setVspotFeature(spotCommand.getVspotFeature());
 		

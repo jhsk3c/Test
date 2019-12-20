@@ -73,6 +73,7 @@ public class ComMemberCommand {
 	public void setComName(String comName) {
 		this.comName = comName;
 	}
+	
 
 
 	public String getComAddr1() {
