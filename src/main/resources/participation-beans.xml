@@ -8,4 +8,7 @@
 	<bean id="writeService" class="Service.Participation.WriteService" />
 	<bean id="memNumCheckService" class="Service.Participation.MemNumCheckService" />
 	<bean id="peopleSelectService" class="Service.Participation.PeopleSelectService" />
+	<bean id="participationDetailService" class="Service.Participation.ParticipationDetailService" />
+	<bean id="participationListService" class="Service.Participation.ParticipationListService" />
+	
 </beans>

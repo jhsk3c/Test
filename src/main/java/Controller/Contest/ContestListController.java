@@ -22,7 +22,7 @@ public class ContestListController {
 		contestListService.contestList(model);
 		return "Contest/contestCheck";
 	}
-	@RequestMapping("/contestAdminDetail") // 공모전 상세정보
+	@RequestMapping("/contestAdminDetail") // 관리자전용 공모전 상세정보
 	public String contestAdminDetail(@RequestParam(value = "contestNum") String contestNum, Model model) {
 		contestDetailService.contestDetail(contestNum, model);
 		return "Contest/contestAdminDetail";

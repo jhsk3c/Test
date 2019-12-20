@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="Model.DTO.AuthInfo" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,11 +17,15 @@
 		width: 80%;
 	}
 </style> 
+<% 
+	String memId = ((AuthInfo)session.getAttribute("authInfo")).getId();
+%>
 </head>
 <body>
 	<div id="contest-menu">
 		<h1>공모전 메인</h1>
 		<a href="contestList">공모전리스트</a>
+		<a href="participationList?memId=<%=memId%>">참가내역</a>
 	</div>
 	<c:if test="${memLev == 4}">
 		<div id="admin-menu">

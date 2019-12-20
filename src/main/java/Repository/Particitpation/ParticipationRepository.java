@@ -18,7 +18,7 @@ public class ParticipationRepository {
 		String statement = namespace + ".memNumCheck";
 		return sqlSession.selectOne(statement, dto);
 	}
-	
+
 	public Integer writeInsert(ParticipationDTO dto) { // 참가등록
 		String statement = namespace + ".insertParticitpation";
 		return sqlSession.insert(statement, dto);
@@ -27,6 +27,18 @@ public class ParticipationRepository {
 	public List<ParticipationDTO> peopleList(ParticipationDTO dto) {
 		String statement = namespace + ".selectPeople";
 		System.out.println("dto안에 넘버 ::: " + dto.getParticipationNum());
+		return sqlSession.selectList(statement, dto);
+	}
+
+	public ParticipationDTO participationDetail(ParticipationDTO dto) {
+		String statement = namespace + ".detailParticipation";
+		return sqlSession.selectOne(statement, dto);
+	}
+
+	public List<ParticipationDTO> list(String memId) { // 회원 자신의 참가내역 리스트
+		ParticipationDTO dto = new ParticipationDTO();
+		dto.setMemId(memId);
+		String statement = namespace + ".selectList";
 		return sqlSession.selectList(statement, dto);
 	}
 
@@ -41,8 +53,5 @@ public class ParticipationRepository {
 //		dto.setContestNum(Integer.parseInt(contestNum));
 //		return sqlSession.selectOne(statement, dto);
 //	}
-
-
-
 
 }

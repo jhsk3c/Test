@@ -37,6 +37,16 @@
 		where contest_num = #{contestNum}
 	</select>
 	
+	<select id="detailParticipation" parameterType="Model.DTO.ParticipationDTO" resultMap="participationMap">
+		select <include refid="basecolumn" /> from participation
+		where participation_num = #{participationNum}
+	</select>
+	
+	<select id="selectList" parameterType="Model.DTO.ParticipationDTO" resultMap="participationMap">
+		select <include refid="basecolumn" /> from participation
+		where mem_id = #{memId}
+	</select>
+	
 <!-- 	<select id="selectUserId" parameterType="String" resultMap="participationMap"> -->
 <!-- 		select p.mem_id from contest c  -->
 <!-- 		join participation p  -->
