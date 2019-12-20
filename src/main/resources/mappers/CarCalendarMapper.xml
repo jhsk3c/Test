@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Repository.Car.CarCalendarMapper">
+
+	<cache />
+	
+	<select id="carCalendarDriveNumSelect" parameterType="String" resultType="Integer">
+		SELECT c.DRIVE_NUM
+		FROM car c,member m
+		WHERE c.mem_num = m.mem_num and m.mem_name = #{memName}
+ 
+	
+	</select>
+	
+</mapper>

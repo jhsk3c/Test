@@ -24,7 +24,7 @@
 		<result column="MEM_DATE" jdbcType="TIMESTAMP" property="memDate" />
 		<result column="MEM_LEV" jdbcType="INTEGER" property="memLev" />
 	</resultMap>	
-	
+
 	
 	<sql id="combasecolumn"> <!-- 기업회원의 컬럼들 -->
 		com_num, com_id, com_pw, com_rep_name, license_number, com_name, com_addr, contact_phone_num, contact_email, com_approval, approval_date, com_date, com_lev
@@ -69,7 +69,7 @@
 	<!-- 리스트에서 승인을 클릭하면 레벨이 증가.  -->
 	<update id="comTrue" parameterType="String"  >
 		update company_member
-			set com_lev = 3
+			set com_lev = 3, com_approval = '승인', approval_date = sysdate
 			where com_num = ${comNum}
 	</update>
 	

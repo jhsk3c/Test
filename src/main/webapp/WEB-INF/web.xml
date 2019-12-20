@@ -19,6 +19,12 @@
   			classpath:spring-controller.xml
   			classpath:spring-qna-beans.xml
   			classpath:spring-qna-controller.xml
+  			classpath:contest-beans.xml <!-- 공모전 빈 -->
+  			classpath:contest-controller.xml <!-- 공모전 컨트롤러 -->
+  			classpath:spring-car-controller.xml <!-- 차 컨트롤러 -->
+  			classpath:spring-car-beans.xml	<!--  차 빈 -->
+  			classpath:spring-carcalendar-controller.xml<!-- 차 일정 컨트롤러 -->
+  			classpath:spring-carcalendar-beans.xml<!--  차 일정 빈 -->
   		</param-value>
   	</init-param>
   	<load-on-startup>1</load-on-startup>

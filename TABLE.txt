@@ -32,7 +32,7 @@ CREATE TABLE company_member(
     com_approval varchar2(10) not null, -- 승인여부
     approval_date TIMESTAMP, -- 승인 날짜
     com_date TIMESTAMP, -- 가입 날짜
-    com_lev numeber -- 레벨
+    com_lev number -- 레벨
 );
 
 alter table company_member add CONSTRAINT pk_com_num PRIMARY KEY (com_num);

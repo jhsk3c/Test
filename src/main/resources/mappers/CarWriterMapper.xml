@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Repository.Car.CarWriterMapper">
+	<cache />
+	
+	<resultMap type="Model.DTO.CarDTO" id="resultCarDTO">
+	<id column="drive_num" jdbcType="BIGINT" property="driveNum" />
+		<result column="mem_num" jdbcType="VARCHAR" property="memNum" />
+		<result column="drive_name" jdbcType="VARCHAR" property="driveName" />
+		<result column="drive_age" jdbcType="BIGINT" property="driveAge" />
+		<result column="drive_license_info" jdbcType="VARCHAR" property="driveLicenseInfo" />
+		<result column="car_name" jdbcType="VARCHAR" property="carName" />
+		<result column="car_num" jdbcType="VARCHAR" property="carNum" />
+		<result column="car_image" jdbcType="VARCHAR" property="carImage" />
+		<result column="car_image_store" jdbcType="VARCHAR" property="carImageStore" />
+		<result column="car_image_size" jdbcType="VARCHAR" property="carImageSize" />
+		<result column="car_size" jdbcType="BIGINT" property="carSize" />
+		<result column="car_kinds" jdbcType="VARCHAR" property="carKinds" />
+		<result column="car_content" jdbcType="VARCHAR" property="carContent"/>
+		<result column="car_regist" jdbcType="TIMESTAMP" property="carRegist"/>
+		<result column="car_approval" jdbcType="BIGINT" property="carApproval" />
+		<result column="drive_info_num"        jdbcType="BIGINT" property="driveInfoNum"/>
+		<result column="drive_license_store"   jdbcType="VARCHAR" property="driveLicenseStore"/>
+		<result column="drive_license"         jdbcType="VARCHAR" property="driveLicense"/>
+		<result column="drive_license_size"    jdbcType="VARCHAR" property="driveLicenseSize"/>
+		<result column="drive_insurance"       jdbcType="VARCHAR" property="driveInsurance"/>
+		<result column="drive_insurance_store" jdbcType="VARCHAR" property="driveInsuranceStore"/>
+		<result column="drive_insurance_size"  jdbcType="VARCHAR" property="driveInsuranceSize"/>
+		<result column="drive_carcheck"        jdbcType="VARCHAR" property="driveCarcheck"/>
+		<result column="drive_carcheck_store"  jdbcType="VARCHAR" property="driveCarcheckStore"/>
+		<result column="drive_carcheck_size"   jdbcType="VARCHAR" property="driveCarcheckSize"/>
+		</resultMap>
+
+
+	<select id="carMemNumCheckOneSelect" parameterType="Model.DTO.CarDTO" resultType="Integer">
+		select mem_num 
+		from car 
+		where mem_num = #{memNum}
+	
+	</select>
+
+
+	<insert id="insertCarWriter" parameterType="Model.DTO.CarDTO">
+		insert into Car(drive_num,mem_num,drive_name,drive_age,drive_license_info,car_name,car_num,
+		car_image,car_image_store,car_image_size,car_size,car_kinds,car_content,car_regist,car_approval) 
+		values (drive_seq.nextval,#{memNum},#{driveName},#{driveAge},#{driveLicenseInfo},#{carName},
+		#{carNum},#{carImage},#{carImageStore},#{carImageSize},#{carSize},#{carKinds},#{carContent},sysdate,0)
+	</insert>
+	<insert id="insertdriveInfo" parameterType="Model.DTO.DriveInfoDTO">
+		insert into drive_info (drive_info_num,drive_num,drive_license_store,
+		drive_license,drive_license_size,drive_insurance,drive_insurance_store,
+		drive_insurance_size,drive_carcheck,drive_carcheck_store,drive_carcheck_size)
+		values (drive_info_seq.nextval,#{driveNum},#{driveLicenseStore},
+		#{driveLicense},#{driveLicenseSize},#{driveInsurance},#{driveInsuranceStore},#{driveInsuranceSize}
+		,#{driveCarcheck},#{driveCarcheckStore},#{driveCarcheckSize})
+	</insert>
+	<update id="approvalUpdate" parameterType="Model.DTO.CarDTO" >
+		update car set car_approval = #{carApproval} where drive_num = #{driveNum} 
+	</update>
+	
+	<update id="memLevUpdate" parameterType="Model.DTO.CarDTO">
+		update member set MEM_LEV = 6 where mem_num = #{memNum}
+	</update>
+	
+	<update id="carModifyUpdate" parameterType="Model.DTO.CarDTO">
+		update car set drive_license_info = #{driveLicenseInfo},car_name = #{carName},car_num = #{carNum},
+		car_image = #{carImage},car_image_store = #{carImageStore},car_image_size = #{carImageSize},
+		car_size = #{carSize}, car_kinds = #{carKinds},car_content = #{carContent},car_approval = 0
+		where mem_num = #{memNum}
+	</update>
+	
+ 	<update id="driveInfoInUpdate" parameterType="Model.DTO.DriveInfoDTO">
+		update drive_info set drive_license_store = #{driveLicenseStore} ,drive_license = #{driveLicense},
+		drive_license_size = #{driveLicenseSize},drive_insurance = #{driveInsurance}, drive_insurance_store = #{driveInsuranceStore}
+		,drive_insurance_size = #{driveInsuranceSize},drive_carcheck = #{driveCarcheck},drive_carcheck_store = #{driveCarcheckStore}
+		,drive_carcheck_size = #{driveCarcheckSize} where drive_num = #{driveNum}
+	</update>
+	
+ 	<select id="OneSelectCarDriveNum" resultType="Long">
+		select c.drive_num
+		from car c , member m 
+		where c.mem_num = m.mem_num and c.drive_name = m.mem_name and c.mem_num = #{memNum}
+	</select>
+	
+	<select id="allSelectCarEnrollmentList" parameterType="String" resultMap="resultCarDTO">
+	select * from car where mem_num = #{memNum}
+	</select>
+	
+	<select id="allSelectCarEnrollmentListAdmin" resultMap="resultCarDTO">
+	select * from car 
+	</select>
+	
+	
+	<select id="carDetailOneSelect" parameterType="Integer" resultMap="resultCarDTO">
+	select 
+	c.drive_num,
+	c.mem_num           ,
+	c.drive_name        ,
+	c.drive_age         ,
+	c.drive_license_info,
+	c.car_name          ,
+	c.car_num           ,
+	c.car_image         ,
+	c.car_image_store   ,
+	c.car_image_size    ,
+	c.car_size          ,
+	c.car_kinds         ,
+	c.car_content       ,
+	c.car_regist        ,
+	c.car_approval 	       ,
+	d.drive_info_num       ,
+	d.drive_license_store  ,
+	d.drive_license        ,
+    d.drive_license_size   ,
+    d.drive_insurance      ,
+    d.drive_insurance_store,
+    d.drive_insurance_size ,
+    d.drive_carcheck       ,
+    d.drive_carcheck_store ,
+    d.drive_carcheck_size  
+	from car c, drive_info d
+	where c.drive_num = d.drive_num and c.drive_num = #{driveNum}
+	</select>
+	
+	<delete id="cardriveInfoDelete" parameterType="Model.DTO.CarDTO">
+		delete from car where mem_num = #{memNum}
+	</delete>
+	<delete id="driveInfoDelete" parameterType="Model.DTO.CarDTO">
+		delete from drive_info where drive_Num = #{driveNum}
+	</delete>
+</mapper>

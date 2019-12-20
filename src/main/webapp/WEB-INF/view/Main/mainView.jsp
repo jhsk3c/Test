@@ -18,6 +18,14 @@
 	</c:if> 
 	
 	<c:if test="${Lev eq 2}">
+		<script type="text/javascript">
+			alert("승인 대기중인 회원입니다.");
+			history.back();
+		</script>
+		
+	</c:if> 
+	
+	<c:if test="${Lev eq 3}">
 	
 		<a href ="logout">로그아웃</a>
 		asdasdsa 선생님

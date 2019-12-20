@@ -75,9 +75,11 @@ body {
 
 <div class="navbar">
   <a href="#">Home</a>
-  <a href="QnA/qnaList">고객 센터</a>
+  <a href="#">고객 센터</a>
+  <a href="Car/carCalendarWriter">일정 등록</a>
+  <a href="contest">Contest</a>
+  <a href="Car/carEnrollmentList">carcar</a>
   <a href="logout">로그아웃</a>
-
   
   <div class="dropdown">
     <button class="dropbtn">Dropdown 

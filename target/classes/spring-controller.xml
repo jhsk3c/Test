@@ -11,7 +11,6 @@
 
 <bean class="Controller.Main.MainController" />
 <bean class="Controller.Recreation.RecreationController" />
-<bean class="Controller.Car.CarController" />
 <bean class="Controller.Rooms.RoomsController" />
 <bean class="Controller.Member.MemberController" />
 <bean class="Controller.Member.ComMemberController" />
