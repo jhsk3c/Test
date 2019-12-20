@@ -83,11 +83,11 @@
 	
 	
 	<div id="map" style="width:500px;height:400px;"></div>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a17042a026e1300983cdbc1ee68e6794&libraries=services"></script>
+	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0eb1f252a397cdfb0e2f7cfd75b42ed4&libraries=services"></script>
 	<script>
 		var geocoder = new kakao.maps.services.Geocoder();
 		
-		var gap = "";
+		var gap = "${list.vspotLocationMap}";
 		var lat = "";
 		var lng = "";
 		var compName = "";
@@ -138,6 +138,7 @@
 			});
 		});
 		
-	</script>
+	</script> 
+	
 </body>
 </html>

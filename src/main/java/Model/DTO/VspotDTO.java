@@ -14,6 +14,7 @@ public class VspotDTO implements Serializable{
 	String vspotOriginal;
 	String vspotStore;
 	String vspotLocation;
+	String vspotLocationMap;
 	String vspotLoc;
 	String vspotIntroduce;
 	String vspotFeature;
@@ -68,6 +69,12 @@ public class VspotDTO implements Serializable{
 	}
 	public void setVspotLocation(String vspotLocation) {
 		this.vspotLocation = vspotLocation;
+	}
+	public String getVspotLocationMap() {
+		return vspotLocationMap;
+	}
+	public void setVspotLocationMap(String vspotLocationMap) {
+		this.vspotLocationMap = vspotLocationMap;
 	}
 	public String getVspotLoc() {
 		return vspotLoc;

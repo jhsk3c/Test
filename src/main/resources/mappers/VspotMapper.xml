@@ -6,7 +6,7 @@
 	<cache />
 	
 	<sql id="basecolumn"> <!-- 휴양지 등록의 컬럼들 -->
-		vspot_num, mem_num, mem_id, vspot_title, vspot_name, vspot_original, vspot_store, vspot_location, vspot_loc, vspot_introduce, vspot_feature, vspot_approval, approval_date, vspot_date
+		vspot_num, mem_num, mem_id, vspot_title, vspot_name, vspot_original, vspot_store, vspot_location, vspot_locationMap, vspot_loc, vspot_introduce, vspot_feature, vspot_approval, approval_date, vspot_date
 	</sql>
 	
 	<resultMap type="vDTO" id="baseVspotMember"> <!-- 휴양지 등록 Map -->
@@ -18,6 +18,7 @@
 		<result column="VSPOT_ORIGINAL" jdbcType="VARCHAR" property="vspotOriginal" />
 		<result column="VSPOT_STORE" jdbcType="VARCHAR" property="vspotStore" />		
 		<result column="VSPOT_LOCATION" jdbcType="VARCHAR" property="vspotLocation" />
+		<result column="VSPOT_LOCATIONMAP" jdbcType="VARCHAR" property="vspotLocationMap" />
 		<result column="VSPOT_LOC" jdbcType="VARCHAR" property="vspotLoc" />
 		<result column="VSPOT_INTRODUCE" jdbcType="VARCHAR" property="vspotIntroduce" />
 		<result column="VSPOT_FEATURE" jdbcType="VARCHAR" property="vspotFeature" />	
@@ -28,7 +29,7 @@
 	
 	<!-- 휴양지 등록하는 내용 -->
 	<insert id="vspotInsert" parameterType="vDTO">
-		insert into vspot(<include refid="basecolumn" />) values((select nvl(max(vspot_num)+1,1) from vspot), #{memNum}, #{memId}, #{vspotTitle}, #{vspotName}, #{vspotOriginal}, #{vspotStore}, #{vspotLocation}, #{vspotLoc}, #{vspotIntroduce}, #{vspotFeature}, '미승인', null, sysdate)
+		insert into vspot(<include refid="basecolumn" />) values((select nvl(max(vspot_num)+1,1) from vspot), #{memNum}, #{memId}, #{vspotTitle}, #{vspotName}, #{vspotOriginal}, #{vspotStore}, #{vspotLocation} , #{vspotLocationMap}, #{vspotLoc}, #{vspotIntroduce}, #{vspotFeature}, '미승인', null, sysdate)
 	</insert>
 	
 	<select id="memList" resultMap="baseVspotMember" parameterType="vDTO">

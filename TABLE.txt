@@ -47,6 +47,7 @@ CREATE TABLE vspot(
     vspot_original varchar2(1000) not null, -- 휴양지 사진
     vspot_store varchar2(1000) not null, -- 휴양지 시스템 사진
     vspot_location varchar2(255) not null, -- 휴양지 주소
+    vspot_locationmap VARCHAR2(500) not null, -- Map
     vspot_loc VARCHAR2(50)not null, -- 휴양지 지역
     vspot_introduce varchar2(2000), -- 휴양지 소개
     vspot_feature varchar2(100), -- 휴양지 특장점
