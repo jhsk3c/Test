@@ -7,58 +7,48 @@
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
-	$(".star").on('click', function() {
-		var idx = $(this).index();
-		$(".star").removeClass("on");
-		for (var i = 0; i <= idx; i++) {
-			$(".star").eq(i).addClass("on");
-		}
-	});
+	$(function() {
+		$(".star_rating a").click(function() {
+
+			$(this).parent().children("a").removeClass("on");
+
+			$(this).addClass("on").prevAll("a").addClass("on");
+
+			return false;
+
+		});
+	})
 </script>
 <style>
-* {
-	margin: 0;
-	padding: 0;
+.star_rating {
+	font-size: 0;
+	letter-spacing: -4px;
 }
 
-.star {
+.star_rating a {
+	font-size: 22px;
+	letter-spacing: 0;
 	display: inline-block;
-	width: 30px;
-	height: 60px;
-	cursor: pointer;
+	margin-left: 5px;
+	color: #ccc;
+	text-decoration: none;
 }
 
-.star_left {
-	background: url(http://gahyun.wooga.kr/main/img/testImg/star.png)
-		no-repeat 0 0;
-	background-size: 60px;
-	margin-right: -3px;
+.star_rating a:first-child {
+	margin-left: 0;
 }
 
-.star_right {
-	background: url(http://gahyun.wooga.kr/main/img/testImg/star.png)
-		no-repeat -30px 0;
-	background-size: 60px;
-	margin-left: -3px;
-}
-
-.star.on {
-	background-image:
-		url(http://gahyun.wooga.kr/main/img/testImg/star_on.png);
+.star_rating a.on {
+	color: #777;
 }
 </style>
 </head>
 <body>
-	<div class="star-box">
-		<span class="star star_left"></span> <span class="star star_right"></span>
+	<p class="star_rating">
 
-		<span class="star star_left"></span> <span class="star star_right"></span>
+		<a href="#" class="on">★</a> <a href="#" class="on">★</a> <a href="#"
+			class="on">★</a> <a href="#">★</a> <a href="#">★</a>
 
-		<span class="star star_left"></span> <span class="star star_right"></span>
-
-		<span class="star star_left"></span> <span class="star star_right"></span>
-
-		<span class="star star_left"></span> <span class="star star_right"></span>
-	</div>
+	</p>
 </body>
 </html>

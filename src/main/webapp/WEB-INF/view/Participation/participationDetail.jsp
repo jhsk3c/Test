@@ -16,6 +16,24 @@
 		}
 	}
 </script>
+<script type="text/javascript">
+	var locked = 0;
+	function show(start) {
+		if(locked)
+			return;
+		var i;
+		var image;
+		var el;
+		var e = document.getElementById('startext');
+		var stateMsg;
+		
+		for(i = 1; i <= star; i++){
+			image = 'image' + i;
+			el = document.getElementById(image)
+		}
+	}
+
+</script>
 </head>
 <body>
 	<table>
