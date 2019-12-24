@@ -26,6 +26,7 @@
 <bean id="memVspotListService" class="Service.ComManagement.MemVspotListService" />
 <bean id="fileSerivce" class="Service.ComManagement.FileSerivce" />
 <bean id="memVspotListServiceList" class="Service.Vspot.MemVspotListServiceList" />
+<bean id="vspotListDetailService" class="Service.Vspot.VspotListDetailService" />
 
 
 </beans>

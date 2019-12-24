@@ -18,5 +18,8 @@
 <bean class="Controller.ComManagement.ComManagementController" />
 <bean class="Controller.Spot.SpotController" />
 <bean class="Controller.ComManagement.memVspotController" />
+<bean class="Controller.Spot.VspotListDetailController" />
+
+
 
 </beans>

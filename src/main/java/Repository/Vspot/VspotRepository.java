@@ -27,5 +27,12 @@ public class VspotRepository {
 		String statement = namespace + ".memList";
 		return sqlSession.selectList(statement);
 	}
+
+
+	public VspotDTO listDetail(VspotDTO vspot) { //휴양지 디테일(리스트에서 누르면)
+		String statement = namespace + ".listDetail";
+		return sqlSession.selectOne(statement, vspot);
+		
+	}
 	
 }

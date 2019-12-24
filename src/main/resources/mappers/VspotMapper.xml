@@ -38,5 +38,11 @@
 		where VSPOT_APPROVAL = '승인'
 	</select>
 	
+	<select id="listDetail" resultMap="baseVspotMember" parameterType="vDTO">
+		select <include refid="basecolumn" />
+		from vspot
+		where VSPOT_NUM = ${vspotNum}
+	</select>
+	
 	
 </mapper>
