@@ -36,6 +36,6 @@
 		<jsp:include page="admintop.jsp" />
 		asdasdsa  관리자
 	</c:if> 
-	
+	asd
 </body>
 </html>

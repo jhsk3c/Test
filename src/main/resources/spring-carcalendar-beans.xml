@@ -10,5 +10,5 @@
 <context:annotation-config />
 <bean id="carCalendarWriterService" class="Service.CarCalendar.CarCalendarWriterService" />
 <bean id="carCalendarRepository" class="Repository.CarCalendar.CarCalendarRepository" />
-
+<bean id="carCalendarListService" class="Service.CarCalendar.CarCalendarListService" />
 </beans>

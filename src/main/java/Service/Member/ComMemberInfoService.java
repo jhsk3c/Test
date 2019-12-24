@@ -2,6 +2,7 @@ package Service.Member;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import CommandMember.ComMemberCommand;
 import Encrypt.Encrypt;
@@ -14,6 +15,7 @@ public class ComMemberInfoService {
 	@Autowired
 	private MemberRepository memberRepository;
 
+	@Transactional
 	public Integer InfoInsert(ComMemberCommand comMemberCommand) {
 		
 		ComMemberDTO comMember = new ComMemberDTO();

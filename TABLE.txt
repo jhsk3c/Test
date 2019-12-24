@@ -1,5 +1,5 @@
 
--- ÀÏ¹İÈ¸¿ø TABLE
+-- ì¼ë°˜íšŒì› TABLE
 CREATE TABLE member ( 
     mem_num VARCHAR2(10),
     mem_id VARCHAR2(20) not null,
@@ -18,21 +18,41 @@ CREATE TABLE member (
 
 alter table member add CONSTRAINT pk_mem_num PRIMARY KEY (mem_num);
 
--- ±â¾÷È¸¿ø TABLE
+-- ê¸°ì—…íšŒì› TABLE
 CREATE TABLE company_member(
-    com_num varchar2(10), --±â¾÷ È¸¿ø¹øÈ£
-    com_id varchar2(20) not null, -- ±â¾÷ ID
-    com_pw varchar2(1000) not null, -- ±â¾÷ PW
-    com_rep_name varchar2(50) not null, -- ´ëÇ¥ÀÚ¸í
-    license_number varchar2(20) not null, -- »ç¾÷ÀÚ ¹øÈ£
-    com_name varchar2(50) not null, -- ±â¾÷ ÀÌ¸§
-    com_addr varchar2(255) not null, -- ±â¾÷ ÁÖ¼Ò
-    contact_phone_num varchar2(30) not null, -- ´ã´çÀÚ ¹øÈ£(±â¾÷ ´ã´çÀÚÀÎµí)
-    contact_email varchar2(40) not null, -- ´ã´çÀÚ ÀÌ¸ŞÀÏ
-    com_approval varchar2(10) not null, -- ½ÂÀÎ¿©ºÎ
-    approval_date TIMESTAMP, -- ½ÂÀÎ ³¯Â¥
-    com_date TIMESTAMP, -- °¡ÀÔ ³¯Â¥
-    com_lev number -- ·¹º§
+    com_num varchar2(10), --ê¸°ì—… íšŒì›ë²ˆí˜¸
+    com_id varchar2(20) not null, -- ê¸°ì—… ID
+    com_pw varchar2(1000) not null, -- ê¸°ì—… PW
+    com_rep_name varchar2(50) not null, -- ëŒ€í‘œìëª…
+    license_number varchar2(20) not null, -- ì‚¬ì—…ì ë²ˆí˜¸
+    com_name varchar2(50) not null, -- ê¸°ì—… ì´ë¦„
+    com_addr varchar2(255) not null, -- ê¸°ì—… ì£¼ì†Œ
+    contact_phone_num varchar2(30) not null, -- ë‹´ë‹¹ì ë²ˆí˜¸(ê¸°ì—… ë‹´ë‹¹ìì¸ë“¯)
+    contact_email varchar2(40) not null, -- ë‹´ë‹¹ì ì´ë©”ì¼
+    com_approval varchar2(10) not null, -- ìŠ¹ì¸ì—¬ë¶€
+    approval_date TIMESTAMP, -- ìŠ¹ì¸ ë‚ ì§œ
+    com_date TIMESTAMP, -- ê°€ì… ë‚ ì§œ
+    com_lev numeber -- ë ˆë²¨
 );
 
 alter table company_member add CONSTRAINT pk_com_num PRIMARY KEY (com_num);
+
+-- íœ´ì–‘ì§€ ë“±ë¡ TABLE
+CREATE TABLE vspot(
+    vspot_num NUMBER, -- íœ´ì–‘ì§€ ë“±ë¡ë²ˆí˜¸
+    mem_num varchar2(10) not null, -- íšŒì›ë²ˆí˜¸
+    mem_id varchar2(100) not null, -- íšŒì›ì•„ì´ë””
+    vspot_title varchar2(100) not null, -- ì‹ ì²­ ì œëª©
+    vspot_name varchar2(50) not null, -- íœ´ì–‘ì§€ ì´ë¦„
+    vspot_original varchar2(1000) not null, -- íœ´ì–‘ì§€ ì‚¬ì§„
+    vspot_store varchar2(1000) not null, -- íœ´ì–‘ì§€ ì‹œìŠ¤í…œ ì‚¬ì§„
+    vspot_location varchar2(255) not null, -- íœ´ì–‘ì§€ ì£¼ì†Œ
+    vspot_loc VARCHAR2(50)not null, -- íœ´ì–‘ì§€ ì§€ì—­
+    vspot_introduce varchar2(2000), -- íœ´ì–‘ì§€ ì†Œê°œ
+    vspot_feature varchar2(100), -- íœ´ì–‘ì§€ íŠ¹ì¥ì 
+    vspot_approval varchar2(30) not null, -- ìŠ¹ì¸ì—¬ë¶€
+    approval_date TIMESTAMP, -- íœ´ì–‘ì§€ ìŠ¹ì¸ ë‚ ì§œ
+    vspot_date TIMESTAMP -- íœ´ì–‘ì§€ ë“±ë¡ ë‚ ì§œ
+);
+
+alter table vspot add CONSTRAINT pk_vspot_num PRIMARY KEY (vspot_num);

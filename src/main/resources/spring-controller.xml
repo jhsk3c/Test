@@ -10,11 +10,12 @@
 <context:annotation-config />
 
 <bean class="Controller.Main.MainController" />
-<bean class="Controller.Recreation.RecreationController" />
-<bean class="Controller.Rooms.RoomsController" />
 <bean class="Controller.Member.MemberController" />
 <bean class="Controller.Member.ComMemberController" />
 <bean class="Controller.Login.LoginController" />
 <bean class="Controller.Login.LogoutController" />
 <bean class="Controller.ComManagement.ComManagementController" />
+<bean class="Controller.Spot.SpotController" />
+<bean class="Controller.ComManagement.memVspotController" />
+
 </beans>

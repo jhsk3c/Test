@@ -169,7 +169,7 @@ public class CarWriterProService { // 차 등록 서비스
 			String path4 = request.getServletContext().getRealPath("/");
 			path4 += "WEB-INF/view/Car/upload/";
 			System.out.println(path4);
-			File file4 = new File(path4 + carImage);
+			File file4 = new File(path4 + carImageStore);
 			try {
 				multiFile4.transferTo(file4);
 			} catch (Exception e) {

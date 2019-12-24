@@ -62,13 +62,13 @@
 	</select>
 	
 	<insert id="InfoInsert" parameterType="comDTO"> <!-- 기업 회원의 회원가입 sql -->
-		insert into company_member(<include refid="combasecolumn" />) values((select nvl(max(com_num)+1,1) from company_member), #{comId}, #{comPw}, #{comRepName}, #{licenseNumber}, #{comName}, #{comAddr}, #{contactPhoneNum}, #{contactEmail}, '미승인', null, sysdate, 2 )
+		insert into company_member(<include refid="combasecolumn" />) values((select nvl(max(com_num)+1,1) from company_member), #{comId}, #{comPw}, #{comRepName},  #{licenseNumber}, #{comName}, #{comAddr}, #{contactPhoneNum}, #{contactEmail}, '미승인', null, sysdate, 2 )
 	</insert>
 	
 	<select id="ComCheck" parameterType="String" resultType="int"> <!-- 기업 회원의 회원가입 ID 중복 체크 -->	
 		select count(*)
 		from company_member
-		where com_id = #{comId} 
+		where com_id = #{comId}
 		
 	</select>
 	

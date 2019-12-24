@@ -18,7 +18,6 @@ import Validator.ComLoginCommandValidator;
 import Validator.LoginCommandValidator;
 
 @Controller
-
 public class LoginController {
 	
 	 @Autowired
@@ -48,7 +47,7 @@ public class LoginController {
 		 
 		 Integer result = loginMainService.LevCheck(model, loginCommand);
 		 session.setAttribute("memLev", result);
-		 model.addAttribute("Lev",result);
+		 session.setAttribute("Lev",result);
 		 
 		 
 		 
@@ -75,22 +74,22 @@ public class LoginController {
 	 
 	 Integer i = loginService.comLoginPro(comLoginCommand, session, response);
 	 
-	 if( i ==0) {
-		 errors.rejectValue("comId", "notId"); 
-		 return "Login/comLogin"; 
-	 }else {
-		if( i == -1) {
-			errors.rejectValue("comPw", "wrong"); 
-			return "Login/comLogin"; 
-	 	} 	
-	}
+		 if( i ==0) {
+			 errors.rejectValue("comId", "notId"); 
+			 return "Login/comLogin"; 
+		 }else {
+			if( i == -1) {
+				errors.rejectValue("comPw", "wrong"); 
+				return "Login/comLogin"; 
+		 	} 	
+		}
 	 
 	 Integer result = loginMainService.LevComCheck(model, comLoginCommand);
-	 model.addAttribute("Lev",result);
+	 session.setAttribute("Lev",result);
 	 
 	 
 	 
-	return "Main/mainView";
+	 return "Main/mainView";
 	}
 	
 	

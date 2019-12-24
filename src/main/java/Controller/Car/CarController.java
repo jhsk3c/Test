@@ -57,7 +57,7 @@ public class CarController { //차 등록 컨트롤
 		
 	}
 	
-	@RequestMapping("/Car/carWriterPro")
+	@RequestMapping("/Car/carWriterPro") // 차등록 서비스
 	public String carWriterPro(CarWriterCommand carWriterCommand,HttpServletRequest request, HttpSession session,Errors errors) {
 		System.out.println("드라이브넘 비교할거" + carWriterCommand.getDriveName());
 		String SessionMemName = ((AuthInfo)session.getAttribute("authInfo")).getName();
@@ -71,24 +71,22 @@ public class CarController { //차 등록 컨트롤
 		return "redirect:/Car/carEnrollmentList";
 	}
 	
-	@RequestMapping("/Car/carDetail")
-	public String carDetail(@RequestParam(value="driveNum")Integer driveNum ,Model model) {
+	@RequestMapping("/Car/carDetail") // 차등록 상세정보 
+	public String carDetail(@RequestParam(value="driveNum")String driveNum ,Model model) {
 		
 		carDetailService.carDetatilOneSelect(driveNum , model);
 		System.out.println("다탔다.");
 		return "Car/carDetail";
 	}
-	@RequestMapping("/Car/carApprovalCheck")
+	@RequestMapping("/Car/carApprovalCheck") //차 등록 승인 여부 
 	public String carApprovalCheck(@RequestParam(value = "driveNum")String driveNum,@RequestParam(value = "memNum") String memNum, 
-			@RequestParam(value = "carApproval") Integer carApproval ,@RequestParam(value = "carImage") String carImage,
-			@RequestParam(value = "driveLicense") String driveLicense,@RequestParam(value = "driveInsurance") String driveInsurance, 
-			@RequestParam(value = "driveCarcheck") String driveCarcheck, HttpServletRequest request) {
-			carApprovalCheckService.approvalUpdate(driveNum,memNum,carApproval,carImage,driveLicense,driveInsurance,driveCarcheck, request);
+			@RequestParam(value = "carApproval") Integer carApproval , HttpServletRequest request) {
+			carApprovalCheckService.approvalUpdate(driveNum,memNum,carApproval, request);
 		return "redirect:/Car/carEnrollmentList";
 	}
 	
 	@RequestMapping("/Car/carEnrollmentModify") //차 수정
-	public String carEnrollmentModify(@RequestParam(value = "driveNum") Integer driveNum,Model model,CarWriterCommand carWriterCommand) {
+	public String carEnrollmentModify(@RequestParam(value = "driveNum") String driveNum,Model model,CarWriterCommand carWriterCommand) {
 		carDetailService.carDetatilOneSelect(driveNum , model);
 		return "Car/car_Modify";
 	}

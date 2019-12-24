@@ -1,9 +1,13 @@
 package Controller.Member;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,13 +27,13 @@ public class ComMemberController {
 	@Autowired
 	private ComMemberJoinUserCheckService comMemberJoinUserCheckService;
 	
-	@RequestMapping("comMember/comMemberInfo")
+	@RequestMapping("/comMemberInfo")
 	public String comMemberInfo(ComMemberCommand comMemberCommand) {
 		
 		return "Member/comMemberInfo";
 	}
 	
-	@RequestMapping("comMember/comMemberInfoPro")
+	@RequestMapping("/comMemberInfoPro")
 	public String comMemberInfo(ComMemberCommand comMemberCommand, Errors errors) {
 		
 		new ComMemberCommandValidator().validate(comMemberCommand, errors);
@@ -51,7 +55,7 @@ public class ComMemberController {
 	
 	
 	
-	@RequestMapping(value = "comMember/comMemCheck", method = RequestMethod.POST)
+	@RequestMapping(value = "/comMemCheck", method = RequestMethod.POST)
 	@ResponseBody
 	public String memCheck(@RequestParam("comId") String comId) {
 		 System.out.println("컨트롤러 접근 확인"); 
@@ -64,5 +68,16 @@ public class ComMemberController {
 		 }
 		return str;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

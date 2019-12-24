@@ -78,15 +78,15 @@ body {
   <a href="#">고객 센터</a>
   <a href="contest">Contest</a>
   <a href="login">로그인</a>
-  <a href="member/memberInfo">회원가입</a>
-  <a href="comMember/comMemberInfo">기업 회원가입</a>
+  <a href="memberInfo">회원가입</a>
+  <a href="comMemberInfo">기업 회원가입</a>
   
   <div class="dropdown">
     <button class="dropbtn">Dropdown 
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-      <a href="#">Link 1</a>
+      <a href="memvspotList">수정해야 함!! 일단 휴양지 리스트 조회</a>
       <a href="#">Link 2</a>
       <a href="#">Link 3</a>
     </div>

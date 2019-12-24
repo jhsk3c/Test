@@ -12,7 +12,7 @@
 </head>
 <body>
 <h2>일정 등록</h2>
-<form:form action="carCalendarWriterPro" method="post" commandName="carCalendarCommand">
+<form:form action="carCalendarWriterPro" method="GET" commandName="carCalendarCommand">
 <label>출발 날짜</label>
 <input type="date"  name="calendarDepartureDate" />
 <br />

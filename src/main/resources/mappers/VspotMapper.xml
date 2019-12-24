@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-/mybatis.org/DTO Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spotMapper">
+
+	<cache />
+	
+	<sql id="basecolumn"> <!-- 휴양지 등록의 컬럼들 -->
+		vspot_num, mem_num, mem_id, vspot_title, vspot_name, vspot_original, vspot_store, vspot_location, vspot_loc, vspot_introduce, vspot_feature, vspot_approval, approval_date, vspot_date
+	</sql>
+	
+	<resultMap type="vDTO" id="baseVspotMember"> <!-- 휴양지 등록 Map -->
+		<id column="VSPOT_NUM" jdbcType="INTEGER" property="vspotNum" />
+		<result column="MEM_NUM" jdbcType="VARCHAR" property="memNum" />
+		<result column="MEM_ID" jdbcType="VARCHAR" property="memId" />
+		<result column="VSPOT_TITLE" jdbcType="VARCHAR" property="vspotTitle" />			
+		<result column="VSPOT_NAME" jdbcType="VARCHAR" property="vspotName"/>		
+		<result column="VSPOT_ORIGINAL" jdbcType="VARCHAR" property="vspotOriginal" />
+		<result column="VSPOT_STORE" jdbcType="VARCHAR" property="vspotStore" />		
+		<result column="VSPOT_LOCATION" jdbcType="VARCHAR" property="vspotLocation" />
+		<result column="VSPOT_LOC" jdbcType="VARCHAR" property="vspotLoc" />
+		<result column="VSPOT_INTRODUCE" jdbcType="VARCHAR" property="vspotIntroduce" />
+		<result column="VSPOT_FEATURE" jdbcType="VARCHAR" property="vspotFeature" />	
+		<result column="VSPOT_APPROVAL" jdbcType="VARCHAR" property="vspotApproval" />
+		<result column="APPROVAL_DATE" jdbcType="TIMESTAMP" property="approvalDate" />
+		<result column="VSPOT_DATE" jdbcType="TIMESTAMP" property="vspotDate" />	
+	</resultMap>
+	
+	<!-- 휴양지 등록하는 내용 -->
+	<insert id="vspotInsert" parameterType="vDTO">
+		insert into vspot(<include refid="basecolumn" />) values((select nvl(max(vspot_num)+1,1) from vspot), #{memNum}, #{memId}, #{vspotTitle}, #{vspotName}, #{vspotOriginal}, #{vspotStore}, #{vspotLocation}, #{vspotLoc}, #{vspotIntroduce}, #{vspotFeature}, '미승인', null, sysdate)
+	</insert>
+	
+	<select id="memList" resultMap="baseVspotMember" parameterType="vDTO">
+		select <include refid="basecolumn" />
+		from vspot
+		where VSPOT_APPROVAL = '승인'
+	</select>
+	
+	
+</mapper>

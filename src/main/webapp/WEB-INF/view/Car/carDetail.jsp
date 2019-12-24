@@ -42,9 +42,7 @@ ${carDTO.driveCarcheck}<br />
 ${carDTO.driveCarcheckStore}<br />
 ${carDTO.driveCarcheckSize}<br />
 <a href="carApprovalCheck?driveNum=${carDTO.driveNum}&memNum=${carDTO.memNum}&carApproval=1">승인확인</a>
-<a href="carApprovalCheck?driveNum=${carDTO.driveNum}&memNum=${carDTO.memNum}&carApproval=2&carImage=${carDTO.carImageStore}
-&driveLicense=${carDTO.driveLicenseStore}&driveInsurance=${carDTO.driveInsuranceStore}&driveCarcheck=${carDTO.driveCarcheckStore}">
-승인거절</a>
+<a href="carApprovalCheck?driveNum=${carDTO.driveNum}&memNum=${carDTO.memNum}&carApproval=2">승인거절</a>
 </c:if>
 <a href="carEnrollmentList">목록</a>
 <c:if test="${memLev == 1 }">

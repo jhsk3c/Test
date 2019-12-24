@@ -1,19 +1,23 @@
 package Model.DTO;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class CarCalendarDTO {
+@SuppressWarnings("serial")
+public class CarCalendarDTO implements Serializable {
 	                                                            
 	  private Integer calendarNumber;           //   -- 일정 번호   
 	  private Integer driveNum;                 //   -- 운전번호    
 	  private Timestamp calendarDepartureDate;  //   -- 출발 날짜   
-	  private Timestamp startTime;              //   -- 출발 시간   
+	  private String startTime;              //   -- 출발 시간   
 	  private String calendarStartingpoint;     //   -- 출발지역    
 	  private String calendarDestination;       //   -- 도착지역    
-	  private Timestamp destinationTime;        //   -- 도착시간    
-	  private Timestamp predictionTime;         //   -- 예상 소요시간 
+	  private String destinationTime;        //   -- 도착시간    
+	  private String predictionTime;         //   -- 예상 소요시간 
 	  private Integer predictionPrice;          //   -- 예상 금액   
 	  private Timestamp calendarArrival;		//	 -- 도착날짜
+	  private Timestamp calendarRegist; //일정 등록 시간
+	  
 	  
 	public Integer getCalendarNumber() {
 		return calendarNumber;
@@ -33,10 +37,10 @@ public class CarCalendarDTO {
 	public void setCalendarDepartureDate(Timestamp calendarDepartureDate) {
 		this.calendarDepartureDate = calendarDepartureDate;
 	}
-	public Timestamp getStartTime() {
+	public String getStartTime() {
 		return startTime;
 	}
-	public void setStartTime(Timestamp startTime) {
+	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
 	public String getCalendarStartingpoint() {
@@ -51,16 +55,16 @@ public class CarCalendarDTO {
 	public void setCalendarDestination(String calendarDestination) {
 		this.calendarDestination = calendarDestination;
 	}
-	public Timestamp getDestinationTime() {
+	public String getDestinationTime() {
 		return destinationTime;
 	}
-	public void setDestinationTime(Timestamp destinationTime) {
+	public void setDestinationTime(String destinationTime) {
 		this.destinationTime = destinationTime;
 	}
-	public Timestamp getPredictionTime() {
+	public String getPredictionTime() {
 		return predictionTime;
 	}
-	public void setPredictionTime(Timestamp predictionTime) {
+	public void setPredictionTime(String predictionTime) {
 		this.predictionTime = predictionTime;
 	}
 	public Integer getPredictionPrice() {
@@ -75,11 +79,15 @@ public class CarCalendarDTO {
 	public void setCalendarArrival(Timestamp calendarArrival) {
 		this.calendarArrival = calendarArrival;
 	}
-
+	public Timestamp getCalendarRegist() {
+		return calendarRegist;
+	}
+	public void setCalendarRegist(Timestamp calendarRegist) {
+		this.calendarRegist = calendarRegist;
+	}
+	  
+	  
 	
-	  
-	  
-	  
-	  
+
       
 }

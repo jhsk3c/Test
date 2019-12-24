@@ -68,17 +68,17 @@ public class CarRepository {
 	}
 	
 	
-	public CarDTO carDetailOneSelect(Integer driveNum ) {
+	public CarDTO carDetailOneSelect(Long driveNum ) {
 		
 		String statement = namespace + ".carDetailOneSelect";
 		
-		return  sqlSession.selectOne(statement,driveNum ); 
+		return sqlSession.selectOne(statement,driveNum); 
 	}
 	
 	public void approvalUpdate(CarDTO carDTO) {
 		
 		String statement = namespace + ".approvalUpdate";
-		 sqlSession.update(statement,carDTO);
+		sqlSession.update(statement,carDTO);
 	}
 	
 	public void memLevUpdate(CarDTO carDTO) {
@@ -99,20 +99,28 @@ public class CarRepository {
 		 sqlSession.update(statement,driveInfoDTO);
 	}
 	
-	public void carInfoDelete(CarDTO carDTO) {
+	public void carInfoDelete(String memNum) {
 		
 		String statement = namespace + ".cardriveInfoDelete";
-		sqlSession.delete(statement,carDTO);
+		
+		sqlSession.delete(statement,memNum);
 	
 	}
 	
-	public void carDriveInfoDelete(CarDTO carDTO) {
+	public void carDriveInfoDelete(Long driveNum) {
 		
 		String statement = namespace + ".driveInfoDelete";
-		sqlSession.delete(statement,carDTO);
+		sqlSession.delete(statement,driveNum);
 	
 	}
 	
+	public CarDTO driveFileOneSelect(CarDTO carDTO ) {
+		
+		String statement = namespace + ".driveFileOneSelect";
+		return  sqlSession.selectOne(statement,carDTO); 
+	}
+	
+
 	
 	
 }

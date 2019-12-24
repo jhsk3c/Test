@@ -5,7 +5,7 @@
 	<cache />
 	
 	<resultMap type="Model.DTO.CarDTO" id="resultCarDTO">
-	<id column="drive_num" jdbcType="BIGINT" property="driveNum" />
+		<id column="drive_num" jdbcType="BIGINT" property="driveNum" />
 		<result column="mem_num" jdbcType="VARCHAR" property="memNum" />
 		<result column="drive_name" jdbcType="VARCHAR" property="driveName" />
 		<result column="drive_age" jdbcType="BIGINT" property="driveAge" />
@@ -30,7 +30,7 @@
 		<result column="drive_carcheck"        jdbcType="VARCHAR" property="driveCarcheck"/>
 		<result column="drive_carcheck_store"  jdbcType="VARCHAR" property="driveCarcheckStore"/>
 		<result column="drive_carcheck_size"   jdbcType="VARCHAR" property="driveCarcheckSize"/>
-		</resultMap>
+	</resultMap>
 
 
 	<select id="carMemNumCheckOneSelect" parameterType="Model.DTO.CarDTO" resultType="Integer">
@@ -55,7 +55,7 @@
 		#{driveLicense},#{driveLicenseSize},#{driveInsurance},#{driveInsuranceStore},#{driveInsuranceSize}
 		,#{driveCarcheck},#{driveCarcheckStore},#{driveCarcheckSize})
 	</insert>
-	<update id="approvalUpdate" parameterType="Model.DTO.CarDTO" >
+	<update id="approvalUpdate" parameterType="Model.DTO.CarDTO">
 		update car set car_approval = #{carApproval} where drive_num = #{driveNum} 
 	</update>
 	
@@ -84,49 +84,57 @@
 	</select>
 	
 	<select id="allSelectCarEnrollmentList" parameterType="String" resultMap="resultCarDTO">
-	select * from car where mem_num = #{memNum}
+		select * from car where mem_num = #{memNum}
 	</select>
 	
 	<select id="allSelectCarEnrollmentListAdmin" resultMap="resultCarDTO">
-	select * from car 
+		select * from car 
 	</select>
 	
 	
-	<select id="carDetailOneSelect" parameterType="Integer" resultMap="resultCarDTO">
-	select 
-	c.drive_num,
-	c.mem_num           ,
-	c.drive_name        ,
-	c.drive_age         ,
-	c.drive_license_info,
-	c.car_name          ,
-	c.car_num           ,
-	c.car_image         ,
-	c.car_image_store   ,
-	c.car_image_size    ,
-	c.car_size          ,
-	c.car_kinds         ,
-	c.car_content       ,
-	c.car_regist        ,
-	c.car_approval 	       ,
-	d.drive_info_num       ,
-	d.drive_license_store  ,
-	d.drive_license        ,
-    d.drive_license_size   ,
-    d.drive_insurance      ,
-    d.drive_insurance_store,
-    d.drive_insurance_size ,
-    d.drive_carcheck       ,
-    d.drive_carcheck_store ,
-    d.drive_carcheck_size  
-	from car c, drive_info d
-	where c.drive_num = d.drive_num and c.drive_num = #{driveNum}
+	<select id="carDetailOneSelect" parameterType="Long" resultMap="resultCarDTO">
+		select 
+		c.drive_num,
+		c.mem_num           ,
+		c.drive_name        ,
+		c.drive_age         ,
+		c.drive_license_info,
+		c.car_name          ,
+		c.car_num           ,
+		c.car_image         ,
+		c.car_image_store   ,
+		c.car_image_size    ,
+		c.car_size          ,
+		c.car_kinds         ,
+		c.car_content       ,
+		c.car_regist        ,
+		c.car_approval 	       ,
+		d.drive_info_num       ,
+		d.drive_license_store  ,
+		d.drive_license        ,
+    	d.drive_license_size   ,
+    	d.drive_insurance      ,
+    	d.drive_insurance_store,
+    	d.drive_insurance_size ,
+    	d.drive_carcheck       ,
+    	d.drive_carcheck_store ,
+    	d.drive_carcheck_size  
+		from car c, drive_info d
+		where c.drive_num = d.drive_num and c.drive_num = #{driveNum}
 	</select>
+	<select id="driveFileOneSelect" parameterType="Model.DTO.CarDTO" resultMap="resultCarDTO">
+		select cc.car_image,cc.car_image_store,cc.car_image_size,dd.drive_license_store,dd.drive_license,dd.drive_license_size,
+		dd.drive_insurance,dd.drive_insurance_store,dd.drive_insurance_size ,dd.drive_carcheck,dd.drive_carcheck_store,dd.drive_carcheck_size  
+		from car cc, drive_info dd
+		where cc.drive_num = dd.drive_num and cc.drive_num = #{driveNum}
+	</select>
+
+
 	
-	<delete id="cardriveInfoDelete" parameterType="Model.DTO.CarDTO">
+	<delete id="cardriveInfoDelete" parameterType="String">
 		delete from car where mem_num = #{memNum}
 	</delete>
-	<delete id="driveInfoDelete" parameterType="Model.DTO.CarDTO">
+	<delete id="driveInfoDelete" parameterType="Long">
 		delete from drive_info where drive_Num = #{driveNum}
 	</delete>
 </mapper>

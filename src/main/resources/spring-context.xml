@@ -12,9 +12,13 @@ http://www.springframework.org/schema/mvc/spring-mvc.xsd"
 	<mvc:default-servlet-handler />
 	<mvc:annotation-driven />
 	
+	
+	
 	<mvc:view-resolvers>
 		<mvc:jsp prefix="/WEB-INF/view/" />
 	</mvc:view-resolvers>
+	
+	<mvc:resources location="/WEB-INF/view/" mapping="/**" />
 
 <!-- <mvc:interceptors>
 	<mvc:interceptor>
@@ -40,4 +44,6 @@ http://www.springframework.org/schema/mvc/spring-mvc.xsd"
 		<property name="maxUploadSize" value="100000000" />
 	    <property name="maxInMemorySize" value="100000000" />
 	</bean>
+	
+	
 </beans>

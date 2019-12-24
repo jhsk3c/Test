@@ -25,6 +25,8 @@
   			classpath:spring-car-beans.xml	<!--  차 빈 -->
   			classpath:spring-carcalendar-controller.xml<!-- 차 일정 컨트롤러 -->
   			classpath:spring-carcalendar-beans.xml<!--  차 일정 빈 -->
+  			classpath:Activity-beans.xml 
+  			classpath:Activity-controller.xml
   		</param-value>
   	</init-param>
   	<load-on-startup>1</load-on-startup>
