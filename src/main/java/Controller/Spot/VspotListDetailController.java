@@ -15,17 +15,17 @@ public class VspotListDetailController {
 	private VspotListDetailService vspotListDetailService;
 	
 	@RequestMapping("/vspotListDetail")
-	public String Detail(@RequestParam(value = "num") String vspotNum, Model model) {
+	public String Detail(@RequestParam(value = "num") String vspotNum, Model model, @RequestParam(value = "page", defaultValue = "1") Integer page) {
 		
-		vspotListDetailService.listDetail(vspotNum, model);
+		vspotListDetailService.listDetail(vspotNum, model, page);
 		
 		return "Spot/vspotListDetail";
 	}
 	
 	@RequestMapping("/vspotListDetailTwo")
-	public String DetailTwo(@RequestParam(value = "num") String vspotNum, Model model) {
+	public String DetailTwo(@RequestParam(value = "num") String vspotNum, Model model, @RequestParam(value = "page", defaultValue = "1") Integer page) {
 		
-		vspotListDetailService.listDetail(vspotNum, model);
+		vspotListDetailService.listDetail(vspotNum, model, page);
 		
 		return "Spot/vspotListDetailTwo";
 	}

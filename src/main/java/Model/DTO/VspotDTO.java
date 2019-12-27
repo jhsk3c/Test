@@ -21,7 +21,14 @@ public class VspotDTO implements Serializable{
 	String vspotApproval;
 	Timestamp approvalDate;
 	Timestamp vspotDate;
+	private SpotReviewDTO spotRe;
 	
+	public SpotReviewDTO getSpotRe() {
+		return spotRe;
+	}
+	public void setSpotRe(SpotReviewDTO spotRe) {
+		this.spotRe = spotRe;
+	}
 	public Integer getVspotNum() {
 		return vspotNum;
 	}

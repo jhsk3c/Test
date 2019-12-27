@@ -57,3 +57,23 @@ CREATE TABLE vspot(
 );
 
 alter table vspot add CONSTRAINT pk_vspot_num PRIMARY KEY (vspot_num);
+
+
+
+--휴양지 리뷰 등록 TABLE
+create table spot_review(
+    spot_review_num  NUMBER,                -- 후기 번호
+    vspot_num NUMBER,                       -- 휴양지 번호
+    mem_num VARCHAR2(10),                   --회원번호
+    mem_id VARCHAR2(100),                   --회원 아이디
+    spot_review_title VARCHAR2 (400),       --후기 제목
+    spot_review_context   VARCHAR2(2000),   --후기 내용
+    spot_review_star1 NUMBER,               --별점1번
+    spot_review_star2 NUMBER,               --별점2번
+    spot_review_star3 NUMBER,               --별점3번
+    spot_review_star4 NUMBER,               --별점4번
+    spot_review_avg NUMBER,                 -- 평균 평점
+    spot_review_date TIMESTAMP              -- 후기 작성 날짜
+    
+);
+alter table spot_review add CONSTRAINT pk_spot_review_num PRIMARY KEY (spot_review_num);
