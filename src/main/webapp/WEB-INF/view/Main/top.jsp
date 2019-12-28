@@ -74,7 +74,7 @@ body {
 <body>
 
 <div class="navbar1">
-  <a href="#">Home</a>
+  <a href="main">Home</a>
   <a href="#">고객 센터</a>
   <a href="contest">Contest</a>
   <a href="login">로그인</a>
@@ -86,7 +86,7 @@ body {
       <i class="fa fa-caret-down1"></i>
     </button>
     <div class="dropdown-content1">
-      <a href="memvspotList">수정해야 함!! 일단 휴양지 리스트 조회</a>
+      <a href="#"></a>
       <a href="#">Link 2</a>
       <a href="#">Link 3</a>
     </div>

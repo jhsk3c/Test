@@ -28,6 +28,7 @@
 <bean id="memVspotListServiceList" class="Service.Vspot.MemVspotListServiceList" />
 <bean id="vspotListDetailService" class="Service.Vspot.VspotListDetailService" />
 <bean id="reviewInsertService" class="Service.Vspot.ReviewInsertService" />
-
+<bean id="adminSpotService" class="Service.ComManagement.AdminSpotService" />
+<bean id="mainService" class="Service.Main.MainService" />
 
 </beans>

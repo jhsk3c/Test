@@ -541,8 +541,16 @@
 
 </head>
 <body>
- 	
-	<jsp:include page="../Main/top.jsp" />
+ 	<c:if test="${empty authInfo}">
+		<jsp:include page="../Main/top.jsp" />
+	</c:if>	
+	<c:if test="${Lev eq 1}">
+		<jsp:include page="../Main/memtop.jsp" />
+	</c:if> 
+	<c:if test="${Lev eq 4}">
+		<jsp:include page="../Main/admintop.jsp" />
+	</c:if> 
+	
 	
 	<div style="width: 100%; height: 550px;">
 	 <c:if test="${fn:length(store) >= 5}">
@@ -608,8 +616,22 @@
 	<center><hr></center><br/>
 	
 	
+	<script type="text/javascript">
+		function hello() {
+			if(${Lev == 1}) {
+				location.href='vspotReview?num=${list.vspotNum}';
+			} else {
+				alert("로그인이 필요합니다.");
+			}		
+		}
+			
+	
+	</script>
+	
 	<span class="title">후기</span><br>
-	<div><input type="button" name="Review" id="Review" value="후기 작성하기" onclick="location.href='vspotReview?num=${list.vspotNum}'" /></div>
+	<div>
+		<input type="button" name="Review" id="Review" value="후기 작성하기" onclick="hello()" />
+	</div>
 	<img src="Spot/upload/star.png" alt="x" width="18" height="18" style="position: relative; left: 18%; top: -12px;">
 	<span class="avg"> ${maxAvg}</span> <span style="filter:alpha(opacity=1); opacity:0.3; position: relative; left: 18.6%; top: -12px;">|</span> <span class="revi">${count } 후기</span><center><hr></center>
 	

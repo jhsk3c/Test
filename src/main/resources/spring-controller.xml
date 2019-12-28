@@ -20,6 +20,7 @@
 <bean class="Controller.ComManagement.memVspotController" />
 <bean class="Controller.Spot.VspotListDetailController" />
 <bean class="Controller.Spot.vspotReviewController" />
+<bean class="Controller.ComManagement.AdminSpotController" />
 
 
 </beans>

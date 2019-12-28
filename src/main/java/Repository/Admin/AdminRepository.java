@@ -103,4 +103,9 @@ public class AdminRepository {
 		
 	}
 
+	public Integer adminvspotInsert(VspotDTO spot) {
+		String statement = namespace + ".adminvspotInsert";
+		return sqlSession.insert(statement, spot);
+	}
+
 }

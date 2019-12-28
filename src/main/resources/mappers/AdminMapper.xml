@@ -140,5 +140,11 @@
 		from vspot
 		where vspot_num = ${vspotNum}
 	</select>
+	
+	<!-- 관리자가 휴양지를 등록하는 것. -->
+	<insert id="adminvspotInsert" parameterType="vDTO"> 
+		insert into vspot(<include refid="vspotbasecolumn" />) values((select nvl(max(vspot_num)+1,1) from vspot), #{memNum}, #{memId}, #{vspotTitle}, #{vspotName}, #{vspotOriginal}, #{vspotStore}, #{vspotLocation} , #{vspotLocationMap}, #{vspotLoc}, #{vspotIntroduce}, #{vspotFeature}, '승인', null, sysdate)
+		
+	</insert>
 
 	</mapper>
