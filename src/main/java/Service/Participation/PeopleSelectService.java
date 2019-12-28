@@ -22,12 +22,7 @@ public class PeopleSelectService {
 		dto.setContestNum(Integer.parseInt(contestNum));
 		String memId = ((AuthInfo)session.getAttribute("authInfo")).getId();
 		dto.setMemId(memId);
-		System.out.println("dto안에 넘버 ::: " + dto.getParticipationNum());
 		List<ParticipationDTO> list = participationRepository.peopleList(dto);
-
-//		참가등록한 회원의 아이디를 찾아봅시다
-//		List<ParticipationDTO> memIdList = participationRepository.memIdList(contestNum);
-//		String contestNameList = participationRepository.contestNameList(contestNum);
 
 		model.addAttribute("participation", list);
 		

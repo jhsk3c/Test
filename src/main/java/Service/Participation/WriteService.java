@@ -28,6 +28,7 @@ public class WriteService {
 		String sessionMemId = ((AuthInfo)session.getAttribute("authInfo")).getId();
 		String sessionMemNum = ((AuthInfo)session.getAttribute("authInfo")).getNum();
 		String sessionMemName = ((AuthInfo)session.getAttribute("authInfo")).getName();
+		String aduitStatus = "평가진행중";
 //		System.out.println("회원 번호:::::::::::::::::" + memNum);
 		dto.setMemNum(sessionMemNum); 
 		dto.setMemId(sessionMemId);
@@ -36,6 +37,7 @@ public class WriteService {
 		dto.setWorkName(participationCommand.getWorkName());
 		dto.setWorkOutline(participationCommand.getWorkOutline());
 		dto.setWorkContent(participationCommand.getWorkContent());
+		dto.setAduitStatus(aduitStatus);
 		
 //		파일
 		String originalTotal = "";

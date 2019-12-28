@@ -5,8 +5,6 @@ import java.sql.Timestamp;
 
 @SuppressWarnings("serial")
 public class MemberDTO implements Serializable{
-
-	
 	String memNum;
 	String memId;
 	String memPw;
@@ -22,8 +20,6 @@ public class MemberDTO implements Serializable{
 	Timestamp memDate;
 	Integer memLev;
 	
-	
-
 	public String getMemNum() {
 		return memNum;
 	}

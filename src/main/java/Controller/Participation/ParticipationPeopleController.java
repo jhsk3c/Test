@@ -14,7 +14,7 @@ import Service.Participation.PeopleSelectService;
 @Controller
 public class ParticipationPeopleController {
 	@Autowired
-	PeopleSelectService peopleSelectService; 
+	PeopleSelectService peopleSelectService;
 	@Autowired
 	ParticipationDetailService participationDetailService;
 
@@ -23,10 +23,11 @@ public class ParticipationPeopleController {
 		peopleSelectService.selectPeople(contestNum, model, session);
 		return "Participation/peopleSelect";
 	}
-	
+
 	@RequestMapping("participationDetail") // 참가정보 detail
-	public String detail(@RequestParam(value = "pNum") String pNum, Model model) {
-		participationDetailService.detail(pNum, model);
+	public String detail(@RequestParam(value = "memId") String memId, @RequestParam(value = "pNum") String pNum,
+			Model model) {
+		participationDetailService.detail(memId, pNum, model);
 		return "Participation/participationDetail";
 	}
 }

@@ -14,15 +14,15 @@
 			<td>참가번호</td>
 			<td>회원 아이디</td>
 			<td>참가날짜</td>
-			<td colspan="2">참가공모전</td>	
+			<td colspan="2">평가 상태</td>	
 		</tr>
 		<c:forEach var="participation" items="${participation }">
 		<tr>
 			<td>${participation.participationNum }</td>
 			<td>${participation.memId }</td>
 			<td><fmt:formatDate value="${participation.participationDate }" pattern="yyyy년 MM월 dd일"/></td>
-			<td>contestName</td>
-			<td><input type="button" value="상세보기" onclick="participationDetail()" /></td>
+			<td>${participation.aduitStatus }</td>
+			<td><a href="participationDetail?memId=${participation.memId }&pNum=${participation.participationNum}">상세보기</a></td>
 		</tr>
 			<script type="text/javascript">
 				function participationDetail(){

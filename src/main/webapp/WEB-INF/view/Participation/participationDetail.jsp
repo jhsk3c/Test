@@ -10,29 +10,11 @@
 	function givingPrize() {
 		var result = confirm("ㄹㅇ?");
 		if (result) {
-			location.href = "aduit?pNum=${participation.participationNum }"
+			location.href = "aduit?memId=${participation.memId}&pNum=${participation.participationNum }"
 		} else {
 
 		}
 	}
-</script>
-<script type="text/javascript">
-	var locked = 0;
-	function show(start) {
-		if(locked)
-			return;
-		var i;
-		var image;
-		var el;
-		var e = document.getElementById('startext');
-		var stateMsg;
-		
-		for(i = 1; i <= star; i++){
-			image = 'image' + i;
-			el = document.getElementById(image)
-		}
-	}
-
 </script>
 </head>
 <body>
@@ -63,7 +45,7 @@
 		</tr>
 		<tr>
 			<td>작품사진</td>
-			<td>${participation.workImage }사진으로 바꾸자</td>
+			<td><img src="../Participation/upload/${participation.workImage }"></td>
 		</tr>
 		<tr>
 			<td colspan="2">

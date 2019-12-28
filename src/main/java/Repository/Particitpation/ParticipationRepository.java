@@ -42,16 +42,9 @@ public class ParticipationRepository {
 		return sqlSession.selectList(statement, dto);
 	}
 
-//	public List<ParticipationDTO> memIdList(String contestNum) { // memId 리스트로 받아오기
-//		String statement = namespace + ".selectUserId";
-//		return sqlSession.selectList(statement, contestNum);
-//	}
-//
-//	public String contestNameList(String contestNum) { // contestName 리스트로 받아오기
-//		String statement = namespace + ".selectContestName";
-//		ParticipationDTO dto = new ParticipationDTO();
-//		dto.setContestNum(Integer.parseInt(contestNum));
-//		return sqlSession.selectOne(statement, dto);
-//	}
+	public int updateAduitStatus(ParticipationDTO dto) { // 평가가 완료되면 참가테이블에 auditStatus가 업데이트된다
+		String statement = namespace + ".updateAuditStatus";
+		return sqlSession.update(statement, dto);
+	}
 
 }

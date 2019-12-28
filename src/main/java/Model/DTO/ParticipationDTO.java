@@ -15,6 +15,15 @@ public class ParticipationDTO implements Serializable {
 	String workContent; // 작품내용
 	String workImage; // 작품이미지
 	Date participationDate; // 참가신청 날짜
+	String aduitStatus; // 평가 상태
+
+	public String getAduitStatus() {
+		return aduitStatus;
+	}
+
+	public void setAduitStatus(String aduitStatus) {
+		this.aduitStatus = aduitStatus;
+	}
 
 	public String getMemId() {
 		return memId;

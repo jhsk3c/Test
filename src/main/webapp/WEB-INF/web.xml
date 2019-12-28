@@ -25,6 +25,8 @@
   			classpath:Activity-controller.xml
   			classpath:aduit-beans.xml
   			classpath:aduit-controller.xml
+  			classpath:goods-beans.xml
+  			classpath:goods-controller.xml
   		</param-value>
   	</init-param>
   	<load-on-startup>1</load-on-startup>

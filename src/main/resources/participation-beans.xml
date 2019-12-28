@@ -10,5 +10,6 @@
 	<bean id="peopleSelectService" class="Service.Participation.PeopleSelectService" />
 	<bean id="participationDetailService" class="Service.Participation.ParticipationDetailService" />
 	<bean id="participationListService" class="Service.Participation.ParticipationListService" />
-	
+	<bean id="aduitUpdateService" class="Service.Participation.AduitUpdateService" />
+	<bean id="participationInfoService" class="Service.Participation.ParticipationInfoService" />
 </beans>

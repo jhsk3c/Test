@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Repository.Aduit.AduitMapper">
+	<cache />
+	
+	<sql id="auditcolumn" >
+		aduit_num, participation_num, contest_num, mem_id, audit_originality, audit_practicality, audit_avg, audit_pass, audit_date
+	</sql>
+	
+	<resultMap type="Model.DTO.ParticipationDTO" id="participationMap">
+		<id column="participation_num" jdbcType="VARCHAR" property="participationNum" />
+		<result column="mem_num" jdbcType="INTEGER" property="memNum" />
+		<result column="contest_num" jdbcType="VARCHAR" property="contestNum" />
+		<result column="mem_id" jdbcType="VARCHAR" property="memId" />
+		<result column="mem_name" jdbcType="VARCHAR" property="memName" />
+		<result column="work_name" jdbcType="VARCHAR" property="workName" />
+		<result column="work_outline" jdbcType="VARCHAR" property="workOutline" />
+		<result column="work_content" jdbcType="VARCHAR" property="workContent" />
+		<result column="work_image" jdbcType="VARCHAR" property="workImage" />
+		<result column="participation_date" jdbcType="DATE" property="participationDate" />
+	</resultMap>
+	
+	<resultMap type="Model.DTO.MemberDTO" id="baseMember"> <!-- 일반회원의 Map -->
+		<id column="MEM_NUM" jdbcType="VARCHAR" property="memNum" />
+		<result column="MEM_ID" jdbcType="VARCHAR" property="memId" />		<!-- PK면 id , 나머지는 result -->	<!-- jdbcType == rs.getString -->
+		<result column="MEM_PW" jdbcType="VARCHAR" property="memPw"/>		
+		<result column="MEM_NAME" jdbcType="VARCHAR" property="memName" />
+		<result column="MEM_BIRTH" jdbcType="TIMESTAMP" property="memBirth" />		<!-- 이거 jsp로 어떻게 받아오더라? timestamp가 있었나? ㅇㅇㅇㅇ -->
+		<result column="MEM_SEX" jdbcType="VARCHAR" property="memSex" />
+		<result column="MEM_NATIONALITY" jdbcType="VARCHAR" property="memNationality" />
+		<result column="MEM_EMAIL" jdbcType="VARCHAR" property="memEmail" />
+		<result column="MEM_ADDR" jdbcType="VARCHAR" property="memAddr" />
+		<result column="MEM_TEL" jdbcType="TIMESTAMP" property="memTel" />	
+		<result column="MEM_PREFER_TRIP" jdbcType="VARCHAR" property="memPreferTrip" />
+		<result column="MEM_DATE" jdbcType="TIMESTAMP" property="memDate" />
+		<result column="MEM_LEV" jdbcType="INTEGER" property="memLev" />
+	</resultMap>
+	
+	<select id="findContestNum" parameterType="String" resultType="String">
+		select contest_num from participation
+		where participation_num = #{pNum}
+	</select>
+	
+	<select id="findMemId" parameterType="Model.DTO.ParticipationDTO" resultType="String">
+		select mem_id from participation
+		where participation_num = #{participationNum} and contest_num = #{contestNum}
+	</select>
+	
+	<insert id="insertAduit" parameterType="Model.DTO.AduitDTO">
+		insert into contest_audit(<include refid="auditcolumn" />) values((SELECT NVL(MAX(aduit_num),0)+1 FROM contest_audit),
+		#{participationNum}, #{contestNum}, #{memId}, #{auditOriginality}, #{auditPracticality}, #{auditAvg}, #{auditPass}, sysdate)
+	</insert>
+	
+	<select id="selectMemEmail" parameterType="Model.DTO.MemberDTO" resultMap="baseMember">
+		select mem_email from member where mem_id = #{memId}
+	</select>
+</mapper>

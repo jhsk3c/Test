@@ -2,23 +2,25 @@ package Service.Participation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
+import org.springframework.transaction.annotation.Transactional;
 
 import Model.DTO.ParticipationDTO;
 import Repository.Particitpation.ParticipationRepository;
-import oracle.net.aso.d;
 
 @Service
-public class ParticipationDetailService {
+public class AduitUpdateService {
 	@Autowired
 	ParticipationRepository participationRepository;
 
-	public void detail(String memId, String pNum, Model model) {
+	@Transactional
+	public void auditUpdate(String pNum, String memId) {
+		String aduitStatus = "평가완료";
+//		System.out.println("피넘피넘" + pNum);
+//		System.out.println("유저아이디" + memId);
 		ParticipationDTO dto = new ParticipationDTO();
 		dto.setParticipationNum(Integer.parseInt(pNum));
-		dto.setMemId(memId);
-		dto = participationRepository.participationDetail(dto);
-		model.addAttribute("participation", dto);
+		dto.setAduitStatus(aduitStatus);
+		participationRepository.updateAduitStatus(dto);
 	}
 
 }
