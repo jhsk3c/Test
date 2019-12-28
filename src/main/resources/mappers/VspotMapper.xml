@@ -24,19 +24,85 @@
 		<result column="VSPOT_FEATURE" jdbcType="VARCHAR" property="vspotFeature" />	
 		<result column="VSPOT_APPROVAL" jdbcType="VARCHAR" property="vspotApproval" />
 		<result column="APPROVAL_DATE" jdbcType="TIMESTAMP" property="approvalDate" />
-		<result column="VSPOT_DATE" jdbcType="TIMESTAMP" property="vspotDate" />	
+		<result column="VSPOT_DATE" jdbcType="TIMESTAMP" property="vspotDate" />
+		<collection property="spotRe" resultMap="basevspotReview" />	
 	</resultMap>
+	
+	<sql id="vspotReview"> <!-- 후기 등록 컬럼들. -->
+		spot_review_num, vspot_num, mem_num, mem_id, spot_review_title, spot_review_context, spot_review_star1, spot_review_star2, spot_review_star3, spot_review_star4, spot_review_avg, SPOT_REVIEW_DATE
+	</sql>
+	
+	<resultMap type="srDTO" id="basevspotReview">
+		<id column="SPOT_REVIEW_NUM" jdbcType="INTEGER" property="spotReviewNum" />
+		<result column="VSPOT_NUM" jdbcType="INTEGER" property="vspotNum" />
+		<result column="MEM_NUM" jdbcType="VARCHAR" property="memNum" />
+		<result column="MEM_ID" jdbcType="VARCHAR" property="memId" />			
+		<result column="SPOT_REVIEW_TITLE" jdbcType="VARCHAR" property="spotReviewTitle"/>
+		<result column="SPOT_REVIEW_CONTEXT" jdbcType="VARCHAR" property="spotReviewContext"/>
+		<result column="SPOT_REVIEW_STAR1" jdbcType="INTEGER" property="spotReviewStar1"/>
+		<result column="SPOT_REVIEW_STAR2" jdbcType="INTEGER" property="spotReviewStar2"/>
+		<result column="SPOT_REVIEW_STAR3" jdbcType="INTEGER" property="spotReviewStar3"/>
+		<result column="SPOT_REVIEW_STAR4" jdbcType="INTEGER" property="spotReviewStar4"/>		
+		<result column="SPOT_REVIEW_AVG" jdbcType="INTEGER" property="spotReviewAvg"/>
+		<result column="SPOT_REVIEW_DATE" jdbcType="TIMESTAMP" property="spotReviewDate" />
+	</resultMap>
+	
+	
 	
 	<!-- 휴양지 등록하는 내용 -->
 	<insert id="vspotInsert" parameterType="vDTO">
 		insert into vspot(<include refid="basecolumn" />) values((select nvl(max(vspot_num)+1,1) from vspot), #{memNum}, #{memId}, #{vspotTitle}, #{vspotName}, #{vspotOriginal}, #{vspotStore}, #{vspotLocation} , #{vspotLocationMap}, #{vspotLoc}, #{vspotIntroduce}, #{vspotFeature}, '미승인', null, sysdate)
 	</insert>
 	
+	<!-- 휴양지 리스트를 뽑는 내용 -->
 	<select id="memList" resultMap="baseVspotMember" parameterType="vDTO">
 		select <include refid="basecolumn" />
 		from vspot
 		where VSPOT_APPROVAL = '승인'
+		
 	</select>
 	
+	<!-- 휴양지 리스트 클릭 시 상세보기 내용 -->
+	<select id="listDetail" resultMap="baseVspotMember" parameterType="vDTO">
+		select <include refid="basecolumn" />
+		from vspot
+		where VSPOT_NUM = ${vspotNum}
+	</select>
+	
+	<!-- 상세보기 안의 후기 작성을 하기위한 num값 출력 -->
+	<select id="insertList" resultMap="baseVspotMember" parameterType="vDTO">
+		select <include refid="basecolumn" />
+		from vspot
+		where VSPOT_NUM = ${vspotNum}
+	</select>
+	
+	<!-- 휴양지 후기등록 관련 내용 -->
+	<insert id="insert" parameterType="srDTO">
+		insert into spot_review(<include refid="vspotReview" />) values((select nvl(max(spot_review_num)+1,1) from spot_review), #{vspotNum}, #{memNum}, #{memId}, #{spotReviewTitle}, #{spotReviewContext}, #{spotReviewStar1}, #{spotReviewStar2}, #{spotReviewStar3}, #{spotReviewStar4}, null ,sysdate)
+	</insert>
+	
+	<!-- 휴양지 후기를 상세보기 안에 적는 내용(휴양지) -->
+	<select id="listReview" parameterType="spageDTO" resultMap="basevspotReview">
+		select rownum rn, <include refid="vspotReview" />
+		from(select rownum rn, <include refid="vspotReview" />
+			from(select <include refid="vspotReview" />
+				from spot_review order by SPOT_REVIEW_DATE desc))
+				where vspot_num = #{su1} and rn &gt;= #{startRow} and rn &lt;= #{endRow}
+			
+	</select>
+	
+	<select id="listReviewCount" parameterType="srDTO" resultType="int">
+		select count(*)
+		from spot_review
+		where vspot_num = #{vspotNum} 
+	</select>
+	
+	
+	<select id="jointest" parameterType="vDTO" resultMap="baseVspotMember"> <!-- 각 리스트에 점수를 뽑고 싶습니다. -->
+		select *
+		from spot_review, vspot
+		where spot_review.vspot_num = vspot.vspot_num and vspot.vspot_num = #{vspotNum}
+	
+	</select>
 	
 </mapper>

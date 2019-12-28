@@ -7,11 +7,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;  !
 } 
 
 .navbar {
-  overflow: hidden;
+  overflow: hidden; 
   background-color: #333;
 }
 
@@ -86,7 +86,7 @@ body {
     <div class="dropdown-content">
       <a href="spot">휴양지 신청</a>
        <a href="Activity/ActivityList">활동</a>
-      <a href="#">Link 3</a>
+      <a href="memvspotList">수정해야 함!! 일단 휴양지 리스트 조회</a>
     </div>
   </div> 
 </div>
