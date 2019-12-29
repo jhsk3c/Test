@@ -37,6 +37,8 @@
 <label>예상 금액</label>
 <form:input path="predictionPrice" id="predictionPrice" />
 <br />
+<label>모집인원</label>
+<form:input path="calendarRecruitment" id="calendarRecruitment"/>
 <input type ="submit" value="등록" >
 <input type ="reset" value="취소" >
 </form:form>

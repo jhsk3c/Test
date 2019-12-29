@@ -17,6 +17,8 @@ public class CarCalendarDTO implements Serializable {
 	  private Integer predictionPrice;          //   -- 예상 금액   
 	  private Timestamp calendarArrival;		//	 -- 도착날짜
 	  private Timestamp calendarRegist; //일정 등록 시간
+	  private Integer calendarRecruitment; // 모집인원
+	  private Integer calendarParticipant; //참가인원
 	  
 	  
 	public Integer getCalendarNumber() {
@@ -85,9 +87,18 @@ public class CarCalendarDTO implements Serializable {
 	public void setCalendarRegist(Timestamp calendarRegist) {
 		this.calendarRegist = calendarRegist;
 	}
-	  
-	  
+	public Integer getCalendarRecruitment() {
+		return calendarRecruitment;
+	}
+	public void setCalendarRecruitment(Integer calendarRecruitment) {
+		this.calendarRecruitment = calendarRecruitment;
+	}
+	public Integer getCalendarParticipant() {
+		return calendarParticipant;
+	}
+	public void setCalendarParticipant(Integer calendarParticipant) {
+		this.calendarParticipant = calendarParticipant;
+	}
 	
-
-      
+	    
 }

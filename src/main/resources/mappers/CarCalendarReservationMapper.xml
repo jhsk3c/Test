@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Repository.CarCalendarReservation.CarCalendarReservationMapper">
+
+	<cache />
+	
+	<insert id="carCalendarReservationInsert">
+		insert into CALENDAR_RESERVATION(calender_reservation_num,calendar_number,car_startdate,car_enddate,car_starttime,car_endtime,car_name) 
+		values(calender_reservation_num_seq.nextval,#{calendarNumber},#{carStartDate},#{carEndDate},#{carStartTime},#{carEndTime},#{carName})
+	</insert>
+	
+	
+	<resultMap type="Model.DTO.CarJoinDTO" id="carJoinDTO">
+		<id column="drive_num" jdbcType="BIGINT" property="carDTO.driveNum" />
+		<id column="MEM_NUM" jdbcType="VARCHAR" property="memDTO.memNum" />
+		<id column="calendar_number" jdbcType="BIGINT" property="carCalendarDTO.calendarNumber" />
+		<id column="calender_reservation_num" jdbcType="BIGINT" property="carCalendarReservationDTO.calenderReservationNum" />
+		<id column="payment_number" jdbcType="BIGINT" property="carPaymentDTO.payment_number" />
+		<result column="mem_num" jdbcType="VARCHAR" property="carDTO.memNum" />
+		<result column="drive_name" jdbcType="VARCHAR" property="carDTO.driveName" />
+		<result column="drive_age" jdbcType="BIGINT" property="carDTO.driveAge" />
+		<result column="drive_license_info" jdbcType="VARCHAR" property="carDTO.driveLicenseInfo" />
+		<result column="car_name" jdbcType="VARCHAR" property="carDTO.carName" />
+		<result column="car_num" jdbcType="VARCHAR" property="carDTO.carNum" />
+		<result column="car_image" jdbcType="VARCHAR" property="carDTO.carImage" />
+		<result column="car_image_store" jdbcType="VARCHAR" property="carDTO.carImageStore" />
+		<result column="car_image_size" jdbcType="VARCHAR" property="carDTO.carImageSize" />
+		<result column="car_size" jdbcType="BIGINT" property="carDTO.carSize" />
+		<result column="car_kinds" jdbcType="VARCHAR" property="carDTO.carKinds" />
+		<result column="car_content" jdbcType="VARCHAR" property="carDTO.carContent"/>
+		<result column="car_regist" jdbcType="TIMESTAMP" property="carDTO.carRegist"/>
+		<result column="car_approval" jdbcType="BIGINT" property="carDTO.carApproval" />
+		<result column="drive_info_num"        jdbcType="BIGINT" property="carDTO.driveInfoNum"/>
+		<result column="drive_license_store"   jdbcType="VARCHAR" property="carDTO.driveLicenseStore"/>
+		<result column="drive_license"         jdbcType="VARCHAR" property="carDTO.driveLicense"/>
+		<result column="drive_license_size"    jdbcType="VARCHAR" property="carDTO.driveLicenseSize"/>
+		<result column="drive_insurance"       jdbcType="VARCHAR" property="carDTO.driveInsurance"/>
+		<result column="drive_insurance_store" jdbcType="VARCHAR" property="carDTO.driveInsuranceStore"/>
+		<result column="drive_insurance_size"  jdbcType="VARCHAR" property="carDTO.driveInsuranceSize"/>
+		<result column="drive_carcheck"        jdbcType="VARCHAR" property="carDTO.driveCarcheck"/>
+		<result column="drive_carcheck_store"  jdbcType="VARCHAR" property="carDTO.driveCarcheckStore"/>
+		<result column="drive_carcheck_size"   jdbcType="VARCHAR" property="carDTO.driveCarcheckSize"/>
+		<result column="MEM_ID" jdbcType="VARCHAR" property="memDTO.memId" />		
+		<result column="MEM_PW" jdbcType="VARCHAR" property="memDTO.memPw"/>		
+		<result column="MEM_NAME" jdbcType="VARCHAR" property="memDTO.memName" />
+		<result column="MEM_BIRTH" jdbcType="TIMESTAMP" property="memDTO.memBirth" />		
+		<result column="MEM_SEX" jdbcType="VARCHAR" property="memDTO.memSex" />
+		<result column="MEM_NATIONALITY" jdbcType="VARCHAR" property="memDTO.memNationality" />
+		<result column="MEM_EMAIL" jdbcType="VARCHAR" property="memDTO.memEmail" />
+		<result column="MEM_ADDR" jdbcType="VARCHAR" property="memDTO.memAddr" />
+		<result column="MEM_TEL" jdbcType="TIMESTAMP" property="memDTO.memTel" />	
+		<result column="MEM_PREFER_TRIP" jdbcType="VARCHAR" property="memDTO.memPreferTrip" />
+		<result column="MEM_DATE" jdbcType="TIMESTAMP" property="memDTO.memDate" />
+		<result column="MEM_LEV" jdbcType="INTEGER" property="memDTO.memLev" />
+		<result column="calendar_departureDate" jdbcType="TIMESTAMP" property="carCalendarDTO.calendarDepartureDate" />			
+		<result column="start_time" jdbcType="VARCHAR" property="carCalendarDTO.startTime" />
+		<result column="calendar_startingpoint" jdbcType="VARCHAR" property="carCalendarDTO.calendarStartingpoint" />		
+		<result column="calendar_destination" jdbcType="VARCHAR" property="carCalendarDTO.calendarDestination" />
+		<result column="destination_time" jdbcType="TIMESTAMP" property="carCalendarDTO.destinationTime" />
+		<result column="prediction_time" jdbcType="VARCHAR" property="carCalendarDTO.predictionTime" />
+		<result column="prediction_price" jdbcType="BIGINT" property="carCalendarDTO.predictionPrice" />
+		<result column="calendar_arrival" jdbcType="TIMESTAMP" property="carCalendarDTO.calendarArrival" />	
+		<result column="calendar_regist" jdbcType="TIMESTAMP" property="carCalendarDTO.calendarRegist" />
+		<result column="calendar_recruitment" jdbcType="BIGINT" property="carCalendarDTO.calendarRecruitment" />
+		<result column="calendar_participant" jdbcType="BIGINT" property="carCalendarDTO.calendarParticipant" />
+		<result column="calendar_number" jdbcType="BIGINT" property="carCalendarReservationDTO.calendarNumber" />			
+		<result column="car_name" jdbcType="VARCHAR" property="carCalendarReservationDTO.carName" />
+		<result column="car_startdate" jdbcType="TIMESTAMP" property="carCalendarReservationDTO.carStartDate" />		
+		<result column="car_enddate" jdbcType="TIMESTAMP" property="carCalendarReservationDTO.carEndDate" />
+		<result column="car_starttime" jdbcType="VARCHAR" property="carCalendarReservationDTO.carStartTime" />
+		<result column="car_endtime" jdbcType="VARCHAR" property="carCalendarReservationDTO.carEndTime" />
+		<result column="calender_reservation_num" jdbcType="BIGINT" property="carPaymentDTO.calenderReservationNum" />
+		<result column="calendar_number" jdbcType="BIGINT" property="carPaymentDTO.calendarNumber" />
+		<result column="card_selection" jdbcType="VARCHAR" property="carPaymentDTO.cardSelection" />	
+		<result column="card_number" jdbcType="VARCHAR" property="carPaymentDTO.cardNumber" />
+		<result column="card_expiration_date" jdbcType="TIMESTAMP" property="carPaymentDTO.cardExpirationDate" />
+		<result column="cvc_number" jdbcType="VARCHAR" property="carPaymentDTO.cvcNumber" />
+		<result column="car_price" jdbcType="BIGINT" property="carPaymentDTO.carPrice" />			
+		<result column="payment_price" jdbcType="BIGINT" property="carPaymentDTO.paymentPrice" />
+		<result column="payment_date" jdbcType="TIMESTAMP" property="carPaymentDTO.paymentDate" />		
+		<result column="payment_check" jdbcType="VARCHAR" property="carPaymentDTO.paymentCheck" />
+		
+	</resultMap>
+	
+	<select id="selectCarReservationList" parameterType="Model.DTO.CarJoinDTO" resultMap="carJoinDTO">
+		select cr.calender_reservation_num ,m.mem_id,c.car_name,cr.car_startdate,cr.car_enddate,cr.car_starttime,cr.car_endtime
+		from car c, member m, CALENDAR_RESERVATION cr , CALENDAR cd
+		where m.mem_num = c.mem_num and cd.CALENDAR_NUMBER = cr.CALENDAR_NUMBER
+	</select>
+
+	<select id="carCalendarReservationOneSelect" parameterType="Integer" resultMap="carJoinDTO"> <!-- 회원의 예약 상세정보 -->
+		select mm.mem_id,mm.mem_name,ca.car_name,crs.car_startdate,crs.car_enddate,crs.car_starttime,crs.car_endtime
+		from car ca, member mm, CALENDAR_RESERVATION crs , CALENDAR cad
+		where mm.mem_num = ca.mem_num and cad.CALENDAR_NUMBER = crs.CALENDAR_NUMBER and crs.calender_reservation_num = #{calenderReservationNum}
+	</select>
+	
+	
+</mapper>

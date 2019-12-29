@@ -8,5 +8,6 @@
 	    http://www.springframework.org/schema/context/spring-context.xsd"
 >
 <context:annotation-config />
-<bean class="Controller.Car.CarController" />
+
+<bean class="Controller.CarCalendarReservation.CarCalendarReservationController" />
 </beans>

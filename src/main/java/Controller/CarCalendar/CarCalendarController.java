@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import Command.Car.CarCalendarCommand;
+import Service.CarCalendar.CarCalendarDetailService;
 import Service.CarCalendar.CarCalendarListService;
 import Service.CarCalendar.CarCalendarWriterService;
 
@@ -19,6 +21,9 @@ public class CarCalendarController {
 	
 	@Autowired
 	CarCalendarListService carCalendarListService; //일정 목록 서비스
+	
+	@Autowired
+	CarCalendarDetailService carCalendarDetailService; // 일정 상세 정보
 	
 	@RequestMapping("/Car/carCalendarList") //일정 목록
 	public String calendarList(CarCalendarCommand carCalendarCommand, HttpSession session, Model model) {
@@ -39,6 +44,13 @@ public class CarCalendarController {
 		carCalendarWriterService.calendarWriter(carCalendarCommand,session);
 		return "redirect:/Car/carCalendarList";
 	}
-
+	
+	@RequestMapping("/Car/carCalendarDetail") //일정 상세정보
+	public String calendarList(@RequestParam(value="memNum") Integer memNum , Model model) {
+	
+		carCalendarDetailService.calendarDetail(memNum,model); //일정 상세정보
+		
+		return "Car/car_calendar_Detail";
+	}
 
 }

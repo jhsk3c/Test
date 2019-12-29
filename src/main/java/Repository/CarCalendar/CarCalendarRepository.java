@@ -39,4 +39,12 @@ public class CarCalendarRepository {
 		return sqlSession.selectList(statement,carCalendarJoinDTO); 
 	}
 	
+	public CarCalendarJoinDTO calendarDetailOneSelect(Integer calendarNumber) {
+		
+	
+	 String statement = namespace + ".calendarDetailOneSelect";
+	 
+		return sqlSession.selectOne(statement,calendarNumber);
+	}
+	
 }

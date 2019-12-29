@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,31 +12,31 @@
 </head>
 <body>
 <h2>결제</h2>
-<form action="#" name ="carFrm">
+<form:form action="#" method="post" commandName="carPaymentCommand" >
 <label>카드 선택</label>
-<select>
-<option>선택 하시오</option>
-<option>신한 카드</option>
-<option>롯데 카드</option>
-<option>현대 카드</option>
-</select>
+<form:select path="cardSelection">
+<form:option value="선택 하시오" />
+<form:option value="신한 카드" />
+<form:option value="롯데 카드" />
+<form:option value="현대 카드" />
+</form:select>
 <br/>
 <label>카드 번호</label>
-<input type="text" name="cardNumber" />
+<form:input path="cardNumber" />
 <br/>
 <label>유효 기간</label>
-<input type="text" name="cardExpiration_date" />
+<form:input path="cardExpirationDate" />
 <br/>
 <label>cvc번호</label>
-<input type="text" name="cvcNumber" />
+<form:input path="cvcNumber" />
 <br/>
 <label>상품 가격</label>
-<input type="text" name="carPrice" />
+<form:input path="carPrice" />
 <br/>
 <label>결제 금액</label>
-<input type="text" name="paymentPrice" /><br />
-<input type="button" name="payBtn" value="결제"  onclick="#" >
-<input type="button" name="resetBtn" value="취소" onclick="#">
-</form>
+<form:input path="paymentPrice" /><br />
+<input type="submit" name="payBtn" value="결제">
+<input type="reset" name="resetBtn" value="취소">
+</form:form>
 </body>
 </html>

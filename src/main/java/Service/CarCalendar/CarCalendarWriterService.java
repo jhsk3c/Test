@@ -57,6 +57,7 @@ public class CarCalendarWriterService {
 				Timestamp calendarArrival = new Timestamp(date4.getTime());
 				carCalendarDTO.setCalendarArrival(calendarArrival);
 				System.out.println(carCalendarDTO.getCalendarArrival());
+				carCalendarDTO.setCalendarRecruitment(Integer.parseInt(carCalendarCommand.getCalendarRecruitment()));
 		
 		carCalendarRepository.carCalendarInsert(carCalendarDTO);
 		}catch (Exception e) {

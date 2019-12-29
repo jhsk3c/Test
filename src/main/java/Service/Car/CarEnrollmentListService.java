@@ -20,7 +20,7 @@ public class CarEnrollmentListService {
 	@Autowired
 	CarRepository carRepository;
 	
-	public String carEnrollmentList(CarWriterCommand carWriterCommand,Model model , HttpSession session) {
+	public String carEnrollmentList(CarWriterCommand carWriterCommand,Model model,HttpSession session) {
 		
 		List<CarDTO> list = new ArrayList<CarDTO>();
 		if(((AuthInfo)session.getAttribute("authInfo")).getMemLev() == 4) {

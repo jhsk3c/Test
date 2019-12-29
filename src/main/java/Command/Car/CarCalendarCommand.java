@@ -12,6 +12,7 @@ public class CarCalendarCommand {
 	private String predictionTime;
 	private String predictionPrice;
 	private String calendarArrival;
+	private String calendarRecruitment;
 	
 	public String getUserName() {
 		return userName;
@@ -66,6 +67,12 @@ public class CarCalendarCommand {
 	}
 	public void setCalendarArrival(String calendarArrival) {
 		this.calendarArrival = calendarArrival;
+	}
+	public String getCalendarRecruitment() {
+		return calendarRecruitment;
+	}
+	public void setCalendarRecruitment(String calendarRecruitment) {
+		this.calendarRecruitment = calendarRecruitment;
 	}
 	
 	

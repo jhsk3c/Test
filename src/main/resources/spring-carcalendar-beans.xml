@@ -11,4 +11,5 @@
 <bean id="carCalendarWriterService" class="Service.CarCalendar.CarCalendarWriterService" />
 <bean id="carCalendarRepository" class="Repository.CarCalendar.CarCalendarRepository" />
 <bean id="carCalendarListService" class="Service.CarCalendar.CarCalendarListService" />
+<bean id="carCalendarDetailService" class="Service.CarCalendar.CarCalendarDetailService" />
 </beans>

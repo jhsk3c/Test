@@ -7,8 +7,9 @@
 	
 	<resultMap type="Model.DTO.CarCalendarJoinDTO" id="carCalendarJoin">
 		<id column="drive_num" jdbcType="BIGINT" property="carDTO.driveNum" />
-		<!-- <id column="MEM_NUM" jdbcType="VARCHAR" property="memberDTO.memNum" />
-		<id column="calendar_number" jdbcType="BIGINT" property="carCalendarDTO.calendarNumber" /> -->
+		<id column="MEM_NUM" jdbcType="VARCHAR" property="memberDTO.memNum" />
+		<id column="calendar_number" jdbcType="BIGINT" property="carCalendarDTO.calendarNumber" />
+		<id column="payment_number" jdbcType="VARCHAR" property="carPaymentDTO.paymentNumber" />	
 		<result column="mem_num" jdbcType="VARCHAR" property="carDTO.memNum" />
 		<result column="drive_name" jdbcType="VARCHAR" property="carDTO.driveName" />
 		<result column="drive_age" jdbcType="BIGINT" property="carDTO.driveAge" />
@@ -54,6 +55,18 @@
 		<result column="prediction_price" jdbcType="BIGINT" property="carCalendarDTO.predictionPrice" />
 		<result column="calendar_arrival" jdbcType="TIMESTAMP" property="carCalendarDTO.calendarArrival" />	
 		<result column="calendar_regist" jdbcType="TIMESTAMP" property="carCalendarDTO.calendarRegist" />
+		<result column="calendar_recruitment" jdbcType="BIGINT" property="carCalendarDTO.calendarRecruitment" />
+		<result column="calendar_participant" jdbcType="BIGINT" property="carCalendarDTO.calendarParticipant" />
+		<result column="calender_reservation_num" jdbcType="BIGINT" property="carPaymentDTO.calenderReservationNum" />
+		<result column="calendar_number" jdbcType="BIGINT" property="carPaymentDTO.calendarNumber" />
+		<result column="card_selection" jdbcType="VARCHAR" property="carPaymentDTO.cardSelection" />
+		<result column="card_number" jdbcType="TIMESTAMP" property="carPaymentDTO.cardNumber" />			
+		<result column="card_expiration_date" jdbcType="VARCHAR" property="carPaymentDTO.cardExpirationDate" />
+		<result column="cvc_number" jdbcType="VARCHAR" property="carPaymentDTO.cvcNumber" />		
+		<result column="car_price" jdbcType="VARCHAR" property="carPaymentDTO.carPrice" />
+		<result column="payment_price" jdbcType="TIMESTAMP" property="carPaymentDTO.paymentPrice" />
+		<result column="payment_date" jdbcType="VARCHAR" property="carPaymentDTO.paymentDate" />
+		<result column="payment_check" jdbcType="BIGINT" property="carPaymentDTO.paymentCheck" />
 	</resultMap>
 	
 	<select id="carCalendarDriveNumSelect" parameterType="String" resultType="Integer">
@@ -63,17 +76,26 @@
 	</select>
 	
 	<select id="calendarAllList" parameterType="Model.DTO.CarCalendarJoinDTO" resultMap="carCalendarJoin">
-		select cd.calendar_number, cd.calendar_departureDate,cd.calendar_arrival,cd.START_TIME,cd.destination_time,cd.prediction_time
-		,cc.car_name,cd.calendar_regist
+		select cd.calendar_number,cd.calendar_departureDate,cd.calendar_arrival,cd.START_TIME,cd.destination_time,cd.prediction_time
+		,cc.car_name,cd.calendar_regist,cd.calendar_recruitment,cd.calendar_participant,cd.calendar_startingpoint,cd.calendar_destination,
+		cd.prediction_price
 		from car cc , calendar cd 
 		where cc.drive_num = cd.drive_num
 	</select>
 	
+	<select id="calendarDetailOneSelect" parameterType="Integer" resultMap="carCalendarJoin">
+		select mm.mem_id,mm.mem_name,drive_age,ca.car_name,ca.car_image,ca.car_image_store,ca.car_image_size,cad.calendar_departureDate,
+		cad.calendar_arrival,cad.START_TIME,cad.destination_time,cad.prediction_time,cad.calendar_recruitment,cad.calendar_participant,
+		cad.calendar_startingpoint,cad.calendar_destination,cad.prediction_price,cad.calendar_regist,cad.calendar_number
+		from member mm , car ca, calendar cad, CAR_PAYMENT cpy, CALENDAR_RESERVATION crt
+		where mm.mem_num = ca.mem_num and ca.drive_num = cad.drive_num and  crt.calender_reservation_num = cpy.calender_reservation_num  and cad.calendar_number = #{calendarNumber}
 	
+	</select>
+
 	<insert id="carCalendarInsert" parameterType="Model.DTO.CarCalendarDTO" >
 		insert into CALENDAR (calendar_number,drive_num,calendar_DepartureDate,start_time,calendar_Startingpoint,calendar_destination,destination_time,
-		prediction_time,prediction_price,calendar_arrival,calendar_regist)
-		values (calendar_number_seq.nextval,#{driveNum},#{calendarDepartureDate},#{startTime},#{calendarStartingpoint},#{calendarDestination},#{destinationTime},#{predictionTime},#{predictionPrice},#{calendarArrival},sysdate)
+		prediction_time,prediction_price,calendar_arrival,calendar_regist,calendar_recruitment,calendar_participant)
+		values (calendar_number_seq.nextval,#{driveNum},#{calendarDepartureDate},#{startTime},#{calendarStartingpoint},#{calendarDestination},#{destinationTime},#{predictionTime},#{predictionPrice},#{calendarArrival},sysdate,#{calendarRecruitment},0)
 	</insert>
 
 </mapper>
