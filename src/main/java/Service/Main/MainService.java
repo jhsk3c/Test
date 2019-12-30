@@ -1,5 +1,6 @@
 package Service.Main;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class MainService {
 	public String memLiset(Model model) {
 
 		List<VspotDTO> list = vspotRepository.memList();
-
+		Collections.shuffle(list);
 		model.addAttribute("list", list);
 		return "Main/mainView";
 	}

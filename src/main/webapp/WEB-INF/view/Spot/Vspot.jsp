@@ -11,19 +11,7 @@
 <body>
 	<jsp:include page="../Main/memtop.jsp" />
 	
-	<!-- 
 	
-	String vspotName; 이름
-	String vspotIntroduce; 소개
-	String vspotFeature; 특장점
-	String vspotLocation1; 주소
-	String vspotLocation2;
-	String vspotLocation3;
-	
-	String[] vspotReport; 사진
-	 -->
-	 
-	 
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	<script>
 	    function sample6_execDaumPostcode() {

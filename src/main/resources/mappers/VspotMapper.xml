@@ -28,11 +28,11 @@
 		<collection property="spotRe" resultMap="basevspotReview" />	
 	</resultMap>
 	
-	<sql id="vspotReview"> <!-- 후기 등록 컬럼들. -->
+	<sql id="vspotReview"> <!-- 후기 등록 컬럼들.휴양지 후기 -->
 		spot_review_num, vspot_num, mem_num, mem_id, spot_review_title, spot_review_context, spot_review_star1, spot_review_star2, spot_review_star3, spot_review_star4, spot_review_avg, SPOT_REVIEW_DATE
 	</sql>
 	
-	<resultMap type="srDTO" id="basevspotReview">
+	<resultMap type="srDTO" id="basevspotReview"> <!-- 후기 등록 Map 휴양지 -->
 		<id column="SPOT_REVIEW_NUM" jdbcType="INTEGER" property="spotReviewNum" />
 		<result column="VSPOT_NUM" jdbcType="INTEGER" property="vspotNum" />
 		<result column="MEM_NUM" jdbcType="VARCHAR" property="memNum" />
@@ -47,6 +47,46 @@
 		<result column="SPOT_REVIEW_DATE" jdbcType="TIMESTAMP" property="spotReviewDate" />
 	</resultMap>
 	
+	<sql id="shopbasecolumn"> <!-- 상점 등록 컬럼 -->
+		shop_num, vspot_num, shop_category, shop_loc, shop_location, shop_locationMap, shop_name, goods_name, goods_price, goods_original, goods_store, goods_context, GOODS_INTRO, shop_approval, goods_date
+	</sql>
+	
+	<resultMap type="shopDTO" id="shopbase"> <!-- 상점 등록 Map -->
+		<id column="SHOP_NUM" jdbcType="INTEGER" property="shopNum" />
+		<result column="VSPOT_NUM" jdbcType="INTEGER" property="vspotNum" />
+		<result column="SHOP_CATEGORY" jdbcType="VARCHAR" property="shopCategory" />
+		<result column="SHOP_LOC" jdbcType="VARCHAR" property="shopLoc" />			
+		<result column="SHOP_LOCATION" jdbcType="VARCHAR" property="shopLocation"/>		
+		<result column="SHOP_LOCATIONMAP" jdbcType="VARCHAR" property="shopLocationMap" />
+		<result column="SHOP_NAME" jdbcType="VARCHAR" property="shopName" />		
+		<result column="GOODS_NAME" jdbcType="VARCHAR" property="goodsName" />
+		<result column="GOODS_PRICE" jdbcType="INTEGER" property="goodsPrice" />
+		<result column="GOODS_ORIGINAL" jdbcType="VARCHAR" property="goodsOriginal" />
+		<result column="GOODS_STORE" jdbcType="VARCHAR" property="goodsStore" />
+		<result column="GOODS_CONTEXT" jdbcType="VARCHAR" property="goodsContext" />
+		<result column="GOODS_INTRO" jdbcType="VARCHAR" property="goodsIntro" />
+		<result column="SHOP_APPROVAL" jdbcType="VARCHAR" property="shopApproval" />
+		<result column="GOODS_DATE" jdbcType="TIMESTAMP" property="goodsDate" />	
+	</resultMap>
+	
+	
+	<sql id="shopReview"> <!-- 후기 등록 컬럼들.상점 후기 -->
+		shop_review_num, shop_num, mem_num, mem_id, shop_review_title, shop_review_context, shop_review_star1, shop_review_star2, shop_review_star3, shop_review_star4, shop_review_date
+	</sql>
+	
+	<resultMap type="shReDTO" id="baseshopReview"> <!-- 후기 등록 Map 휴양지 -->
+		<id column="SHOP_REVIEW_NUM" jdbcType="INTEGER" property="shopReviewNum" />
+		<result column="SHOP_NUM" jdbcType="INTEGER" property="shopNum" />
+		<result column="MEM_NUM" jdbcType="VARCHAR" property="memNum" />
+		<result column="MEM_ID" jdbcType="VARCHAR" property="memId" />			
+		<result column="SHOP_REVIEW_TITLE" jdbcType="VARCHAR" property="shopReviewTitle"/>
+		<result column="SHOP_REVIEW_CONTEXT" jdbcType="VARCHAR" property="shopReviewContext"/>
+		<result column="SHOP_REVIEW_STAR1" jdbcType="INTEGER" property="shopReviewStar1"/>
+		<result column="SHOP_REVIEW_STAR2" jdbcType="INTEGER" property="shopReviewStar2"/>
+		<result column="SHOP_REVIEW_STAR3" jdbcType="INTEGER" property="shopReviewStar3"/>
+		<result column="SHOP_REVIEW_STAR4" jdbcType="INTEGER" property="shopReviewStar4"/>
+		<result column="SHOP_REVIEW_DATE" jdbcType="TIMESTAMP" property="shopReviewDate" />
+	</resultMap>
 	
 	
 	<!-- 휴양지 등록하는 내용 -->
@@ -90,7 +130,7 @@
 				where vspot_num = #{su1} and rn &gt;= #{startRow} and rn &lt;= #{endRow}
 			
 	</select>
-	
+	<!-- 후기의 개수 뽑느거 -->
 	<select id="listReviewCount" parameterType="srDTO" resultType="int">
 		select count(*)
 		from spot_review
@@ -103,6 +143,50 @@
 		from spot_review, vspot
 		where spot_review.vspot_num = vspot.vspot_num and vspot.vspot_num = #{vspotNum}
 	
+	</select>
+	
+	<!-- 상점 리스트를 뽑는 내용 -->
+	<select id="listShop" resultMap="shopbase" parameterType="shopDTO">
+		select <include refid="shopbasecolumn" />
+		from shop
+		where vspot_num = #{vspotNum} 
+	</select>
+	
+	<!-- 상점 리스트 클릭 시 상세보기 내용 -->
+	<select id="shoplistDetail" resultMap="shopbase" parameterType="shopDTO">
+		select <include refid="shopbasecolumn" />
+		from shop
+		where SHOP_NUM = ${shopNum}
+	</select>
+	
+	<!-- 상세보기 안의 후기 작성을 하기위한 num값 출력 (상점에서)-->
+	<select id="listNum" resultMap="shopbase" parameterType="shopDTO">
+		select <include refid="shopbasecolumn" />
+		from shop
+		where SHOP_NUM = ${shopNum}
+	</select>
+	
+	
+	<!-- 상점 후기등록 관련 내용 -->
+	<insert id="insertshr" parameterType="shReDTO">
+		insert into shop_review(<include refid="shopReview" />) values((select nvl(max(shop_review_num)+1,1) from shop_review), #{shopNum}, #{memNum}, #{memId}, #{shopReviewTitle}, #{shopReviewContext}, #{shopReviewStar1}, #{shopReviewStar2}, #{shopReviewStar3}, #{shopReviewStar4}, sysdate)
+	</insert>
+	
+	
+	<!-- 상점 후기를 상세보기 안에 적는 내용(상점) -->
+	<select id="listShopReview" parameterType="spageDTO" resultMap="baseshopReview">
+		select rownum rn, <include refid="shopReview" />
+		from(select rownum rn, <include refid="shopReview" />
+			from(select <include refid="shopReview" />
+				from shop_review order by SHOP_REVIEW_DATE desc))
+				where shop_num = #{su1} and rn &gt;= #{startRow} and rn &lt;= #{endRow}
+			
+	</select>
+	<!-- 상점의 후기 개수 뽑느거 -->
+	<select id="listShopReviewCount" parameterType="shReDTO" resultType="int">
+		select count(*)
+		from shop_review
+		where shop_num = #{shopNum} 
 	</select>
 	
 </mapper>

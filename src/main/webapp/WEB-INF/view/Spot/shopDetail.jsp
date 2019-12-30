@@ -41,7 +41,7 @@
 	<script>
 		var geocoder = new kakao.maps.services.Geocoder();
 		
-		var gap = "${list.vspotLocationMap}";
+		var gap = "${list.shopLocationMap}";
 		var lat = "";
 		var lng = "";
 		var compName = "";
@@ -224,6 +224,20 @@
 			left: 20.5%;
 			top: -45px;
 		}
+		
+		.mei4  {
+		    overflow-wrap: break-word !important;
+		    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+		    font-size: 16px !important;
+		    font-weight: 400 !important;
+		    line-height: 1.375em !important;
+		    color: rgb(72, 72, 72) !important;
+		    margin: 0px !important;
+		    margin: 0px !important;
+		    position: relative;
+		    left: 34.5%;
+			top: -90px;
+		}
 
 		.abc1 {
 			position: relative;
@@ -239,6 +253,12 @@
 			position: relative;
 			left: 18%;
 			top: -20px;
+		}
+		
+		.abc4 {
+			position: relative;
+			left: 32%;
+			top: -66px;
 		}
 		progress {
 		  background-color: #303a52;
@@ -575,7 +595,67 @@
 			left: 18%;
 		}
 		
+		.myButton {
+			box-shadow:inset 0px 1px 18px 0px #ffffff;
+			background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+			background-color:#f9f9f9;
+			border-radius:12px;
+			border:1px solid #dcdcdc;
+			display:inline-block;
+			cursor:pointer;
+			color:#666666;
+			font-family:Arial;
+			font-size:15px;
+			font-weight:bold;
+			padding:9px 24px;
+			text-decoration:none;
+			text-shadow:0px 1px 0px #ffffff;
+			position: relative;
+			top : -36px;
+			left: 28%;
+			
+		}
+		.myButton:hover {
+			background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+			background-color:#e9e9e9;
+		}
+		.myButton:active {
+			position:relative;
+			top:1px;
+		}
+		
+		
+		.myButton1 {
+			box-shadow:inset 0px 1px 18px 0px #ffffff;
+			background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+			background-color:#f9f9f9;
+			border-radius:12px;
+			border:1px solid #dcdcdc;
+			display:inline-block;
+			cursor:pointer;
+			color:#666666;
+			font-family:Arial;
+			font-size:15px;
+			font-weight:bold;
+			padding:9px 24px;
+			text-decoration:none;
+			text-shadow:0px 1px 0px #ffffff;
+			position: relative;
+			top : -40px;
+			left: 45%;
+			
+		}
+		.myButton1:hover {
+			background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+			background-color:#e9e9e9;
+		}
+		.myButton1:active {
+			position:relative;
+			top:1px;
+		}
 		</style>
+		
+		
 
 </head>
 <body>
@@ -625,7 +705,7 @@
 				<div style="width: 25%; height: 275px; position: absolute; left: 75%; top: 354px;" class="zoom_image">
 					<img src="Spot/upload/${store1}" alt="X" width="100%" height="100%"  />
 				</div>
-				<input class="but" type="button" value="사진 보기" onclick="location.href='vspotListDetailTwo?num=${list.vspotNum}'"/>
+				<input class="but" type="button" value="사진 보기" onclick="location.href='shopListDetailTwo?num=${list.shopNum}'"/>
 			
 			</c:if>
 		</c:forEach>
@@ -643,21 +723,21 @@
 	</div>
 	<br><br>
 	
-	<span class="title">${list.vspotTitle}</span>
-	<div class="qnrk">${list.vspotLoc}</div><br>
+	<span class="title">${list.shopName}</span>
+	<div class="qnrk">${list.shopLoc}</div><br>
 	<!--한줄소개 들어가야함!!!!!!!1 css 먹이자!! -->
-	<div class="oness">${list.vspotFeature}</div>
+	<div class="oness">${list.goodsIntro}</div>
 	<center><hr></center><br/>
 	
 	<!--소개 들어가야함!!!!!!!1 css 먹이자!! -->
-	<div class="qnrk">${list.vspotIntroduce}</div> 
-	<center><hr></center><br/>
+	<div class="qnrk">${list.goodsContext}</div> 
+	<center><hr></center><br/> 
 	
 	
 	<script type="text/javascript">
 		function hello() {
 			if(${Lev == 1}) {
-				location.href='vspotReview?num=${list.vspotNum}';
+				location.href='shopReview?num=${list.shopNum}';
 			} else {
 				alert("로그인이 필요합니다.");
 			}		
@@ -666,15 +746,16 @@
 	
 	<span class="title">후기</span><br>
 	<div>
-		<input type="button" name="Review" id="Review" value="후기 작성하기" onclick="hello()" />
+		<input type="button" name="Review" id="Review" value="후기 작성하기" onclick="hello()" class="myButton"/>
 	</div>
+	
 	<img src="Spot/upload/star.png" alt="x" width="18" height="18" style="position: relative; left: 18%; top: -12px;">
 	<span class="avg"> ${maxAvg}</span> <span style="filter:alpha(opacity=1); opacity:0.3; position: relative; left: 18.6%; top: -12px;">|</span> <span class="revi">${count } 후기</span><center><hr></center>
 	
 	<div class="star1s"> 정확성 </div>
 		<div class="probar1">
 			<progress value="${avg1 }" max="5"></progress>
-			</div>
+		</div>
 		
 	<div class="starsu1">${avg1 }</div>
 	
@@ -703,9 +784,9 @@
 	<c:forEach var="sdto" items="${srdto}">
 	<!-- css먹이기 -->
 		<div class="na">${sdto.memId }</div>
-		<div class="na12"><fmt:formatDate value="${sdto.spotReviewDate}" pattern="yyyy"/>년 <fmt:formatDate value="${sdto.spotReviewDate}" pattern="MM"/>월</div><br/>
-		<div class="na13">${sdto.spotReviewTitle }</div><br/>
-		<div class="na14">${sdto.spotReviewContext }</div>
+		<div class="na12"><fmt:formatDate value="${sdto.shopReviewDate}" pattern="yyyy"/>년 <fmt:formatDate value="${sdto.shopReviewDate}" pattern="MM"/>월</div><br/>
+		<div class="na13">${sdto.shopReviewTitle }</div><br/>
+		<div class="na14">${sdto.shopReviewContext }</div>
 		<center><hr /></center>
 		
 	
@@ -719,18 +800,18 @@
 									<li class="page-item"><a class="page-link" href="#"><</a></li> &nbsp;<!-- 첫 페이지  -->
 							</c:if>
 							<c:if test="${page > 1}">
-									<li class="page-item"><a href = "vspotListDetail?page=${page -1}&num=${list.vspotNum}" class="page-link"> Previous </a></li>&nbsp;
+									<li class="page-item"><a href = "shopDetail?page=${page -1}&num=${list.shopNum}" class="page-link"> Previous </a></li>&nbsp;
 							</c:if>
 							
 							<c:forEach var = "i" begin="${startPage }" end ="${endPage}" >
-									<li class="page-item"><a href = "vspotListDetail?page=${i}&num=${list.vspotNum}" class="page-link"> ${i} </a></li>&nbsp;
+									<li class="page-item"><a href = "shopDetail?page=${i}&num=${list.shopNum}" class="page-link"> ${i} </a></li>&nbsp;
 							</c:forEach>
 							
 							<c:if test="${page >= maxPage}">	
 									<li class="page-item"><a class="page-link" href="#">></a></li> &nbsp; <!-- 마지막 페이지  -->
 							</c:if>
 							<c:if test="${page < maxPage}">	
-									<li class="page-item"><a href = "vspotListDetail?page=${page +1}&num=${list.vspotNum}" class="page-link">Next</a></li>&nbsp;
+									<li class="page-item"><a href = "shopDetail?page=${page +1}&num=${list.shopNum}" class="page-link">Next</a></li>&nbsp;
 							</c:if>
 						</ul>
 					</div>
@@ -743,19 +824,20 @@
 	
 	
 	<span class="title">지역 정보</span><br/><br/>
-	<c:if test="${list.memId != 'admin'}">
-		<div class="qnrk">추천자의 여행추천 장소는 ${list.vspotLoc }에 있습니다.</div>
+	<c:if test="${auto != 'admin'}">
+		<div class="qnrk">추천자의 여행추천 장소는 ${list.shopLoc }에 있습니다.</div>
 	</c:if><br/>
-	<c:if test="${list.memId eq 'admin'}">
-		<div class="qnrk">관리자의 여행추천 장소는 ${list.vspotLoc }에 있습니다.</div>
+	<c:if test="${auto eq 'admin'}">
+		<div class="qnrk">관리자의 여행추천 장소는 ${list.shopLoc }에 있습니다.</div>
 	</c:if>
 	<div id="map" style="width:48%; height:400px;" class="tq"></div><br/>
 	<center><hr></center><br/>
-	<span class="qnrk2">휴양지 이용 규칙</span><br><br>
+	<span class="qnrk2"> 이용 규칙</span><br><br>
 	<!-- 이미지와 내용 작성하기. -->
 	<img src="Spot/upload/smoking.png" alt="X" width="25" height="25" class="abc1"><div class="mei1"> 흡연금지 </div>
-	<img src="Spot/upload/party.png" alt="X" width="25" height="25" class="abc2"><div class="mei2"> 파티나 이벤트 금지 </div>
-	<img src="Spot/upload/animal.png" alt="X" width="25" height="25" class="abc3"><div class="mei3"> 반려동물 동반 가능 </div>  
+	<img src="Spot/upload/animal.png" alt="X" width="25" height="25" class="abc2"><div class="mei2"> 반려동물 동반 가능 </div>
+	<img src="Spot/upload/party.png" alt="X" width="25" height="25" class="abc3"><div class="mei3"> 파티나 이벤트 가능 </div>
+	<img src="Spot/upload/yyy.png" alt="X" width="25" height="25" class="abc4"><div class="mei4"> 어린이와 유아에게 적합  </div>  
 	<center><hr></center><br/>
 		
 	
@@ -801,15 +883,15 @@
 	</script>
 	
 	
-	<div style="position: relative; left: 0%; top: -130px;">
+	<div style="position: relative; left: 0%; top: -148px;">
 	
 	<!-- 그럼 해야할게 저걸 누르면 상세보기도 가야하고 등록하면 이렇게 top이 2개 뜨는것 나머지 등록하고 top 뜨는거 그런거 정리-->
 		
 	<span class="title">추천 휴양지(맛집 카페??) 더 보기</span><br>
 	<c:if test="${Lev eq 4}">
-		<div><input type="button" value="등록버튼이요!" onclick="location.href='adminshop?num=${list.vspotNum}'"/></div>
+		<div><input type="button" value="등록버튼이요!" onclick="location.href='adminshop?num=${list.vspotNum}'" class="myButton1"/></div>
 	</c:if>
-	
+	<div style="position: relative; left: 0%; top: 20px;">
 	 <c:set var="i" value="0"></c:set>
 	<div class="swiper-container"  id="swiper-container1">
 		<div class="swiper-wrapper">
@@ -848,10 +930,11 @@
 				},
 			});
 			
-		</script>
+		</script> 
+		</div>
 	</div>
 	
 </div>
-	
+
 </body>
 </html>
