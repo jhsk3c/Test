@@ -11,7 +11,8 @@ public class ComMemberDTO  implements Serializable{
 	String comRepName;
 	String licenseNumber;
     String comName;
-    String comAddr;
+    String comLoc;
+	String comAddr;
     String contactPhoneNum;
     String contactEmail;
     String comApproval; // ?? 승인 여부
@@ -54,6 +55,12 @@ public class ComMemberDTO  implements Serializable{
 	}
 	public void setComName(String comName) {
 		this.comName = comName;
+	}
+	public String getComLoc() {
+			return comLoc;
+	}
+	public void setComLoc(String comLoc) {
+			this.comLoc = comLoc;
 	}
 	public String getComAddr() {
 		return comAddr;

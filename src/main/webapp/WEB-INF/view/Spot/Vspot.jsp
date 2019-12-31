@@ -11,19 +11,7 @@
 <body>
 	<jsp:include page="../Main/memtop.jsp" />
 	
-	<!-- 
 	
-	String vspotName; 이름
-	String vspotIntroduce; 소개
-	String vspotFeature; 특장점
-	String vspotLocation1; 주소
-	String vspotLocation2;
-	String vspotLocation3;
-	
-	String[] vspotReport; 사진
-	 -->
-	 
-	 
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	<script>
 	    function sample6_execDaumPostcode() {
@@ -67,6 +55,17 @@
 			<tr>
 				<td> 휴양지 이름 </td>
 				<td> <form:input path="vspotName" id="vspotName" size="20" maxlength="25" /> </td>
+			</tr>
+			
+			<tr>
+				<td width = "200"> <spring:message code="Loc" /> </td>
+				<td width = "400"> <!-- 지역 -->
+					<form:select path="vspotLoc" id="vspotLoc">
+					    <option value="">-----선택해주세요-------</option>
+					    <form:options items="${vspotLoc}" />
+					</form:select>
+					<form:errors path="vspotLoc" />
+				</td>
 			</tr>
 			
 			<tr>

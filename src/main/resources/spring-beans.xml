@@ -21,10 +21,21 @@
 <bean id="adminRepository" class="Repository.Admin.AdminRepository" /> 
 <bean id="comTrueService" class="Service.ComManagement.ComTrueService" /> 
 <bean id="comFalseService" class="Service.ComManagement.ComFalseService" />
-<bean id="vspotService" class="Servoce.Vspot.VspotService" />
+<bean id="vspotService" class="Service.Vspot.VspotService" />
 <bean id="vspotRepository" class="Repository.Vspot.VspotRepository" />
 <bean id="memVspotListService" class="Service.ComManagement.MemVspotListService" />
 <bean id="fileSerivce" class="Service.ComManagement.FileSerivce" />
+<bean id="memVspotListServiceList" class="Service.Vspot.MemVspotListServiceList" />
+<bean id="vspotListDetailService" class="Service.Vspot.VspotListDetailService" />
+<bean id="reviewInsertService" class="Service.Vspot.ReviewInsertService" />
+<bean id="adminSpotService" class="Service.ComManagement.AdminSpotService" />
+<bean id="mainService" class="Service.Main.MainService" />
+<bean id="adminshopInsertService" class="Service.Shop.AdminshopInsertService" />
+<bean id="adminShopMana" class="Service.Shop.AdminShopManaService" />
+<bean id="shopDetailService" class="Service.Shop.ShopDetailService" />
+<bean id="shopReviewInsertService" class="Service.Shop.ShopReviewInsertService" />
+<bean id="adminShopDetailService" class="Service.Shop.AdminShopDetailService" />
+
 
 
 

@@ -8,10 +8,28 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+ 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
+	  <script>
+	    $(document).ready(function(){
+	      $('.slider').bxSlider({
+	    	  auto: true, 
+	          speed: 500, 
+	          pause: 4000, 
+	          mode:'fade', 
+	          autoControls: false, 
+	          pager:false , 
+	      });
+	      
+	    });
+	  </script>
+	  
+	  
+<title>휴양지 상세보기 페이지(관리자 시점)</title>
 </head>
 <body>
-
 	<table border="1" width="60%" align="center">
 		
 		<tr>
@@ -40,6 +58,11 @@
 		</tr>
 		
 		<tr>
+			<td> 휴양지 지역 </td>
+			<td> ${list.vspotLoc} </td>
+		</tr>
+		
+		<tr>
 			<td> 휴양지 특장점 </td>
 			<td> ${list.vspotFeature} </td>
 		</tr>
@@ -57,12 +80,13 @@
 		<tr>
 			<td> 휴양지 사진 </td>
 			<td> 
-				<c:forEach var="store" items="${store}" varStatus="status"  >
-					<a href="fileUpload?filename=${original[status.index] }&filename1=${store}"> ${original[status.index] } </a><br/> 
-					<%-- <a href="../Spot/upload/${store}"> ${store[status.index] } </a><br/>  --%>
-					<img width="300" height="200" src="../Spot/upload/${store}"><br/>
-				</c:forEach>
-			
+				 <div class="slider">
+				 	<c:forEach var="store1" items="${store}" varStatus="status"  >
+						<a href="fileUpload?filename=${original[status.index] }&filename1=${store1}" >
+							<img src="Spot/upload/${store1}" alt="X" width="1000" height="300">
+						</a>
+					</c:forEach>
+				</div>
 			</td>
 		</tr>
 		<tr align="center">
@@ -75,5 +99,8 @@
 		</tr>
 		
 	</table>
+	
+
+	
 </body>
 </html>

@@ -10,12 +10,12 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.navbar {
+.navbar1 {
   overflow: hidden;
   background-color: #333;
 }
 
-.navbar a {
+.navbar1 a {
   float: left;
   font-size: 16px;
   color: white;
@@ -24,12 +24,12 @@ body {
   text-decoration: none;
 }
 
-.dropdown {
+.dropdown1 {
   float: left;
   overflow: hidden;
 }
 
-.dropdown .dropbtn {
+.dropdown1 .dropbtn1 {
   font-size: 16px;  
   border: none;
   outline: none;
@@ -40,11 +40,11 @@ body {
   margin: 0;
 }
 
-.navbar a:hover, .dropdown:hover .dropbtn {
+.navbar1 a:hover, .dropdown1:hover .dropbtn1 {
   background-color: red;
 }
 
-.dropdown-content {
+.dropdown-content1 {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
@@ -53,7 +53,7 @@ body {
   z-index: 1;
 }
 
-.dropdown-content a {
+.dropdown-content1 a {
   float: none;
   color: black;
   padding: 12px 16px;
@@ -62,39 +62,37 @@ body {
   text-align: left;
 }
 
-.dropdown-content a:hover {
+.dropdown-content1 a:hover {
   background-color: #ddd;
 }
 
-.dropdown:hover .dropdown-content {
+.dropdown1:hover .dropdown-content1 {
   display: block;
 }
 </style>
 </head>
 <body>
 
-<div class="navbar">
-  <a href="#">Home</a>
+<div class="navbar1">
+  <a href="main">Home</a>
   <a href="#">고객 센터</a>
   <a href="contest">Contest</a>
   <a href="login">로그인</a>
   <a href="memberInfo">회원가입</a>
   <a href="comMemberInfo">기업 회원가입</a>
   
-  <div class="dropdown">
-    <button class="dropbtn">Dropdown 
-      <i class="fa fa-caret-down"></i>
+  <div class="dropdown1">
+    <button class="dropbtn1">Dropdown 
+      <i class="fa fa-caret-down1"></i>
     </button>
-    <div class="dropdown-content">
-      <a href="#">Link 1</a>
+    <div class="dropdown-content1">
+      <a href="#"></a>
       <a href="#">Link 2</a>
       <a href="#">Link 3</a>
     </div>
   </div> 
 </div>
 
-<h3>Dropdown Menu inside a Navigation Bar</h3>
-<p>Hover over the "Dropdown" link to see the dropdown menu.</p>
 
 </body>
 </html>

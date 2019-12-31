@@ -21,6 +21,7 @@
 			<th> 회원 아이디 </th>
 			<th>신청 제목</th>
 			<th>휴양지 이름</th>	
+			<th>휴양지 지역</th>
 			<th>가입일</th>
 			<th>구분</th>
 		</tr>
@@ -31,6 +32,7 @@
 				<td> ${list.memId} </td>
 				<td> ${list.vspotTitle} </td>
 				<td> ${list.vspotName} </td>
+				<td> ${list.vspotLoc} </td>
 				<td><fmt:formatDate value="${list.vspotDate}" pattern="yyyy-MM-dd"/></td>
 				<td>
 					<a href="vspotListTrue?num=${list.vspotNum}&page=${page}">승인</a>
