@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Repository.Qna.QnaMapper">
+
+<cache />
+	<sql id = "basecolumn"> <!-- qna 등록 insert문 -->
+	qna_board_num,mem_num,qna_board_subject,qna_board_content,qna_board_originalFile_name,qna_board_storyfile_name,qna_classification,qna_file_size,qna_board_re_ref,qna_board_re_lev
+,qna_board_re_seq,qna_answer_check,qna_regist
+	</sql>
+	
+	<insert id="insertQna">
+	insert into qna_board(<include refid="basecolumn"/>)
+	values(qna_seq.nextval,#{memNum},#{qnaBoardSubject},#{qnaBoardContent},#{qnaBoardOriginalFileName},#{qnaBoardStoryFileName},#{qnaClassiFication},#{qnaFileSize},0,0,0,'문의 접수',sysdate)
+	</insert>
+	
+											
+	<resultMap id="qnaBoard" type="Model.DTO.QnaDTO">	<!-- qna select문  리스트 -->
+		<id column="qna_board_num" jdbcType="BIGINT" property="qnaBoardNum" />
+		<result column="mem_num" jdbcType="VARCHAR" property="memNum" />
+		<result column="qna_board_subject" jdbcType="VARCHAR" property="qnaBoardSubject" />
+		<result column="qna_board_content" jdbcType="VARCHAR" property="qnaBoardContent" />
+		<result column="qna_board_originalFile_name" jdbcType="VARCHAR" property="qnaBoardOriginalFileName" />
+		<result column="qna_board_storyfile_name" jdbcType="VARCHAR" property="qnaBoardStoryFileName" />
+		<result column="qna_classification" jdbcType="VARCHAR" property="qnaClassiFication" />
+		<result column="qna_file_size" jdbcType="VARCHAR" property="qnaFileSize" />
+		<result column="qna_board_re_ref" jdbcType="BIGINT" property="qnaBoardReRef" />
+		<result column="qna_board_re_lev" jdbcType="BIGINT" property="qnaBoardReLev" />
+		<result column="qna_board_re_seq" jdbcType="BIGINT" property="qnaBoardReSeq" />
+		<result column="qna_answer_check" jdbcType="VARCHAR" property="qnaAnswerCheck" />
+		<result column="qna_regist" jdbcType="TIMESTAMP" property="qnaRegist"/>
+	</resultMap>
+	
+
+	
+<!-- 	<select id="allSelectQna" p resultMap="qnaBoardListd" >
+	select qna.qna_board_num qna_board_num,qna.qna_board_subject qna_board_subject, mem.mem_name mem_name, qna.qna_classification qna_classification,
+	 qna.qna_answer_check qna_answer_check , qna.qna_regist qna_regist
+	from qna_board qna , member mem
+	where qna.mem_num = mem.mem_num
+	</select> -->
+	
+	
+	<select id="oneSelectQna" parameterType="Long" resultMap="qnaBoard"> <!-- 상세보기 내가 누른 글번호에 데이터 보기  -->
+	select * from qna_board 
+	<where>
+	qna_board_num = #{qnaBoardNum} 
+	</where>
+	</select>
+	<select id="oneSelectQnaAdmin" parameterType="Long" resultMap="qnaBoard"> <!-- 관리자 답변 상세정보  -->
+	select * from qna_board 
+	<where>
+	qna_board_re_ref = #{qnaBoardNum} and user_id ='관리자'
+	</where>
+	</select>
+	
+	
+	<update id="answerReplyUpdateQna"> <!-- 관리자가 답변을 할 시 여부를 답변 완료로 바꿔줌 -->
+	update qna_board set qna_answer_check = '답변완료' , qna_board_re_seq = qna_board_re_seq + 1
+	where qna_board_num = #{qnaBoardNum} 
+	</update>
+	<insert id="answerReplyinsertQna"> <!--  관리자가 답변 작성 등록  -->
+		insert into qna_board
+	values(qna_seq.nextval,#{userId},#{qnaPassword},#{qnaBoardSubject},
+	#{qnaBoardContent},null,null,
+	#{qnaClassiFication},null,#{qnaBoardNum},#{qnaBoardReLev}+1,
+	#{qnaBoardReSeq}+1,'답변 완료',sysdate)
+	
+	
+	</insert>
+</mapper>
