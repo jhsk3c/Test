@@ -90,7 +90,7 @@
 		
 		$(function() {
 			  $( "#useDate" ).datepicker({
-			    dateFormat: 'yyyymmdd',
+			    dateFormat: 'yymmdd',
 			    prevText: '이전 달',
 			    nextText: '다음 달',
 			    monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
@@ -101,6 +101,8 @@
 			    showMonthAfterYear: true,
 			    changeMonth: true,
 			    changeYear: true,
+			    closeText: '닫기',
+			    maxDate: 0, 
 			    yearSuffix: '년'
 			  });
 			});
