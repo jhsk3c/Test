@@ -8,10 +8,28 @@
 	    http://www.springframework.org/schema/context/spring-context.xsd">
 <context:annotation-config />
 
-<bean class="Controller.ComManagement.ActivityManagementController" />
+
+<bean class="Controller.Activity.ActivityInsertController" /><!-- 활동 등록-->
+<bean class="Controller.Activity.ActivityListController" /><!-- 활동 목록 -->
+<bean class="Controller.Activity.AcitivtyStoreListForMemberController" /> <!-- 활동등록 상점 목록 -->
+<bean class="Controller.Activity.ActivityDetailController" /><!-- 활동 상세보기 -->
 
 
-<bean class="Controller.Activity.ActivityInsertController" />
-<bean class="Controller.Activity.ActivityListController" />
+
+<!--관리자 -->
+<bean class="Controller.ComManagement.ActivityManagementController" />	<!-- 활동 승인/미승인 -->
+<bean class="Controller.ComManagement.ActivityStoreController" />	<!-- 활동 상점 등록 -->
+<bean class="Controller.ComManagement.ActivityStoreListController" /> <!-- 상점 목록 -->
+<bean class="Controller.ComManagement.ActivityProductController" />	<!-- 활동 물품 등록 -->
+
+
+
+<!-- 관리자 상점 상세보기 -->
+<bean class="Controller.ComManagement.ActivityStoreDetailController" />
+
+
+<bean class="Controller.Activity.MemberProfileController" /> <!-- 활동 프로필 -->
+
+
 
 </beans>

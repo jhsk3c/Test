@@ -9,6 +9,9 @@
 		<typeAlias type="Model.DTO.StartEndPageDTO" alias="spageDTO"/> 
 		<typeAlias type="Model.DTO.VspotDTO" alias="vDTO"/> 
 		<typeAlias type="DTO.Activity.ActivityDTO" alias="actiDTO"/>
+		<typeAlias type="DTO.Activity.ActivityStoreDTO" alias="StoreDTO"/>
+		<typeAlias type="DTO.Activity.ActivityProductDTO" alias="ProductDTO" />
 		
 	</typeAliases>
+
 </configuration>

@@ -84,11 +84,23 @@ body {
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-      <a href="activity">활동관리</a>
+      <a href="#">#</a>
       <a href="comMana">기업 회원 관리</a>
       <a href="memVspot">휴양지 관리</a>
     </div>
   </div> 
+  	
+   <div class="dropdown">
+    <button class="dropbtn">활동 <i class="fa fa-caret-down"></i> </button>
+    <div class="dropdown-content">
+      <a href="activity">활동관리</a>
+      <a href="ActivityStoreList">상점</a>
+      <a href="#">물품 등록</a>
+    </div>
+  </div> 
+  
+  
+  
 </div>
 
 <h3>Dropdown Menu inside a Navigation Bar</h3>

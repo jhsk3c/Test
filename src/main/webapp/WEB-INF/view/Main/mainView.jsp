@@ -14,7 +14,7 @@
 	<c:if test="${Lev eq 1}">
 	
 		<jsp:include page="memtop.jsp" />
-		asdasdsa 일반
+			일반회원입니다.
 	</c:if> 
 	
 	<c:if test="${Lev eq 2}">

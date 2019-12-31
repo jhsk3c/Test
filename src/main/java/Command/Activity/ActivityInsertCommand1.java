@@ -4,10 +4,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class ActivityInsertCommand1 {
 	String activityName;
-	//String actiStartDate;
-	//String actiEndDate;
-	//String recruitStartDate;
-	//String recruitEndDate;
+	String actiStartDate;
+	String actiEndDate;
 	String recruitPeople;
 	String activityText;
 	String limitAge;
@@ -17,6 +15,19 @@ public class ActivityInsertCommand1 {
 	String activityCity;
 	
 	
+	
+	public String getActiStartDate() {
+		return actiStartDate;
+	}
+	public void setActiStartDate(String actiStartDate) {
+		this.actiStartDate = actiStartDate;
+	}
+	public String getActiEndDate() {
+		return actiEndDate;
+	}
+	public void setActiEndDate(String actiEndDate) {
+		this.actiEndDate = actiEndDate;
+	}
 	public String getActivityCity() {
 		return activityCity;
 	}

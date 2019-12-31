@@ -21,4 +21,6 @@
 <bean class="Controller.Spot.SpotController" />
 <bean class="Controller.ComManagement.memVspotController" />
 
+
+
 </beans>

@@ -6,38 +6,67 @@
 <head>
 <meta charset="UTF-8">
 <title> 활동 </title>
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
+<script type="text/javascript">
+		
+		function createAnActivity(){
+			if(${forToCheck.activityLev == null }){
+				location.href='ActivityInsert';
+			}else if(${forToCheck.activityLev == 4}){
+				location.href='ActivityInsert';
+			}else{
+				alert("활동 주체는 주체하는 활동 혹은 활동 주체 신청을 하지 않은 경우에만 가능합니다.");
+				location.href='ActivityList';
+	        }  
+		}
+	
+</script>
+
+
+
 </head>
 <body>
+
 <!-- 상단 -->
 <jsp:include page="../Main/memtop.jsp" />
 
 
-<!-- 중단 -->
-<a href="ActivityInsert"> 활동 생성 </a>
 
+<!-- 중단 -->
+	<button class="w3-btn w3-light-green" style="float:right" onclick="createAnActivity()"> 활동 생성 </button>
+
+<div> 
 <h2>활동을 찾아보세요 !</h2>
-<div>
-	<c:if test="${activity_lev eq 2}">
-		<h2></h2>
-		<div class="w3-container">
-		  <div class="w3-card-4 w3-round-xlarge" style="width:50%;">
-		    <img src="" alt="Alps" style="width:100% ">
-		    <div class="w3-container w3-center">
-				<p>한줄소개</p>
-				<p>날짜&시간</p>
-				<p>금액</p>
-		    </div>
-		  </div>
-		</div>
-	</c:if>
 </div>
 
-<br/>
+<div class="w3-container" >
+	<c:forEach var="list" items="${list}" varStatus="status">  
+		<div style="height:300px; float:left; width:25%; margin:8px;">
+		<a href="#">
+			  <div class="w3-card-4 w3-round-xlarge" style="border-radius:25px">
+			  
+			    <img src="${list.storeFilename }" alt="${list.originalFilename }" style="width:100%; height:60%">
+			    
+			    <div class="w3-container w3-center">
+			    	<p></p>				
+					<p>${list.activityName }</p>
+					<p>${list.activityStartDate } - ${list.activityEndDate }</p>
+					<p>${list.activityCost }</p>
+			    </div>
+			    
+			  </div>
+			  </a>
+			</div>
+	
+		
+	</c:forEach>
 
+</div>
+
+
+<br/>
 
 
 

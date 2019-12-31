@@ -5,6 +5,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
 body {
   font-family: Arial, Helvetica, sans-serif;
@@ -74,25 +75,23 @@ body {
 <body>
 
 <div class="navbar">
-  <a href="#">Home</a>
+  <a href="HaeYum">Home</a>
   <a href="#">고객 센터</a>
   <a href="contest">Contest</a>
   <a href="logout">로그아웃</a>
+  <a href="profile"> 프로필 </a>
   
   <div class="dropdown">
-    <button class="dropbtn">Dropdown 
-      <i class="fa fa-caret-down"></i>
-    </button>
+    <button class="dropbtn">ㅋㅋㅋㅎ <i class="fa fa-caret-down"></i> </button>
     <div class="dropdown-content">
       <a href="spot">휴양지 신청</a>
-       <a href="Activity/ActivityList">활동</a>
+       <a href="ActivityList">활동</a>
       <a href="#">Link 3</a>
     </div>
   </div> 
+
 </div>
 
-<h3>Dropdown Menu inside a Navigation Bar</h3>
-<p>Hover over the "Dropdown" link to see the dropdown menu.</p>
 
 </body>
 </html>

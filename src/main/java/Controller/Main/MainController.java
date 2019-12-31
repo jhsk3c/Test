@@ -9,9 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController { 
 	
 	@RequestMapping("/main")
-	public String main(HttpSession session) {
-		
-		
+	public String main(HttpSession session) {	
 		return "Main/mainView";
+	}
+	
+	@RequestMapping("/HaeYum")
+	public String HaeYumMain(HttpSession session) {
+		return "Main/mainView";		
 	}
 }

@@ -1,9 +1,12 @@
 package Repository.Member;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import DTO.Activity.ActivityDTO;
 import Model.DTO.ComMemberDTO;
 import Model.DTO.MemberDTO;
 
@@ -63,4 +66,8 @@ public class MemberRepository {
 		String statement = namespace + ".comLogin";
 		return sqlSession.selectOne(statement, comMember);
 	}
+
+	
+	
+
 }

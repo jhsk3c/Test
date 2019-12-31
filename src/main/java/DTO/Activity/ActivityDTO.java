@@ -24,7 +24,7 @@ public class ActivityDTO implements Serializable{
 	String originalFilename; 
 	String storeFilename;
 	String activityLev;
-	String sortOfActivity;
+	String sortOfActivity;		//활동 종류 1차에 받을 때만
 	String whichProduct;
 	String activityCity;
 	

@@ -101,6 +101,47 @@
 			limit_age, original_filename, store_filename, activity_Product, acivity_cost, sort_of_activity, which_product, activity_city
 	</sql>
 
+	
+	<!-- 활동 상점 -->
+	<resultMap type="StoreDTO" id="baseStore">
+		<id column="store_num" jdbcType="VARCHAR" property="storeNum" />
+		<result column="store_loc1" jdbcType="VARCHAR" property="storeLoc1" />
+		<result column="store_name" jdbcType="VARCHAR" property="storeName" />
+		<result column="store_loc2" jdbcType="VARCHAR" property="storeLoc2" />
+		<result column="store_tel" jdbcType="VARCHAR" property="storeTel" />
+		<result column="Store_MainProduct" jdbcType="VARCHAR" property="StoreMainProduct" />
+		<result column="store_business_num" jdbcType="VARCHAR" property="storeBusinessNum" />
+		<result column="store_Owner" jdbcType="VARCHAR" property="storeOwner" />
+	</resultMap>
+	
+	<!-- 활동 상점 등록 -->
+	<sql id="actiStore">
+			store_num, store_loc1, store_name, store_loc2, store_tel, Store_MainProduct, store_business_num, store_Owner
+	</sql>
+		
+	<!-- 물품 -->
+	<resultMap type="ProductDTO" id="baseProduct">
+		<id column="product_num" jdbcType="VARCHAR" property="productNum" />
+		<result column="store_num" jdbcType="VARCHAR" property="storeNum" />
+		<result column="product_name" jdbcType="VARCHAR" property="productName" />
+		<result column="product_price" jdbcType="INTEGER" property="productPrice" />
+		<result column="product_option" jdbcType="VARCHAR" property="productOption" />
+		<result column="product_content" jdbcType="VARCHAR" property="productContent" />
+		<result column="original_filename" jdbcType="VARCHAR" property="originalFilename" />
+		<result column="store_filename" jdbcType="VARCHAR" property="storeFilename" />
+	</resultMap>
+	
+	<!-- 활동 물품 등록 -->
+	<sql id="actiProduct">
+		product_num, store_num, product_name, product_price, product_option, product_content, original_filename, store_filename 
+	</sql>
+
+
+
+
+
+
+
 
 
 
@@ -224,9 +265,56 @@
 	
 	
 	
+<!-- 활동 관리자 -->
+	<!-- 활동 상점&물품 등록 -->
+	<insert id="activityStoreInsert" parameterType="StoreDTO">  <!-- 활동 상점 등록 -->
+		insert into ACTIVITY_STORE(<include refid="actiStore" />)
+			values((select nvl(max(store_num)+1,1) from activity_store), #{storeLoc1}, #{storeName}, #{storeLoc2}, #{storeTel}, #{StoreMainProduct}, #{storeBusinessNum}, #{storeOwner})
+	</insert>
 	
 	
+	<select id="activityStoreList" parameterType="StoreDTO" resultMap="baseStore">		<!-- 상점 목록 -->
+		select rownum rn, <include refid="actiStore" />
+			from (select rownum rn, <include refid="actiStore" />
+				from(select <include refid="actiStore" />
+					from ACTIVITY_STORE order by STORE_NAME desc))
+	</select>
 	
+	<select id="ActiStoreCount" parameterType="String" resultType="int">	<!-- 상점 수 -->
+		select count(*)
+		from ACTIVITY_STORE
+	</select>
+	
+	<select id="prpr" parameterType="StoreDTO"  resultMap="baseStore">	<!-- stNum찾기 -->
+		select <include refid="actiStore" />
+		from ACTIVITY_STORE
+		where store_num = #{storeNum}
+	</select>
 	
 
-	</mapper>
+	<insert id="activityProductInsert" parameterType="ProductDTO"> <!-- 활동 물품 등록 -->
+		insert into ACTIVITY_PRODUCT(<include refid="actiProduct" />)
+			values((select nvl(max(product_num)+1,1) from ACTIVITY_PRODUCT), #{storeNum}, #{productName}, #{productPrice}, #{productOption},
+			 #{productContent}, #{originalFilename}, #{storeFilename})
+	</insert>
+
+	
+	<select id="storeDetail" parameterType="StoreDTO" resultMap="baseStore">		<!-- 활동 상점 상세보기 -->
+		select <include refid="actiStore" />
+			from ACTIVITY_STORE
+			where store_num = #{storeNum}
+	</select>
+	
+<!-- 상점 상세보기 내에 있는 물품 -->
+	<select id="productInStoreDetail" parameterType="ProductDTO" resultMap="baseProduct">
+		select <include refid="actiProduct" />
+			from ACTIVITY_PRODUCT
+		where store_num = #{storeNum}
+	</select>
+
+
+
+
+
+
+</mapper>
