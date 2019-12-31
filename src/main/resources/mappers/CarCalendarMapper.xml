@@ -87,9 +87,8 @@
 		select mm.mem_id,mm.mem_name,drive_age,ca.car_name,ca.car_image,ca.car_image_store,ca.car_image_size,cad.calendar_departureDate,
 		cad.calendar_arrival,cad.START_TIME,cad.destination_time,cad.prediction_time,cad.calendar_recruitment,cad.calendar_participant,
 		cad.calendar_startingpoint,cad.calendar_destination,cad.prediction_price,cad.calendar_regist,cad.calendar_number
-		from member mm , car ca, calendar cad, CAR_PAYMENT cpy, CALENDAR_RESERVATION crt
-		where mm.mem_num = ca.mem_num and ca.drive_num = cad.drive_num and  crt.calender_reservation_num = cpy.calender_reservation_num  and cad.calendar_number = #{calendarNumber}
-	
+		from member mm , car ca, calendar cad
+		where mm.mem_num = ca.mem_num and ca.drive_num = cad.drive_num and cad.calendar_number = #{calendarNumber}
 	</select>
 
 	<insert id="carCalendarInsert" parameterType="Model.DTO.CarCalendarDTO" >
@@ -97,5 +96,7 @@
 		prediction_time,prediction_price,calendar_arrival,calendar_regist,calendar_recruitment,calendar_participant)
 		values (calendar_number_seq.nextval,#{driveNum},#{calendarDepartureDate},#{startTime},#{calendarStartingpoint},#{calendarDestination},#{destinationTime},#{predictionTime},#{predictionPrice},#{calendarArrival},sysdate,#{calendarRecruitment},0)
 	</insert>
+	
+	
 
 </mapper>

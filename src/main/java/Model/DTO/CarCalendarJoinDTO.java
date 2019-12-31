@@ -8,6 +8,7 @@ public class CarCalendarJoinDTO implements Serializable {
 	private MemberDTO memberDTO;
 	private CarDTO carDTO;
 	private CarCalendarDTO carCalendarDTO;
+	private CarPaymentDTO carPaymentDTO;
 	
 	
 	public MemberDTO getMemberDTO() {
@@ -27,6 +28,12 @@ public class CarCalendarJoinDTO implements Serializable {
 	}
 	public void setCarCalendarDTO(CarCalendarDTO carCalendarDTO) {
 		this.carCalendarDTO = carCalendarDTO;
+	}
+	public CarPaymentDTO getCarPaymentDTO() {
+		return carPaymentDTO;
+	}
+	public void setCarPaymentDTO(CarPaymentDTO carPaymentDTO) {
+		this.carPaymentDTO = carPaymentDTO;
 	}
 	
 	

@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,7 +47,11 @@ $(function(){ //예약 페이지 팝업 창
 		</tr>
 		<tr>
 			<td>차 이미지</td>
-			<td><img src=""></td>
+			<td>
+				<c:forEach var="store" items="${stores}" varStatus="status">
+					<img src="upload/${store}" width="100" height="100">
+				</c:forEach> 
+			</td>
 		</tr>
 		<tr>
 			<td>출발 날짜</td>

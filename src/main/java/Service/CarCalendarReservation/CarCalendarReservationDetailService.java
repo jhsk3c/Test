@@ -15,9 +15,11 @@ public class CarCalendarReservationDetailService {
 	CarCalendarReservationRepository carCalendarReservationRepository;
 	
 	public void carReservationDetail(Integer calenderReservationNum , Model model) { //예약 상세정보
+			
+		System.out.println(calenderReservationNum);
 		
 		CarJoinDTO carJoinDTO =  carCalendarReservationRepository.carCalendarReservationOneSelect(calenderReservationNum);
-		
+	
 		model.addAttribute("carJoinDTO", carJoinDTO);
 	}
 }

@@ -9,4 +9,6 @@
 >
 <context:annotation-config />
 <bean id="carPaymentInsertService" class="Service.CarPayment.CarPaymentInsertService" />
+<bean id="carPayRepository" class="Repository.CarPay.CarPayRepository" />
+<bean id="carKakaoPaySelectService" class="Service.CarPayment.CarKakaoPaySelectService" />
 </beans>

@@ -45,10 +45,10 @@ public class CarCalendarController {
 		return "redirect:/Car/carCalendarList";
 	}
 	
-	@RequestMapping("/Car/carCalendarDetail") //일정 상세정보
-	public String calendarList(@RequestParam(value="memNum") Integer memNum , Model model) {
-	
-		carCalendarDetailService.calendarDetail(memNum,model); //일정 상세정보
+		@RequestMapping("/Car/carCalendarDetail") //일정 상세정보
+		public String calendarList(@RequestParam(value="calendarNumber") Integer calendarNumber , Model model) {
+		
+		carCalendarDetailService.calendarDetail(calendarNumber,model); //일정 상세정보
 		
 		return "Car/car_calendar_Detail";
 	}

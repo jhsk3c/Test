@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="Repository.CarCalendarReservation.CarCalendarReservationMapper">
+<mapper namespace="Repository.CarPay.CarPayMapper">
 
-	<cache />
-	
-	<insert id="carCalendarReservationInsert">
-		insert into CALENDAR_RESERVATION(calender_reservation_num,calendar_number,car_startdate,car_enddate,car_starttime,car_endtime,car_name) 
-		values (calender_reservation_num_seq.nextval,#{calendarNumber},#{carStartDate},#{carEndDate},#{carStartTime},#{carEndTime},#{carName})
-	</insert>
-	
-	
+<cache />
+
 	<resultMap type="Model.DTO.CarJoinDTO" id="carJoinDTO">
 		<id column="drive_num" jdbcType="BIGINT" property="carDTO.driveNum" />
 		<id column="MEM_NUM" jdbcType="VARCHAR" property="memDTO.memNum" />
@@ -80,20 +74,13 @@
 		<result column="payment_price" jdbcType="BIGINT" property="carPaymentDTO.paymentPrice" />
 		<result column="payment_date" jdbcType="TIMESTAMP" property="carPaymentDTO.paymentDate" />		
 		<result column="payment_check" jdbcType="VARCHAR" property="carPaymentDTO.paymentCheck" />
-		
 	</resultMap>
 	
-	<select id="selectCarReservationList" parameterType="Model.DTO.CarJoinDTO" resultMap="carJoinDTO">
-		select cr.calender_reservation_num ,m.mem_id,c.car_name,cr.car_startdate,cr.car_enddate,cr.car_starttime,cr.car_endtime
-		from car c, member m, CALENDAR_RESERVATION cr , CALENDAR cd
-		where m.mem_num = c.mem_num and cd.CALENDAR_NUMBER = cr.CALENDAR_NUMBER
+	<select id="payInfoSelect" parameterType="Integer" resultMap="carJoinDTO">
+		select 	m.MEM_NAME,m.MEM_TEL,cr.car_name,cd.prediction_price,m.MEM_ADDR
+		from  member m , car c, CALENDAR cd , CALENDAR_RESERVATION cr
+		where m.mem_num = c.mem_num and cd.CALENDAR_NUMBER = cr.CALENDAR_NUMBER and cr.CALENDAR_NUMBER = #{calendarNumber} 
 	</select>
 
-	<select id="carCalendarReservationOneSelect" parameterType="Integer" resultMap="carJoinDTO"> <!-- 회원의 예약 상세정보 -->
-		select mm.mem_id,mm.mem_name,ca.car_name,crs.car_startdate,crs.car_enddate,crs.car_starttime,crs.car_endtime
-		from car ca, member mm, CALENDAR_RESERVATION crs , CALENDAR cad
-		where mm.mem_num = ca.mem_num and cad.CALENDAR_NUMBER = crs.CALENDAR_NUMBER and crs.calender_reservation_num = #{calenderReservationNum}
-	</select>
-	
 	
 </mapper>

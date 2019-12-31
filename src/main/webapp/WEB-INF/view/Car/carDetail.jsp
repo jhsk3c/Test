@@ -12,41 +12,62 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-
-
-<br />
-${carDTO.driveNum}<br />
-${carDTO.driveName}<br />
-${carDTO.driveAge}<br />
-${carDTO.driveLicenseInfo}<br />
-${carDTO.carName}<br />
-${carDTO.carNum}<br />
-${carDTO.carImage}<br />
-${carDTO.carImageStore}<br />
-${carDTO.carImageSize}<br />
-${carDTO.carSize}<br />
-${carDTO.carKinds}<br />
-${carDTO.carContent}<br />
-${carDTO.carRegist}<br />
-${carDTO.carApproval}<br />
+<table border="1">
+<tr>
+<td>${carDTO.driveNum}</td>
+</tr>
+<tr>
+<td>${carDTO.driveName}</td>
+</tr>
+<tr>
+<td>${carDTO.driveAge}</td>
+</tr>
+<tr>
+<td>${carDTO.driveLicenseInfo}</td>
+</tr>
+<tr>
+<td>${carDTO.carName}</td>
+</tr>
+<tr>
+<td>${carDTO.carNum}</td>
+</tr>
+<tr>
+<td>${carDTO.carImage}</td>
+</tr>
+<tr>
+<td>${carDTO.carImageStore}</td>
+</tr>
+<tr><td>${carDTO.carImageSize}</td></tr>
+<tr><td>${carDTO.carSize}</td></tr>
+<tr><td>${carDTO.carKinds}</td></tr>
+<tr><td>${carDTO.carContent}</td></tr>
+<tr><td>${carDTO.carRegist}</td></tr>
+<tr><td>${carDTO.carApproval}</td></tr>
 <c:if test="${memLev == 4 }">
-${carDTO.driveInfoNum}<br />
-${carDTO.driveLicense}<br />
-${carDTO.driveLicenseStore}<br />
-${carDTO.driveLicenseSize}<br />
-${carDTO.driveInsurance}<br />
-${carDTO.driveInsuranceStore}<br />
-${carDTO.driveInsuranceSize}<br />
-${carDTO.driveCarcheck}<br />
-${carDTO.driveCarcheckStore}<br />
-${carDTO.driveCarcheckSize}<br />
-<a href="carApprovalCheck?driveNum=${carDTO.driveNum}&memNum=${carDTO.memNum}&carApproval=1">승인확인</a>
-<a href="carApprovalCheck?driveNum=${carDTO.driveNum}&memNum=${carDTO.memNum}&carApproval=2">승인거절</a>
+<tr><td>${carDTO.driveInfoNum}</td></tr>
+<tr><td>${carDTO.driveLicense}</td></tr>
+<tr><td>${carDTO.driveLicenseStore}</td></tr>
+<tr><td>${carDTO.driveLicenseSize}</td></tr>
+<tr><td>${carDTO.driveInsurance}</td></tr>
+<tr><td>${carDTO.driveInsuranceStore}</td></tr>
+<tr><td>${carDTO.driveInsuranceSize}</td></tr>
+<tr><td>${carDTO.driveCarcheck}</td></tr>
+<tr><td>${carDTO.driveCarcheckStore}</td></tr>
+<tr><td>${carDTO.driveCarcheckSize}</td></tr>
+<tr>
+	<td colspan="2">
+		<a href="carApprovalCheck?driveNum=${carDTO.driveNum}&memNum=${carDTO.memNum}&carApproval=1">승인확인</a>
+		<a href="carApprovalCheck?driveNum=${carDTO.driveNum}&memNum=${carDTO.memNum}&carApproval=2">승인거절</a>
+	</td>
+	</tr>
 </c:if>
-<a href="carEnrollmentList">목록</a>
+<tr>
+<td colspan="2"><a href="carEnrollmentList">목록</a>
 <c:if test="${memLev == 1 }">
 <a href="carEnrollmentModify?driveNum=${carDTO.driveNum}">수정</a>
 </c:if>
+</td>
+</tr>
+</table>
 </body>
 </html>

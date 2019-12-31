@@ -62,3 +62,31 @@ CREATE TABLE CALENDAR (
 	calendar_participant   NUMBER		 NULL	   -- 참가인원
 );
 
+
+-- 차공유정산
+CREATE TABLE CAR_CARCULATE (
+	cashin_num               NUMBER       NOT NULL, -- 정산번호
+	payment_number           VARCHAR2(30) NULL,     -- 결제번호
+	calender_reservation_num NUMBER       NULL,     -- 예약번호
+	calendar_number          NUMBER       NULL,     -- 일정 번호
+	cashin_total_price       INTEGER      NOT NULL, -- 총매출금액
+	cashin_commission        INTEGER      NOT NULL, -- 수수료
+	cashin_balance           INTEGER      NULL,     -- 총정산금액
+	cashin_date              TIMESTAMP    NULL      -- 정산날짜
+);
+
+
+-- 차량 결제
+CREATE TABLE CAR_PAYMENT (
+	payment_number           VARCHAR2(30) NOT NULL, -- 결제번호
+	calender_reservation_num NUMBER       NOT NULL, -- 예약번호
+	calendar_number          NUMBER       NOT NULL, -- 일정 번호
+	card_selection           VARCHAR2(10) NULL,     -- 카드 선택
+	card_number              VARCHAR2(20) NULL,     -- 카드 번호
+	card_expiration_date     TIMESTAMP    NULL,     -- 유효 기간
+	cvc_number               VARCHAR2(3)  NULL,     -- CVC번호
+	car_price                NUMBER       NULL,     --  상품 가격
+	payment_price            INTEGER      NULL,     -- 결제 금액
+	payment_date             TIMESTAMP    NULL,     -- 결제 날짜
+	payment_check            VARCHAR(20)  NULL      -- 결제 상태
+);

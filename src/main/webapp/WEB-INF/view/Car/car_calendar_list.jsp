@@ -31,7 +31,6 @@
 			<td>참가인원</td>
 			<td>모집인원</td>
 			<td>일정 등록 시간</td>
-			<td>예약 여부</td>
 		</tr>
 	<c:forEach var="calendarList" items="${calendarList}">
 		<tr>
@@ -49,7 +48,6 @@
 			<td>${calendarList.carCalendarDTO.calendarParticipant}</td>
 			<td>${calendarList.carCalendarDTO.calendarRecruitment}</td>
 			<td>${calendarList.carCalendarDTO.calendarRegist}</td>
-			<td>예약여부부부부부부부부</td>
 		</tr>
 	</c:forEach>
 </table>
