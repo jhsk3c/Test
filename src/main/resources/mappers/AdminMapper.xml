@@ -48,7 +48,7 @@
 	</resultMap>
 	
 	<sql id="vspotbasecolumn"> <!-- 휴양지 등록의 컬럼들 -->
-		vspot_num, mem_num, mem_id, vspot_title, vspot_name, vspot_original, vspot_store, vspot_location, vspot_loc, vspot_introduce, vspot_feature, vspot_approval, approval_date, vspot_date
+		vspot_num, mem_num, mem_id, vspot_title, vspot_name, vspot_original, vspot_store, vspot_location, vspot_locationMap, vspot_loc, vspot_introduce, vspot_feature, vspot_approval, approval_date, vspot_date
 	</sql>
 	
 	<resultMap type="vDTO" id="baseVspotMember"> <!-- 휴양지 등록 Map -->
@@ -60,12 +60,37 @@
 		<result column="VSPOT_ORIGINAL" jdbcType="VARCHAR" property="vspotOriginal" />
 		<result column="VSPOT_STORE" jdbcType="VARCHAR" property="vspotStore" />		
 		<result column="VSPOT_LOCATION" jdbcType="VARCHAR" property="vspotLocation" />
+		<result column="VSPOT_LOCATIONMAP" jdbcType="VARCHAR" property="vspotLocationMap" />
 		<result column="VSPOT_LOC" jdbcType="VARCHAR" property="vspotLoc" />
 		<result column="VSPOT_INTRODUCE" jdbcType="VARCHAR" property="vspotIntroduce" />
 		<result column="VSPOT_FEATURE" jdbcType="VARCHAR" property="vspotFeature" />	
 		<result column="VSPOT_APPROVAL" jdbcType="VARCHAR" property="vspotApproval" />
 		<result column="APPROVAL_DATE" jdbcType="TIMESTAMP" property="approvalDate" />
 		<result column="VSPOT_DATE" jdbcType="TIMESTAMP" property="vspotDate" />	
+	</resultMap>
+	
+	<sql id="shopbasecolumn"> <!-- 상점 등록 컬럼 -->
+		shop_num, vspot_num, mem_id, shop_category, shop_loc, shop_location, shop_locationMap, shop_name, goods_original, goods_store, GOODS_CONTEXT, GOODS_INTRO, shop_approval, shop_closed, shop_time1, shop_time2, goods_date
+	</sql>
+	
+	<resultMap type="shopDTO" id="shopbase"> <!-- 상점 등록 Map -->
+		<id column="SHOP_NUM" jdbcType="INTEGER" property="shopNum" />
+		<result column="VSPOT_NUM" jdbcType="INTEGER" property="vspotNum" />
+		<result column="MEM_ID" jdbcType="VARCHAR" property="memId" />
+		<result column="SHOP_CATEGORY" jdbcType="VARCHAR" property="shopCategory" />
+		<result column="SHOP_LOC" jdbcType="VARCHAR" property="shopLoc" />			
+		<result column="SHOP_LOCATION" jdbcType="VARCHAR" property="shopLocation"/>		
+		<result column="SHOP_LOCATIONMAP" jdbcType="VARCHAR" property="shopLocationMap" />
+		<result column="SHOP_NAME" jdbcType="VARCHAR" property="shopName" />		
+		<result column="GOODS_ORIGINAL" jdbcType="VARCHAR" property="goodsOriginal" />
+		<result column="GOODS_STORE" jdbcType="VARCHAR" property="goodsStore" />
+		<result column="GOODS_CONTEXT" jdbcType="VARCHAR" property="goodsContext" />
+		<result column="GOODS_INTRO" jdbcType="VARCHAR" property="goodsIntro" />
+		<result column="SHOP_APPROVAL" jdbcType="VARCHAR" property="shopApproval" />
+		<result column="SHOP_CLOSED" jdbcType="VARCHAR" property="shopClosed" />
+		<result column="shop_time1" jdbcType="VARCHAR" property="shopTime1" />	
+		<result column="shop_time2" jdbcType="VARCHAR" property="shopTime2" />	
+		<result column="GOODS_DATE" jdbcType="TIMESTAMP" property="goodsDate" />	
 	</resultMap>
 	
 
@@ -139,5 +164,67 @@
 		from vspot
 		where vspot_num = ${vspotNum}
 	</select>
+	
+	<!-- 관리자가 휴양지를 등록하는 것. -->
+	<insert id="adminvspotInsert" parameterType="vDTO"> 
+		insert into vspot(<include refid="vspotbasecolumn" />) values((select nvl(max(vspot_num)+1,1) from vspot), #{memNum}, #{memId}, #{vspotTitle}, #{vspotName}, #{vspotOriginal}, #{vspotStore}, #{vspotLocation} , #{vspotLocationMap}, #{vspotLoc}, #{vspotIntroduce}, #{vspotFeature}, '승인', null, sysdate)
+	</insert>
+	
+	<!-- 사용자..가 상점을 등록하는 것. -->
+	<insert id="shopInsert" parameterType="shopDTO"> 
+		insert into shop(<include refid="shopbasecolumn" />) values((select nvl(max(shop_num)+1,1) from shop), #{vspotNum}, #{memId}, #{shopCategory}, #{shopLoc}, #{shopLocation}, #{shopLocationMap}, #{shopName}, #{goodsOriginal}, #{goodsStore}, #{goodsContext}, #{goodsIntro}, '미승인', #{shopClosed}, #{shopTime1}, #{shopTime2}, sysdate)
+	</insert>
+	
+	<!-- 승인 미승인 처리를 기다리는 상점 리스트 -->
+	<select id="list" parameterType="spageDTO" resultMap="shopbase">
+	
+		select rownum rn, <include refid="shopbasecolumn" />
+		from(select rownum rn, <include refid="shopbasecolumn" />
+			from(select <include refid="shopbasecolumn" />
+				from shop
+				order by GOODS_DATE desc))
+		where SHOP_APPROVAL = '미승인' and  rn &gt;= #{startRow} and rn &lt;= #{endRow}
+		
+	</select>
+	
+	<!-- 승인 미승인 처리를 기다리는 상점 등록 개수 -->
+	<select id="listmanaCount" parameterType="String" resultType="int">
+		select count(*)
+		from shop
+		where SHOP_APPROVAL='미승인'
+	</select>
+	
+	<!-- 리스트에서 승인을 클릭하면 승인으로 변경 (상점.)  -->
+	<update id="listTrue" parameterType="String"  >
+		update shop
+			set SHOP_APPROVAL = '승인', GOODS_DATE = sysdate
+			where SHOP_NUM = ${shopNum}
+	</update>
+	
+	<!-- 리스트에서 미승인을 클릭하면 삭제(상점)  -->
+	<delete id="listFalse" parameterType="String"  >
+		delete from shop
+			where SHOP_NUM = ${shopNum}
+	</delete>
+	
+	<!-- 리스트에서 미승인을 눌렀을시 파일 삭제하기 위해서 **-->
+	<select id="FileDelete2" parameterType="shopDTO" resultMap="shopbase">
+		select <include refid="shopbasecolumn" />
+		from shop
+		where SHOP_NUM = ${shopNum}
+	</select>
+	
+	
+	<!-- 관리자가 상점 리스트에서 상세보기 하기 위해서. -->
+	<select id="shopListDetail" parameterType="shopDTO" resultMap="shopbase">
+		select <include refid="shopbasecolumn" />
+		from shop
+		where SHOP_NUM = ${shopNum}
+	</select>
+	
+	<!-- 관리자가 상점을 등록하는 것. -->
+	<insert id="adminshopInsert" parameterType="shopDTO"> 
+		insert into shop(<include refid="shopbasecolumn" />) values((select nvl(max(shop_num)+1,1) from shop), #{vspotNum}, #{memId}, #{shopCategory}, #{shopLoc}, #{shopLocation}, #{shopLocationMap}, #{shopName}, #{goodsOriginal}, #{goodsStore}, #{goodsContext}, #{goodsIntro}, '승인', #{shopClosed}, #{shopTime1}, #{shopTime2}, sysdate)
+	</insert>
 
 	</mapper>

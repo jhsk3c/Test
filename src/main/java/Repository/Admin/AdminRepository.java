@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import Model.DTO.ComMemberDTO;
+import Model.DTO.ShopDTO;
 import Model.DTO.StartEndPageDTO;
 import Model.DTO.VspotDTO;
 
@@ -94,13 +95,70 @@ public class AdminRepository {
 		return sqlSession.delete(statement, vspot);
 	}
 
-	public VspotDTO FileDelete(String vspotNum) { // 리스트에서 미승인을 누를 시 업로드 된 파일이 삭제되기 위해서 
-		System.out.println(vspotNum);
+	public VspotDTO FileDelete(String vspotNum) { // 리스트에서 미승인을 누를 시 업로드 된 파일이 삭제되기 위해서 (상세보기와 상점 등록 하기위해 num 찾기)
 		VspotDTO vspot = new VspotDTO();
 		vspot.setVspotNum(Integer.parseInt(vspotNum));
 		String statement = namespace + ".FileDelete";
 		return sqlSession.selectOne(statement, vspot);
 		
+	}
+
+	public Integer adminvspotInsert(VspotDTO spot) { // 관리자가 휴양지 등록하는것
+		String statement = namespace + ".adminvspotInsert";
+		return sqlSession.insert(statement, spot);
+	}
+
+	public Integer shopInsert(ShopDTO sdto) { // 회원이 상점 신청하는
+		String statement = namespace + ".shopInsert";
+		return sqlSession.insert(statement, sdto);
+	}
+
+	public List<ShopDTO> list(int page, int limit) { //관리자가 상점 승인 미승인 리스트
+		Long startRow = ((long)page -1 ) * 10 +1;
+		Long endRow = startRow + limit -1;
+		StartEndPageDTO spage = new StartEndPageDTO(startRow, endRow);
+		String statement = namespace + ".list";
+		return sqlSession.selectList(statement, spage);
+		
+	}
+	
+	public Integer listmanaCount() { //관리자 상점 등록 신청한 개수
+		String statement = namespace + ".listmanaCount";
+		return sqlSession.selectOne(statement);
+	}
+
+	public Integer listTrue(String shopNum) { // 상점 리스트에서 승인버튼을 클릭했을 때 
+		System.out.println(shopNum);
+		ShopDTO sdto = new ShopDTO();
+		sdto.setShopNum(Integer.parseInt(shopNum));
+		String statement = namespace + ".listTrue";
+		return sqlSession.update(statement, sdto);
+	}
+
+	public Integer listFalse(String shopNum) {
+		System.out.println(shopNum);
+		ShopDTO sdto = new ShopDTO();
+		sdto.setShopNum(Integer.parseInt(shopNum));
+		String statement = namespace + ".listFalse";
+		return sqlSession.delete(statement, sdto);
+	}
+	
+	public ShopDTO FileDelete2(String shopNum) { // 리스트에서 미승인을 누를 시 업로드 된 파일이 삭제되기 위해서 (상세보기와 상점 등록 하기위해 num 찾기)
+		ShopDTO sdto = new ShopDTO();
+		sdto.setShopNum(Integer.parseInt(shopNum));
+		String statement = namespace + ".FileDelete2";
+		return sqlSession.selectOne(statement, sdto);
+		
+	}
+
+	public ShopDTO shopListDetail(ShopDTO sdto) { //관리자 승인 미승인 리스트에서 번호 클릭시 상세보기
+		String statement = namespace + ".shopListDetail";
+		return sqlSession.selectOne(statement, sdto);
+	}
+
+	public Integer adminshopInsert(ShopDTO sdto) { // 관리자가 상점 등록
+		String statement = namespace + ".adminshopInsert";
+		return sqlSession.insert(statement, sdto);
 	}
 
 }

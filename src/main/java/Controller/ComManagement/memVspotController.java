@@ -69,7 +69,7 @@ public class memVspotController {
 	
 	//휴양지 상세보기 내용에서 파일을 다운로드 하는 내용
 	@RequestMapping("/fileUpload")
-	public String file(@RequestParam(value = "filename") String original,@RequestParam(value = "filename1") String store , Model model, HttpServletRequest request, HttpServletResponse response) {
+	public String file(@RequestParam(value = "filename") String original, @RequestParam(value = "filename1") String store , Model model, HttpServletRequest request, HttpServletResponse response) {
 		
 		System.out.println("접근접근접근접근접근접근접근접근접근접근접근접근");
 		

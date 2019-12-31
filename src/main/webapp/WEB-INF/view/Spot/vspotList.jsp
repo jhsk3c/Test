@@ -9,36 +9,38 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<style type="text/css">
+	table { 
+		border-spacing: 30px;		
+		width : 80%;
+		align : center;
+	}
+</style>
 </head>
 <body>
 	<jsp:include page="../Main/top.jsp" />
-	<table border="1" width="80%" align="center">
+		<table align="center">
 		<c:set var="i" value="0" />
-		<c:set var="j" value="2" />
+		<c:set var="j" value="4" />
 		<c:forEach var="list" items="${list}" varStatus="status"> 
 
 			<c:if test="${i%j == 0 }" >
-				<tr align="center">
+				<tr>
 			</c:if>	
 					<td> 
-						<%-- <c:forEach var="store1" items="${Store}" varStatus="status"  >
-							<a href="#"> ${Original[status.index] } </a><br/> 	
-						</c:forEach> --%>
 						<c:forTokens items="${list.vspotStore}" delims="-" var="store" end="0">
-							<img src="Spot/upload/${store}" alt="X" width="100" height="100">
-						</c:forTokens>
-					
-					</td>
-					<td> ${list.vspotTitle} </td>
-					<td> ${list.vspotLoc} </td>
-				
-					
+							<a href="vspotListDetail?num=${list.vspotNum}">
+								<img src="Spot/upload/${store}" alt="X"  width="300" height="300">
+							</a>
+						</c:forTokens> <br>
+						${list.vspotTitle} <br>
+						${list.vspotLoc}
+					</td> 
 			<c:if test="${i%j == j-1 }" > 
-				 </tr>
+				</tr>
 			</c:if> 
-			
 			<c:set var="i" value="${i+1 }" />
-
 		</c:forEach>
 	</table>
 

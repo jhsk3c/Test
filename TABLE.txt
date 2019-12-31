@@ -47,6 +47,7 @@ CREATE TABLE vspot(
     vspot_original varchar2(1000) not null, -- 휴양지 사진
     vspot_store varchar2(1000) not null, -- 휴양지 시스템 사진
     vspot_location varchar2(255) not null, -- 휴양지 주소
+    vspot_locationmap VARCHAR2(500) not null, -- Map
     vspot_loc VARCHAR2(50)not null, -- 휴양지 지역
     vspot_introduce varchar2(2000), -- 휴양지 소개
     vspot_feature varchar2(100), -- 휴양지 특장점
@@ -56,3 +57,77 @@ CREATE TABLE vspot(
 );
 
 alter table vspot add CONSTRAINT pk_vspot_num PRIMARY KEY (vspot_num);
+
+
+
+--휴양지 리뷰 등록 TABLE
+create table spot_review(
+    spot_review_num  NUMBER,                -- 후기 번호
+    vspot_num NUMBER,                       -- 휴양지 번호
+    mem_num VARCHAR2(10),                   --회원번호
+    mem_id VARCHAR2(100),                   --회원 아이디
+    spot_review_title VARCHAR2 (400),       --후기 제목
+    spot_review_context   VARCHAR2(2000),   --후기 내용
+    spot_review_star1 NUMBER,               --별점1번
+    spot_review_star2 NUMBER,               --별점2번
+    spot_review_star3 NUMBER,               --별점3번
+    spot_review_star4 NUMBER,               --별점4번
+    spot_review_avg NUMBER,                 -- 평균 평점
+    spot_review_date TIMESTAMP              -- 후기 작성 날짜
+    
+);
+alter table spot_review add CONSTRAINT pk_spot_review_num PRIMARY KEY (spot_review_num);
+
+
+-- 지역상점 TABLE
+CREATE TABLE shop (
+    shop_num NUMBER, -- 상점 번호
+    vspot_num NUMBER not null, -- 휴양지 번호
+    mem_id varchar2(100) not null, -- 회원아이디
+    shop_category VARCHAR2(30) not null, --상점 분류
+    shop_loc VARCHAR2(50) not null, -- 상점 위치
+    shop_location VARCHAR2(255) not null, -- 상점 주소
+    shop_locationMap VARCHAR2(255) not null, -- 상점 Map주소
+    shop_name VARCHAR2(50) not null, -- 상점 이름
+    goods_name VARCHAR2(50) not null, -- 상품명
+    goods_original varchar2(1000) not null, -- 상품 사진
+    goods_store varchar2(1000) not null, -- 상품 시스템 사진
+    goods_context VARCHAR2(2000) not null, -- 상품 소개
+    goods_intro VARCHAR2(1000) not null, -- 상품 한줄 소개
+    shop_approval VARCHAR2(50) not null, -- 상품 승인여부
+    goods_date TIMESTAMP not null -- 상품 등록날짜
+);
+alter table shop add CONSTRAINT pk_shop_num PRIMARY KEY (shop_num);
+
+
+--상점 리뷰 등록 TABLE
+create table shop_review(
+    shop_review_num  NUMBER,                -- 후기 번호
+    shop_num NUMBER,                       -- 상점 번호
+    mem_num VARCHAR2(10),                   --회원번호
+    mem_id VARCHAR2(100),                   --회원 아이디
+    shop_review_title VARCHAR2 (400),       --후기 제목
+    shop_review_context   VARCHAR2(2000),   --후기 내용
+    shop_review_star1 NUMBER,               --별점1번
+    shop_review_star2 NUMBER,               --별점2번
+    shop_review_star3 NUMBER,               --별점3번
+    shop_review_star4 NUMBER,               --별점4번
+    shop_review_date TIMESTAMP              -- 후기 작성 날짜
+);
+alter table shop_review add CONSTRAINT pk_shop_review_num PRIMARY KEY (shop_review_num);
+
+
+-- 상점 예약하기.
+CREATE TABLE shop_reservation (
+    shop_reservation_num NUMBER, -- 예약 번호
+    shop_num NUMBER not null , -- 상점 번호
+    vspot_num NUMBER not null , -- 휴양지 번호
+    mem_num VARCHAR2(10) not null , -- 회원 번호
+    people_num NUMBER not null , -- 인원
+    use_date TIMESTAMP not null , -- 예약 날짜
+    use_time TIMESTAMP not null  -- 예약 시간
+);
+
+alter table shop_reservation add CONSTRAINT pk_shop_reservation_num PRIMARY KEY (shop_reservation_num);
+
+

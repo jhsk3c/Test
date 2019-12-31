@@ -17,5 +17,14 @@
 <bean class="Controller.ComManagement.ComManagementController" />
 <bean class="Controller.Spot.SpotController" />
 <bean class="Controller.ComManagement.memVspotController" />
+<bean class="Controller.Spot.VspotListDetailController" />
+<bean class="Controller.Spot.vspotReviewController" />
+<bean class="Controller.ComManagement.AdminSpotController" />
+<bean class="Controller.ComManagement.AdminShopController" />
+<bean class="Controller.ComManagement.AdminShopMnanaController" />
+<bean class="Controller.Shop.ShopDetailController" />
+<bean class="Controller.Shop.ShopReviewController" />
+<bean class="Controller.Shop.ShopListDetailController" />
+
 
 </beans>
