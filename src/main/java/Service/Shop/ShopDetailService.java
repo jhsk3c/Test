@@ -1,16 +1,23 @@
 package Service.Shop;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
+import Command.Shop.ShopReservationCommand;
+import Model.DTO.AuthInfo;
 import Model.DTO.ShopDTO;
+import Model.DTO.ShopReservationDTO;
 import Model.DTO.ShopReviewDTO;
-import Model.DTO.SpotReviewDTO;
 import Model.DTO.VspotDTO;
 import Repository.Vspot.VspotRepository;
 
@@ -98,6 +105,45 @@ public class ShopDetailService {
 		Collections.shuffle(shop);
 		model.addAttribute("shop", shop);
 		
+	}
+
+	//일단 예약하기 여기다 적어둠.
+	public void ReservationPro(String shopNum, String vspotNum, HttpSession session, ShopReservationCommand shopReservationCommand) {
+		ShopReservationDTO sreiondto = new ShopReservationDTO();
+		
+		
+		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
+		sreiondto.setVspotNum(Integer.parseInt(vspotNum));
+		sreiondto.setShopNum(Integer.parseInt(shopNum));
+		sreiondto.setMemNum(authInfo.getNum());
+		
+		System.out.println();
+		System.out.println("접근 휴양지 번호 ::::::::::" + Integer.parseInt(vspotNum));
+		System.out.println("접근 상점 번호 ::::::::::" + Integer.parseInt(shopNum));
+		System.out.println("접근 로그인 번호 ::::::::::" + authInfo.getNum());
+		System.out.println("접근 예약 날짜 ::::::::::" + shopReservationCommand.getUseDate());
+		System.out.println("접근 예약 시간 ::::::::::" + shopReservationCommand.getUseTime());
+		System.out.println("접근 예약 인원 ::::::::::" + shopReservationCommand.getPeopleNum());
+		
+	
+		// 이제 날짜.
+		SimpleDateFormat dt = new SimpleDateFormat("yyyyMMdd");
+		Date date;
+		try {
+			date = dt.parse(shopReservationCommand.getUseDate());
+			Timestamp UseDate = new Timestamp(date.getTime());
+			sreiondto.setUseDate(UseDate);
+			System.out.println("UseDate 값 :::::::::::::::: " + UseDate);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+		
+		
+		sreiondto.setUseTime(shopReservationCommand.getUseTime());
+		sreiondto.setPeopleNum(Integer.parseInt(shopReservationCommand.getPeopleNum()));
+		
+		
+		vspotRepository.ReservationInsert(sreiondto);
 	}
 
 }

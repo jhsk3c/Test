@@ -2,17 +2,18 @@ package Command.Shop;
 
 
 import org.springframework.web.multipart.MultipartFile;
-
+// shopClosed
 public class ShopCommand {
 	
 	String shopCategory;
 	String shopLoc;
 	String shopLocation1; 
 	String shopLocation2; 
-	String shopLocation3; 
+	String shopLocation3;
+	String shopClosed;
+	String shopTime1;
+	String shopTime2;
 	String shopName;
-	String 	goodsName;
-	String goodsPrice;
 	String goodsContext;
 	String goodsIntro;
 	MultipartFile[] goodsReport;
@@ -47,23 +48,29 @@ public class ShopCommand {
 	public void setShopLocation3(String shopLocation3) {
 		this.shopLocation3 = shopLocation3;
 	}
+	public String getShopClosed() {
+		return shopClosed;
+	}
+	public void setShopClosed(String shopClosed) {
+		this.shopClosed = shopClosed;
+	}
+	public String getShopTime1() {
+		return shopTime1;
+	}
+	public void setShopTime1(String shopTime1) {
+		this.shopTime1 = shopTime1;
+	}
+	public String getShopTime2() {
+		return shopTime2;
+	}
+	public void setShopTime2(String shopTime2) {
+		this.shopTime2 = shopTime2;
+	}
 	public String getShopName() {
 		return shopName;
 	}
 	public void setShopName(String shopName) {
 		this.shopName = shopName;
-	}
-	public String getGoodsName() {
-		return goodsName;
-	}
-	public void setGoodsName(String goodsName) {
-		this.goodsName = goodsName;
-	}
-	public String getGoodsPrice() {
-		return goodsPrice;
-	}
-	public void setGoodsPrice(String goodsPrice) {
-		this.goodsPrice = goodsPrice;
 	}
 	public String getGoodsContext() {
 		return goodsContext;

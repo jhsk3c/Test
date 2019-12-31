@@ -47,7 +47,7 @@
 	</script>
 	 
 
-	<form:form action="adminshopPro" method="post" enctype="multipart/form-data" commandName="shopCommand">
+	<form:form action="adminshopInsertPro" method="post" enctype="multipart/form-data" commandName="shopCommand">
 		<input type="hidden" name="num" value="${vspot.vspotNum }" />
 		<table>
 		

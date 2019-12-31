@@ -25,5 +25,7 @@
 <bean class="Controller.ComManagement.AdminShopMnanaController" />
 <bean class="Controller.Shop.ShopDetailController" />
 <bean class="Controller.Shop.ShopReviewController" />
+<bean class="Controller.Shop.ShopListDetailController" />
+
 
 </beans>

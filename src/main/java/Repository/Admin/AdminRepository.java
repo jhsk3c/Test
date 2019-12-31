@@ -108,7 +108,7 @@ public class AdminRepository {
 		return sqlSession.insert(statement, spot);
 	}
 
-	public Integer shopInsert(ShopDTO sdto) { //관리자가 상점 등록하는
+	public Integer shopInsert(ShopDTO sdto) { // 회원이 상점 신청하는
 		String statement = namespace + ".shopInsert";
 		return sqlSession.insert(statement, sdto);
 	}
@@ -149,6 +149,16 @@ public class AdminRepository {
 		String statement = namespace + ".FileDelete2";
 		return sqlSession.selectOne(statement, sdto);
 		
+	}
+
+	public ShopDTO shopListDetail(ShopDTO sdto) { //관리자 승인 미승인 리스트에서 번호 클릭시 상세보기
+		String statement = namespace + ".shopListDetail";
+		return sqlSession.selectOne(statement, sdto);
+	}
+
+	public Integer adminshopInsert(ShopDTO sdto) { // 관리자가 상점 등록
+		String statement = namespace + ".adminshopInsert";
+		return sqlSession.insert(statement, sdto);
 	}
 
 }

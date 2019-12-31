@@ -48,24 +48,26 @@
 	</resultMap>
 	
 	<sql id="shopbasecolumn"> <!-- 상점 등록 컬럼 -->
-		shop_num, vspot_num, shop_category, shop_loc, shop_location, shop_locationMap, shop_name, goods_name, goods_price, goods_original, goods_store, goods_context, GOODS_INTRO, shop_approval, goods_date
+		shop_num, vspot_num, mem_id, shop_category, shop_loc, shop_location, shop_locationMap, shop_name,  goods_original, goods_store, goods_context, GOODS_INTRO, shop_approval, shop_closed, shop_time1, shop_time2, goods_date
 	</sql>
 	
 	<resultMap type="shopDTO" id="shopbase"> <!-- 상점 등록 Map -->
 		<id column="SHOP_NUM" jdbcType="INTEGER" property="shopNum" />
 		<result column="VSPOT_NUM" jdbcType="INTEGER" property="vspotNum" />
+		<result column="MEM_ID" jdbcType="VARCHAR" property="memId" />
 		<result column="SHOP_CATEGORY" jdbcType="VARCHAR" property="shopCategory" />
 		<result column="SHOP_LOC" jdbcType="VARCHAR" property="shopLoc" />			
 		<result column="SHOP_LOCATION" jdbcType="VARCHAR" property="shopLocation"/>		
 		<result column="SHOP_LOCATIONMAP" jdbcType="VARCHAR" property="shopLocationMap" />
-		<result column="SHOP_NAME" jdbcType="VARCHAR" property="shopName" />		
-		<result column="GOODS_NAME" jdbcType="VARCHAR" property="goodsName" />
-		<result column="GOODS_PRICE" jdbcType="INTEGER" property="goodsPrice" />
+		<result column="SHOP_NAME" jdbcType="VARCHAR" property="shopName" />
 		<result column="GOODS_ORIGINAL" jdbcType="VARCHAR" property="goodsOriginal" />
 		<result column="GOODS_STORE" jdbcType="VARCHAR" property="goodsStore" />
 		<result column="GOODS_CONTEXT" jdbcType="VARCHAR" property="goodsContext" />
 		<result column="GOODS_INTRO" jdbcType="VARCHAR" property="goodsIntro" />
 		<result column="SHOP_APPROVAL" jdbcType="VARCHAR" property="shopApproval" />
+		<result column="SHOP_CLOSED" jdbcType="VARCHAR" property="shopClosed" />
+		<result column="shop_time1" jdbcType="VARCHAR" property="shopTime1" />	
+		<result column="shop_time2" jdbcType="VARCHAR" property="shopTime2" />	
 		<result column="GOODS_DATE" jdbcType="TIMESTAMP" property="goodsDate" />	
 	</resultMap>
 	
@@ -74,7 +76,7 @@
 		shop_review_num, shop_num, mem_num, mem_id, shop_review_title, shop_review_context, shop_review_star1, shop_review_star2, shop_review_star3, shop_review_star4, shop_review_date
 	</sql>
 	
-	<resultMap type="shReDTO" id="baseshopReview"> <!-- 후기 등록 Map 휴양지 -->
+	<resultMap type="shReDTO" id="baseshopReview"> <!-- 후기 등록 Map 상점 -->
 		<id column="SHOP_REVIEW_NUM" jdbcType="INTEGER" property="shopReviewNum" />
 		<result column="SHOP_NUM" jdbcType="INTEGER" property="shopNum" />
 		<result column="MEM_NUM" jdbcType="VARCHAR" property="memNum" />
@@ -86,6 +88,22 @@
 		<result column="SHOP_REVIEW_STAR3" jdbcType="INTEGER" property="shopReviewStar3"/>
 		<result column="SHOP_REVIEW_STAR4" jdbcType="INTEGER" property="shopReviewStar4"/>
 		<result column="SHOP_REVIEW_DATE" jdbcType="TIMESTAMP" property="shopReviewDate" />
+	</resultMap>
+	
+	
+	<sql id="shopReservation"> <!-- 예약 등록 컬럼들.상점  -->
+		shop_reservation_num, shop_num, vspot_num, mem_num, people_num, use_date, use_time, shop_lev
+	</sql>
+	
+	<resultMap type="shationDTO" id="baseshopReservation"> <!-- 예약 Map 상점 -->
+		<id column="SHOP_RESERVATION_NUM" jdbcType="INTEGER" property="shopReservationNum" />
+		<result column="SHOP_NUM" jdbcType="INTEGER" property="shopNum" />
+		<result column="VSPOT_NUM" jdbcType="INTEGER" property="vspotNum" />	
+		<result column="MEM_NUM" jdbcType="VARCHAR" property="memNum" />
+		<result column="PEOPLE_NUM" jdbcType="INTEGER" property="peopleNum"/>
+		<result column="USE_DATE" jdbcType="TIMESTAMP" property="useDate"/>
+		<result column="USE_TIME" jdbcType="VARCHAR" property="useTime" />
+		<result column="SHOP_LEV" jdbcType="VARCHAR" property="shopLev" />
 	</resultMap>
 	
 	
@@ -189,4 +207,8 @@
 		where shop_num = #{shopNum} 
 	</select>
 	
+	<!-- 예약 등록 관련 내용 -->
+	<insert id="ReservationInsert" parameterType="shationDTO">
+		insert into shop_reservation(<include refid="shopReservation" />) values((select nvl(max(shop_reservation_num)+1,1) from shop_reservation), #{shopNum}, #{vspotNum}, #{memNum}, #{peopleNum}, #{useDate}, #{useTime}, '1')
+	</insert>
 </mapper>

@@ -9,34 +9,27 @@
 <html>
 <head>
 <meta charset="UTF-8">
+	
 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
- 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+	
   	
   	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> <!-- 현재 얘때문. -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
 	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0eb1f252a397cdfb0e2f7cfd75b42ed4&libraries=services"></script>
-  	
-  	<script type="text/javascript">
-	    $(document).ready(function(){
-	      $('.slider').bxSlider({
-	    	  auto: true, 
-	          speed: 500, 
-	          pause: 4000, 
-	          mode:'fade', 
-	          autoControls: false, 
-	          pager:false , 
-	      });
-	      
-	    });
-	  </script>
+	
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<link rel="stylesheet" href="//cdn.rawgit.com/fgelinas/timepicker/master/jquery.ui.timepicker.css">
 
+  
+  
+  	<link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 
 	<script>
 		var geocoder = new kakao.maps.services.Geocoder();
@@ -91,7 +84,26 @@
 				window.open("http://map.daum.net/link/map/" + lat + "," + lng);
 			});
 		});
+
 		
+		
+		
+		$(function() {
+			  $( "#useDate" ).datepicker({
+			    dateFormat: 'yyyymmdd',
+			    prevText: '이전 달',
+			    nextText: '다음 달',
+			    monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+			    monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+			    dayNames: ['일','월','화','수','목','금','토'],
+			    dayNamesShort: ['일','월','화','수','목','금','토'],
+			    dayNamesMin: ['일','월','화','수','목','금','토'],
+			    showMonthAfterYear: true,
+			    changeMonth: true,
+			    changeYear: true,
+			    yearSuffix: '년'
+			  });
+			});
 	</script> 
 
 <title>휴양지 상세보기(리스트에서 클릭 시)</title>
@@ -522,9 +534,9 @@
 		
 		hr {
 			border-top: 0.3px solid #bbb;
-			width: 64%;
-			align:center;
-			text-align: center;
+			width: 48.2%;
+			position: relative;
+			left: -7.9%;
 		}
 		.dlehd {
 			position: relative;
@@ -624,38 +636,26 @@
 			top:1px;
 		}
 		
-		
-		.myButton1 {
-			box-shadow:inset 0px 1px 18px 0px #ffffff;
-			background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
-			background-color:#f9f9f9;
-			border-radius:12px;
-			border:1px solid #dcdcdc;
-			display:inline-block;
-			cursor:pointer;
-			color:#666666;
-			font-family:Arial;
-			font-size:15px;
-			font-weight:bold;
-			padding:9px 24px;
-			text-decoration:none;
-			text-shadow:0px 1px 0px #ffffff;
-			position: relative;
-			top : -40px;
-			left: 45%;
-			
+		.wrap {
+		  width: 100%;
+		  height: 1500px;
+		  position: relative;
+		  left : -8%;
 		}
-		.myButton1:hover {
-			background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
-			background-color:#e9e9e9;
-		}
-		.myButton1:active {
-			position:relative;
-			top:1px;
+		.ele2 {
+		  display: inline-block;
+		  position: sticky;
+		  top: 30px;
+		  width: 400px;
+		  height: 400px;
+		  background: blue;
+		  z-index: 1;
 		}
 		</style>
 		
-		
+		<style>
+			.ui-timepicker { font-size: 12px; width: 125px;}
+		</style>   
 
 </head>
 <body>
@@ -702,7 +702,7 @@
 			</c:if>
 				
 			<c:if test="${status.index eq 4 }">
-				<div style="width: 25%; height: 275px; position: absolute; left: 75%; top: 354px;" class="zoom_image">
+				<div style="width: 25%; height: 275px; position:absolute; left: 75%; top: 354px;" class="zoom_image">
 					<img src="Spot/upload/${store1}" alt="X" width="100%" height="100%"  />
 				</div>
 				<input class="but" type="button" value="사진 보기" onclick="location.href='shopListDetailTwo?num=${list.shopNum}'"/>
@@ -723,6 +723,32 @@
 	</div>
 	<br><br>
 	
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<script src='//cdn.rawgit.com/fgelinas/timepicker/master/jquery.ui.timepicker.js'></script>
+<script>
+$(function() {
+    $('.timepicker').timepicker();
+});
+</script>
+	<div style="position: relative; left: 78%; top: -12px;">
+		<div class="wrap">
+		  <div class="ele2"> <!-- css 주기  -->
+		  	<form:form action="shopReservationPro" commandName="shopReservationCommand" method="post" >
+		  		<input type="hidden" name="num" value="${list.shopNum }"/>
+		  		<input type="hidden" name="num2" value="${list.vspotNum }"/>
+		  		날짜 : <input type="text" name="useDate"id="useDate"/>
+		  		시간 : <input type="text" name="useTime" id="useTime" class="timepicker" />
+		  		인원 : <input type="text" name="peopleNum" id="peopleNum"/>
+		    
+		    	<input type="submit" value="예약하기"  />
+		    </form:form>
+		  </div>
+		</div>
+	</div>
+
+	<br><br>
+	<div style="position: relative; left: 0%; top: -1530px;">
 	<span class="title">${list.shopName}</span>
 	<div class="qnrk">${list.shopLoc}</div><br>
 	<!--한줄소개 들어가야함!!!!!!!1 css 먹이자!! -->
@@ -838,59 +864,14 @@
 	<img src="Spot/upload/animal.png" alt="X" width="25" height="25" class="abc2"><div class="mei2"> 반려동물 동반 가능 </div>
 	<img src="Spot/upload/party.png" alt="X" width="25" height="25" class="abc3"><div class="mei3"> 파티나 이벤트 가능 </div>
 	<img src="Spot/upload/yyy.png" alt="X" width="25" height="25" class="abc4"><div class="mei4"> 어린이와 유아에게 적합  </div>  
-	<center><hr></center><br/>
-		
+	<center><hr></center>
 	
-	<span class="title">추천 휴양지 더 보기</span><br>
-	 <c:set var="i" value="0"></c:set>
-	<div class="swiper-container">
-		<div class="swiper-wrapper">
-			<c:forEach var="test" items="${vlist}" varStatus="status">
-			<c:if test="${i < 7}">
-				<c:forTokens items="${test.vspotStore}" delims="-" var="store" end="0">
-					<div class="swiper-slide">						
-						 <a href="vspotListDetail?num=${test.vspotNum}" style=" text-decoration:none; color:#000000; ">	
-						 	<span class="rotq">${test.vspotTitle }</span>
-						 	<span class="rotn">${test.vspotLoc }</span>
-							<img src="Spot/upload/${store}" alt="X"  width="1000" height="200">	
-						 </a>
-					</div>
-				</c:forTokens>
-				<c:set var="i" value="${i+1}"></c:set> 
-			</c:if>
-			</c:forEach>
-			
-		</div>
-	</div>
-		<div class="swiper-button-next"></div>
-		<div class="swiper-button-prev"></div>	
-	<script>
-	
-		new Swiper('.swiper-container', {
-			
-			slidesPerView : 3, 
-			spaceBetween : 30, 
-			slidesPerGroup : 1, 
-			
-			loopFillGroupWithBlank : true,
-
-			navigation : { 
-				nextEl : '.swiper-button-next', 
-				prevEl : '.swiper-button-prev', 
-			},
-		});
-		
-	</script>
-	
-	
-	<div style="position: relative; left: 0%; top: -148px;">
+	<div style="position: relative; left: 0%; top: 10px;">
 	
 	<!-- 그럼 해야할게 저걸 누르면 상세보기도 가야하고 등록하면 이렇게 top이 2개 뜨는것 나머지 등록하고 top 뜨는거 그런거 정리-->
 		
 	<span class="title">추천 휴양지(맛집 카페??) 더 보기</span><br>
-	<c:if test="${Lev eq 4}">
-		<div><input type="button" value="등록버튼이요!" onclick="location.href='adminshop?num=${list.vspotNum}'" class="myButton1"/></div>
-	</c:if>
+
 	<div style="position: relative; left: 0%; top: 20px;">
 	 <c:set var="i" value="0"></c:set>
 	<div class="swiper-container"  id="swiper-container1">
@@ -934,6 +915,7 @@
 		</div>
 	</div>
 	
+</div>
 </div>
 
 </body>

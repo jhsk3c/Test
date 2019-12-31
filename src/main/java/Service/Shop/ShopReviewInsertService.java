@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
 import Command.Shop.ShopReviewCommand;
@@ -18,6 +19,7 @@ public class ShopReviewInsertService {
 	@Autowired
 	private VspotRepository vspotRepository;
 
+	@Transactional
 	public void listNum(String shopNum, Model model, HttpSession session) {
 		
 		ShopDTO sdto = new ShopDTO();
@@ -34,6 +36,7 @@ public class ShopReviewInsertService {
 		
 	}
 
+	@Transactional
 	public void insert(String shopNum, ShopReviewCommand shopReviewCommand, Model model, HttpSession session) {
 		
 		ShopReviewDTO shrdto = new ShopReviewDTO();

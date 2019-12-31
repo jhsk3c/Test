@@ -574,7 +574,64 @@
 		    position: relative;
 			left: 18%;
 		}
+		.myButton {
+			box-shadow:inset 0px 1px 18px 0px #ffffff;
+			background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+			background-color:#f9f9f9;
+			border-radius:12px;
+			border:1px solid #dcdcdc;
+			display:inline-block;
+			cursor:pointer;
+			color:#666666;
+			font-family:Arial;
+			font-size:15px;
+			font-weight:bold;
+			padding:9px 24px;
+			text-decoration:none;
+			text-shadow:0px 1px 0px #ffffff;
+			position: relative;
+			top : -36px;
+			left: 28%;
+			
+		}
+		.myButton:hover {
+			background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+			background-color:#e9e9e9;
+		}
+		.myButton:active {
+			position:relative;
+			top:1px;
+		}
 		
+		
+		.myButton1 {
+			box-shadow:inset 0px 1px 18px 0px #ffffff;
+			background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+			background-color:#f9f9f9;
+			border-radius:12px;
+			border:1px solid #dcdcdc;
+			display:inline-block;
+			cursor:pointer;
+			color:#666666;
+			font-family:Arial;
+			font-size:15px;
+			font-weight:bold;
+			padding:9px 24px;
+			text-decoration:none;
+			text-shadow:0px 1px 0px #ffffff;
+			position: relative;
+			top : -40px;
+			left: 45%;
+			
+		}
+		.myButton1:hover {
+			background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+			background-color:#e9e9e9;
+		}
+		.myButton1:active {
+			position:relative;
+			top:1px;
+		}
 		</style>
 
 </head>
@@ -666,7 +723,7 @@
 	
 	<span class="title">후기</span><br>
 	<div>
-		<input type="button" name="Review" id="Review" value="후기 작성하기" onclick="hello()" />
+		<input type="button" name="Review" id="Review" value="후기 작성하기" onclick="hello()" class="myButton" />
 	</div>
 	<img src="Spot/upload/star.png" alt="x" width="18" height="18" style="position: relative; left: 18%; top: -12px;">
 	<span class="avg"> ${maxAvg}</span> <span style="filter:alpha(opacity=1); opacity:0.3; position: relative; left: 18.6%; top: -12px;">|</span> <span class="revi">${count } 후기</span><center><hr></center>
@@ -806,8 +863,13 @@
 	<!-- 그럼 해야할게 저걸 누르면 상세보기도 가야하고 등록하면 이렇게 top이 2개 뜨는것 나머지 등록하고 top 뜨는거 그런거 정리-->
 		
 	<span class="title">추천 휴양지(맛집 카페??) 더 보기</span><br>
+	
+	<c:if test="${Lev eq 1}">
+		<div><input type="button" value="등록버튼이요!" onclick="location.href='adminshop?num=${list.vspotNum}'" class="myButton1"/></div>
+	</c:if>
+	
 	<c:if test="${Lev eq 4}">
-		<div><input type="button" value="등록버튼이요!" onclick="location.href='adminshop?num=${list.vspotNum}'"/></div>
+		<div><input type="button" value="등록버튼이요!" onclick="location.href='adminshopInsert?num=${list.vspotNum}'" class="myButton1"/></div>
 	</c:if>
 	
 	 <c:set var="i" value="0"></c:set>

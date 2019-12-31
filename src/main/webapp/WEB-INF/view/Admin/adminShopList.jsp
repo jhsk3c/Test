@@ -14,31 +14,27 @@
 <body>
 
 	<jsp:include page="../Main/admintop.jsp" />
-	<table border="1" width="80%" align="center">
+	<table border="1" width="80%" align="center" style="text-align: center;">
 		<tr>
 			<td colspan="9" align="right"> 글 개수 : ${Count} </td> 
 		</tr> 
 		<tr>
 			<th> 번호 </th>
+			<th> 회원 아이디 </th>
 			<th> 상점 분류 </th>
 			<th> 상점 위치 </th>
 			<th> 상점 이름 </th>	
-			<th> 상품 이름 </th>
-			<th> 상품 가격</th>
 			<th> 신청 날짜 </th>
 			<th> 구분 </th>
 		</tr>
 		
 		
 		<c:forEach var="list" items="${list}" varStatus="status">
-			
-			<tr>
-				<td>${status.count }</td>
+				<td><a href="ShopDetail?num=${list.shopNum }">${status.count }</a></td>
+				<td>${list.memId }</td>
 				<td>${list.shopCategory }</td>
 				<td>${list.shopLoc }</td>
 				<td>${list.shopName }</td>
-				<td>${list.goodsName }</td>
-				<td>${list.goodsPrice }</td>
 				<td><fmt:formatDate value="${list.goodsDate }" pattern="yyyy-MM-dd"/></td>
 				<td>
 					<a href="shopManaTrue?num=${list.shopNum}&page=${page}">승인</a>

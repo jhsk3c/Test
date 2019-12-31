@@ -1,6 +1,7 @@
 package Model.DTO;
 
 import java.io.Serializable;
+import java.sql.Time;
 import java.sql.Timestamp;
 
 @SuppressWarnings("serial")
@@ -8,18 +9,20 @@ public class ShopDTO implements Serializable{
 	
 	Integer shopNum;
 	Integer vspotNum;
+	String memId;
 	String shopCategory;
 	String shopLoc;
 	String shopLocation; 
 	String shopLocationMap; 
 	String shopName;
-	String 	goodsName;
-	Integer goodsPrice;
 	String goodsContext;
 	String goodsOriginal;
 	String goodsStore; 
 	String goodsIntro;
 	String shopApproval;
+	String shopClosed;
+	String shopTime1;
+	String shopTime2;
 	Timestamp goodsDate;
 	
 	public Integer getShopNum() {
@@ -33,6 +36,12 @@ public class ShopDTO implements Serializable{
 	}
 	public void setVspotNum(Integer vspotNum) {
 		this.vspotNum = vspotNum;
+	}
+	public String getMemId() {
+		return memId;
+	}
+	public void setMemId(String memId) {
+		this.memId = memId;
 	}
 	public String getShopCategory() {
 		return shopCategory;
@@ -64,18 +73,6 @@ public class ShopDTO implements Serializable{
 	public void setShopName(String shopName) {
 		this.shopName = shopName;
 	}
-	public String getGoodsName() {
-		return goodsName;
-	}
-	public void setGoodsName(String goodsName) {
-		this.goodsName = goodsName;
-	}
-	public Integer getGoodsPrice() {
-		return goodsPrice;
-	}
-	public void setGoodsPrice(Integer goodsPrice) {
-		this.goodsPrice = goodsPrice;
-	}
 	public String getGoodsContext() {
 		return goodsContext;
 	}
@@ -106,12 +103,31 @@ public class ShopDTO implements Serializable{
 	public void setShopApproval(String shopApproval) {
 		this.shopApproval = shopApproval;
 	}
+	public String getShopClosed() {
+		return shopClosed;
+	}
+	public void setShopClosed(String shopClosed) {
+		this.shopClosed = shopClosed;
+	}
+	public String getShopTime1() {
+		return shopTime1;
+	}
+	public void setShopTime1(String shopTime1) {
+		this.shopTime1 = shopTime1;
+	}
+	public String getShopTime2() {
+		return shopTime2;
+	}
+	public void setShopTime2(String shopTime2) {
+		this.shopTime2 = shopTime2;
+	}
 	public Timestamp getGoodsDate() {
 		return goodsDate;
 	}
 	public void setGoodsDate(Timestamp goodsDate) {
 		this.goodsDate = goodsDate;
 	}
+	
 	
 	 
 	

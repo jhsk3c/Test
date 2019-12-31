@@ -12,6 +12,7 @@
 		<typeAlias type="Model.DTO.SpotReviewDTO" alias="srDTO"/>
 		<typeAlias type="Model.DTO.ShopDTO" alias="shopDTO"/>
 		<typeAlias type="Model.DTO.ShopReviewDTO" alias="shReDTO"/>
+		<typeAlias type="Model.DTO.ShopReservationDTO" alias="shationDTO"/>
 		
 	</typeAliases>
 </configuration>

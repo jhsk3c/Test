@@ -34,6 +34,7 @@
 <bean id="adminShopMana" class="Service.Shop.AdminShopManaService" />
 <bean id="shopDetailService" class="Service.Shop.ShopDetailService" />
 <bean id="shopReviewInsertService" class="Service.Shop.ShopReviewInsertService" />
+<bean id="adminShopDetailService" class="Service.Shop.AdminShopDetailService" />
 
 
 </beans>

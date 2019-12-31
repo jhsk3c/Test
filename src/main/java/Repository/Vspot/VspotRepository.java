@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import Model.DTO.ShopDTO;
+import Model.DTO.ShopReservationDTO;
 import Model.DTO.ShopReviewDTO;
 import Model.DTO.SpotReviewDTO;
 import Model.DTO.StartEndPageDTO;
@@ -116,6 +117,13 @@ public class VspotRepository {
 	public Integer listShopReviewCount(ShopReviewDTO shredto) { //상점 후기 개수 
 		String statement = namespace + ".listShopReviewCount";
 		return sqlSession.selectOne(statement, shredto);
+	}
+
+
+	public Integer ReservationInsert(ShopReservationDTO sreiondto) { //상점에서 예약 등록.
+		String statement = namespace + ".ReservationInsert";
+		return sqlSession.insert(statement, sreiondto);
+		
 	}
 	
 }

@@ -70,24 +70,26 @@
 	</resultMap>
 	
 	<sql id="shopbasecolumn"> <!-- 상점 등록 컬럼 -->
-		shop_num, vspot_num, shop_category, shop_loc, shop_location, shop_locationMap, shop_name, goods_name, goods_price, goods_original, goods_store, GOODS_CONTEXT, GOODS_INTRO, shop_approval, goods_date
+		shop_num, vspot_num, mem_id, shop_category, shop_loc, shop_location, shop_locationMap, shop_name, goods_original, goods_store, GOODS_CONTEXT, GOODS_INTRO, shop_approval, shop_closed, shop_time1, shop_time2, goods_date
 	</sql>
 	
 	<resultMap type="shopDTO" id="shopbase"> <!-- 상점 등록 Map -->
 		<id column="SHOP_NUM" jdbcType="INTEGER" property="shopNum" />
 		<result column="VSPOT_NUM" jdbcType="INTEGER" property="vspotNum" />
+		<result column="MEM_ID" jdbcType="VARCHAR" property="memId" />
 		<result column="SHOP_CATEGORY" jdbcType="VARCHAR" property="shopCategory" />
 		<result column="SHOP_LOC" jdbcType="VARCHAR" property="shopLoc" />			
 		<result column="SHOP_LOCATION" jdbcType="VARCHAR" property="shopLocation"/>		
 		<result column="SHOP_LOCATIONMAP" jdbcType="VARCHAR" property="shopLocationMap" />
 		<result column="SHOP_NAME" jdbcType="VARCHAR" property="shopName" />		
-		<result column="GOODS_NAME" jdbcType="VARCHAR" property="goodsName" />
-		<result column="GOODS_PRICE" jdbcType="INTEGER" property="goodsPrice" />
 		<result column="GOODS_ORIGINAL" jdbcType="VARCHAR" property="goodsOriginal" />
 		<result column="GOODS_STORE" jdbcType="VARCHAR" property="goodsStore" />
 		<result column="GOODS_CONTEXT" jdbcType="VARCHAR" property="goodsContext" />
 		<result column="GOODS_INTRO" jdbcType="VARCHAR" property="goodsIntro" />
 		<result column="SHOP_APPROVAL" jdbcType="VARCHAR" property="shopApproval" />
+		<result column="SHOP_CLOSED" jdbcType="VARCHAR" property="shopClosed" />
+		<result column="shop_time1" jdbcType="VARCHAR" property="shopTime1" />	
+		<result column="shop_time2" jdbcType="VARCHAR" property="shopTime2" />	
 		<result column="GOODS_DATE" jdbcType="TIMESTAMP" property="goodsDate" />	
 	</resultMap>
 	
@@ -168,9 +170,9 @@
 		insert into vspot(<include refid="vspotbasecolumn" />) values((select nvl(max(vspot_num)+1,1) from vspot), #{memNum}, #{memId}, #{vspotTitle}, #{vspotName}, #{vspotOriginal}, #{vspotStore}, #{vspotLocation} , #{vspotLocationMap}, #{vspotLoc}, #{vspotIntroduce}, #{vspotFeature}, '승인', null, sysdate)
 	</insert>
 	
-	<!-- 관리자가 상점을 등록하는 것. -->
+	<!-- 사용자..가 상점을 등록하는 것. -->
 	<insert id="shopInsert" parameterType="shopDTO"> 
-		insert into shop(<include refid="shopbasecolumn" />) values((select nvl(max(shop_num)+1,1) from shop), #{vspotNum}, #{shopCategory}, #{shopLoc}, #{shopLocation}, #{shopLocationMap}, #{shopName}, #{goodsName} , #{goodsPrice}, #{goodsOriginal}, #{goodsStore}, #{goodsContext}, #{goodsIntro}, '미승인', sysdate)
+		insert into shop(<include refid="shopbasecolumn" />) values((select nvl(max(shop_num)+1,1) from shop), #{vspotNum}, #{memId}, #{shopCategory}, #{shopLoc}, #{shopLocation}, #{shopLocationMap}, #{shopName}, #{goodsOriginal}, #{goodsStore}, #{goodsContext}, #{goodsIntro}, '미승인', #{shopClosed}, #{shopTime1}, #{shopTime2}, sysdate)
 	</insert>
 	
 	<!-- 승인 미승인 처리를 기다리는 상점 리스트 -->
@@ -213,5 +215,16 @@
 	</select>
 	
 	
+	<!-- 관리자가 상점 리스트에서 상세보기 하기 위해서. -->
+	<select id="shopListDetail" parameterType="shopDTO" resultMap="shopbase">
+		select <include refid="shopbasecolumn" />
+		from shop
+		where SHOP_NUM = ${shopNum}
+	</select>
+	
+	<!-- 관리자가 상점을 등록하는 것. -->
+	<insert id="adminshopInsert" parameterType="shopDTO"> 
+		insert into shop(<include refid="shopbasecolumn" />) values((select nvl(max(shop_num)+1,1) from shop), #{vspotNum}, #{memId}, #{shopCategory}, #{shopLoc}, #{shopLocation}, #{shopLocationMap}, #{shopName}, #{goodsOriginal}, #{goodsStore}, #{goodsContext}, #{goodsIntro}, '승인', #{shopClosed}, #{shopTime1}, #{shopTime2}, sysdate)
+	</insert>
 
 	</mapper>
