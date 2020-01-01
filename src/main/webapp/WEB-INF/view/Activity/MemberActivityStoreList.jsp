@@ -44,15 +44,16 @@
 	</div>
 	
 	
-
+<div class="w3-container w3-light-green" style="margin:25px auto;" >
 	<form:form action="searchCity" commandName="activityStoreCommand" method="post" id="frm">
+	
 		<form:select path="storeLoc1" id="storeLoc1">
 		   	<option value="">-----선택해주세요-------</option>
 		        <form:options items="${storeLoc1}" />
 		</form:select>
 		<input type="submit" class="w3-btn w3-light-green" value="검색" />
 	</form:form>
-
+</div>
 
 
 
