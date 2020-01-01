@@ -8,8 +8,8 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
 body {
-  font-family: Arial, Helvetica, sans-serif; 
-}
+  font-family: Arial, Helvetica, sans-serif;
+  }
 .navbar1 {
   overflow: hidden;
   background-color: #333;
@@ -78,7 +78,10 @@ body {
 <div class="navbar1">
   <a href="main">Home</a>
   <a href="#">고객 센터</a>
+  <a href="Car/carCalendaReservationList">car 예약목록</a>
+  <a href="Car/carCalendarList">car 일정</a>
   <a href="contest">Contest</a>
+  <a href="Car/carEnrollmentList">carcar</a>
   <a href="logout">로그아웃</a>
   <a href="profile"> 프로필 </a>
   

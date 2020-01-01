@@ -24,7 +24,7 @@
 		<result column="MEM_DATE" jdbcType="TIMESTAMP" property="memDate" />
 		<result column="MEM_LEV" jdbcType="INTEGER" property="memLev" />
 	</resultMap>	
-	
+
 	
 	<sql id="combasecolumn"> <!-- 기업회원의 컬럼들 -->
 		com_num, com_id, com_pw, com_rep_name, license_number, com_name, com_addr, contact_phone_num, contact_email, com_approval, approval_date, com_date, com_lev

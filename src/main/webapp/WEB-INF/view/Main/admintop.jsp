@@ -75,6 +75,9 @@ body {
 <div class="navbar1">
   <a href="main">Home</a>
   <a href="contest">Contest</a>
+  <a href="admin/comMana">기업 회원 관리</a>
+  <a href="Car/carEnrollmentList">car관리</a>
+  <a href="Car/carCalendaReservationList">예약 관리</a>
   <a href="comMana">기업 회원 관리</a>
   <a href="memVspot">휴양지 관리</a>
   <a href="shopMana">상점 관리</a>
