@@ -46,13 +46,13 @@ CREATE TABLE vspot(
     vspot_name varchar2(50) not null, -- 휴양지 이름
     vspot_original varchar2(1000) not null, -- 휴양지 사진
     vspot_store varchar2(1000) not null, -- 휴양지 시스템 사진
+    vspot_loc VARCHAR2(50)not null, -- 휴양지 지역
     vspot_location varchar2(255) not null, -- 휴양지 주소
     vspot_locationmap VARCHAR2(500) not null, -- Map
-    vspot_loc VARCHAR2(50)not null, -- 휴양지 지역
     vspot_introduce varchar2(2000), -- 휴양지 소개
     vspot_feature varchar2(100), -- 휴양지 특장점
     vspot_approval varchar2(30) not null, -- 승인여부
-    approval_date TIMESTAMP, -- 휴양지 승인 날짜
+    approval_date TIMESTAMP, -- 휴양지 등록 날짜
     vspot_date TIMESTAMP -- 휴양지 등록 날짜
 );
 
@@ -89,12 +89,14 @@ CREATE TABLE shop (
     shop_location VARCHAR2(255) not null, -- 상점 주소
     shop_locationMap VARCHAR2(255) not null, -- 상점 Map주소
     shop_name VARCHAR2(50) not null, -- 상점 이름
-    goods_name VARCHAR2(50) not null, -- 상품명
     goods_original varchar2(1000) not null, -- 상품 사진
     goods_store varchar2(1000) not null, -- 상품 시스템 사진
     goods_context VARCHAR2(2000) not null, -- 상품 소개
     goods_intro VARCHAR2(1000) not null, -- 상품 한줄 소개
     shop_approval VARCHAR2(50) not null, -- 상품 승인여부
+    shop_closed varchar2(100) not null, -- 휴무
+    shop_time1 varchar2(100) not null, -- 시간1
+    shop_time2 varchar2(100) not null, -- 시간2
     goods_date TIMESTAMP not null -- 상품 등록날짜
 );
 alter table shop add CONSTRAINT pk_shop_num PRIMARY KEY (shop_num);
@@ -125,7 +127,8 @@ CREATE TABLE shop_reservation (
     mem_num VARCHAR2(10) not null , -- 회원 번호
     people_num NUMBER not null , -- 인원
     use_date TIMESTAMP not null , -- 예약 날짜
-    use_time TIMESTAMP not null  -- 예약 시간
+    use_time varchar2(100) not null,  -- 예약 시간
+    shop_lev varchar2(100) not null -- 예약여부
 );
 
 alter table shop_reservation add CONSTRAINT pk_shop_reservation_num PRIMARY KEY (shop_reservation_num);
