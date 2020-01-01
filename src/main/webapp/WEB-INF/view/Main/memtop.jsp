@@ -5,10 +5,11 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
 body {
   font-family: Arial, Helvetica, sans-serif;
-} 
+  }
 .navbar1 {
   overflow: hidden;
   background-color: #333;
@@ -73,6 +74,7 @@ body {
 </head>
 <body>
 
+
 <div class="navbar1">
   <a href="main">Home</a>
   <a href="#">고객 센터</a>
@@ -81,17 +83,20 @@ body {
   <a href="contest">Contest</a>
   <a href="Car/carEnrollmentList">carcar</a>
   <a href="logout">로그아웃</a>
+  <a href="profile"> 프로필 </a>
   
+
   <div class="dropdown1">
     <button class="dropbtn1">Dropdown 
       <i class="fa fa-caret-down1"></i>
     </button>
     <div class="dropdown-content1">
       <a href="spot">휴양지 신청</a>
-       <a href="Activity/ActivityList">활동</a>
-      <a href="#"></a>
+      <a href="ActivityList">활동</a>
+      <a href="#">Link 3</a>
     </div>
   </div> 
+
 </div>
 
 </body>

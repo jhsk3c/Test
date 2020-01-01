@@ -85,13 +85,13 @@ body {
 
   
   <div class="dropdown1">
-    <button class="dropbtn1">Dropdown 
+    <button class="dropbtn1">활동
       <i class="fa fa-caret-down1"></i>
     </button>
     <div class="dropdown-content1">
       <a href="adminspot">휴양지 등록</a>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a>
+      <a href="activity">활동관리</a>
+      <a href="ActivityStoreList">상점</a>
     </div>
   </div> 
 </div>

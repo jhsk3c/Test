@@ -22,7 +22,6 @@ import Repository.Activity.ActivityRepository;
 @Service
 public class ActivityInsertService {
 	
-	
 	@Autowired
 	private ActivityRepository activityRepository;
 	
@@ -31,44 +30,56 @@ public class ActivityInsertService {
 	String store = null;
 	
 	
+	
 	public Integer activityPro(ActivityInsertCommand1 activityCommand1, HttpServletRequest request, HttpSession session, Errors errors) {
 		ActivityDTO acti = new ActivityDTO();
 		
 		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
+			acti.setMemNum(authInfo.getNum());	 // 세션 !
+			
+			acti.setActivityName(activityCommand1.getActivityName());
+			acti.setRecruitPeople(Integer.parseInt(activityCommand1.getRecruitPeople()));
+			acti.setActivityText(activityCommand1.getActivityText());
+			acti.setLimitAge(activityCommand1.getLimitAge());
+			acti.setSortOfActivity(activityCommand1.getSortOfActivity());
+			acti.setActivityCity(activityCommand1.getActivityCity());
+			acti.setWhichProduct(activityCommand1.getWhichProduct());		
+			
+			System.out.println(acti.getRecruitPeople());
+			System.out.println(acti.getRecruitPeople());
+			System.out.println(acti.getRecruitPeople());System.out.println(acti.getRecruitPeople());
+			System.out.println(acti.getRecruitPeople());
 		
-		acti.setMemNum(authInfo.getNum());	 // 세션 받아온 거야
+	//TIMESTAMP
+		SimpleDateFormat dt = new SimpleDateFormat("mm/dd/yy");
+		Date date;
+		try {
+			date = dt.parse(activityCommand1.getActiStartDate());
+			Timestamp actiStartDate = new Timestamp(date.getTime());
+			acti.setActivityStartDate(actiStartDate);
+			
+			System.out.println(acti.getActivityStartDate());
+			
+			date = dt.parse(activityCommand1.getActiEndDate());
+			Timestamp actiEndDate = new Timestamp(date.getTime());
+			acti.setActivityEndDate(actiEndDate);
+			
+			System.out.println(acti.getActivityEndDate());
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		
-	//	SimpleDateFormat dt = new SimpleDateFormat("yyyyMMdd");
-		//Date date;
-		
-		/*
-		 * try { date = dt.parse(activityCommand1.getActiStartDate()); Timestamp
-		 * actiDate1 = new Timestamp(date.getTime()); acti.setActiStartDate(actiDate1);
-		 * 
-		 * date = dt.parse(activityCommand1.getActiEndDate()); Timestamp actiDate2 = new
-		 * Timestamp(date.getTime()); acti.setActiEndDate(actiDate2);
-		 * 
-		 * date = dt.parse(activityCommand1.getRecruitStartDate()); Timestamp actiDate3
-		 * = new Timestamp(date.getTime()); acti.setRecruitStartDate(actiDate3);
-		 * 
-		 * date = dt.parse(activityCommand1.getRecruitEndDate()); Timestamp actiDate4 =
-		 * new Timestamp(date.getTime()); acti.setRecruitEndDate(actiDate4); } catch
-		 * (Exception e) { e.printStackTrace(); }
-		 */
-		
-		acti.setActivityName(activityCommand1.getActivityName());
-		acti.setRecruitPeople(Integer.parseInt(activityCommand1.getRecruitPeople()));
-		acti.setActivityText(activityCommand1.getActivityText());
-		acti.setLimitAge(activityCommand1.getLimitAge());
-		
-		System.out.println(authInfo.getNum());
-		System.out.println(activityCommand1.getActivityName());
-		System.out.println(activityCommand1.getRecruitPeople()); //가격
-
-		System.out.println(activityCommand1.getLimitAge());
-		System.out.println(activityCommand1.getActivityText());
-		
+			System.out.println(acti.getMemNum());
+			System.out.println(acti.getSortOfActivity());
+			System.out.println(acti.getWhichProduct());
+			System.out.println(acti.getActivityCity());
+			System.out.println(acti.getSortOfActivity());
+			System.out.println(acti.getLimitAge());
+			System.out.println(acti.getActivityText());
+			System.out.println(acti.getActivityNum());
 		
 		String originalTotal = "";
 		String storeTotal = "";
@@ -76,25 +87,24 @@ public class ActivityInsertService {
 		for(MultipartFile mf : activityCommand1.getActiImage()) {
 			original =  mf.getOriginalFilename();
 			originalFileExtension = original.substring(original.lastIndexOf(".")); // 확장자 가져오기 
-			store =  UUID.randomUUID().toString().replaceAll("-","")
-					+ originalFileExtension;
+			store =  UUID.randomUUID().toString().replaceAll("-","") + originalFileExtension;
 			
 			originalTotal += original +"-";
 			storeTotal += store +"-";
 			
 			String path = request.getServletContext().getRealPath("/");
 			path += "WEB-INF/view/Activity/upload/";
-			System.out.println();
-			System.out.println(path);
-			System.out.println();
+				System.out.println();
+				System.out.println(path);
+				System.out.println();
 			
 			File file = new File(path + store);
 			
 			acti.setOriginalFilename(originalTotal);
 			acti.setStoreFilename(storeTotal);
 			
-			System.out.println(originalTotal);
-			System.out.println(storeTotal);
+				System.out.println(originalTotal);
+				System.out.println(storeTotal);
 			try {
 				mf.transferTo(file);
 				
@@ -102,10 +112,10 @@ public class ActivityInsertService {
 				e.printStackTrace();
 			}
 		}
-
+		
+		
 		Integer result = activityRepository.activituInsert1(acti);
-	
-		return result;
+	return result;
 	}
 		
 	

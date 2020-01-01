@@ -45,7 +45,6 @@
 	<c:if test="${Lev eq 1}">
 	
 		<jsp:include page="memtop.jsp" />
-		
 	</c:if> 
 	
 	<c:if test="${Lev eq 2}">

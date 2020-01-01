@@ -20,6 +20,6 @@ public class MainController {
 	public String main(HttpSession session, Model model) {
 		
 		return mainService.memLiset(model);
-
 	}
+	
 }

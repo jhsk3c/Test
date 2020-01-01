@@ -27,4 +27,5 @@
 <bean class="Controller.Shop.ShopListDetailController" />
 
 
+
 </beans>

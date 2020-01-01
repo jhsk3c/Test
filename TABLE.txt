@@ -130,7 +130,7 @@ CREATE TABLE shop_reservation (
     use_time varchar2(100) not null,  -- 예약 시간
     shop_lev varchar2(100) not null -- 예약여부
 );
-
 alter table shop_reservation add CONSTRAINT pk_shop_reservation_num PRIMARY KEY (shop_reservation_num);
+
 
 

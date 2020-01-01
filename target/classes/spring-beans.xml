@@ -37,4 +37,6 @@
 <bean id="adminShopDetailService" class="Service.Shop.AdminShopDetailService" />
 
 
+
+
 </beans>
