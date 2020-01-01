@@ -598,13 +598,10 @@
 			background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
 			background-color:#e9e9e9;
 		}
-		.myButton:active {
-			position:relative;
-			top:1px;
-		}
+	
 		
 		
-		.myButton1 {
+		#myButton1 {
 			box-shadow:inset 0px 1px 18px 0px #ffffff;
 			background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
 			background-color:#f9f9f9;
@@ -621,17 +618,15 @@
 			text-shadow:0px 1px 0px #ffffff;
 			position: relative;
 			top : -40px;
-			left: 45%;
+			left: 52%;
+			z-index: 5;
 			
 		}
-		.myButton1:hover {
+		#myButton1:hover {
 			background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
 			background-color:#e9e9e9;
 		}
-		.myButton1:active {
-			position:relative;
-			top:1px;
-		}
+	
 		</style>
 
 </head>
@@ -865,11 +860,15 @@
 	<span class="title">추천 휴양지(맛집 카페??) 더 보기</span><br>
 	
 	<c:if test="${Lev eq 1}">
-		<div><input type="button" value="등록버튼이요!" onclick="location.href='adminshop?num=${list.vspotNum}'" class="myButton1"/></div>
+		<div>
+			<input type="button" value="등록버튼이요!" onclick="location.href='adminshop?num=${list.vspotNum}'" class="myButton1" id="myButton1"/>
+		</div>
 	</c:if>
 	
 	<c:if test="${Lev eq 4}">
-		<div><input type="button" value="등록버튼이요!" onclick="location.href='adminshopInsert?num=${list.vspotNum}'" class="myButton1"/></div>
+		<div>
+			<input type="button" value="등록버튼이요!" onclick="location.href='adminshopInsert?num=${list.vspotNum}'" class="myButton1" id="myButton1"/>
+		</div>
 	</c:if>
 	
 	 <c:set var="i" value="0"></c:set>
