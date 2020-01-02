@@ -36,7 +36,7 @@ public class SpotController {
 	public String vspot(SpotCommand spotCommand, HttpServletRequest request, HttpSession session ) {
 		
 		vspotService.vspotWrite(spotCommand, request, session);
-		return "Main/mainView";
+		return "redirect:/main";
 		
 	}
 	

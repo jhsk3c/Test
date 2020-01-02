@@ -11,6 +11,7 @@ public class ShopCommand {
 	String shopLocation2; 
 	String shopLocation3;
 	String shopClosed;
+	String shopCount;
 	String shopTime1;
 	String shopTime2;
 	String shopName;
@@ -53,6 +54,12 @@ public class ShopCommand {
 	}
 	public void setShopClosed(String shopClosed) {
 		this.shopClosed = shopClosed;
+	}
+	public String getShopCount() {
+		return shopCount;
+	}
+	public void setShopCount(String shopCount) {
+		this.shopCount = shopCount;
 	}
 	public String getShopTime1() {
 		return shopTime1;

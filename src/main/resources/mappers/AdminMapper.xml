@@ -96,7 +96,7 @@
 	</resultMap>
 	
 	<sql id="shopbasecolumn"> <!-- 상점 등록 컬럼 -->
-		shop_num, vspot_num, mem_id, shop_category, shop_loc, shop_location, shop_locationMap, shop_name, goods_original, goods_store, GOODS_CONTEXT, GOODS_INTRO, shop_approval, shop_closed, shop_time1, shop_time2, goods_date
+		shop_num, vspot_num, mem_id, shop_category, shop_loc, shop_location, shop_locationMap, shop_name, goods_original, goods_store, GOODS_CONTEXT, GOODS_INTRO, shop_approval, shop_closed, shop_count, shop_time1, shop_time2, goods_date
 	</sql>
 	
 	<resultMap type="shopDTO" id="shopbase"> <!-- 상점 등록 Map -->
@@ -114,8 +114,9 @@
 		<result column="GOODS_INTRO" jdbcType="VARCHAR" property="goodsIntro" />
 		<result column="SHOP_APPROVAL" jdbcType="VARCHAR" property="shopApproval" />
 		<result column="SHOP_CLOSED" jdbcType="VARCHAR" property="shopClosed" />
-		<result column="shop_time1" jdbcType="VARCHAR" property="shopTime1" />	
-		<result column="shop_time2" jdbcType="VARCHAR" property="shopTime2" />	
+		<result column="SHOP_COUNT" jdbcType="INTEGER" property="shopCount" />
+		<result column="SHOP_TIME1" jdbcType="VARCHAR" property="shopTime1" />	
+		<result column="SHOP_TIME2" jdbcType="VARCHAR" property="shopTime2" />	
 		<result column="GOODS_DATE" jdbcType="TIMESTAMP" property="goodsDate" />	
 	</resultMap>
 	
@@ -251,8 +252,9 @@
 	
 	<!-- 사용자..가 상점을 등록하는 것. -->
 	<insert id="shopInsert" parameterType="shopDTO"> 
-		insert into shop(<include refid="shopbasecolumn" />) values((select nvl(max(shop_num)+1,1) from shop), #{vspotNum}, #{memId}, #{shopCategory}, #{shopLoc}, #{shopLocation}, #{shopLocationMap}, #{shopName}, #{goodsOriginal}, #{goodsStore}, #{goodsContext}, #{goodsIntro}, '미승인', #{shopClosed}, #{shopTime1}, #{shopTime2}, sysdate)
+		insert into shop(<include refid="shopbasecolumn" />) values((select nvl(max(shop_num)+1,1) from shop), #{vspotNum}, #{memId}, #{shopCategory}, #{shopLoc}, #{shopLocation}, #{shopLocationMap}, #{shopName}, #{goodsOriginal}, #{goodsStore}, #{goodsContext}, #{goodsIntro}, '미승인', #{shopClosed}, #{shopCount}, #{shopTime1}, #{shopTime2}, sysdate)
 	</insert>
+	
 	
 	<!-- 승인 미승인 처리를 기다리는 상점 리스트 -->
 	<select id="list" parameterType="spageDTO" resultMap="shopbase">
@@ -303,7 +305,7 @@
 	
 	<!-- 관리자가 상점을 등록하는 것. -->
 	<insert id="adminshopInsert" parameterType="shopDTO"> 
-		insert into shop(<include refid="shopbasecolumn" />) values((select nvl(max(shop_num)+1,1) from shop), #{vspotNum}, #{memId}, #{shopCategory}, #{shopLoc}, #{shopLocation}, #{shopLocationMap}, #{shopName}, #{goodsOriginal}, #{goodsStore}, #{goodsContext}, #{goodsIntro}, '승인', #{shopClosed}, #{shopTime1}, #{shopTime2}, sysdate)
+		insert into shop(<include refid="shopbasecolumn" />) values((select nvl(max(shop_num)+1,1) from shop), #{vspotNum}, #{memId}, #{shopCategory}, #{shopLoc}, #{shopLocation}, #{shopLocationMap}, #{shopName}, #{goodsOriginal}, #{goodsStore}, #{goodsContext}, #{goodsIntro}, '승인', #{shopClosed}, #{shopCount}, #{shopTime1}, #{shopTime2}, sysdate)
 	</insert>
 	
 	<select id="ActivityCount" parameterType="String" resultType="int">	<!-- 승인 미승인 처리를 기다리는 활동 등록 개수 -->

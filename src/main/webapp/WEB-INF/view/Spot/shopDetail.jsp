@@ -102,13 +102,27 @@
 			    changeMonth: true,
 			    changeYear: true,
 			    closeText: '닫기',
-			    maxDate: 0, 
-			    yearSuffix: '년'
-			  });
+			    minDate: 0, 
+			    yearSuffix: '년',
+				beforeShowDay: function(date){
+
+					var day = date.getDay();
+
+					return [(day != ${list.shopCount})];
+
+				}	
+			    
+			  });	
 			});
 	</script> 
 
 <title>휴양지 상세보기(리스트에서 클릭 시)</title>
+
+<style>
+.ui-datepicker{ font-size: 12px; width: 300px; }
+.ui-datepicker select.ui-datepicker-month{ width:30%; font-size: 12px; }
+.ui-datepicker select.ui-datepicker-year{ width:40%; font-size: 12px; }
+</style>
 
 	<style type="text/css">
 		.tq{
@@ -535,7 +549,7 @@
 		}
 		
 		hr {
-			border-top: 0.3px solid #bbb;
+			border-top: 1px solid #bbb;
 			width: 48.2%;
 			position: relative;
 			left: -7.9%;
@@ -633,10 +647,6 @@
 			background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
 			background-color:#e9e9e9;
 		}
-		.myButton:active {
-			position:relative;
-			top:1px;
-		}
 		
 		.wrap {
 		  width: 100%;
@@ -650,14 +660,130 @@
 		  top: 30px;
 		  width: 400px;
 		  height: 400px;
-		  background: blue;
+		  background: white;
 		  z-index: 1;
+		 border:0.3px solid #bbb;
 		}
+		
+		#mainselection select {
+		    width: 75.7%;
+			padding: 16px 20px;
+			border: none;
+			border-radius: 4px;
+			background-color: #f1f1f1;
+			position: absolute; 
+			top : 265px; 
+			left: 7%
+		}
+		
+		input[type=text] {
+		  width: 74%;
+		  padding: 10px 16px;
+		  margin: 8px 0;
+		  box-sizing: border-box;
+		}
+		
+		.myButton1 {
+			box-shadow:inset 0px 1px 18px 0px #ffffff;
+			background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+			background-color:#f9f9f9;
+			border-radius:12px;
+			border:1px solid #dcdcdc;
+			display:inline-block;
+			cursor:pointer;
+			color:#666666;
+			font-family:Arial;
+			font-size:15px;
+			font-weight:bold;
+			padding:9px 24px;
+			text-decoration:none;
+			text-shadow:0px 1px 0px #ffffff;
+			position: absolute;
+			top : -36px;
+			left: 28%;
+			width: 350px;
+			
+		}
+		
+		.myButton1:hover {
+			background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+			background-color:#e9e9e9;
+		}
+		
+		.ui-timepicker { font-size: 12px; width:145px; width: -70%;}
 		</style>
 		
-		<style>
-			.ui-timepicker { font-size: 12px; width: 125px;}
+		<style> /* 예약 관련 css Test */
+			
+			.atq {
+				overflow-wrap: break-word !important;
+			    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+			    font-size: 18px !important;
+			    font-weight: 400 !important;
+			    line-height: 1.44444em !important;
+			    color: inherit !important;
+			    margin: 0px !important;
+			    position: relative;
+				left: 4.5%;
+				top: 8px;
+			}
+			
+			.rtq {
+				overflow-wrap: break-word !important;
+			    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+			    font-size: 18px !important;
+			    font-weight: 400 !important;
+			    line-height: 1.44444em !important;
+			    color: rgb(72, 72, 72) !important;
+			    margin: 0px !important;
+			    position: relative;
+				left: 5.2%;
+				top: 8px;
+			}
+			
+			.ted1 {
+				overflow-wrap: break-word !important;
+			    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+			    font-size: 12px !important;
+			    font-weight: 600 !important;
+			    line-height: 1.33333em !important;
+			    color: rgb(72, 72, 72) !important;
+			    margin: 0px !important;
+			    position: relative;
+				left: 5.2%;
+				top: 40px;
+			
+			}
+			
+			.ted2 {
+				overflow-wrap: break-word !important;
+			    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+			    font-size: 12px !important;
+			    font-weight: 600 !important;
+			    line-height: 1.33333em !important;
+			    color: rgb(72, 72, 72) !important;
+			    margin: 0px !important;
+			    position: relative;
+				left: 5.2%;
+				top: 110px;
+			
+			}
+			
+			.ted3 {
+				overflow-wrap: break-word !important;
+			    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+			    font-size: 12px !important;
+			    font-weight: 600 !important;
+			    line-height: 1.33333em !important;
+			    color: rgb(72, 72, 72) !important;
+			    margin: 0px !important;
+			    position: relative;
+				left: 5.2%;
+				top: 180px;
+			
+			}
 		</style>   
+
 
 </head>
 <body>
@@ -707,7 +833,7 @@
 				<div style="width: 25%; height: 275px; position:absolute; left: 75%; top: 354px;" class="zoom_image">
 					<img src="Spot/upload/${store1}" alt="X" width="100%" height="100%"  />
 				</div>
-				<input class="but" type="button" value="사진 보기" onclick="location.href='shopListDetailTwo?num=${list.shopNum}'"/>
+				<input class="but" type="button" value="사진 보기" onclick="location.href='shopListDetailTwo?num=${list.shopNum}&num2=${list.vspotNum }'"/>
 			
 			</c:if>
 		</c:forEach>
@@ -736,14 +862,36 @@ $(function() {
 	<div style="position: relative; left: 78%; top: -12px;">
 		<div class="wrap">
 		  <div class="ele2"> <!-- css 주기  -->
+		 	<img src="Spot/upload/star.png" alt="x" width="18" height="18" style="position: relative; left: 5%; top: 5px;" />
+			<span class="atq"> ${maxAvg}</span> <span style="filter:alpha(opacity=1); opacity:0.3; position: relative; left: 4.2%; top: 6px;">|</span> <span class="rtq">${count } 후기</span>
+			<hr style="border-top: 1px solid  #bbb; position: absolute; width :88%; top : 30px; left: 4.5%;">
 		  	<form:form action="shopReservationPro" commandName="shopReservationCommand" method="post" >
 		  		<input type="hidden" name="num" value="${list.shopNum }"/>
 		  		<input type="hidden" name="num2" value="${list.vspotNum }"/>
-		  		날짜 : <input type="text" name="useDate"id="useDate"/>
-		  		시간 : <input type="text" name="useTime" id="useTime" class="timepicker" />
-		  		인원 : <input type="text" name="peopleNum" id="peopleNum"/>
-		    
-		    	<input type="submit" value="예약하기"  />
+		  		<div class="ted1">예약 날짜</div> 
+		  		<div style="position: absolute; width:100%; top : 76px; left: 7%;"><input type="text" name="useDate" id="useDate" value="년/월/일"/></div>
+		  		
+		  		<div class="ted2">예약 시간</div>
+		  		<div style="position: absolute; width:100%; top : 165px; left: 7%;"><input type="text" name="useTime" id="useTime" class="timepicker" value="예약 시간" /></div>
+		  		
+		  		<div class="ted3">예약 인원</div>
+			  		<div id="mainselection" >
+					  <select id="peopleNum" name="peopleNum">
+					    <option value="0">인원</option>
+					    <option value="1"> 게스트 1명 </option>
+					    <option value="2"> 게스트 2명 </option>
+					    <option value="3"> 게스트 3명 </option>
+					    <option value="4"> 게스트 4명 </option>
+					    <option value="5"> 게스트 5명 </option>
+					    <option value="6"> 게스트 6명 </option>
+					    <option value="7"> 게스트 7명 </option>
+					    <option value="8"> 게스트 8명 </option>
+					    <option value="9"> 게스트 9명 </option>
+					    <option value="10">10명 이상</option>
+					  </select>
+					</div>
+		    	
+		    	<div style="position: absolute; width:100%; top : 380px; left: -22%;" ><input type="submit" value="예약하기" class="myButton1"/></div>
 		    </form:form>
 		  </div>
 		</div>
@@ -753,6 +901,8 @@ $(function() {
 	<div style="position: relative; left: 0%; top: -1530px;">
 	<span class="title">${list.shopName}</span>
 	<div class="qnrk">${list.shopLoc}</div><br>
+	<div class="qnrk">영업 시간 : ${list.shopTime1} ~ ${list.shopTime2}</div><br>
+	<div class="qnrk">휴무일 : ${list.shopClosed}</div><br>
 	<!--한줄소개 들어가야함!!!!!!!1 css 먹이자!! -->
 	<div class="oness">${list.goodsIntro}</div>
 	<center><hr></center><br/>
@@ -763,18 +913,18 @@ $(function() {
 	
 	
 	<script type="text/javascript">
-		function hello() {
-			if(${Lev == 1}) {
+		function Teddy() {
+			if(${sretiondto.shopLev == 1}) {
 				location.href='shopReview?num=${list.shopNum}';
 			} else {
-				alert("로그인이 필요합니다.");
+				alert("먼저 예약을 통해 체험 후 가능합니다..");
 			}		
 		}
 	</script>
 	
 	<span class="title">후기</span><br>
 	<div>
-		<input type="button" name="Review" id="Review" value="후기 작성하기" onclick="hello()" class="myButton"/>
+		<input type="button" name="Review" id="Review" value="후기 작성하기" onclick="Teddy()" class="myButton"/>
 	</div>
 	
 	<img src="Spot/upload/star.png" alt="x" width="18" height="18" style="position: relative; left: 18%; top: -12px;">
@@ -872,7 +1022,8 @@ $(function() {
 	
 	<!-- 그럼 해야할게 저걸 누르면 상세보기도 가야하고 등록하면 이렇게 top이 2개 뜨는것 나머지 등록하고 top 뜨는거 그런거 정리-->
 		
-	<span class="title">추천 휴양지(맛집 카페??) 더 보기</span><br>
+	<span class="title">추천 맛집/카페 더 보기</span><br> 
+	<!-- 일단 사진 안나와요 수조ㅓㅇ.. -->
 
 	<div style="position: relative; left: 0%; top: 20px;">
 	 <c:set var="i" value="0"></c:set>
@@ -882,7 +1033,7 @@ $(function() {
 			<c:if test="${i < 7}">
 				<c:forTokens items="${shop1.goodsStore}" delims="-" var="store" end="0">
 					<div class="swiper-slide">						
-						 <a href="shopDetail?num=${shop1.shopNum}&page=${page}" style=" text-decoration:none; color:#000000; ">	
+						 <a href="shopDetail?num=${shop1.shopNum}&page=${page}&num2=${shop1.vspotNum}" style=" text-decoration:none; color:#000000; ">	
 						 	<span class="shopna">${shop1.shopName }</span>
 						 	<span class="shoplo">${shop1.shopLoc }</span>
 							<img src="Spot/upload/${store}" alt="X"  width="1000" height="200">	

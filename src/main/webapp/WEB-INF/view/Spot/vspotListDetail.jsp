@@ -857,7 +857,7 @@
 	
 	<!-- 그럼 해야할게 저걸 누르면 상세보기도 가야하고 등록하면 이렇게 top이 2개 뜨는것 나머지 등록하고 top 뜨는거 그런거 정리-->
 		
-	<span class="title">추천 휴양지(맛집 카페??) 더 보기</span><br>
+	<span class="title">추천 맛집/카페 더 보기</span><br>
 	
 	<c:if test="${Lev eq 1}">
 		<div>
@@ -878,9 +878,9 @@
 			<c:if test="${i < 7}">
 				<c:forTokens items="${shop1.goodsStore}" delims="-" var="store" end="0">
 					<div class="swiper-slide">						
-						 <a href="shopDetail?num=${shop1.shopNum}&page=${page}" style=" text-decoration:none; color:#000000; ">	
+						 <a href="shopDetail?num=${shop1.shopNum}&page=${page}&num2=${shop1.vspotNum}" style=" text-decoration:none; color:#000000; ">	
 						 	<span class="shopna">${shop1.shopName }</span>
-						 	<span class="shoplo">${shop1.shopLoc }</span>
+						 	<span class="shoplo">${shop1.shopLoc } (${shop1.shopTime1} ~ ${shop1.shopTime2})</span>
 							<img src="Spot/upload/${store}" alt="X"  width="1000" height="200">	
 						 </a>
 					</div>

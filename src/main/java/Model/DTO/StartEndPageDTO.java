@@ -5,6 +5,15 @@ public class StartEndPageDTO { //페이징을 위한 DTO예요!!
 	Long startRow;
 	Long endRow;
 	Integer su1;
+	String abc;
+	
+	public StartEndPageDTO(Long startRow, Long endRow, String abc) {
+		super();
+		this.startRow = startRow;
+		this.endRow = endRow;
+		this.abc = abc;
+
+	}
 	
 	public StartEndPageDTO(Long startRow, Long endRow) {
 		super();
