@@ -30,8 +30,8 @@
 						<th>${list.goodsDTO.goodsName }</th>
 						<th>${list.goodsDTO.goodsPrice }원</th>
 						<th>${list.cartDTO.qty }개</th>
-						<th>다시</th>
-						<th>?</th>
+						<th>${list.goodsDTO.goodsPrice * list.cartDTO.qty}원</th>
+						<th><input type="button" value="삭제"></th>
 					</tr>
 					</c:forEach>
 				</table>

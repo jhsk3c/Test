@@ -41,9 +41,9 @@
 	        	<p><b><%=memName %></b>님</p>
 	        	<p>환영합니다!</p>
 	        </div>
-          <a href="#" class="list-group-item">Category 1</a>
-          <a href="#" class="list-group-item">Category 2</a>
-          <a href="#" class="list-group-item">Category 3</a>
+          <a href="cartList" class="list-group-item">장바구니</a>
+          <a href="#" class="list-group-item">주문목록</a>
+          <a href="#" class="list-group-item">결제목록</a>
         </div>
 
       </div>
