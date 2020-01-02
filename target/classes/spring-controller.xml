@@ -10,7 +10,6 @@
 <context:annotation-config />
 
 <bean class="Controller.Main.MainController" />
-<bean class="Controller.Car.CarController" />
 <bean class="Controller.Member.MemberController" />
 <bean class="Controller.Member.ComMemberController" />
 <bean class="Controller.Login.LoginController" />
@@ -20,6 +19,13 @@
 <bean class="Controller.ComManagement.memVspotController" />
 <bean class="Controller.Spot.VspotListDetailController" />
 <bean class="Controller.Spot.vspotReviewController" />
+<bean class="Controller.ComManagement.AdminSpotController" />
+<bean class="Controller.ComManagement.AdminShopController" />
+<bean class="Controller.ComManagement.AdminShopMnanaController" />
+<bean class="Controller.Shop.ShopDetailController" />
+<bean class="Controller.Shop.ShopReviewController" />
+<bean class="Controller.Shop.ShopListDetailController" />
+
 
 
 </beans>

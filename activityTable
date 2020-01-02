@@ -1,0 +1,75 @@
+
+--활동
+CREATE TABLE activity (
+	activity_num varchar2(50),			--num
+	product_num varchar2(50),			--productNum
+	store_num varchar2(50),
+	mem_num     VARCHAR2(10) NOT NULL,
+	activity_lev number,				--레벨
+	activity_name varchar2(50),			--활동 이름
+	activity_start_date Timestamp,		--활동 시작날짜
+	activity_end_date Timestamp,		--활동 종료 날짜
+	recruit_start_date Timestamp,		--활동 모집 시작 날짜
+	recruit_end_date Timestamp,			--활동 모집 종료날짜
+	recruit_People NUMBER,				--활동 모입 인원
+	activity_Current_People NUMBER,		--현재 인원
+	activity_Product varchar2(10),		--활동 사용 물품
+	activity_state varchar2(20),		--활동 상태
+	activity_text VARCHAR2(3000),		--활동 소개
+	limit_age varchar2(100),			--활동 나이 제한
+	acivity_cost NUMBER,				--활동 가격
+	original_filename varchar2(1000), 	--활동 파일
+	store_filename varchar2(1000),		--활동 파일2
+	sort_of_activity varchar2(100),		--활동 종류
+	which_product varchar2(100),		--활동 사용 물품 종류
+	activity_city varchar2(20)			--지역
+);
+
+
+
+
+
+
+--참여활동
+CREATE TABLE join_activity (
+	activity_num  varchar2(50) NOT null,		--fk
+	mem_num VARCHAR2(10) NOT NULL,				--fk
+	join_activity_num varchar(15) NOT NULL,		--pk
+	join_activity_lev NUMBER,			--레벨  // 1: 참가신청(결제승인 전), 2: 결제 이후(참가 전), 3:참여 이후(활동이 비활성화 된 이후)
+	whether_payment varchar2(10),		--결제 여부//'Y', 'N' 여부로 받기
+	
+);
+
+
+
+
+
+--활동 상점 등록
+CREATE TABLE ACTIVITY_STORE(
+			store_num VARCHAR2(50) NOT null,		--상점 고유번호
+			store_name VARCHAR2(20),
+			store_loc1 VARCHAR2(10),	--상점 지역
+			store_loc2 VARCHAR2(100),	--상점 주소
+			store_tel VARCHAR2(30),		--상점 전화번호		
+			store_MainProduct varchar2(20),
+			store_business_num varchar2(30),
+			store_Owner varchar(20)
+);
+
+
+
+
+
+
+
+--활동 물품 등록
+CREATE TABLE ACTIVITY_PRODUCT(
+			store_num VARCHAR2(50) NOT NULL, 
+			product_num VARCHAR2(50) NOT NULL,	--물품 번호
+			product_name VARCHAR(50),			--물품 이름
+			product_option VARCHAR2(1000),		--물품 종류
+			product_price NUMBER,				--물품 가격
+			product_content VARCHAR2(3000),		--물품 설명
+			original_filename VARCHAR2(1000),	--물품 사진 문서 첫 이름
+			store_filename VARCHAR2(1000)		--물품 컴퓨터식 이름
+);

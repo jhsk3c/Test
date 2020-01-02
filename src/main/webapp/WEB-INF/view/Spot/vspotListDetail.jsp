@@ -438,6 +438,20 @@
 			left: 15.5%;
 			top:-325px;
 		}
+		
+		
+		#swiper-button-next1 {
+			position: relative;
+			left: 89%;
+			top:-300px;
+		}
+		#swiper-button-prev1 {
+			position: relative;
+			left: 15.5%;
+			top:-325px;
+		}
+		
+		
 		.rotq {
 			overflow-wrap: break-word !important;
 		    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
@@ -457,6 +471,30 @@
 		}
 		
 		.rotn {
+			position: absolute;
+			left: 0px;
+			top: 340px;
+		}
+		
+		.shopna {
+			overflow-wrap: break-word !important;
+		    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+		    font-size: 16px !important;
+		    font-weight: 800 !important;
+		    line-height: 1.375em !important;
+		    text-overflow: ellipsis !important;
+		    max-height: 4.125em !important;
+		    -webkit-line-clamp: 3 !important;
+		    display: -webkit-box !important;
+		    -webkit-box-orient: vertical !important;
+		    margin: 0px !important;
+		    overflow: hidden !important;
+			position: absolute;
+			left: 0px;
+			top: 320px;
+		}
+		
+		.shoplo {
 			position: absolute;
 			left: 0px;
 			top: 340px;
@@ -536,13 +574,73 @@
 		    position: relative;
 			left: 18%;
 		}
+		.myButton {
+			box-shadow:inset 0px 1px 18px 0px #ffffff;
+			background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+			background-color:#f9f9f9;
+			border-radius:12px;
+			border:1px solid #dcdcdc;
+			display:inline-block;
+			cursor:pointer;
+			color:#666666;
+			font-family:Arial;
+			font-size:15px;
+			font-weight:bold;
+			padding:9px 24px;
+			text-decoration:none;
+			text-shadow:0px 1px 0px #ffffff;
+			position: relative;
+			top : -36px;
+			left: 28%;
+			
+		}
+		.myButton:hover {
+			background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+			background-color:#e9e9e9;
+		}
+	
 		
+		
+		#myButton1 {
+			box-shadow:inset 0px 1px 18px 0px #ffffff;
+			background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+			background-color:#f9f9f9;
+			border-radius:12px;
+			border:1px solid #dcdcdc;
+			display:inline-block;
+			cursor:pointer;
+			color:#666666;
+			font-family:Arial;
+			font-size:15px;
+			font-weight:bold;
+			padding:9px 24px;
+			text-decoration:none;
+			text-shadow:0px 1px 0px #ffffff;
+			position: relative;
+			top : -40px;
+			left: 52%;
+			z-index: 5;
+			
+		}
+		#myButton1:hover {
+			background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+			background-color:#e9e9e9;
+		}
+	
 		</style>
 
 </head>
 <body>
- 	
-	<jsp:include page="../Main/top.jsp" />
+ 	<c:if test="${empty authInfo}">
+		<jsp:include page="../Main/top.jsp" />
+	</c:if>	
+	<c:if test="${Lev eq 1}">
+		<jsp:include page="../Main/memtop.jsp" />
+	</c:if> 
+	<c:if test="${Lev eq 4}">
+		<jsp:include page="../Main/admintop.jsp" />
+	</c:if> 
+	
 	
 	<div style="width: 100%; height: 550px;">
 	 <c:if test="${fn:length(store) >= 5}">
@@ -608,8 +706,20 @@
 	<center><hr></center><br/>
 	
 	
+	<script type="text/javascript">
+		function hello() {
+			if(${Lev == 1}) {
+				location.href='vspotReview?num=${list.vspotNum}';
+			} else {
+				alert("로그인이 필요합니다.");
+			}		
+		}
+	</script>
+	
 	<span class="title">후기</span><br>
-	<div><input type="button" name="Review" id="Review" value="후기 작성하기" onclick="location.href='vspotReview?num=${list.vspotNum}'" /></div>
+	<div>
+		<input type="button" name="Review" id="Review" value="후기 작성하기" onclick="hello()" class="myButton" />
+	</div>
 	<img src="Spot/upload/star.png" alt="x" width="18" height="18" style="position: relative; left: 18%; top: -12px;">
 	<span class="avg"> ${maxAvg}</span> <span style="filter:alpha(opacity=1); opacity:0.3; position: relative; left: 18.6%; top: -12px;">|</span> <span class="revi">${count } 후기</span><center><hr></center>
 	
@@ -741,7 +851,68 @@
 		});
 		
 	</script>
+	
+	
+	<div style="position: relative; left: 0%; top: -130px;">
+	
+	<!-- 그럼 해야할게 저걸 누르면 상세보기도 가야하고 등록하면 이렇게 top이 2개 뜨는것 나머지 등록하고 top 뜨는거 그런거 정리-->
+		
+	<span class="title">추천 휴양지(맛집 카페??) 더 보기</span><br>
+	
+	<c:if test="${Lev eq 1}">
+		<div>
+			<input type="button" value="등록버튼이요!" onclick="location.href='adminshop?num=${list.vspotNum}'" class="myButton1" id="myButton1"/>
+		</div>
+	</c:if>
+	
+	<c:if test="${Lev eq 4}">
+		<div>
+			<input type="button" value="등록버튼이요!" onclick="location.href='adminshopInsert?num=${list.vspotNum}'" class="myButton1" id="myButton1"/>
+		</div>
+	</c:if>
+	
+	 <c:set var="i" value="0"></c:set>
+	<div class="swiper-container"  id="swiper-container1">
+		<div class="swiper-wrapper">
+			<c:forEach var="shop1" items="${shop}" varStatus="status">
+			<c:if test="${i < 7}">
+				<c:forTokens items="${shop1.goodsStore}" delims="-" var="store" end="0">
+					<div class="swiper-slide">						
+						 <a href="shopDetail?num=${shop1.shopNum}&page=${page}" style=" text-decoration:none; color:#000000; ">	
+						 	<span class="shopna">${shop1.shopName }</span>
+						 	<span class="shoplo">${shop1.shopLoc }</span>
+							<img src="Spot/upload/${store}" alt="X"  width="1000" height="200">	
+						 </a>
+					</div>
+				</c:forTokens>
+				<c:set var="i" value="${i+1}"></c:set> 
+			</c:if>
+			</c:forEach>	
+		</div>
 	</div>
+	
+		<div class="swiper-button-next" id="swiper-button-next1"></div>
+		<div class="swiper-button-prev" id="swiper-button-prev1"></div>	
+		<script>
+		
+			new Swiper('#swiper-container1', {
+				
+				slidesPerView : 3, 
+				spaceBetween : 30, 
+				slidesPerGroup : 1, 
+				
+				loopFillGroupWithBlank : true,
+	
+				navigation : { 
+					nextEl : '#swiper-button-next1', 
+					prevEl : '#swiper-button-prev1', 
+				},
+			});
+			
+		</script>
+	</div>
+	
+</div>
 	
 </body>
 </html>

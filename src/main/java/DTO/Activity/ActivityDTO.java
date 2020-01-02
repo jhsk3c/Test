@@ -15,15 +15,37 @@ public class ActivityDTO implements Serializable{
 	Timestamp recruitStartDate;
 	Timestamp recruitEndDate;
 	Integer recruitPeople;
-	Integer actiCurrentPeople;
-	String actiProduct;
+	Integer activityCurrentPeople;
+	String activityProduct;
 	String actiState;
 	String activityText;
 	String limitAge;
-	Integer actiCost;
+	Integer activityCost;
 	String originalFilename; 
 	String storeFilename;
 	String activityLev;
+	String sortOfActivity;		//활동 종류 1차에 받을 때만
+	String whichProduct;
+	String activityCity;
+	
+	public String getActivityCity() {
+		return activityCity;
+	}
+	public void setActivityCity(String activityCity) {
+		this.activityCity = activityCity;
+	}
+	public String getWhichProduct() {
+		return whichProduct;
+	}
+	public void setWhichProduct(String whichProduct) {
+		this.whichProduct = whichProduct;
+	}
+	public String getSortOfActivity() {
+		return sortOfActivity;
+	}
+	public void setSortOfActivity(String sortOfActivity) {
+		this.sortOfActivity = sortOfActivity;
+	}
 	public String getActivityNum() {
 		return activityNum;
 	}
@@ -84,17 +106,17 @@ public class ActivityDTO implements Serializable{
 	public void setRecruitPeople(Integer recruitPeople) {
 		this.recruitPeople = recruitPeople;
 	}
-	public Integer getActiCurrentPeople() {
-		return actiCurrentPeople;
+	public Integer getActivityCurrentPeople() {
+		return activityCurrentPeople;
 	}
-	public void setActiCurrentPeople(Integer actiCurrentPeople) {
-		this.actiCurrentPeople = actiCurrentPeople;
+	public void setActivityCurrentPeople(Integer activityCurrentPeople) {
+		this.activityCurrentPeople = activityCurrentPeople;
 	}
-	public String getActiProduct() {
-		return actiProduct;
+	public String getActivityProduct() {
+		return activityProduct;
 	}
-	public void setActiProduct(String actiProduct) {
-		this.actiProduct = actiProduct;
+	public void setActivityProduct(String activityProduct) {
+		this.activityProduct = activityProduct;
 	}
 	public String getActiState() {
 		return actiState;
@@ -114,11 +136,11 @@ public class ActivityDTO implements Serializable{
 	public void setLimitAge(String limitAge) {
 		this.limitAge = limitAge;
 	}
-	public Integer getActiCost() {
-		return actiCost;
+	public Integer getActivityCost() {
+		return activityCost;
 	}
-	public void setActiCost(Integer actiCost) {
-		this.actiCost = actiCost;
+	public void setActivityCost(Integer activityCost) {
+		this.activityCost = activityCost;
 	}
 	public String getOriginalFilename() {
 		return originalFilename;
@@ -138,6 +160,8 @@ public class ActivityDTO implements Serializable{
 	public void setActivityLev(String activityLev) {
 		this.activityLev = activityLev;
 	}
+	
+	
 	
 	
 	

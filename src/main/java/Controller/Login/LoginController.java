@@ -52,7 +52,7 @@ public class LoginController {
 
 
 		 
-		return "Main/mainView";
+		return "redirect:/main";
 	}
 
 	
@@ -90,7 +90,7 @@ public class LoginController {
 	 
 	 
 	 
-	 return "Main/mainView";
+	 return "redirect:/main";
 	}
 	
 	

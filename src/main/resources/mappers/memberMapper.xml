@@ -45,8 +45,43 @@
 		<result column="APPROVAL_DATE" jdbcType="TIMESTAMP" property="approvalDate" />	
 		<result column="COM_DATE" jdbcType="TIMESTAMP" property="comDate" />
 		<result column="COM_LEV" jdbcType="INTEGER" property="comLev" />
-	
 	</resultMap>
+	
+	
+<!-- 활동 -->
+	 <resultMap type="actiDTO" id="baseActivity">
+		<id column="activity_num" jdbcType="VARCHAR" property="activityNum"/>
+		<result column="product_num" jdbcType="VARCHAR" property="productNum"/>
+		<result column="store_num" jdbcType = "VARCHAR" property="storeNum"/>
+		<result column="mem_num" jdbcType="VARCHAR" property="memNum"/>
+		<result column="activity_lev" jdbcType="INTEGER" property="activityLev"/>
+		<result column="activity_name" jdbcType="VARCHAR" property="activityName"/>
+		<result column="activity_start_date" jdbcType="TIMESTAMP" property="activityStartDate"/>
+		<result column="activity_end_date" jdbcType="TIMESTAMP" property="activityEndDate"/>
+		<result column="recruit_start_date" jdbcType="TIMESTAMP" property="recruitStartDate"/>
+		<result column="recruit_end_date" jdbcType="TIMESTAMP" property="recruitEndDate"/>
+		<result column="recruit_People" jdbcType="INTEGER" property="recruitPeople"/>
+		<result column="activity_Current_People" jdbcType="INTEGER" property="activityCurrentPeople"/>
+		<result column="activity_Product" jdbcType="VARCHAR" property="activityProduct"/>
+		<result column="activity_state" jdbcType="VARCHAR" property="actiState"/>
+		<result column="activity_text" jdbcType="VARCHAR" property="activityText"/>
+		<result column="limit_age" jdbcType="VARCHAR" property="limitAge"/>
+		<result column="acivity_cost" jdbcType="VARCHAR" property="activityCost"/>
+		<result column="original_filename" jdbcType="VARCHAR" property="originalFilename"/>
+		<result column="store_filename" jdbcType="VARCHAR" property="storeFilename"/>
+		<result column="sort_of_activity" jdbcType="VARCHAR" property="sortOfActivity" />
+		<result column="which_product" jdbcType="VARCHAR" property="whichProduct" />
+		<result column="activity_city" jdbcType="VARCHAR" property="activityCity" />
+	</resultMap> 
+<!-- 활동 -->
+ 	<sql id="basecolumnofActi"> 
+		mem_num, activity_name, activity_lev, activity_start_date, activity_end_date, 
+			recruit_start_date, recruit_end_date, recruit_people, activity_text, 
+			limit_age, original_filename, store_filename, activity_Product, acivity_cost, sort_of_activity, which_product, activity_city
+	</sql>
+	
+	
+	
 	
 	
 	
@@ -93,4 +128,6 @@
 		from company_member 
 		where com_id = #{comId}
 	</select>
+	
+	
 </mapper>

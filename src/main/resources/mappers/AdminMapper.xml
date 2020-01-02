@@ -24,7 +24,7 @@
 		<result column="MEM_DATE" jdbcType="TIMESTAMP" property="memDate" />
 		<result column="MEM_LEV" jdbcType="INTEGER" property="memLev" />
 	</resultMap>	
-	
+
 	
 	<sql id="combasecolumn"> <!-- 기업회원의 컬럼들 -->
 		com_num, com_id, com_pw, com_rep_name, license_number, com_name, com_addr, contact_phone_num, contact_email, com_approval, approval_date, com_date, com_lev
@@ -69,6 +69,98 @@
 		<result column="VSPOT_DATE" jdbcType="TIMESTAMP" property="vspotDate" />	
 	</resultMap>
 	
+	<!-- 활동 등록 컬럼  -->
+	<resultMap type="actiDTO" id="baseActivity">
+		<id column="activity_num" jdbcType="VARCHAR" property="activityNum"/>
+		<result column="product_num" jdbcType="VARCHAR" property="productNum"/>
+		<result column="store_num" jdbcType = "VARCHAR" property="storeNum"/>
+		<result column="mem_num" jdbcType="VARCHAR" property="memNum"/>
+		<result column="activity_lev" jdbcType="INTEGER" property="activityLev"/>
+		<result column="activity_name" jdbcType="VARCHAR" property="activityName"/>		
+		<result column="activity_start_date" jdbcType="TIMESTAMP" property="activityStartDate"/>
+		<result column="activity_end_date" jdbcType="TIMESTAMP" property="activityEndDate"/>
+		<result column="recruit_start_date" jdbcType="TIMESTAMP" property="recruitStartDate"/>
+		<result column="recruit_end_date" jdbcType="TIMESTAMP" property="recruitEndDate"/>		
+		<result column="recruit_People" jdbcType="INTEGER" property="recruitPeople"/>
+		<result column="activity_Current_People" jdbcType="INTEGER" property="activityCurrentPeople"/>
+		<result column="activity_Product" jdbcType="VARCHAR" property="activityProduct"/>
+		<result column="activity_state" jdbcType="VARCHAR" property="actiState"/>
+		<result column="activity_text" jdbcType="VARCHAR" property="activityText"/>
+		<result column="limit_age" jdbcType="VARCHAR" property="limitAge" />
+		<result column="acivity_cost" jdbcType="INTEGER" property="activityCost" />
+		<result column="original_filename" jdbcType="VARCHAR" property="originalFilename" />
+		<result column="store_filename" jdbcType="VARCHAR" property="storeFilename" />
+		<result column="sort_of_activity" jdbcType="VARCHAR" property="sortOfActivity" />
+		<result column="which_product" jdbcType="VARCHAR" property="whichProduct" />
+		<result column="activity_city" jdbcType="VARCHAR" property="activityCity" />
+	</resultMap>
+	
+	<sql id="shopbasecolumn"> <!-- 상점 등록 컬럼 -->
+		shop_num, vspot_num, mem_id, shop_category, shop_loc, shop_location, shop_locationMap, shop_name, goods_original, goods_store, GOODS_CONTEXT, GOODS_INTRO, shop_approval, shop_closed, shop_time1, shop_time2, goods_date
+	</sql>
+	
+	<resultMap type="shopDTO" id="shopbase"> <!-- 상점 등록 Map -->
+		<id column="SHOP_NUM" jdbcType="INTEGER" property="shopNum" />
+		<result column="VSPOT_NUM" jdbcType="INTEGER" property="vspotNum" />
+		<result column="MEM_ID" jdbcType="VARCHAR" property="memId" />
+		<result column="SHOP_CATEGORY" jdbcType="VARCHAR" property="shopCategory" />
+		<result column="SHOP_LOC" jdbcType="VARCHAR" property="shopLoc" />			
+		<result column="SHOP_LOCATION" jdbcType="VARCHAR" property="shopLocation"/>		
+		<result column="SHOP_LOCATIONMAP" jdbcType="VARCHAR" property="shopLocationMap" />
+		<result column="SHOP_NAME" jdbcType="VARCHAR" property="shopName" />		
+		<result column="GOODS_ORIGINAL" jdbcType="VARCHAR" property="goodsOriginal" />
+		<result column="GOODS_STORE" jdbcType="VARCHAR" property="goodsStore" />
+		<result column="GOODS_CONTEXT" jdbcType="VARCHAR" property="goodsContext" />
+		<result column="GOODS_INTRO" jdbcType="VARCHAR" property="goodsIntro" />
+		<result column="SHOP_APPROVAL" jdbcType="VARCHAR" property="shopApproval" />
+		<result column="SHOP_CLOSED" jdbcType="VARCHAR" property="shopClosed" />
+		<result column="shop_time1" jdbcType="VARCHAR" property="shopTime1" />	
+		<result column="shop_time2" jdbcType="VARCHAR" property="shopTime2" />	
+		<result column="GOODS_DATE" jdbcType="TIMESTAMP" property="goodsDate" />	
+	</resultMap>
+	
+
+
+	<sql id="baseclumnOfActivity">
+		activity_num,  mem_num, activity_name, activity_lev, activity_start_date, activity_end_date, 
+			recruit_start_date, recruit_end_date, recruit_people, activity_text, 
+			limit_age, original_filename, store_filename, activity_Product, acivity_cost, sort_of_activity, which_product, activity_city
+	</sql>
+
+	
+	<!-- 활동 상점 -->
+	<resultMap type="StoreDTO" id="baseStore">
+		<id column="store_num" jdbcType="VARCHAR" property="storeNum" />
+		<result column="store_loc1" jdbcType="VARCHAR" property="storeLoc1" />
+		<result column="store_name" jdbcType="VARCHAR" property="storeName" />
+		<result column="store_loc2" jdbcType="VARCHAR" property="storeLoc2" />
+		<result column="store_tel" jdbcType="VARCHAR" property="storeTel" />
+		<result column="Store_MainProduct" jdbcType="VARCHAR" property="StoreMainProduct" />
+		<result column="store_business_num" jdbcType="VARCHAR" property="storeBusinessNum" />
+		<result column="store_Owner" jdbcType="VARCHAR" property="storeOwner" />
+	</resultMap>
+	
+	<!-- 활동 상점 등록 -->
+	<sql id="actiStore">
+			store_num, store_loc1, store_name, store_loc2, store_tel, Store_MainProduct, store_business_num, store_Owner
+	</sql>
+		
+	<!-- 물품 -->
+	<resultMap type="ProductDTO" id="baseProduct">
+		<id column="product_num" jdbcType="VARCHAR" property="productNum" />
+		<result column="store_num" jdbcType="VARCHAR" property="storeNum" />
+		<result column="product_name" jdbcType="VARCHAR" property="productName" />
+		<result column="product_price" jdbcType="INTEGER" property="productPrice" />
+		<result column="product_option" jdbcType="VARCHAR" property="productOption" />
+		<result column="product_content" jdbcType="VARCHAR" property="productContent" />
+		<result column="original_filename" jdbcType="VARCHAR" property="originalFilename" />
+		<result column="store_filename" jdbcType="VARCHAR" property="storeFilename" />
+	</resultMap>
+	
+	<!-- 활동 물품 등록 -->
+	<sql id="actiProduct">
+		product_num, store_num, product_name, product_price, product_option, product_content, original_filename, store_filename 
+	</sql>
 
 	<!-- 승인 미승인 처리를 기다리는 기업회원의 리스트 항목  -->
 	<select id="comList" parameterType="spageDTO" resultMap="baseComMember">
@@ -140,5 +232,151 @@
 		from vspot
 		where vspot_num = ${vspotNum}
 	</select>
+	
+	
+	
+ 	<!-- 활동활동 -->
+	<select id="activityListADMIN" parameterType="spageDTO" resultMap="baseActivity"> <!-- 1차 제출한 거 뽑기 -->
+			select rownum rn, <include refid="baseclumnOfActivity" />
+		from(select rownum rn, <include refid="baseclumnOfActivity" />
+			from(select <include refid="baseclumnOfActivity" />
+				from activity order by activity_start_date desc))
+		where rn &gt;= #{startRow} and rn &lt;= #{endRow} and activity_lev = 1
+	</select>
 
-	</mapper>
+	<!-- 관리자가 휴양지를 등록하는 것. -->
+	<insert id="adminvspotInsert" parameterType="vDTO"> 
+		insert into vspot(<include refid="vspotbasecolumn" />) values((select nvl(max(vspot_num)+1,1) from vspot), #{memNum}, #{memId}, #{vspotTitle}, #{vspotName}, #{vspotOriginal}, #{vspotStore}, #{vspotLocation} , #{vspotLocationMap}, #{vspotLoc}, #{vspotIntroduce}, #{vspotFeature}, '승인', null, sysdate)
+	</insert>
+	
+	<!-- 사용자..가 상점을 등록하는 것. -->
+	<insert id="shopInsert" parameterType="shopDTO"> 
+		insert into shop(<include refid="shopbasecolumn" />) values((select nvl(max(shop_num)+1,1) from shop), #{vspotNum}, #{memId}, #{shopCategory}, #{shopLoc}, #{shopLocation}, #{shopLocationMap}, #{shopName}, #{goodsOriginal}, #{goodsStore}, #{goodsContext}, #{goodsIntro}, '미승인', #{shopClosed}, #{shopTime1}, #{shopTime2}, sysdate)
+	</insert>
+	
+	<!-- 승인 미승인 처리를 기다리는 상점 리스트 -->
+	<select id="list" parameterType="spageDTO" resultMap="shopbase">
+	
+		select rownum rn, <include refid="shopbasecolumn" />
+		from(select rownum rn, <include refid="shopbasecolumn" />
+			from(select <include refid="shopbasecolumn" />
+				from shop
+				order by GOODS_DATE desc))
+		where SHOP_APPROVAL = '미승인' and  rn &gt;= #{startRow} and rn &lt;= #{endRow}
+		
+	</select>
+	
+	<!-- 승인 미승인 처리를 기다리는 상점 등록 개수 -->
+	<select id="listmanaCount" parameterType="String" resultType="int">
+		select count(*)
+		from shop
+		where SHOP_APPROVAL='미승인'
+	</select>
+	
+	<!-- 리스트에서 승인을 클릭하면 승인으로 변경 (상점.)  -->
+	<update id="listTrue" parameterType="String"  >
+		update shop
+			set SHOP_APPROVAL = '승인', GOODS_DATE = sysdate
+			where SHOP_NUM = ${shopNum}
+	</update>
+	
+	<!-- 리스트에서 미승인을 클릭하면 삭제(상점)  -->
+	<delete id="listFalse" parameterType="String"  >
+		delete from shop
+			where SHOP_NUM = ${shopNum}
+	</delete>
+	
+	<!-- 리스트에서 미승인을 눌렀을시 파일 삭제하기 위해서 **-->
+	<select id="FileDelete2" parameterType="shopDTO" resultMap="shopbase">
+		select <include refid="shopbasecolumn" />
+		from shop
+		where SHOP_NUM = ${shopNum}
+	</select>
+	
+	
+	<!-- 관리자가 상점 리스트에서 상세보기 하기 위해서. -->
+	<select id="shopListDetail" parameterType="shopDTO" resultMap="shopbase">
+		select <include refid="shopbasecolumn" />
+		from shop
+		where SHOP_NUM = ${shopNum}
+	</select>
+	
+	<!-- 관리자가 상점을 등록하는 것. -->
+	<insert id="adminshopInsert" parameterType="shopDTO"> 
+		insert into shop(<include refid="shopbasecolumn" />) values((select nvl(max(shop_num)+1,1) from shop), #{vspotNum}, #{memId}, #{shopCategory}, #{shopLoc}, #{shopLocation}, #{shopLocationMap}, #{shopName}, #{goodsOriginal}, #{goodsStore}, #{goodsContext}, #{goodsIntro}, '승인', #{shopClosed}, #{shopTime1}, #{shopTime2}, sysdate)
+	</insert>
+	
+	<select id="ActivityCount" parameterType="String" resultType="int">	<!-- 승인 미승인 처리를 기다리는 활동 등록 개수 -->
+		select count(*)
+		from ACTIVITY
+		where activity_lev=1
+	</select>
+	
+	 
+	<update id="activityTrue" parameterType="String"  ><!-- 스트에서 승인을 클릭하면 승인으로 변경 (활동 등록) -->
+		update activity
+			set activity_lev = 2 where activity_num = ${activityNum}
+	</update>
+	
+	<delete id="activityFalse" parameterType="String"  >	<!-- 미승인 삭제 -->
+		delete from activity
+			where activity_num = ${activityNum}
+	</delete>
+	
+		<select id="actFileDelete" parameterType="actiDTO" resultMap="baseActivity">
+		select <include refid="baseclumnOfActivity" />
+		from activity
+			where activity_num = ${activityNum}
+	</select>
+	
+	
+	
+	
+<!-- 활동 관리자 -->
+	<!-- 활동 상점&물품 등록 -->
+	<insert id="activityStoreInsert" parameterType="StoreDTO">  <!-- 활동 상점 등록 -->
+		insert into ACTIVITY_STORE(<include refid="actiStore" />)
+			values((select nvl(max(store_num)+1,1) from activity_store), #{storeLoc1}, #{storeName}, #{storeLoc2}, #{storeTel}, #{StoreMainProduct}, #{storeBusinessNum}, #{storeOwner})
+	</insert>
+	
+	
+	<select id="activityStoreList" parameterType="StoreDTO" resultMap="baseStore">		<!-- 상점 목록 -->
+		select rownum rn, <include refid="actiStore" />
+			from (select rownum rn, <include refid="actiStore" />
+				from(select <include refid="actiStore" />
+					from ACTIVITY_STORE order by STORE_NAME desc))
+	</select>
+	
+	<select id="ActiStoreCount" parameterType="String" resultType="int">	<!-- 상점 수 -->
+		select count(*)
+		from ACTIVITY_STORE
+	</select>
+	
+	<select id="prpr" parameterType="StoreDTO"  resultMap="baseStore">	<!-- stNum찾기 -->
+		select <include refid="actiStore" />
+		from ACTIVITY_STORE
+		where store_num = #{storeNum}
+	</select>
+	
+
+	<insert id="activityProductInsert" parameterType="ProductDTO"> <!-- 활동 물품 등록 -->
+		insert into ACTIVITY_PRODUCT(<include refid="actiProduct" />)
+			values((select nvl(max(product_num)+1,1) from ACTIVITY_PRODUCT), #{storeNum}, #{productName}, #{productPrice}, #{productOption},
+			 #{productContent}, #{originalFilename}, #{storeFilename})
+	</insert>
+
+	
+	<select id="storeDetail" parameterType="StoreDTO" resultMap="baseStore">		<!-- 활동 상점 상세보기 -->
+		select <include refid="actiStore" />
+			from ACTIVITY_STORE
+			where store_num = #{storeNum}
+	</select>
+	
+<!-- 상점 상세보기 내에 있는 물품 -->
+	<select id="productInStoreDetail" parameterType="ProductDTO" resultMap="baseProduct">
+		select <include refid="actiProduct" />
+			from ACTIVITY_PRODUCT
+		where store_num = #{storeNum}
+	</select>
+
+</mapper>

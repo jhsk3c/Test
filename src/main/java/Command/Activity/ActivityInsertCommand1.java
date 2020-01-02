@@ -4,16 +4,48 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class ActivityInsertCommand1 {
 	String activityName;
-	//String actiStartDate;
-	//String actiEndDate;
-	//String recruitStartDate;
-	//String recruitEndDate;
+	String actiStartDate;
+	String actiEndDate;
 	String recruitPeople;
 	String activityText;
-	//String limitgender;
 	String limitAge;
 	MultipartFile[] actiImage;
+	String sortOfActivity;
+	String whichProduct;
+	String activityCity;
 	
+	
+	
+	public String getActiStartDate() {
+		return actiStartDate;
+	}
+	public void setActiStartDate(String actiStartDate) {
+		this.actiStartDate = actiStartDate;
+	}
+	public String getActiEndDate() {
+		return actiEndDate;
+	}
+	public void setActiEndDate(String actiEndDate) {
+		this.actiEndDate = actiEndDate;
+	}
+	public String getActivityCity() {
+		return activityCity;
+	}
+	public void setActivityCity(String activityCity) {
+		this.activityCity = activityCity;
+	}
+	public String getWhichProduct() {
+		return whichProduct;
+	}
+	public void setWhichProduct(String whichProduct) {
+		this.whichProduct = whichProduct;
+	}
+	public String getSortOfActivity() {
+		return sortOfActivity;
+	}
+	public void setSortOfActivity(String sortOfActivity) {
+		this.sortOfActivity = sortOfActivity;
+	}
 	public String getActivityName() {
 		return activityName;
 	}

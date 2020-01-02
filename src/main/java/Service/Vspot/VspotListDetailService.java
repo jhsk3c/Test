@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
+import Model.DTO.ShopDTO;
 import Model.DTO.SpotReviewDTO;
 import Model.DTO.VspotDTO;
 import Repository.Vspot.VspotRepository;
@@ -34,17 +35,12 @@ public class VspotListDetailService {
 		model.addAttribute("list", list);
 		
 		
-		
-		
-		
-		
-		int limit = 10;
 		List<VspotDTO> Vlist = vspotRepository.memList();
 		Collections.shuffle(Vlist);
 		model.addAttribute("vlist", Vlist);
 		
 		
-		
+		int limit = 10;
 		SpotReviewDTO srto = new SpotReviewDTO();
 		srto.setVspotNum(Integer.parseInt(vspotNum));
 		System.out.println("접근 넘버 : " + Integer.parseInt(vspotNum));
@@ -89,6 +85,13 @@ public class VspotListDetailService {
 		model.addAttribute("avg3", Avg3);
 		model.addAttribute("avg4", Avg4);
 		model.addAttribute("maxAvg", maxAvg);
+		
+		ShopDTO sdto = new ShopDTO();
+		sdto.setVspotNum(Integer.parseInt(vspotNum));
+		List<ShopDTO> shop = vspotRepository.listShop(sdto);
+		Collections.shuffle(shop);
+		model.addAttribute("shop", shop);
+		
 		
 		
 		

@@ -28,6 +28,15 @@
 <bean id="memVspotListServiceList" class="Service.Vspot.MemVspotListServiceList" />
 <bean id="vspotListDetailService" class="Service.Vspot.VspotListDetailService" />
 <bean id="reviewInsertService" class="Service.Vspot.ReviewInsertService" />
+<bean id="adminSpotService" class="Service.ComManagement.AdminSpotService" />
+<bean id="mainService" class="Service.Main.MainService" />
+<bean id="adminshopInsertService" class="Service.Shop.AdminshopInsertService" />
+<bean id="adminShopMana" class="Service.Shop.AdminShopManaService" />
+<bean id="shopDetailService" class="Service.Shop.ShopDetailService" />
+<bean id="shopReviewInsertService" class="Service.Shop.ShopReviewInsertService" />
+<bean id="adminShopDetailService" class="Service.Shop.AdminShopDetailService" />
+
+
 
 
 </beans>
