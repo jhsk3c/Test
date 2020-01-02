@@ -33,6 +33,7 @@
 </style>
 </head>
 <body>
+	<jsp:include page="contestMain.jsp"></jsp:include>
 <table>
 	<tr>
 		<td></td><td></td><td></td>

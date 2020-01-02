@@ -22,25 +22,57 @@
 		}
 	}
 </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Shop Goods</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/shop-item.css" rel="stylesheet">
 </head>
 <body>
-	<h2>상품 상세정보</h2>
-	<table border="1"  style="height: 300px; width: 400px;">
-		<tr align="center">
-			<td>상품명</td>
-			<td>${goods.goodsName }</td>
-		</tr>
-		<tr align="center">
-			<td>가격</td>
-			<td><fmt:formatNumber value="${goods.goodsPrice }" pattern="###,###,###"/>원</td>
-		</tr>
-		<tr align="center">
-			<td>상품소개</td>
-			<td>${goods.goodsContent }</td>
-		</tr>
-		<tr align="center">
-			<td colspan="2">
-				<form method="post" action="cartInsert">
+
+
+<body>
+	<jsp:include page="goodsNav.jsp"></jsp:include>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-lg-3">
+        <h1 class="my-4">ATO</h1>
+        <div class="list-group">
+          <a href="#" class="list-group-item active">Category 1</a>
+          <a href="#" class="list-group-item">Category 2</a>
+          <a href="#" class="list-group-item">Category 3</a>
+        </div>
+      </div>
+      <!-- /.col-lg-3 -->
+
+      <div class="col-lg-9">
+
+        <div class="card mt-4">
+          <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
+          <div class="card-body">
+            <h3 class="card-title">${goods.goodsName }</h3>
+            <h4><fmt:formatNumber value="${goods.goodsPrice }" pattern="###,###,###"/>원</h4>
+            <p class="card-text">${goods.goodsContent }</p>
+            <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+            4.0 점
+          </div>
+        </div>
+        <!-- /.card -->
+        
+<!--         .cart -->
+		<div style="margin-top: 5px;">
+		<form method="post" action="cartInsert">
 					<input type="hidden" name="goodsNum" value="${goods.goodsNum }" />
 					<input type="hidden" name="aNum" value="${goods.auditNum }" />
 					<input type="hidden" name="pNum" value="${goods.participationNum }" />
@@ -49,25 +81,48 @@
 							<option value="${i}">${i}</option>						
 						</c:forEach>
 					</select>&nbsp;개
-					<input type="submit" value="장바구니 담기">
+					<input type="submit" class="btn btn-success" value="장바구니 담기">
+					<input type="button" class="btn btn-success" value="구매" onclick="#" />
+					<c:if test="${fn:trim(goods.memId) == fn:trim(requestScope.memId)}">
+					<input type="button" class="btn btn-success" value="삭제" onclick="goDelete();" style="float: right; margin-left: 4px;"/>
+					<input type="button" class="btn btn-success" value="수정" onclick="goModify();" style="float: right; margin-left: 4px;"/>
+					</c:if>
 				</form>
-			</td>
-		</tr>
-	</table>
-	<div id="show">
-		<input type="button" value="목록" onclick="history.go(-1);" />
-		<c:if test="${fn:trim(goods.memId) == fn:trim(requestScope.memId)}">
-			<!-- 굿즈를 등록한 회원만 이벤트 가능 -->
-			<input type="button" value="수정" onclick="goModify();" />
-			<input type="button" value="삭제" onclick="goDelete();" />
-			굿즈를 등록한 회원이군뇽.
-		</c:if>
+		</div>
+				
+        <div class="card card-outline-secondary my-4">
+		
 		<c:if test="${memLev == 4 }">
-			<!-- 관리자만 수정&삭제가능 -->
-			<input type="button" value="수정" onclick="goModify();"/>
-			<input type="button" value="삭제" onclick="goDelete();"/>
-			관리자네용
+          <div class="card-header">
+         	   관리자 서비스
+          </div>
+          <div class="card-body">
+			<input type="button" class="btn btn-success" value="수정" onclick="goModify();" />
+			<input type="button" class="btn btn-success" value="삭제" onclick="goDelete();" />
+            <hr>
+          </div>
 		</c:if>
-	</div>
+        </div>
+        <!-- /.card -->
+
+      </div>
+      <!-- /.col-lg-9 -->
+
+    </div>
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

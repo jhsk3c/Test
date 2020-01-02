@@ -1,5 +1,7 @@
 package Controller.Goods;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,9 +26,10 @@ public class GoodsController {
 	}
 
 	@RequestMapping("goodsInsertPro")
-	public String goodsInsertPro(@RequestParam(value = "memId") String memId, GoodsCommand goodsCommand) {
+	public String goodsInsertPro(@RequestParam(value = "memId") String memId, GoodsCommand goodsCommand,
+			HttpServletRequest request) {
 		System.out.println("멤아이디이 ::: " + memId);
-		goodsInsertService.insert(goodsCommand, memId);
+		goodsInsertService.insert(goodsCommand, memId, request);
 		return "redirect:main";
 	}
 }

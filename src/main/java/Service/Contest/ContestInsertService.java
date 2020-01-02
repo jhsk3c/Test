@@ -29,16 +29,18 @@ public class ContestInsertService {
 	String store = null;
 
 	Boolean stop = true;
-	public Integer contestInsert(ContestCommand contestCommand, HttpServletRequest request, HttpSession session, Model model) {
+
+	public Integer contestInsert(ContestCommand contestCommand, HttpServletRequest request, HttpSession session,
+			Model model) {
 		ContestDTO dto = new ContestDTO();
-		
+
 		dto.setUserId(((AuthInfo) session.getAttribute("authInfo")).getId()); // command -> DTO
 		dto.setContestOrganizer(contestCommand.getContestOrganizer());
 		dto.setContestName(contestCommand.getContestName());
 		dto.setContestSubject(contestCommand.getContestSubject());
 		dto.setContestContent(contestCommand.getContestContent());
 		dto.setContestCondition(contestCommand.getContestCondition());
-		dto.setContestEntryWay(contestCommand. getContestEntryWay());
+		dto.setContestEntryWay(contestCommand.getContestEntryWay());
 		dto.setContestPeoples(Integer.parseInt(contestCommand.getContestPeoples()));
 		try {
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -53,7 +55,7 @@ public class ContestInsertService {
 		}
 		dto.setContestPrizeWay(contestCommand.getContestPrizeWay());
 		dto.setContestPrize(Integer.parseInt(contestCommand.getContestPrize()));
-		
+
 //		파일
 		String originalTotal = "";
 		String storeTotal = "";
@@ -64,10 +66,10 @@ public class ContestInsertService {
 			store = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
 			originalTotal += original + "-";
 			storeTotal += store + "-";
-			
+
 			System.out.println("originalTotal" + originalTotal);
 			System.out.println("storeTotal" + storeTotal);
-			
+
 			String path = request.getServletContext().getRealPath("/");
 			path += "WEB-INF/view/Contest/upload/";
 			System.out.println("업로드 Path ::::::::" + path);
@@ -78,9 +80,9 @@ public class ContestInsertService {
 				e.printStackTrace();
 			}
 		}
-		System.out.println("contestCommand.getContestPoster : " + contestCommand.getContestPoster());
-		
-		if(stop) {
+//		System.out.println("contestCommand.getContestPoster : " + contestCommand.getContestPoster());
+
+		if (stop) {
 			dto.setContestPoster(originalTotal); // originalFileName
 			dto.setContestStorePoster(storeTotal); // storeFileName
 //		System.out.println("organizer dto ::::::::::: " + dto.getContestOrganizer());

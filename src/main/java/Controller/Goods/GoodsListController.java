@@ -1,5 +1,6 @@
 package Controller.Goods;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,15 +18,20 @@ public class GoodsListController {
 	GoodsListService goodsListService;
 	@Autowired
 	GoodsDetailService goodsDetailService;
-	@RequestMapping("goodsShop")
+	@RequestMapping("goodsMain")
 	public String list(Model model) {
 		goodsListService.goodsList(model);
-		return "Goods/goodsList";
+		return "Goods/goodsMain";
 	}
 	
 	@RequestMapping("goodsDetail")
 	public String detail(@RequestParam(value = "gNum") String goodsNum, Model model, HttpSession session) {
 		goodsDetailService.goodsDetail(goodsNum, model, session);
 		return "Goods/goodsDetail";
+	}
+	
+	@RequestMapping("goodsShop")
+	public String main (HttpSession session, HttpServletRequest request) {
+		return "Goods/goodsList";
 	}
 }

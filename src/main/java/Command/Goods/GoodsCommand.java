@@ -1,5 +1,7 @@
 package Command.Goods;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class GoodsCommand {
 	String goodsNum;
 	String memId;
@@ -9,6 +11,15 @@ public class GoodsCommand {
 	String goodsContent;
 	String goodsQty;
 	String goodsDiscountRate; // 할인율
+	MultipartFile[] goodsImage;
+
+	public MultipartFile[] getGoodsImage() {
+		return goodsImage;
+	}
+
+	public void setGoodsImage(MultipartFile[] goodsImage) {
+		this.goodsImage = goodsImage;
+	}
 
 	public String getGoodsNum() {
 		return goodsNum;

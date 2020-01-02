@@ -35,7 +35,7 @@
 
 	<insert id="goodsInsert" parameterType="Model.DTO.GoodsDTO">
 		insert into goods(<include refid="goodscolumn" />) 
-		values((SELECT NVL(MAX(goods_num),0)+1 FROM goods),#{participationNum},#{auditNum},#{memId},#{goodsCategory},#{goodsName},#{goodsPrice},null,#{goodsContent},#{goodsQty},#{goodsDiscountRate},sysdate)
+		values((SELECT NVL(MAX(goods_num),0)+1 FROM goods),#{participationNum},#{auditNum},#{memId},#{goodsCategory},#{goodsName},#{goodsPrice},#{goodsImage},#{goodsContent},#{goodsQty},#{goodsDiscountRate},sysdate)
 	</insert>
 	
 	<select id="goodsList" parameterType="Model.DTO.GoodsDTO" resultMap="goodsMap">

@@ -19,27 +19,59 @@
 </style> 
 <% 
 	String memId = ((AuthInfo)session.getAttribute("authInfo")).getId();
+	String memName = ((AuthInfo)session.getAttribute("authInfo")).getName();
 %>
 </head>
 <body>
-	<div id="contest-menu">
-		<h1>공모전 메인</h1>
-		<a href="contestList">공모전리스트</a>
-		<a href="participationList?memId=<%=memId%>">참가내역</a>
-		<a href="goodsShop">shop</a>
-	</div>
-	<c:if test="${memLev == 4}">
-		<div id="admin-menu">
-			<div>
-				<h1>관리자 메뉴</h1>
-			</div>
-			<div>
-				<a href="contestInsertForm">공모전등록</a>
-			</div>
-			<div>
-				<a href="contestCheck">등록한 공모전 조회</a>
-			</div>
-		</div>
-	</c:if>
+	<jsp:include page="../Goods/goodsNav.jsp"></jsp:include>
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-lg-3">
+
+        <h1 class="my-4">Contest</h1>
+        <div class="greeting">
+        	<p><b><%=memName %></b>님</p>
+        	<p>환영합니다!</p>
+        </div>
+        <div class="list-group">
+          <a href="contestList" class="list-group-item">공모전리스트</a>
+          <a href="participationList?memId=<%=memId%>" class="list-group-item">참가내역</a>
+        </div>
+		<c:if test="${memLev == 4}">
+			<div class="list-group">
+			  <p><h3>관리자 메뉴</h3></p>
+	          <a href="contestCheck" class="list-group-item">등록한 공모전 조회</a>
+	          <a href="contestInsertForm" class="list-group-item">공모전등록</a>
+	        </div>
+        </c:if>
+      </div>
+      <!-- /.col-lg-3 -->
+
+      <div class="col-lg-9">
+
+      </div>
+      <!-- /.col-lg-9 -->
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js">
+</script>
 </body>
 </html>

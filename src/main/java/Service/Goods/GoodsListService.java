@@ -15,10 +15,9 @@ public class GoodsListService {
 	GoodsRepository goodsRepository;
 	public void goodsList(Model model) {
 		List<GoodsDTO> list = goodsRepository.goodsList();
-//		for(GoodsDTO g : list) {
-//			System.out.println("gist ::: " + g.getGoodsName());
-//			System.out.println("list ::: " + list);
-//		}
+		for(GoodsDTO g : list) {
+			System.out.println("gist ::: " + g.getGoodsImage());
+		}
 		model.addAttribute("goods", list);
 	}
 
