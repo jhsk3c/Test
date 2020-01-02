@@ -47,13 +47,18 @@ public class AdminshopInsertService {
 		
 		AuthInfo auth = (AuthInfo)session.getAttribute("authInfo");
 		sdto.setMemId(auth.getId());
+		System.out.println(auth.getId());
+		System.out.println(auth.getId());
+		System.out.println(auth.getId());
+		System.out.println(auth.getId());
+		System.out.println(auth.getId());
 		
 		sdto.setShopClosed(shopCommand.getShopClosed());
 		
 	
 		sdto.setShopTime1(shopCommand.getShopTime1());
 		sdto.setShopTime2(shopCommand.getShopTime2());
-		
+		sdto.setShopCount(Integer.parseInt(shopCommand.getShopCount()));
 		sdto.setVspotNum(Integer.parseInt(vspotNum));
 		sdto.setShopCategory(shopCommand.getShopCategory());
 		sdto.setShopLoc(shopCommand.getShopLoc());
@@ -105,7 +110,15 @@ public class AdminshopInsertService {
 	
 	
 	
-	
+	@Transactional
+	public String shopNumList2(String vspotNum, Model model) {
+		
+		VspotDTO vspot = adminRepository.FileDelete(vspotNum);
+		
+		model.addAttribute("vspot", vspot);
+		return "Admin/adminShopInsert";
+	}
+
 	
 	
 	
@@ -124,6 +137,7 @@ public class AdminshopInsertService {
 		sdto.setShopTime2(shopCommand.getShopTime2());
 		
 		sdto.setVspotNum(Integer.parseInt(vspotNum));
+		sdto.setShopCount(Integer.parseInt(shopCommand.getShopCount()));
 		sdto.setShopCategory(shopCommand.getShopCategory());
 		sdto.setShopLoc(shopCommand.getShopLoc());
 		sdto.setShopLocation("(" + shopCommand.getShopLocation1() + ")" + " " + shopCommand.getShopLocation2()+ " " + shopCommand.getShopLocation3());

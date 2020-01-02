@@ -143,7 +143,7 @@
 		<div class="mmmm"> 후기 작성 </div>
 		<div class="title"> 제목 </div> <form:input cssClass="tin" path="spotReviewTitle" id="spotReviewTitle" size="74" /><br/><br/>
 		
-		<div class="sra"> 작성자 &nbsp;:&nbsp;${list.memId} </div> <br><br>
+		<div class="sra"> 작성자 &nbsp;:&nbsp;${au} </div> <br><br>
 		
 		<!-- 1번 별표요! -->
 	<label class="a1"> 정확성 : </label>

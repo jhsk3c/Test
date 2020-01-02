@@ -82,10 +82,6 @@
 	
 	
 	
-	
-	
-	
-	
 	<insert id="JoinInsert" parameterType="memDTO"> <!-- 일반 회원의 회원가입 sql -->
 		insert into member(<include refid="basecolumn" />) values((select nvl(max(mem_num)+1,1) from member),#{memId}, #{memPw}, #{memName}, #{memBirth}, #{memSex}, #{memNationality}, #{memEmail}, #{memAddr}, #{memTel}, #{memPreferTrip}, sysdate, 1 )
 	</insert>
@@ -129,5 +125,10 @@
 		where com_id = #{comId}
 	</select>
 	
+	<select id="memberSele" parameterType="memDTO" resultMap="baseMember">
+		select <include refid="basecolumn" />
+		from member
+		where mem_num = #{memNum}
+	</select>
 	
 </mapper>
