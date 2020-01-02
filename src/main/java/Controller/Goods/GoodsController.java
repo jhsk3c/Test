@@ -6,16 +6,27 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import Service.Participation.ParticipationInfoService;
+import Command.Goods.GoodsCommand;
+import Service.Goods.FindAuditNumService;
+import Service.Goods.GoodsInsertService;
 
 @Controller
 public class GoodsController {
 	@Autowired
-	ParticipationInfoService participationInfoService;
+	GoodsInsertService goodsInsertService;
+	@Autowired
+	FindAuditNumService findAuditNumService;
 
 	@RequestMapping("goodsInsert")
-	public String goodsInsert(@RequestParam(value = "memId") String memId, Model model) {
-//		participationInfoService.info(memId, pNum);
+	public String goodsInsert(@RequestParam(value = "memId") String memId, GoodsCommand goodsCommand, Model model) {
+		model.addAttribute("memId", memId);
 		return "Goods/goodsInsertForm";
+	}
+
+	@RequestMapping("goodsInsertPro")
+	public String goodsInsertPro(@RequestParam(value = "memId") String memId, GoodsCommand goodsCommand) {
+		System.out.println("멤아이디이 ::: " + memId);
+		goodsInsertService.insert(goodsCommand, memId);
+		return "redirect:main";
 	}
 }

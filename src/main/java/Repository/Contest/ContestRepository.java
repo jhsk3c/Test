@@ -31,7 +31,7 @@ public class ContestRepository {
 
 	public ContestDTO detail(ContestDTO contest) {
 		String statement = namespace + ".detailContest";
-		System.out.println("cccccccccccccccccccccccccc2 :: " + contest.getContestName());
+//		System.out.println("cccccccccccccccccccccccccc2 :: " + contest.getContestName());
 		return sqlSession.selectOne(statement, contest);
 	}
 

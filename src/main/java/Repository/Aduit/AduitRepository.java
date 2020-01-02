@@ -27,11 +27,11 @@ public class AduitRepository {
 	}
 
 	public String findMemEmail(MemberDTO member) { // 합격한 회원의 email을 찾아서 상품화 여부 묻기
-		System.out.println("findMemEmail : " + member.getMemId());
+//		System.out.println("findMemEmail : " + member.getMemId());
 		String statement = namespace + ".selectMemEmail";
 		MemberDTO mem = sqlSession.selectOne(statement, member);
 		String userEmail = mem.getMemEmail();
-		System.out.println("findMemEmail " + userEmail);
+//		System.out.println("findMemEmail " + userEmail);
 		return userEmail;
 	}
 

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Repository.Goods.GoodsMapper">
+	<cache />
+
+	<sql id="goodscolumn">
+		goods_num, participation_num, aduit_num,mem_id,
+		goods_category, goods_name, goods_price, goods_image, goods_content,
+		goods_qty, goods_discount_rate, goods_date
+	</sql>
+
+	<resultMap type="Model.DTO.GoodsDTO" id="goodsMap">
+		<id column="goods_num" jdbcType="INTEGER" property="goodsNum"/>
+		<id column="participation_num" jdbcType="INTEGER" property="participationNum"/>
+		<id column="aduit_num" jdbcType="INTEGER" property="auditNum"/>
+		<result column="mem_id" jdbcType="VARCHAR" property="memId" />
+		<result column="goods_category" jdbcType="VARCHAR" property="goodsCategory"/>
+		<result column="goods_name" jdbcType="VARCHAR" property="goodsName"/>
+		<result column="goods_price" jdbcType="INTEGER" property="goodsPrice"/>
+		<result column="goods_image" jdbcType="VARCHAR" property="goodsImage"/>
+		<result column="goods_content" jdbcType="VARCHAR" property="goodsContent"/>
+		<result column="goods_qty" jdbcType="INTEGER" property="goodsQty"/>
+		<result column="goods_discount_rate" jdbcType="VARCHAR" property="goodsDiscountRate"/>
+		<result column="goods_date" jdbcType="DATE" property="goodsDate"/>
+	</resultMap>
+	
+	<select id="findANum" parameterType="Model.DTO.AduitDTO" resultType="Integer">
+		select aduit_num from contest_audit where mem_id = #{memId} and audit_pass = #{auditPass}
+	</select>
+	
+	<select id="findPNum" parameterType="Integer" resultType="Integer">
+		select participation_num from contest_audit where aduit_num = #{auditNum}
+	</select>
+
+	<insert id="goodsInsert" parameterType="Model.DTO.GoodsDTO">
+		insert into goods(<include refid="goodscolumn" />) 
+		values((SELECT NVL(MAX(goods_num),0)+1 FROM goods),#{participationNum},#{auditNum},#{memId},#{goodsCategory},#{goodsName},#{goodsPrice},null,#{goodsContent},#{goodsQty},#{goodsDiscountRate},sysdate)
+	</insert>
+	
+	<select id="goodsList" parameterType="Model.DTO.GoodsDTO" resultMap="goodsMap">
+		select <include refid="goodscolumn" /> from goods
+	</select>
+	
+	<select id="goodsDetail" parameterType="Model.DTO.GoodsDTO" resultMap="goodsMap">
+		select <include refid="goodscolumn" /> from goods where goods_num = #{goodsNum}
+	</select>
+	
+	<delete id="goodsDelete" parameterType="Model.DTO.GoodsDTO">
+		delete from goods where goods_num = #{goodsNum}		 
+	</delete>
+	
+	<update id="goodsModify" parameterType="Model.DTO.GoodsDTO">
+		update goods
+		set goods_Name = #{goodsName}, goods_content = #{goodsContent}, goods_price = #{goodsPrice},
+		goods_qty = #{goodsQty}, goods_discount_rate = #{goodsDiscountRate} 
+		where goods_num = #{goodsNum}
+	</update>
+</mapper>

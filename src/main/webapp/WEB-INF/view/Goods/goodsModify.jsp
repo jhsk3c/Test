@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
@@ -9,9 +9,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div id = "h1div"><h1 align="center">판매 상품 등록</h1></div>
-	<form:form action="goodsInsertPro" method="post" enctype="multipart/form-data" commandName="goodsCommand">
-	<form:hidden path="memId" value="${memId } "/>
+	<div id = "h1div"><h1 align="center">판매 상품 수정</h1></div>
+	<form:form action="goodsModifyPro" method="post" enctype="multipart/form-data" commandName="goodsCommand">
+		<form:hidden path="goodsNum"/>
 		<div align="center">
 			<div id="tableBox">
 				<table border="1">
@@ -67,7 +67,7 @@
 <!-- 					</tr> -->
 
 					<tr>
-						<td colspan="2"><input type="submit" value="상품등록" /> <input
+						<td colspan="2"><input type="submit" value="상품수정" /> <input
 							type="reset" value="다시 작성" /> <input type="button" value="뒤로가기"
 							onclick="javascript:history.go(-1)" /></td>
 					</tr>

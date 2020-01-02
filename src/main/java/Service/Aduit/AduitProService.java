@@ -27,7 +27,8 @@ public class AduitProService {
 		Integer auditPracticality = Integer.parseInt(b);
 		Float auditAvg = (float) ((auditOriginality + auditPracticality) / 2);
 		pNum = pNum.trim();
-
+		memId = memId.trim();
+//		System.out.println("왜 공백이있냐고22 ::: " + memId);
 		String contestNum = aduitRepository.findContestNum(pNum);
 		String auditPass = null;
 
@@ -40,7 +41,7 @@ public class AduitProService {
 		dto.setParticipationNum(Integer.parseInt(pNum));
 		dto.setContestNum(Integer.parseInt(contestNum));
 		dto.setMemId(memId);
-
+//		System.out.println("왜 공백이있냐고 ::: " + memId);
 		dto.setAuditOriginality(auditOriginality);
 		dto.setAuditPracticality(auditPracticality);
 		dto.setAuditAvg(auditAvg);
@@ -59,6 +60,7 @@ public class AduitProService {
 		} else if (dto.getAuditPass().equals("불합격")) {
 			result2 = 0;
 		}
+//		System.out.println("dto.getAduitNum(); :::: " + dto.getAduitNum());
 		model.addAttribute("contestNum", contestNum);
 		model.addAttribute("audit", dto);
 //		session.setAttribute("audit", dto);

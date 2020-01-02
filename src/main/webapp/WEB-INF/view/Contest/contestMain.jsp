@@ -26,6 +26,7 @@
 		<h1>공모전 메인</h1>
 		<a href="contestList">공모전리스트</a>
 		<a href="participationList?memId=<%=memId%>">참가내역</a>
+		<a href="goodsShop">shop</a>
 	</div>
 	<c:if test="${memLev == 4}">
 		<div id="admin-menu">

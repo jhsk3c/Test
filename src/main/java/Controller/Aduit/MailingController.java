@@ -23,9 +23,9 @@ public class MailingController {
 	public String mailing(@RequestParam("memId") String memId, HttpServletRequest request, Model model) {
 		MemberDTO member = new MemberDTO();
 		member.setMemId(memId);
-		System.out.println("받아온 memId찾아라 :: " + member.getMemId());
+//		System.out.println("받아온 memId찾아라 :: " + member.getMemId());
 		String memEmail = findmemberService.findMember(member); // 받는 사람 이메일
-		System.out.println("왜 못ㅂ다아와 " + memEmail);
+//		System.out.println("왜 못ㅂ다아와 " + memEmail);
 		mailingService.sendMail(memEmail, memId); // 메일보내기 service
 		return "redirect:/main";
 	}

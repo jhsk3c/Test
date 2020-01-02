@@ -55,4 +55,5 @@
 	<select id="selectMemEmail" parameterType="Model.DTO.MemberDTO" resultMap="baseMember">
 		select mem_email from member where mem_id = #{memId}
 	</select>
+	
 </mapper>
