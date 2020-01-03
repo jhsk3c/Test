@@ -16,6 +16,8 @@
 
 
 
+
+
 <!--관리자 -->
 <bean class="Controller.ComManagement.ActivityManagementController" />	<!-- 활동 승인/미승인 -->
 <bean class="Controller.ComManagement.ActivityStoreController" />	<!-- 활동 상점 등록 -->

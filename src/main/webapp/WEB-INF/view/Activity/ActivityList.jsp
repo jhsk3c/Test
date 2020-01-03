@@ -44,21 +44,22 @@
 <div class="w3-container" >
 	<c:forEach var="list" items="${list}" varStatus="status">  
 		<div style="height:300px; float:left; width:25%; margin:8px;">
-		<a href="#">
+		
+		<a href="ActivityDetail?actiNum=${list.activityNum}">
 			  <div class="w3-card-4 w3-round-xlarge" style="border-radius:25px">
 			  
 			    <img src="${list.storeFilename }" alt="${list.originalFilename }" style="width:100%; height:60%">
 			    
 			    <div class="w3-container w3-center">
-			    	<p></p>				
+			    	<p>${list.activityNum}</p>				
 					<p>${list.activityName }</p>
 					<p>${list.activityStartDate } - ${list.activityEndDate }</p>
 					<p>${list.activityCost }</p>
 			    </div>
 			    
 			  </div>
-			  </a>
-			</div>
+		 </a>
+		</div>
 	
 		
 	</c:forEach>

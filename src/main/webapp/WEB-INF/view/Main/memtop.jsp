@@ -74,17 +74,31 @@ body {
 </head>
 <body>
 
+<div style="display: table; width: 100%; height: 100px;position: relative; overflow: hidden;">
+	<div class="img">
+		<a href="main">
+			<img alt="logo" src="C:\FINAL_Project\HaeYum\src\main\webapp\WEB-INF\view\Main\img" style="float:left">
+		</a>
+	</div>
+	<div style="float:right;margin:40px auto; padding-right:30px;">
+		<a href="profile" style=" text-decoration: none;color:grey"> 프로필 </a>&nbsp;&nbsp;
+		  <a href="logout" style=" text-decoration: none;color:grey">로그아웃</a>&nbsp;&nbsp;
+		    <a href="#" style=" text-decoration: none;color:grey">고객 센터</a>
+	</div>
+</div>
 
 <div class="navbar1">
+
   <a href="main">Home</a>
   <a href="goodsMain">ATO</a>
   <a href="#">고객 센터</a>
+
   <a href="Car/carCalendaReservationList">car 예약목록</a>
   <a href="Car/carCalendarList">car 일정</a>
-  <a href="contest">Contest</a>
+  <a href="contest">공모전</a>
   <a href="Car/carEnrollmentList">carcar</a>
-  <a href="logout">로그아웃</a>
-  <a href="profile"> 프로필 </a>
+
+
   
 
   <div class="dropdown1">
@@ -92,9 +106,13 @@ body {
       <i class="fa fa-caret-down1"></i>
     </button>
     <div class="dropdown-content1">
-      <a href="spot">휴양지 신청</a>
+      <a href="spot">휴양지</a>
       <a href="ActivityList">활동</a>
+
+      <a href="#">차공유</a>
+
       <a href="#">ㅇㅇ</a>
+
     </div>
   </div> 
 
