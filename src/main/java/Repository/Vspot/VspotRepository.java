@@ -125,5 +125,68 @@ public class VspotRepository {
 		return sqlSession.insert(statement, sreiondto);
 		
 	}
+
+
+	public ShopReservationDTO shopNumselect(ShopReservationDTO sriondto) { // 상점 디테일에서 후기를 작성하기 위해 예약한 사람을 뽑기 위해
+		String statement = namespace + ".shopNumselect";
+		return sqlSession.selectOne(statement, sriondto);
+	}
+
+
+	public List<VspotDTO> vspotSele(String ss, Integer page, int limit) { //회원 프로필에서 내가 신청한 휴양지가 다 뜨게 하는거.
+		Long startRow = ((long)page -1 ) * 10 +1;
+		Long endRow = startRow + limit -1;
+		Integer su1 = Integer.parseInt(ss);
+		StartEndPageDTO spage = new StartEndPageDTO(startRow, endRow, su1);
+		String statement = namespace + ".vspotSele";
+		return sqlSession.selectList(statement, spage);
+		
+	}
+
+
+	public Integer vspotseleCount(VspotDTO vspot) { // 회원 프로필 개수 찾기
+		String statement = namespace + ".vspotseleCount";
+		return sqlSession.selectOne(statement, vspot);
+
+	}
+
+
+	public List<ShopDTO> shopSele(String abcd, Integer page, int limit) { // 회원의 프로필에 상점 리스트 뽑기
+		Long startRow = ((long)page -1 ) * 10 +1;
+		Long endRow = startRow + limit -1;
+		String abc = abcd;
+		StartEndPageDTO spage = new StartEndPageDTO(startRow, endRow, abc);
+		String statement = namespace + ".shopSele";
+		return sqlSession.selectList(statement, spage);
+	}
+
+
+	public Integer shopSeleCount(ShopDTO sdto) { // 회원의 프로필에 상점 개수 ..
+		String statement = namespace + ".shopSeleCount";
+		return sqlSession.selectOne(statement, sdto);
+	}
+
+
+	public List<ShopReservationDTO> shopReserSele(String zxc, Integer page, int limit) { // 회원의 프로필에 예약 리스트
+		Long startRow = ((long)page -1 ) * 10 +1;
+		Long endRow = startRow + limit -1;
+		String abc = zxc;
+		StartEndPageDTO spage = new StartEndPageDTO(startRow, endRow, abc);
+		String statement = namespace + ".shopReserSele";
+		return sqlSession.selectList(statement, spage);
+	}
+
+
+	public Integer shoprtionSeleCount(ShopReservationDTO shopre) { // 회원의 프로필에 예약 개수
+		String statement = namespace + ".shoprtionSeleCount";
+		return sqlSession.selectOne(statement, shopre);
+	}
+
+
+	public Integer shopDelete(ShopReservationDTO shopre) {
+		String statement = namespace + ".shopDelete";
+		return sqlSession.delete(statement, shopre);
+		
+	}
 	
 }

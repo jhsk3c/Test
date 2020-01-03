@@ -7,4 +7,6 @@
 
 <bean class="Controller.Contest.ContestController" />
 <bean class="Controller.Contest.ContestListController" />
+<bean class="Controller.Contest.ContestModifyController" />
+<bean class="Controller.Contest.ContestDeleteController" />
 </beans>

@@ -67,6 +67,12 @@ public class MemberRepository {
 		return sqlSession.selectOne(statement, comMember);
 	}
 
+	public MemberDTO memberSele(MemberDTO member) {
+		String statement = namespace + ".memberSele";
+		return sqlSession.selectOne(statement, member);
+		
+	}
+
 	
 	
 

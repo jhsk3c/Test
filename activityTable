@@ -36,7 +36,7 @@ CREATE TABLE join_activity (
 	mem_num VARCHAR2(10) NOT NULL,				--fk
 	join_activity_num varchar(15) NOT NULL,		--pk
 	join_activity_lev NUMBER,			--레벨  // 1: 참가신청(결제승인 전), 2: 결제 이후(참가 전), 3:참여 이후(활동이 비활성화 된 이후)
-	whether_payment varchar2(10),		--결제 여부//'Y', 'N' 여부로 받기
+	whether_payment varchar2(10)		--결제 여부//'Y', 'N' 여부로 받기
 	
 );
 

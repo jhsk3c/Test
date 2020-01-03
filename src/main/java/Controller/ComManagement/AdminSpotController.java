@@ -32,7 +32,7 @@ public class AdminSpotController {
 	public String admins(SpotCommand spotCommand, HttpServletRequest request, HttpSession session ) {
 		
 		adminSpotService.adminvspotWrite(spotCommand, request, session);
-		return "Main/mainView";
+		return "redirect:/main";
 		
 	}
 	

@@ -215,6 +215,7 @@ span.psw {
 <body>
 
 
+
 <div style="display: table; width: 100%; height: 100px;position: relative; overflow: hidden;">
 	<div class="img">
 		<a href="main"><img alt="logo" src="C:\FINAL_Project\HaeYum\src\main\webapp\WEB-INF\view\Main\img" style="float:left"/> </a>
@@ -224,6 +225,26 @@ span.psw {
 			  <a href="memberInfo" style=" text-decoration: none;color:grey">회원가입</a>&nbsp;&nbsp;
 			  <a href="#" style=" text-decoration: none;color:grey">고객 센터</a>
 	</div>
+
+<div class="navbar1">
+  <a href="main">Home</a>
+  <a href="goodsMain">ATO</a>
+  <a href="#">고객 센터</a>
+  <a href="contest">Contest</a>
+  <a href="login">로그인</a>
+  <a href="memberInfo">회원가입</a>
+  <a href="comMemberInfo">기업 회원가입</a>
+  
+  <div class="dropdown1">
+    <button class="dropbtn1">Dropdown 
+      <i class="fa fa-caret-down1"></i>
+    </button>
+    <div class="dropdown-content1">
+      <a href="#"></a>
+      <a href="#">Link 2</a>
+      <a href="#">Link 3</a>
+    </div>
+  </div> 
 </div>
 
 

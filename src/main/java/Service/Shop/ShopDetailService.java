@@ -28,7 +28,7 @@ public class ShopDetailService {
 	private VspotRepository vspotRepository;
 
 	@Transactional
-	public void shopDetail(String shopNum, Model model, Integer page) {
+	public void shopDetail(String shopNum, Model model, Integer page, HttpSession session, String vspotNum) {
 		
 		
 		ShopDTO sdto1 = new ShopDTO();
@@ -100,10 +100,23 @@ public class ShopDetailService {
 		
 		
 		ShopDTO sdto = new ShopDTO();
-		sdto.setVspotNum(Integer.parseInt(shopNum));
+		sdto.setVspotNum(Integer.parseInt(vspotNum));
 		List<ShopDTO> shop = vspotRepository.listShop(sdto);
 		Collections.shuffle(shop);
 		model.addAttribute("shop", shop);
+		
+		
+		
+		//예약한 사람만 후기를 작성할 수 있도록 num 뽑기
+		ShopReservationDTO sriondto = new ShopReservationDTO();
+		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
+	
+		sriondto.setMemNum(authInfo.getNum());
+		
+		sriondto.setShopNum(Integer.parseInt(shopNum));
+		ShopReservationDTO sretiondto = vspotRepository.shopNumselect(sriondto);
+		session.setAttribute("sretiondto", sretiondto);
+		
 		
 	}
 
@@ -115,7 +128,7 @@ public class ShopDetailService {
 		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
 		sreiondto.setVspotNum(Integer.parseInt(vspotNum));
 		sreiondto.setShopNum(Integer.parseInt(shopNum));
-		sreiondto.setMemNum(authInfo.getNum());
+		sreiondto.setMemNum(authInfo.getNum()); 
 		
 		System.out.println();
 		System.out.println("접근 휴양지 번호 ::::::::::" + Integer.parseInt(vspotNum));
@@ -144,6 +157,12 @@ public class ShopDetailService {
 		
 		
 		vspotRepository.ReservationInsert(sreiondto);
+	}
+
+	// 예약 취소입니다.
+	public void shopDelete(ShopReservationDTO shopReservationNum) {
+		
+		vspotRepository.shopDelete(shopReservationNum);
 	}
 
 }

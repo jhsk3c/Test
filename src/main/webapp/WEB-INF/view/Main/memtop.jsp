@@ -88,6 +88,11 @@ body {
 </div>
 
 <div class="navbar1">
+
+  <a href="main">Home</a>
+  <a href="goodsMain">ATO</a>
+  <a href="#">고객 센터</a>
+
   <a href="Car/carCalendaReservationList">car 예약목록</a>
   <a href="Car/carCalendarList">car 일정</a>
   <a href="contest">공모전</a>
@@ -103,7 +108,11 @@ body {
     <div class="dropdown-content1">
       <a href="spot">휴양지</a>
       <a href="ActivityList">활동</a>
+
       <a href="#">차공유</a>
+
+      <a href="#">ㅇㅇ</a>
+
     </div>
   </div> 
 

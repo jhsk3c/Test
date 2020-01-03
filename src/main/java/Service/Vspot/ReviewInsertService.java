@@ -20,13 +20,16 @@ public class ReviewInsertService {
 	private VspotRepository vspotRepository;
 	
 	@Transactional
-	public void insertList(String vspotNum, Model model) {
+	public void insertList(String vspotNum, Model model, HttpSession session) {
 		
 		VspotDTO vdto = new VspotDTO();
 		
 		vdto.setVspotNum(Integer.parseInt(vspotNum));
 		
 		VspotDTO list = vspotRepository.insertList(vdto);
+		
+		AuthInfo auth = (AuthInfo)session.getAttribute("authInfo");
+		model.addAttribute("au", auth.getId());
 		
 		model.addAttribute("list", list);
 		

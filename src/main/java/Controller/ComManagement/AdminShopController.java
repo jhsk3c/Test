@@ -40,7 +40,7 @@ public class AdminShopController {
 		//생각을 해보자 어케해야할까요..상점을 보통 지역으로 구분을 해서 나타내야 하잖아.. 결국 ??? => 값을 지역으로 해서 리스트를 뽑아야하고
 		//휴양지 등록번호가 필요가 어디에 있을까
 		System.out.println("첫번째접근 : " + vspotNum);
-		return adminshopInsertService.shopNumList(vspotNum, model);	
+		return adminshopInsertService.shopNumList2(vspotNum, model);	
 	}
 	
 	@RequestMapping("/adminshopInsertPro")

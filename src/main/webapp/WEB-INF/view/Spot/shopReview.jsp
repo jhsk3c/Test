@@ -139,6 +139,7 @@
 <body>
 	<form:form action="shopReviewPro" id="frm" method="post" commandName="shopReviewCommand">
 		<input type="hidden" name="num" value="${list.shopNum }" >
+		<input type="hidden" name="num2" value="${list.vspotNum }" >
 		<div>
 		<div class="mmmm"> 후기 작성 </div>
 		<div class="title"> 제목 </div> <form:input cssClass="tin" path="shopReviewTitle" id="shopReviewTitle" size="74" /><br/><br/>

@@ -48,7 +48,7 @@
 	</resultMap>
 	
 	<sql id="shopbasecolumn"> <!-- 상점 등록 컬럼 -->
-		shop_num, vspot_num, mem_id, shop_category, shop_loc, shop_location, shop_locationMap, shop_name,  goods_original, goods_store, goods_context, GOODS_INTRO, shop_approval, shop_closed, shop_time1, shop_time2, goods_date
+		shop_num, vspot_num, mem_id, shop_category, shop_loc, shop_location, shop_locationMap, shop_name,  goods_original, goods_store, goods_context, GOODS_INTRO, shop_approval, shop_closed, shop_count, shop_time1, shop_time2, goods_date
 	</sql>
 	
 	<resultMap type="shopDTO" id="shopbase"> <!-- 상점 등록 Map -->
@@ -66,6 +66,7 @@
 		<result column="GOODS_INTRO" jdbcType="VARCHAR" property="goodsIntro" />
 		<result column="SHOP_APPROVAL" jdbcType="VARCHAR" property="shopApproval" />
 		<result column="SHOP_CLOSED" jdbcType="VARCHAR" property="shopClosed" />
+		<result column="shop_count" jdbcType="INTEGER" property="shopCount" />
 		<result column="shop_time1" jdbcType="VARCHAR" property="shopTime1" />	
 		<result column="shop_time2" jdbcType="VARCHAR" property="shopTime2" />	
 		<result column="GOODS_DATE" jdbcType="TIMESTAMP" property="goodsDate" />	
@@ -209,6 +210,75 @@
 	
 	<!-- 예약 등록 관련 내용 -->
 	<insert id="ReservationInsert" parameterType="shationDTO">
-		insert into shop_reservation(<include refid="shopReservation" />) values((select nvl(max(shop_reservation_num)+1,1) from shop_reservation), #{shopNum}, #{vspotNum}, #{memNum}, #{peopleNum}, #{useDate}, #{useTime}, '1')
+		insert into shop_reservation(<include refid="shopReservation" />) values((select nvl(max(shop_reservation_num)+1,100000000) from shop_reservation), #{shopNum}, #{vspotNum}, #{memNum}, #{peopleNum}, #{useDate}, #{useTime}, '1')
 	</insert>
+	
+	
+	<!-- 상점 디테일에서 후기를 작성하기 위해 예약한 사람을 뽑기 위해 -->
+	<select id="shopNumselect" resultMap="baseshopReservation" parameterType="shationDTO">
+		select <include refid="shopReservation" />
+		from shop_reservation
+		where 
+		SHOP_NUM = ${shopNum} and MEM_NUM = #{memNum}
+	</select>
+	
+	<!-- 프로필에서 휴양지 리스트 뽑는 거. -->
+	<select id="vspotSele" parameterType="spageDTO" resultMap="baseVspotMember" >
+		select rownum rn, <include refid="basecolumn" />
+		from(select rownum rn, <include refid="basecolumn" />
+			from(select <include refid="basecolumn" />
+				from vspot order by VSPOT_DATE ASC))
+				where mem_num = #{su1} and rn &gt;= #{startRow} and rn &lt;= #{endRow}
+	</select>
+	
+	<!-- 프로필에서 휴양지 개수.. -->
+	<select id="vspotseleCount" parameterType="vDTO" resultType="int">
+		select count(*)
+		from vspot
+		where mem_num = #{memNum} 
+	</select>
+	
+	<!-- 프로필에서 상점 리스트 -->
+	<select id="shopSele" parameterType="spageDTO" resultMap="shopbase" >
+		select rownum rn, <include refid="shopbasecolumn" />
+		from(select rownum rn, <include refid="shopbasecolumn" />
+			from(select <include refid="shopbasecolumn" />
+				from shop order by GOODS_DATE ASC))
+				where mem_id = #{abc} and rn &gt;= #{startRow} and rn &lt;= #{endRow}
+	</select>
+	
+	
+	<!-- 프로필에서 상점 개수.. -->
+	<select id="shopSeleCount" parameterType="shopDTO" resultType="int">
+		select count(*)
+		from shop
+		where mem_id = #{memId} 
+	</select>
+	
+	
+	<!-- 프로필에서 예약 리스트 -->
+	<select id="shopReserSele" parameterType="spageDTO" resultMap="baseshopReservation" >
+		select rownum rn, <include refid="shopReservation" />
+		from(select rownum rn, <include refid="shopReservation" />
+			from(select <include refid="shopReservation" />
+				from shop_reservation order by USE_DATE ASC))
+				where mem_num = #{abc} and rn &gt;= #{startRow} and rn &lt;= #{endRow}
+	</select>
+	
+	
+	<!-- 프로필에서 예약 개수.. -->
+	<select id="shoprtionSeleCount" parameterType="shationDTO" resultType="int">
+		select count(*)
+		from shop_reservation
+		where mem_num = #{memNum} 
+	</select>
+	
+	
+	<!-- 예약 취소 누르면 삭제.-->
+	<delete id="shopDelete" parameterType="shationDTO" >
+		delete 
+		from shop_reservation
+		where SHOP_RESERVATION_NUM = #{shopReservationNum} 
+	</delete>
+	
 </mapper>

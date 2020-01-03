@@ -66,12 +66,18 @@
 			
 			<tr>
 				<td> 상점 영업 시간 </td>
-				<td> <input type="time" id="shopTime1" name="shopTime1"> - <input type="time" id="shopTime2" name="shopTime2"> </td>
+				<td> 
+					<input type="time" id="shopTime1" name="shopTime1"> - <input type="time" id="shopTime2" name="shopTime2"> 
+				</td>
 			</tr>
 			
 			<tr>
 				<td> 상점 휴무 </td>
-				<td> <form:input path="shopClosed" id="shopClosed" size="30" /> </td>
+				<td> 
+					<form:input path="shopClosed" id="shopClosed" size="30" /> &nbsp;&nbsp;&nbsp;
+					<form:input path="shopCount" id="shopCount" size="2" />
+					<p>일요일은 : 0 월요일은 : 1 화요일은 : 2 수요일은 : 3 목요일은 : 4 금요일은 : 5 토요일은 : 6 을 작성해주세요.</p>
+				</td>
 			</tr>
 			
 			<tr>

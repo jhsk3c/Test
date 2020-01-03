@@ -21,10 +21,10 @@ public class ShopDTO implements Serializable{
 	String goodsIntro;
 	String shopApproval;
 	String shopClosed;
+	Integer shopCount;
 	String shopTime1;
 	String shopTime2;
 	Timestamp goodsDate;
-	
 	public Integer getShopNum() {
 		return shopNum;
 	}
@@ -108,6 +108,12 @@ public class ShopDTO implements Serializable{
 	}
 	public void setShopClosed(String shopClosed) {
 		this.shopClosed = shopClosed;
+	}
+	public Integer getShopCount() {
+		return shopCount;
+	}
+	public void setShopCount(Integer shopCount) {
+		this.shopCount = shopCount;
 	}
 	public String getShopTime1() {
 		return shopTime1;

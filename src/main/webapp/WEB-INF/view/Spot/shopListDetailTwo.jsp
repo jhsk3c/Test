@@ -74,7 +74,7 @@
 	</script>
 
 	
-	<button class="but" type="button" onclick="location.href='shopDetail?num=${list.shopNum}'">
+	<button class="but" type="button" onclick="location.href='shopDetail?num=${list.shopNum}&num2=${list.vspotNum }'">
 		<img src="Spot/upload/False.png"  width="100%" height="100%"/>
 	</button>
 	
