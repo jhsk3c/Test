@@ -68,12 +68,29 @@
 	</c:if> 
 	
 	
-	<!-- 이동하는 버튼만 일단 만들고. 검색은 ?? -->
-	<div><input type="button" value="하기싫어요!! 일단 휴양지 목록가기" onclick="location.href='memvspotList'"></div>
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	<!-- 위 버튼 뭐 클릭하면 뭐 나오고 top부분 이런거 설정 후 상점ㄱㄱ 오늘 못해도 상점 등록까지만 가자.. -->
 	<div class="all">
-	<div class="title">추천하는 여행지</div>
+	<div style="width:90%">
+		<div class="title">추천하는 여행지</div>
+		<div style="float:right">
+			<a href="memvspotList"> 
+				<img alt="viewMore" src="/Main/img/icon_view-more.jpg" style="float:left" />
+			</a>
+		</div>
+	</div>
 	<!-- 휴양지 리슽트 뽑은겁니다.. -->
 	
 	<table align="center">
@@ -101,6 +118,54 @@
 		</c:forEach>
 	</table>
 	</div>
+	
+	
+	
+<!-- 활동 -->
+	
+	
+<div class="all">
+	<div style="width:90%">
+		<div class="title"> 활동</div>
+		<div style="float:right">
+			<a href="ActivityList"> 
+				<img alt="viewMore" src="/Main/img/icon_view-more.jpg" style="float:left" />
+			</a>
+		</div>
+	</div>
+	
+	
+		<table align="center">
+			<c:set var="i" value="0" />
+			<c:set var="j" value="4" />
+			<c:forEach var="list2" items="${list2}" varStatus="status"> 
+				<c:if test="${i < 4 }">
+				<c:if test="${i%j == 0 }" >
+					<tr>
+				</c:if>	
+						<td> W
+							<c:forTokens items="${list2.storeFilename}" delims="-" var="store" end="0">
+								<a href="vspotListDetail?num=${list2.activityNum}">
+									<img src="Spot/upload/${store}" alt="X"  width="300" height="300" style="border-radius: 25px;">
+								</a>
+							</c:forTokens> <br>
+							${list2.activityName} <br>
+							${list2.activityCity}
+						</td> 
+				<c:if test="${i%j == j-1 }" > 
+					</tr>
+				</c:if> 
+				<c:set var="i" value="${i+1 }" />
+				</c:if>
+			</c:forEach>
+		</table>
+	</div>
+	
+	
+	
+	
+	
+	
 	
 	
 </body>

@@ -263,5 +263,13 @@ public class AdminRepository {
 		return sqlSession.insert(statement, sdto);
 	}
 
+	public MemberDTO storeDetailMemLev(MemberDTO memDTO) {
+		String statement = namespace + ".storeDetailMemLev";
+	return sqlSession.selectOne(statement, memDTO);
+	}
+
+	
+	
+
 }
 

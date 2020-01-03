@@ -20,8 +20,14 @@
 
 
 
+
+
 <bean id="activityRepository"  class="Repository.Activity.ActivityRepository" />
 <bean id="soreRepository" class="Repository.Activity.StoreRepository" />
+<bean id="paymentRepository" class="Repository.Activity.PaymentRepository" />
+
+
+
 
 
 

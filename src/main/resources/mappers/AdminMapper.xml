@@ -162,6 +162,14 @@
 		product_num, store_num, product_name, product_price, product_option, product_content, original_filename, store_filename 
 	</sql>
 
+
+
+
+
+
+
+
+<!-- sql -->
 	<!-- 승인 미승인 처리를 기다리는 기업회원의 리스트 항목  -->
 	<select id="comList" parameterType="spageDTO" resultMap="baseComMember">
 	
@@ -378,5 +386,13 @@
 			from ACTIVITY_PRODUCT
 		where store_num = #{storeNum}
 	</select>
-
+	
+	<!-- 상점리스트 회원 레벨 뽑기 -->
+	<select id="storeDetailMemLev" parameterType="memDTO" resultMap="baseMember">
+		 select mem_lev
+		 	from MEMBER
+		 	where mem_num = ${memNum}
+	</select>
+	
+	
 </mapper>

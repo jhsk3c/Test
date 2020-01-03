@@ -28,11 +28,16 @@ public class ActivityListService {
 		List<ActivityDTO> list = activityRepository.activityList();
 		ActivityDTO forToCheck = activityRepository.forToCheck(acti);
 		
+		System.out.println(list.get(0).getActivityNum());
+		System.out.println(list.get(0).getActivityNum());
+		System.out.println(list.get(0).getActivityNum());
+		System.out.println(list.get(0).getActivityNum());
+		System.out.println(list.get(0).getActivityNum());
+		System.out.println(list.get(0).getActivityNum());
 		//model.addAttribute("aa", authInfo.getNum()); 저장된 회원 값 가져오기
 		
 		model.addAttribute("list", list);
 		model.addAttribute("forToCheck", forToCheck);
-		
 		return "Activity/ActivityList";
 	}
 

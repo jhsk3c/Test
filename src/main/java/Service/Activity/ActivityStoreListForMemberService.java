@@ -18,13 +18,19 @@ public class ActivityStoreListForMemberService {
 	
 	
 	public String storeList(Model model, HttpServletRequest request) {
+		System.out.println("접근");
+		System.out.println("접근_Service_storeList");
+		System.out.println("접근");
+		System.out.println("접근");
+		System.out.println("접근");
+		
 		ActivityStoreDTO storeDTO = new ActivityStoreDTO();
 		
 		List<ActivityStoreDTO> list = storeRepository.storeList(storeDTO);
 		
 		model.addAttribute("list", list);
 		
-		return "Activity/MemberActivityStoreList";
+		return "Activity/AcitivtyStoreSearchList";
 	}
 
 	

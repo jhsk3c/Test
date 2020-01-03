@@ -15,13 +15,28 @@ public class StoreRepository {
 	
 	private final String namespace ="actiMapper";
 
+	
+	
 	public List<ActivityStoreDTO> storeList(ActivityStoreDTO storeDTO) {
+			System.out.println("접근");
+			System.out.println("접근_Repository_storeList");
+			System.out.println("접근");
+			System.out.println("접근");
+		
 		String statement = namespace + ".storeList";
 	return sqlSession.selectList(statement, storeDTO);		
 	}
 
 //찾으려고 하는 상점 
 	public List<ActivityStoreDTO> searchCity(ActivityStoreDTO storeDTO) {
+			System.out.println("접근");
+			System.out.println("접근_Repository_searchCity");
+			System.out.println("접근");
+			System.out.println("접근");
+			System.out.println("접근");
+			System.out.println("접근");
+			System.out.println("상점 지역 : " + storeDTO.getStoreLoc1());
+			
 		String statement = namespace + ".searchCity";
 	return sqlSession.selectList(statement, storeDTO);
 	}

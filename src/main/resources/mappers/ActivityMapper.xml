@@ -54,13 +54,13 @@
 		<result column="store_loc1" jdbcType="VARCHAR" property="storeLoc1" />
 		<result column="store_loc2" jdbcType="VARCHAR" property="storeLoc2" />		
 		<result column="store_tel" jdbcType="VARCHAR" property="storeTel" />
-		<result column="Store_MainProduct" jdbcType="VARCHAR" property="StoreMainProduct" />
+		<result column="store_MainProduct" jdbcType="VARCHAR" property="StoreMainProduct" />
 		<result column="store_business_num" jdbcType="VARCHAR" property="storeBusinessNum" />
 		<result column="store_Owner" jdbcType="VARCHAR" property="storeOwner" />
 	</resultMap>
 	
 	<sql id="StoreList" >
-		store_num, store_name, store_loc1, store_loc2, store_tel, activity_MainProduct, store_business_num, store_owner
+		store_num, store_name, store_loc1, store_loc2, store_tel, store_MainProduct, store_business_num, store_owner
 	</sql>
 
 
@@ -106,7 +106,7 @@
 
 	<!-- 활동목록 -->
 	<select id="activityList" parameterType="actiDTO" resultMap="baseActivity" >
-		select activity_name, original_filename, store_filename, acivity_cost
+		select <include refid="basecolumnofActi"></include>
 		from ACTIVITY		
 			where activity_lev = 3
 	</select>
@@ -152,5 +152,24 @@
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+<!-- 메인 리스트 -->
+	<select id="ListOfActivity" parameterType="actiDTO" resultMap="baseActivity">
+		select <include refid="basecolumnofActi" />
+		from ACTIVITY
+		where activity_lev = 3
+	</select>
 	
 </mapper>

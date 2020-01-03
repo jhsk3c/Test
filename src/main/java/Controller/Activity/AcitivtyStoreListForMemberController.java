@@ -30,14 +30,21 @@ public class AcitivtyStoreListForMemberController {
 	
 	@RequestMapping("/activityStoreList")
 	public String activityStoreList(Model model, HttpServletRequest request) {
+			System.out.println("접근");
+			System.out.println("접근_Controller_StoreList");
+			System.out.println("접근");
+			System.out.println("접근");
+			System.out.println("접근");
+			System.out.println("접근");
+		
 		model.addAttribute("activityStoreCommand", new ActivityStoreCommand());
 	return activityStoreListForMemberService.storeList(model, request);
 	}
 	
-	
+//상점지역 검색
 	@RequestMapping("/searchCity")
 	public String searchCity(ActivityStoreCommand activityStoreCommand, Model model, HttpServletRequest request) {
-		return activityStoreSearchService.storeSearch(activityStoreCommand, model, request);
+	return activityStoreSearchService.searchCity(activityStoreCommand, model, request);
 	}
 	
 	

@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import DTO.Activity.ActivityStoreDTO;
+import Model.DTO.AuthInfo;
+import Model.DTO.MemberDTO;
 import Repository.Admin.AdminRepository;
 
 
@@ -31,8 +33,20 @@ public class ActivityStoreDetailService {
 			
 			System.out.println("storenum : " + storeDTO.getStoreNum());
 			
-		 ActivityStoreDTO list = adminRepository.StoreDetail(storeDTO);
+		 MemberDTO memDTO = new MemberDTO();	
+		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
+			memDTO.setMemNum(authInfo.getNum());
+			System.out.println("현재 맴넘 값 : " + memDTO.getMemNum());
+			System.out.println("현재 맴넘 값 : " + memDTO.getMemNum());
+			System.out.println("현재 맴넘 값 : " + memDTO.getMemNum());
+			System.out.println("현재 맴넘 값 : " + memDTO.getMemNum());
+			System.out.println("현재 맴넘 값 : " + memDTO.getMemNum());
+			
+		 MemberDTO member = adminRepository.storeDetailMemLev(memDTO);
 		 
+		 ActivityStoreDTO list = adminRepository.StoreDetail(storeDTO);
+
+		 model.addAttribute("member", member);
 		 model.addAttribute("list", list);
 	return list;
 	}

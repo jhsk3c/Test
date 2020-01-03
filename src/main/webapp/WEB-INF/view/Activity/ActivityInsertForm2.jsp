@@ -69,7 +69,15 @@
   });
   </script>
 
-
+<script>
+	$(function (){
+		$("#frm").submit(function(){
+			if($("#recruitStartDate").val() >= ${actiStartDate } ){
+				alert("모집 기간이 활동 시작일과 같거나 클 순 없습니다! 활동 시작일을 확인해주세요");
+			}				
+		});
+	});
+</script>
 
   
   
@@ -89,7 +97,7 @@
 <jsp:include page="../Main/memtop.jsp" />
 
 <!-- 하단 -->
-<form:form action="ActivityInsertPro2" method="post" commandName="activityCommand2" >
+<form:form action="ActivityInsertPro2" method="post" id="frm" commandName="activityCommand2" >
 <input type="hidden" name="memNum" value="${list.memNum }" />
 
 <div style="margin:40px auto; background:#e6ffee; width:70%; padding-top:50px; padding-right:30px; padding-bottom:50px; padding-left:80px; text-align:center">	<!-- 가운데 정렬  -->

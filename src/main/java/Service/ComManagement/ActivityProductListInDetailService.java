@@ -34,6 +34,15 @@ public class ActivityProductListInDetailService {
 			System.out.println("storenum : " + productDTO.getStoreNum());
 			
 		List<ActivityProductDTO> list = adminRepository.ProductListInStoreDetail(productDTO);
+			
+		//사진뽑아요~
+				if(list.get(0).getOriginalFilename() != null) {
+					String[] original = list.get(0).getOriginalFilename().split("-");
+					String[] store = list.get(0).getStoreFilename().split("-");
+					model.addAttribute("original", original);
+					model.addAttribute("store", store);
+				}
+		
 		model.addAttribute("product", list);
 	return list;
 	}
