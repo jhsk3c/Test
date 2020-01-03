@@ -21,12 +21,20 @@
   			classpath:spring-qna-controller.xml
   			classpath:contest-beans.xml <!-- 공모전 빈 -->
   			classpath:contest-controller.xml <!-- 공모전 컨트롤러 -->
+  			classpath:participation-beans.xml
+  			classpath:participation-controller.xml
   			classpath:spring-car-controller.xml <!-- 차 컨트롤러 -->
   			classpath:spring-car-beans.xml	<!--  차 빈 -->
   			classpath:spring-carcalendar-controller.xml<!-- 차 일정 컨트롤러 -->
   			classpath:spring-carcalendar-beans.xml<!--  차 일정 빈 -->
   			classpath:Activity-beans.xml 
   			classpath:Activity-controller.xml
+  			classpath:aduit-beans.xml
+  			classpath:aduit-controller.xml
+  			classpath:goods-beans.xml
+  			classpath:goods-controller.xml
+  			classpath:cart-beans.xml
+  			classpath:cart-controller.xml
   			classpath:spring-CarCalendarReservation-beans.xml <!-- 차 예약 빈  -->
   			classpath:spring-CarCalendarReservation-controller.xml <!--  차 예약 컨트롤러 -->
   			classpath:spring-carpayment-beans.xml <!-- 차 결제 빈  -->

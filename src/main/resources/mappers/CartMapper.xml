@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Repository.Cart.CartMapper">
+	<cache />
+	
+	<sql id="cartcolumn">
+		cart_num, goods_num, aduit_num, participation_num, mem_id, qty
+	</sql>
+	
+	<resultMap type="Model.DTO.CartDTO" id="cartMap">
+		<id column="cart_num" jdbcType="INTEGER" property="cartNum"/>
+		<result column="goods_num" jdbcType="INTEGER" property="goodsNum"/>
+		<result column="aduit_num" jdbcType="INTEGER" property="aduitNum"/>
+		<result column="participation_num" jdbcType="INTEGER" property="participationNum"/>
+		<result column="mem_id" jdbcType="VARCHAR" property="memId"/>
+		<result column="qty" jdbcType="INTEGER" property="qty"/>
+	</resultMap>
+	
+	<resultMap type="Model.DTO.GoodsDTO" id="goodsMap">
+		<id column="goods_num" jdbcType="INTEGER" property="goodsNum"/>
+		<id column="participation_num" jdbcType="INTEGER" property="participationNum"/>
+		<id column="aduit_num" jdbcType="INTEGER" property="auditNum"/>
+		<result column="mem_id" jdbcType="VARCHAR" property="memId" />
+		<result column="goods_category" jdbcType="VARCHAR" property="goodsCategory"/>
+		<result column="goods_name" jdbcType="VARCHAR" property="goodsName"/>
+		<result column="goods_price" jdbcType="INTEGER" property="goodsPrice"/>
+		<result column="goods_image" jdbcType="VARCHAR" property="goodsImage"/>
+		<result column="goods_content" jdbcType="VARCHAR" property="goodsContent"/>
+		<result column="goods_qty" jdbcType="INTEGER" property="goodsQty"/>
+		<result column="goods_discount_rate" jdbcType="VARCHAR" property="goodsDiscountRate"/>
+		<result column="goods_date" jdbcType="DATE" property="goodsDate"/>
+	</resultMap>
+	
+	<resultMap type="Model.DTO.CartJoinDTO" id="joinMap">
+		<collection property="cartDTO" resultMap="cartMap" />
+		<collection property="goodsDTO" resultMap="goodsMap" />
+	</resultMap>
+	
+<!-- 장바구니에 동일한 상품 레코드 확인 -->
+	<select id="countCart" parameterType="Model.DTO.CartDTO" resultType="Integer"> 
+		select count(*) from goods_cart
+		where mem_id = #{memId} and goods_num = #{goodsNum}
+	</select>
+	
+	<insert id="insertCart" parameterType="Model.DTO.CartDTO">
+		insert into goods_cart(<include refid="cartcolumn"/>) values((SELECT NVL(MAX(cart_num),0)+1 FROM goods_cart),
+		#{goodsNum},#{aduitNum},#{participationNum},#{memId},#{qty})	
+	</insert>
+	
+	<select id="cartList" parameterType="Model.DTO.CartJoinDTO" resultMap="joinMap">
+		SELECT g.GOODS_NAME, g.GOODS_PRICE, c.QTY
+		FROM GOODS g, GOODS_CART c
+		WHERE g.GOODS_NUM = c.GOODS_NUM
+		AND c.MEM_ID = #{cartDTO.memId}
+	</select>
+	
+	<select id="sumMoney" resultType="int">
+		SELECT nvl(sum(g.GOODS_PRICE * c.QTY), 0) money
+		FROM goods g, GOODS_CART c
+		WHERE g.GOODS_NUM = c.GOODS_NUM AND c.MEM_ID = #{memId}
+	</select>
+	
+	<update id="updateCart" parameterType="Model.DTO.CartDTO">
+		update goods_cart
+		set qty = #{qty}
+		where mem_id = #{memId}
+		and goods_num = #{goodsNum}
+	</update>
+</mapper>

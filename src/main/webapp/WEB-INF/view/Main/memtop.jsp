@@ -77,6 +77,7 @@ body {
 
 <div class="navbar1">
   <a href="main">Home</a>
+  <a href="goodsMain">ATO</a>
   <a href="#">고객 센터</a>
   <a href="Car/carCalendaReservationList">car 예약목록</a>
   <a href="Car/carCalendarList">car 일정</a>
@@ -93,7 +94,7 @@ body {
     <div class="dropdown-content1">
       <a href="spot">휴양지 신청</a>
       <a href="ActivityList">활동</a>
-      <a href="#">Link 3</a>
+      <a href="#">ㅇㅇ</a>
     </div>
   </div> 
 

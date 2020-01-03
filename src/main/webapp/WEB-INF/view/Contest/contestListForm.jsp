@@ -33,6 +33,7 @@
 </style>
 </head>
 <body>
+	<jsp:include page="contestMain.jsp"></jsp:include>
 <table>
 	<tr>
 		<td></td><td></td><td></td>
@@ -40,7 +41,11 @@
 	<c:forEach var="contest" items="${contest }">
 	<div id="banner-list">
 	<a href="contestDetail?contestNum=${contest.contestNum }">
-		<p id="img"><img src="../Contest/upload/${contest.contestPoster}" /></p>
+		<p id="img">
+			<c:forTokens items="${contest.contestStorePoster}" delims="-" var="aa">
+				<img src="Contest/upload/${aa}" />
+			</c:forTokens>
+		</p>
 		<p id="contest-name"><h4>${contest.contestName }</h4></p>
 	</a>
 		<p id="contest-time"><fmt:formatDate value="${contest.contestStart }" pattern="yyyy.MM.dd"/> ~ <fmt:formatDate value="${contest.contestEnd }" pattern="yyyy.MM.dd"/></p>

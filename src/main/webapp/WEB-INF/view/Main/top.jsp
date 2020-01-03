@@ -75,6 +75,7 @@ body {
 
 <div class="navbar1">
   <a href="main">Home</a>
+  <a href="goodsMain">ATO</a>
   <a href="#">고객 센터</a>
   <a href="contest">Contest</a>
   <a href="login">로그인</a>

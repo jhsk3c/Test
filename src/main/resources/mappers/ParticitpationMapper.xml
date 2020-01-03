@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Repository.Particitpation.ParticitpationMapper">
+	<cache />
+	
+	<resultMap type="Model.DTO.ParticipationDTO" id="participationMap">
+		<id column="participation_num" jdbcType="VARCHAR" property="participationNum" />
+		<result column="mem_num" jdbcType="INTEGER" property="memNum" />
+		<result column="contest_num" jdbcType="VARCHAR" property="contestNum" />
+		<result column="mem_id" jdbcType="VARCHAR" property="memId" />
+		<result column="mem_name" jdbcType="VARCHAR" property="memName" />
+		<result column="work_name" jdbcType="VARCHAR" property="workName" />
+		<result column="work_outline" jdbcType="VARCHAR" property="workOutline" />
+		<result column="work_content" jdbcType="VARCHAR" property="workContent" />
+		<result column="work_image" jdbcType="VARCHAR" property="workImage" />
+		<result column="participation_date" jdbcType="DATE" property="participationDate" />
+		<result column="aduit_status" jdbcType="VARCHAR" property="aduitStatus" />
+	</resultMap>
+	
+	<sql id="basecolumn">
+		participation_num, mem_num, contest_num, mem_id, mem_name, work_name, 
+		work_outline, work_content, work_image, participation_date, aduit_status
+	</sql>
+	
+	<select id="memNumCheck" parameterType="Model.DTO.ParticipationDTO" resultType="int" >
+		select mem_num from participation 
+		where mem_num = #{memNum} and contest_num = #{contestNum}
+	</select>
+	
+	<insert id="insertParticitpation" parameterType="Model.DTO.ParticipationDTO">
+		insert into participation(<include refid="basecolumn" />) 
+		values((SELECT NVL(MAX(participation_num),0)+1 FROM participation), #{memNum}, 
+		#{contestNum}, #{memId}, #{memName}, #{workName}, #{workOutline}, #{workContent}, #{workImage}, sysdate, #{aduitStatus})
+	</insert>
+	
+	<select id="selectPeople" parameterType="Model.DTO.ParticipationDTO" resultMap="participationMap">
+		select <include refid="basecolumn" /> from participation 
+		where contest_num = #{contestNum}
+	</select>
+	
+	<select id="detailParticipation" parameterType="Model.DTO.ParticipationDTO" resultMap="participationMap">
+		select <include refid="basecolumn" /> from participation
+		where participation_num = #{participationNum} and mem_id = #{memId}
+	</select>
+	
+	<select id="selectList" parameterType="Model.DTO.ParticipationDTO" resultMap="participationMap">
+		select <include refid="basecolumn" /> from participation
+		where mem_id = #{memId}
+	</select>
+	
+	<update id="updateAuditStatus" parameterType="Model.DTO.ParticipationDTO">
+		update participation set aduit_status = #{aduitStatus}
+		where participation_num = #{participationNum}
+	</update>
+</mapper>

@@ -74,6 +74,7 @@ body {
 <!-- 지금 문제는 경로문제 결국에는 기업회원 관리에 들어가면.. 현재 admin/comMana잖아 여기서 또 누르면 또 admin/admin/comMana.. -->
 <div class="navbar1">
   <a href="main">Home</a>
+  <a href="goodsMain">ATO</a>
   <a href="contest">Contest</a>
   <a href="admin/comMana">기업 회원 관리</a>
   <a href="Car/carEnrollmentList">car관리</a>
