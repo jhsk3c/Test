@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title><spring:message code="member.register" /></title>
+<title> <spring:message code="member.register" /></title>
 
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>

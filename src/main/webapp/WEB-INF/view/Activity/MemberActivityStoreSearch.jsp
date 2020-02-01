@@ -23,6 +23,8 @@
 
 
 
+
+<!-- 중단 -->
 	<!-- 본격 -->
 	<div style="margin:30px auto; align:middle; witdh:80%">
 		<table class="w3-table-all w3-hoverable">
@@ -32,10 +34,10 @@
 				<th> 주로 다루는 물품 </th>
 			</thead>
 			<c:forEach var="list" items="${search }" varStatus="status">	
-				<tr>
-					<td width="30%"> ${search.storeLoc1 } </td>
-					<td> ${search.storeName } </td>
-					<td> </td>
+				<tr>				
+					<td width="30%"> ${list.storeLoc1 } </td>
+					<td> <a href="StoreDetail?stNum=${list.storeNum }">${list.storeName } ㅋㅋㅋ </a> </td>
+					<td> ${list.storeMainProduct } </td>
 				</tr>
 			</c:forEach>
 		</table>

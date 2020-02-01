@@ -1,9 +1,11 @@
 package DTO.Activity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @SuppressWarnings("serial")
 public class ActivityStoreDTO implements Serializable{
+	
 	String storeNum;
 	String storeName;
 	String storeLoc1;
@@ -12,9 +14,45 @@ public class ActivityStoreDTO implements Serializable{
 	String StoreMainProduct;
 	String storeBusinessNum;
 	String storeOwner;
+	String originalStoreFilename;
+	String storeStoreFilename;
+	String originalBusinessLicenseFilename;
+	String storeBusinessLicenseFilename;
+	Date registrationDate;
 	
 	
 	
+	
+	public Date getRegistrationDate() {
+		return registrationDate;
+	}
+	public void setRegistrationDate(Date registrationDate) {
+		this.registrationDate = registrationDate;
+	}
+	public String getOriginalStoreFilename() {
+		return originalStoreFilename;
+	}
+	public void setOriginalStoreFilename(String originalStoreFilename) {
+		this.originalStoreFilename = originalStoreFilename;
+	}
+	public String getStoreStoreFilename() {
+		return storeStoreFilename;
+	}
+	public void setStoreStoreFilename(String storeStoreFilename) {
+		this.storeStoreFilename = storeStoreFilename;
+	}
+	public String getOriginalBusinessLicenseFilename() {
+		return originalBusinessLicenseFilename;
+	}
+	public void setOriginalBusinessLicenseFilename(String originalBusinessLicenseFilename) {
+		this.originalBusinessLicenseFilename = originalBusinessLicenseFilename;
+	}
+	public String getStoreBusinessLicenseFilename() {
+		return storeBusinessLicenseFilename;
+	}
+	public void setStoreBusinessLicenseFilename(String storeBusinessLicenseFilename) {
+		this.storeBusinessLicenseFilename = storeBusinessLicenseFilename;
+	}
 	public String getStoreOwner() {
 		return storeOwner;
 	}

@@ -34,6 +34,9 @@ public class ActivityProductListInDetailService {
 			System.out.println("storenum : " + productDTO.getStoreNum());
 			
 		List<ActivityProductDTO> list = adminRepository.ProductListInStoreDetail(productDTO);
+	
+		
+		
 		model.addAttribute("product", list);
 	return list;
 	}

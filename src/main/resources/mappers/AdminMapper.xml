@@ -129,7 +129,7 @@
 	</sql>
 
 	
-	<!-- 활동 상점 -->
+<!-- 활동 상점 -->
 	<resultMap type="StoreDTO" id="baseStore">
 		<id column="store_num" jdbcType="VARCHAR" property="storeNum" />
 		<result column="store_loc1" jdbcType="VARCHAR" property="storeLoc1" />
@@ -143,7 +143,12 @@
 	
 	<!-- 활동 상점 등록 -->
 	<sql id="actiStore">
-			store_num, store_loc1, store_name, store_loc2, store_tel, Store_MainProduct, store_business_num, store_Owner
+			store_num, store_name, store_loc1, store_loc2, store_tel, Store_MainProduct,
+			store_business_num, store_Owner, original_Store_filename, store_Store_filename, 
+			original_bL_filename, store_BL_filename, registration_date
+	</sql>
+	<sql id="actiStoreList">
+		store_num, store_loc1, store_name
 	</sql>
 		
 	<!-- 물품 -->
@@ -163,6 +168,14 @@
 		product_num, store_num, product_name, product_price, product_option, product_content, original_filename, store_filename 
 	</sql>
 
+
+
+
+
+
+
+
+<!-- sql -->
 	<!-- 승인 미승인 처리를 기다리는 기업회원의 리스트 항목  -->
 	<select id="comList" parameterType="spageDTO" resultMap="baseComMember">
 	
@@ -236,14 +249,7 @@
 	
 	
 	
- 	<!-- 활동활동 -->
-	<select id="activityListADMIN" parameterType="spageDTO" resultMap="baseActivity"> <!-- 1차 제출한 거 뽑기 -->
-			select rownum rn, <include refid="baseclumnOfActivity" />
-		from(select rownum rn, <include refid="baseclumnOfActivity" />
-			from(select <include refid="baseclumnOfActivity" />
-				from activity order by activity_start_date desc))
-		where rn &gt;= #{startRow} and rn &lt;= #{endRow} and activity_lev = 1
-	</select>
+ 	
 
 	<!-- 관리자가 휴양지를 등록하는 것. -->
 	<insert id="adminvspotInsert" parameterType="vDTO"> 
@@ -334,51 +340,112 @@
 	
 	
 	
-<!-- 활동 관리자 -->
+	
+	
+	
+	
+<!-- 활동 관리자 -->	
+	<!-- 활동활동 -->
+	<select id="activityListADMIN" parameterType="spageDTO" resultMap="baseActivity"> <!-- 1차 제출한 거 뽑기 -->
+			select rownum rn, <include refid="baseclumnOfActivity" />
+		from(select rownum rn, <include refid="baseclumnOfActivity" />
+			from(select <include refid="baseclumnOfActivity" />
+				from activity order by activity_start_date desc))
+		where rn &gt;= #{startRow} and rn &lt;= #{endRow} and activity_lev = 1
+	</select>
+	
+
 	<!-- 활동 상점&물품 등록 -->
 	<insert id="activityStoreInsert" parameterType="StoreDTO">  <!-- 활동 상점 등록 -->
 		insert into ACTIVITY_STORE(<include refid="actiStore" />)
-			values((select nvl(max(store_num)+1,1) from activity_store), #{storeLoc1}, #{storeName}, #{storeLoc2}, #{storeTel}, #{StoreMainProduct}, #{storeBusinessNum}, #{storeOwner})
+			values((select nvl(max(store_num)+1,1) from activity_store), #{storeName}, #{storeLoc1},
+					#{storeLoc2}, #{storeTel}, #{StoreMainProduct}, #{storeBusinessNum}, #{storeOwner},
+					#{originalStoreFilename}, #{storeStoreFilename}, #{originalBusinessLicenseFilename},
+					#{storeBusinessLicenseFilename}, sysdate)
 	</insert>
 	
 	
-	<select id="activityStoreList" parameterType="StoreDTO" resultMap="baseStore">		<!-- 상점 목록 -->
-		select rownum rn, <include refid="actiStore" />
-			from (select rownum rn, <include refid="actiStore" />
-				from(select <include refid="actiStore" />
-					from ACTIVITY_STORE order by STORE_NAME desc))
+	
+	<!-- 상점 목록 -->
+	<select id="activityStoreList" parameterType="StoreDTO" resultMap="baseStore">		
+		select rownum rn, <include refid="actiStoreList" />
+			from (select rownum rn, <include refid="actiStoreList" />
+					 from(select <include refid="actiStoreList" />
+						from ACTIVITY_STORE order by Store_loc1 desc))
 	</select>
 	
-	<select id="ActiStoreCount" parameterType="String" resultType="int">	<!-- 상점 수 -->
+	<!-- 상점 수 -->
+	<select id="ActiStoreCount" parameterType="String" resultType="int">	
 		select count(*)
 		from ACTIVITY_STORE
 	</select>
 	
-	<select id="prpr" parameterType="StoreDTO"  resultMap="baseStore">	<!-- stNum찾기 -->
+	<!-- stNum찾기 -->
+	<select id="prpr" parameterType="StoreDTO"  resultMap="baseStore">	
 		select <include refid="actiStore" />
 		from ACTIVITY_STORE
 		where store_num = #{storeNum}
 	</select>
 	
-
-	<insert id="activityProductInsert" parameterType="ProductDTO"> <!-- 활동 물품 등록 -->
+	<!-- 활동 물품 등록 -->
+	<insert id="activityProductInsert" parameterType="ProductDTO"> 
 		insert into ACTIVITY_PRODUCT(<include refid="actiProduct" />)
 			values((select nvl(max(product_num)+1,1) from ACTIVITY_PRODUCT), #{storeNum}, #{productName}, #{productPrice}, #{productOption},
 			 #{productContent}, #{originalFilename}, #{storeFilename})
 	</insert>
-
 	
-	<select id="storeDetail" parameterType="StoreDTO" resultMap="baseStore">		<!-- 활동 상점 상세보기 -->
+	<!-- 물품 등록시 무슨 상점? -->
+	<select id="storeNameForInsertProduct" parameterType="StoreDTO" resultMap="baseStore">
+		select store_name
+			from ACTIVITY_STORE
+			where store_num = #{storeNum}
+	</select>
+
+	<!-- 활동 상점 상세보기 -->
+	<select id="storeDetail" parameterType="StoreDTO" resultMap="baseStore">		
 		select <include refid="actiStore" />
 			from ACTIVITY_STORE
 			where store_num = #{storeNum}
 	</select>
 	
-<!-- 상점 상세보기 내에 있는 물품 -->
+	<!-- 상점 상세보기 내에 있는 물품 -->
 	<select id="productInStoreDetail" parameterType="ProductDTO" resultMap="baseProduct">
 		select <include refid="actiProduct" />
 			from ACTIVITY_PRODUCT
 		where store_num = #{storeNum}
 	</select>
-
+	
+	<!-- 상점리스트 회원 레벨 뽑기 -->
+	<select id="storeDetailMemLev" parameterType="memDTO" resultMap="baseMember">
+		 select mem_lev
+		 	from MEMBER
+		 	where mem_num = #{memNum}
+	</select>
+	
+	
+	
+<!-- 상점 삭제 -->
+	<delete id="deleteStore">
+	 	delete from ACTIVITY_STORE where store_num = #{Num}
+	</delete>
+	<!-- 대여물품 삭제 -->
+	<delete id="deleteProduct">
+		delete from ACTIVITY_PRODUCT where store_num =#{Num}
+	</delete>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper>

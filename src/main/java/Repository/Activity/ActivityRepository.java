@@ -111,6 +111,15 @@ public class ActivityRepository {
 		return sqlSession.selectOne(statement, acti);
 		}
 
+		
+		
+//메인 
+		public List<ActivityDTO> actiList(ActivityDTO acti) {
+		
+			String statement = namespace + ".ListOfActivity";
+		return sqlSession.selectList(statement, acti);
+		}
+
 
 		
 		

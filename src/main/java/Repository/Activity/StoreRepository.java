@@ -15,13 +15,20 @@ public class StoreRepository {
 	
 	private final String namespace ="actiMapper";
 
-	public List<ActivityStoreDTO> storeList(ActivityStoreDTO storeDTO) {
-		String statement = namespace + ".storeList";
+	
+	
+	public List<ActivityStoreDTO> storeList() {
+			System.out.println("접근");
+			System.out.println("접근_Repository_storeList");
+		
+		String statement = namespace + ".storeListforMember";
 	return sqlSession.selectList(statement, storeDTO);		
 	}
 
 //찾으려고 하는 상점 
 	public List<ActivityStoreDTO> searchCity(ActivityStoreDTO storeDTO) {
+			System.out.println("접근");
+			System.out.println("접근_Repository_searchCity");
 		String statement = namespace + ".searchCity";
 	return sqlSession.selectList(statement, storeDTO);
 	}

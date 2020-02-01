@@ -11,10 +11,21 @@ public class ActivityStoreCommand {
 	String StoreMainProduct;
 	String storeBusinessNum;
 	String storeOwner;
-	
-	
-	
-	
+	MultipartFile[] storePics;
+	MultipartFile[] businessLicense;
+
+	public MultipartFile[] getStorePics() {
+		return storePics;
+	}
+	public void setStorePics(MultipartFile[] storePics) {
+		this.storePics = storePics;
+	}
+	public MultipartFile[] getBusinessLicense() {
+		return businessLicense;
+	}
+	public void setBusinessLicense(MultipartFile[] businessLicense) {
+		this.businessLicense = businessLicense;
+	}
 	public String getStoreOwner() {
 		return storeOwner;
 	}

@@ -18,6 +18,130 @@
   	   vspot_store varchar2(1000) not null, -- 휴양지 시스템 사진
   	   
 삭제 - 추천장소, 추천음식, 추천활동
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*** 김준호
+
+-- 공모전 정보
+CREATE TABLE contest(
+	contest_num NUMBER, 
+	user_id varchar2(30), 
+	contest_organizer varchar2(50), 
+	contest_name varchar2(50),
+	contest_subject varchar2(100),
+	contest_poster varchar2(300), -- 포스터 original파일 이름
+	contest_store_poster varchar2(300), -- 포스터 store파일 이름
+	contest_content varchar2(2000),
+	contest_condition varchar2(100),
+	contest_entry_way varchar2(20),
+	contest_peoples NUMBER,
+	contest_start DATE,
+	contest_end DATE,
+	contest_prize_way varchar2(20),
+	contest_prize NUMBER
+);
+
+ALTER TABLE contest 
+ADD CONSTRAINT con_num_pk PRIMARY KEY (contest_num);
+
+-- 참가신청
+CREATE TABLE participation(
+	participation_num NUMBER,
+	mem_num varchar2(10),
+	contest_num NUMBER,
+	mem_id varchar2(50),
+	mem_name varchar2(50),
+	work_name varchar2(50),
+	work_outline varchar2(100),
+	work_content varchar2(1000),
+	work_image varchar2(1000),
+	participation_date DATE
+);
+
+ALTER TABLE participation
+ADD CONSTRAINT pk_partic PRIMARY KEY (participation_num);
+
+ALTER TABLE participation
+ADD CONSTRAINT fk_mem_num FOREIGN KEY (mem_num)
+REFERENCES MEMBER (mem_num);
+
+ALTER TABLE participation
+ADD CONSTRAINT fk_contest_num FOREIGN KEY (contest_num)
+REFERENCES contest (contest_num);
+
+-- 공모전 심사
+CREATE TABLE contest_audit(
+	aduit_num NUMBER,
+	participation_num NUMBER,
+	contest_num NUMBER,
+	mem_id varchar2(50),
+	audit_score NUMBER,
+	audit_pass varchar2(10),
+	audit_date DATE
+);
+
+ALTER TABLE CONTEST_AUDIT
+ADD CONSTRAINT participation_num_fk FOREIGN KEY (participation_num)
+REFERENCES PARTICIPATION (participation_num);
+
+ALTER TABLE CONTEST_AUDIT
+ADD CONSTRAINT contest_num_fk FOREIGN KEY (contest_num)
+REFERENCES contest (contest_num);
+
+ALTER TABLE CONTEST_AUDIT
+ADD CONSTRAINT aduit_participation_num_pk PRIMARY KEY (aduit_num, participation_num);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   	   
   	   
 

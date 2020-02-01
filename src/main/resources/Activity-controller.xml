@@ -16,19 +16,20 @@
 
 
 
+<bean class="Controller.Activity.MemberProfileController" /> <!-- 활동 프로필 -->
+
+
 <!--관리자 -->
 <bean class="Controller.ComManagement.ActivityManagementController" />	<!-- 활동 승인/미승인 -->
 <bean class="Controller.ComManagement.ActivityStoreController" />	<!-- 활동 상점 등록 -->
 <bean class="Controller.ComManagement.ActivityStoreListController" /> <!-- 상점 목록 -->
 <bean class="Controller.ComManagement.ActivityProductController" />	<!-- 활동 물품 등록 -->
+<bean class="Controller.ComManagement.ActivityStoreDetailController" /><!-- 상점 상세보기 -->
+<bean class="Controller.ComManagement.ActivityDeleteStoreController" /> <!-- 상점 삭제 -->
 
 
 
-<!-- 관리자 상점 상세보기 -->
-<bean class="Controller.ComManagement.ActivityStoreDetailController" />
 
-
-<bean class="Controller.Activity.MemberProfileController" /> <!-- 활동 프로필 -->
 
 
 

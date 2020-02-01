@@ -1,11 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+ <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
 <style>
 body {
   font-family: Arial, Helvetica, sans-serif;
@@ -69,22 +77,65 @@ body {
 .dropdown1:hover .dropdown-content1 {
   display: block;
 }
+
+.topFixed {
+        position: fixed;
+        top: 0px;
+      }
 </style>
+
+
+<script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script>
+      $( document ).ready( function() {
+    	  
+        var topOffset = $( '.top' ).offset();
+        $( window ).scroll( function() {
+        	
+          if ( $( document ).scrollTop() > topOffset.top ) {
+            $( '.top' ).addClass( 'topFixed' );
+          }
+          else {
+            $( '.top' ).removeClass( 'topFixed' );
+          }
+        });
+      } );
+    </script>
+    
+	<script>
+	$("body").animate({
+		scrollTop: 300
+	}, 500);
+	</script>
+
+
+
 
 </head>
 <body>
 
 
-<div class="navbar1">
-  <a href="main">Home</a>
-  <a href="#">고객 센터</a>
-  <a href="Car/carCalendaReservationList">car 예약목록</a>
-  <a href="Car/carCalendarList">car 일정</a>
-  <a href="contest">Contest</a>
-  <a href="Car/carEnrollmentList">carcar</a>
+
+
+
+<div class="top" style="background-color:white;width:100%;height:120px;z-index:5">
+	<div style="padding-top:20px;padding-left:20px">
+		<a href="main" style="padding-left:10px"> <img alt="Logo" src="img/B_300x300_1.png" width=70px height=70px/> </a>
+		
+		<div style="float:right;padding-top:30px;padding-right:30px">
+			<a href="profile" style="text-decoration:none;color:lightgrey"> <strong> 프로필 </strong> </a> &nbsp;&nbsp;&nbsp;
+			<a href="ActivityInsert" style="text-decoration:none;color:lightgrey"> <strong> 활동 생성 </strong> </a>&nbsp;&nbsp;&nbsp;
+			<a href="#" style="text-decoration:none;color:lightgrey"> <strong> 문의 </strong> </a>
+			<a href="logout" style="text-decoration:none;color:lightgrey"> <strong> 로그아웃 </strong> </a>&nbsp;&nbsp;&nbsp;
+		</div>
+	</div>
+</div>
+
+
+<!-- <div class="navbar1">
   <a href="logout">로그아웃</a>
   <a href="profile"> 프로필 </a>
-  
+  <a href="ActivityInsert"> 활동 생성</a>
 
   <div class="dropdown1">
     <button class="dropbtn1">Dropdown 
@@ -93,11 +144,13 @@ body {
     <div class="dropdown-content1">
       <a href="spot">휴양지 신청</a>
       <a href="ActivityList">활동</a>
-      <a href="#">Link 3</a>
+      <a href="Car/carWriter">car</a>
+      <a href="Car/carCalendarList">car일정목록</a>
+      
     </div>
   </div> 
 
-</div>
+</div> -->
 
 </body>
 </html>

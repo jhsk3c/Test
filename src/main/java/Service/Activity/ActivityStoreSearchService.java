@@ -20,15 +20,18 @@ public class ActivityStoreSearchService {
 
 	
 	
-	public String storeSearch(ActivityStoreCommand activityStoreCommand, Model model, HttpServletRequest request) {
+	public String searchCity(ActivityStoreCommand activityStoreCommand, Model model, HttpServletRequest request) {
 		ActivityStoreDTO storeDTO = new ActivityStoreDTO();
-			storeDTO.setStoreLoc1(activityStoreCommand.getStoreLoc1());
+		storeDTO.setStoreLoc1(activityStoreCommand.getStoreLoc1());
+			System.out.println("접근");
+			System.out.println("접근_Service_SearchCity");
+			System.out.println("접근");
+			System.out.println("접근");
+			System.out.println("searchCity : " + activityStoreCommand.getStoreLoc1());
 			
-				System.out.println(activityStoreCommand.getStoreLoc1());
-			
-			List<ActivityStoreDTO> list2 = storeRepository.searchCity(storeDTO);
-			
-			model.addAttribute("search", list2);
+		List<ActivityStoreDTO> list2 = storeRepository.searchCity(storeDTO);
+			System.out.println(list2.get(0).getStoreName());
+		model.addAttribute("search", list2);
 			
 	return "Activity/MemberActivityStoreSearch";
 	}

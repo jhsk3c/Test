@@ -2,6 +2,8 @@ package Service.Activity;
 
 
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -40,20 +42,33 @@ public class MemberProfileService {
 		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
 			acti.setMemNum(authInfo.getNum());
 			
-			System.out.println("접근_SERVICE_MYprofile");
-			 System.out.println("memNum 값"); System.out.println(acti.getMemNum());
-			 System.out.println("memNum 값"); System.out.println(acti.getMemNum());
-			 System.out.println("memNum 값"); System.out.println(acti.getMemNum());
-			 System.out.println("memNum 값"); System.out.println(acti.getMemNum());
-			 System.out.println("memNum 값"); System.out.println(acti.getMemNum());
+				 System.out.println("접근_SERVICE_MYprofile");
+				 System.out.println("memNum 값"); System.out.println(acti.getMemNum());
+				 System.out.println("memNum 값"); System.out.println(acti.getMemNum());
+				 System.out.println("memNum 값"); System.out.println(acti.getMemNum());
+				 System.out.println("memNum 값"); System.out.println(acti.getMemNum());
+				 System.out.println("memNum 값"); System.out.println(acti.getMemNum());
 			 
 		ActivityDTO list = activityRepository.activityProfile(acti);
-			System.out.println("활동 넘 값 : " + list.getActivityNum());
-			System.out.println("레벨 값 : " + list.getActivityLev());
-			System.out.println("레벨 값 : " + list.getActivityLev());
-			System.out.println("레벨 값 : " + list.getActivityLev());
-			System.out.println("레벨 값 : " + list.getActivityLev());
+				System.out.println("활동 넘 값 : " + list.getActivityNum());
+				System.out.println("레벨 값 : " + list.getActivityLev());
+				System.out.println("레벨 값 : " + list.getActivityLev());
+				System.out.println("레벨 값 : " + list.getActivityLev());
+				System.out.println("레벨 값 : " + list.getActivityLev());
+				
+		//타임스템프를 string으로 형식 재구성 후 저장
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
+			String activityStartDate = sdf.format(new Date(list.getActivityStartDate().getTime()));
+					System.out.println("활동시작일 스트링 형");
+					System.out.println("활동시작일 String형 : " + activityStartDate);	
+			String activityEndDate = sdf.format(new Date(list.getActivityEndDate().getTime()));
+					System.out.println("활동시작일 스트링 형");
+					System.out.println("활동시작일 String형 : " + activityEndDate);	
+				
 		model.addAttribute("list", list);
+		model.addAttribute("activityStartDate", activityStartDate);
+		model.addAttribute("activityEndDate", activityEndDate);
+		
 		
 		// 여기서부터는 회원의 개인 정보와 리스트..(상점 등록, 휴양지 등록, 예약등등)
 		MemberDTO member = new MemberDTO();

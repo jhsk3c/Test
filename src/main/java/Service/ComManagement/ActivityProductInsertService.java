@@ -101,16 +101,16 @@ public class ActivityProductInsertService {
 	
 	
 	//form에서 stNum값 찾는 거 
-	public String pr(String storeNum, Model model) {
+	public ActivityStoreDTO pr(String storeNum, Model model) {
 		// TODO Auto-generated method stub
 		
 		System.out.println(storeNum);
 		
 		ActivityStoreDTO list = adminReository.prpr(storeNum);
 		
-		model.addAttribute("list", list);
 		
-		return "Admin/ActivityProductInsertForm";
+		
+		return list; 
 		
 	}
 

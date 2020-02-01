@@ -36,7 +36,6 @@ public class ActivityDetailService {
 			model.addAttribute("original", original);
 			model.addAttribute("store", store);
 		}
-		
 		model.addAttribute("result", result );
 	return result;
 	}

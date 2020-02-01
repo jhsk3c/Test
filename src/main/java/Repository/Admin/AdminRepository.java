@@ -118,7 +118,7 @@ public class AdminRepository {
 		return sqlSession.selectList(statement,spage);		
 	}
 
-	public Integer ActivityCount() { //회원이 휴양지 등록 신청한 개수
+	public Integer ActivityCount() { //회원이 활동 주체 신청한 개수
 		String statement = namespace + ".ActivityCount";
 		return sqlSession.selectOne(statement);
 	}
@@ -196,6 +196,7 @@ public class AdminRepository {
 	}
 
 	public ActivityStoreDTO StoreDetail(ActivityStoreDTO storeDTO) {
+			System.out.println("접근_Repository_StoreDetail");
 		String statement = namespace + ".storeDetail";
 	return sqlSession.selectOne(statement, storeDTO);
 	}
@@ -262,6 +263,31 @@ public class AdminRepository {
 		String statement = namespace + ".adminshopInsert";
 		return sqlSession.insert(statement, sdto);
 	}
+
+	public MemberDTO storeDetailMemLev(MemberDTO memDTO) {
+		String statement = namespace + ".storeDetailMemLev";
+	return sqlSession.selectOne(statement, memDTO);
+	}
+
+	public Integer deleteStore(Integer num) {
+		String statement = namespace + ".deleteStore";
+	return sqlSession.delete(statement, num);
+	}
+
+	public Integer deleteProduct(Integer num) {
+		String statement = namespace + ".deleteProduct";
+	return sqlSession.delete(statement, num);
+	}
+
+	public ActivityStoreDTO storeNameForInsertProduct(ActivityStoreDTO storeDTO) {	
+		String statement = namespace + ".storeNameForInsertProduct";
+		return sqlSession.selectOne(statement, storeDTO);
+	}
+
+	
+
+
+	
 
 }
 

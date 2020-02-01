@@ -1,8 +1,10 @@
 package Controller.ComManagement;
 
+import java.net.http.HttpRequest;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +29,9 @@ public class ActivityStoreController {
 	}
 	
 	@RequestMapping("/ActivityStoreInsertPro")		//상점 등록 !
-	public String ActivityStoreInsertPro(ActivityStoreCommand activityStoreCommand, HttpSession session, Errors errors) {
+	public String ActivityStoreInsertPro(ActivityStoreCommand activityStoreCommand, HttpSession session, Errors errors, HttpServletRequest request) {
 		
-		activityStoreInsertService.storeInsert(activityStoreCommand, session, errors);
+		activityStoreInsertService.storeInsert(activityStoreCommand, session, errors, request);
 		
 		System.out.println("접근Controller_Store_Insert");
 		System.out.println("접근");
@@ -38,7 +40,7 @@ public class ActivityStoreController {
 		System.out.println("접근");
 		System.out.println("접근");
 		
-		return "redirect:/main";
+		return "redirect:/ActivityStoreList";
 	}
 	
 	

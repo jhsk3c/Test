@@ -9,11 +9,29 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+
+
 </head>
 <body>
+<!-- 상단 -->
+<jsp:include page="../Main/top.jsp" />
 
-		<form:form id="frm" name="frm" action="login" method="post" commandName="loginCommand">
-			<table border =1 align=center>
+
+
+<!-- 중단 -->
+
+
+
+
+
+
+
+
+
+<div style="width:50%">
+	<form:form id="frm" name="frm" action="login" method="post" commandName="loginCommand">
+			<table class="w3-tabl3-all w3-hoverable" align=center>
 				<tr>
 					<td colspan="2"> 일반회원 </td>
 					<td colspan="2"><a href="comLogin" >기업회원 </a></td>
@@ -40,17 +58,20 @@
 					</tr>
 				
 				<tr>
-					<td colspan=2>
+					<td colspan=2 style="align:center;">
 						<a href="#">아이디 찾기</a>
-						|
+						
 						<a href="#">비밀번호 찾기</a>
-								&nbsp;&nbsp;&nbsp;&nbsp;
-						<a href="member/memberInfo">일반 회원가입</a>
-						<a href="comMember/comMemberInfo">기업 회원가입</a>
 				    </td>
 				</tr>
 			</table>
-		</form:form>
+		</form:form> 
+	</div>
+		
+		
+		
+		
+		
 
 </body>
 </html>

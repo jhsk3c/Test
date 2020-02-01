@@ -15,9 +15,8 @@
 <!-- 중단 -->
 <div style="margin:40px auto;background:lightgrey;padding-top: 50px; padding-right: 30px; padding-bottom: 50px; padding-left: 80px;">	<!-- 가운데 정렬  -->
 	<div style="">
-		<h2 class="w3-xLarge"> 1차 등록이 완료되었습니다! </h2>
-		<h5> 승인을 받으면 2단계 작성을  하실 수 있습니다. </h5>
-		<h5> 2단계를 하게 되면 활동 등록이 완료됩니다.</h5>
+		<h2 class="w3-xLarge"> 등록이 완료되었습니다! </h2>
+		<button class="w3-btn w3-light-green" onclick="location.href='main'"> 메인으로 가기 </button>
 	</div>
 </div>
 

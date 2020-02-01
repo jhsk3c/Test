@@ -36,16 +36,17 @@ public class ActivityInsert2ShowService {
 			
 		ActivityDTO list = activityRepository.show1to2(actiDTO);
 		
-		//타임스템프를 string으로 형식 재구성 후 저장..근ㄷ 셀렉ㅌ인데
+		
+	//타임스템프를 string으로 형식 재구성 후 저장
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
 		String activityStartDate = sdf.format(new Date(list.getActivityStartDate().getTime()));
-			System.out.println("활동시작일 스트링 형");
-			System.out.println("활동시작일 String형 : " + activityStartDate);
-		
-			System.out.println("접근_Service_ShowInfo1to2_끝나요");
-			System.out.println("접근_끝");
-			System.out.println("접근_끝");
-			System.out.println("접근_끝");
+				System.out.println("활동시작일 스트링 형");
+				System.out.println("활동시작일 String형 : " + activityStartDate);
+			
+				System.out.println("접근_Service_ShowInfo1to2_끝나요");
+				System.out.println("접근_끝");
+				System.out.println("접근_끝");
+				System.out.println("접근_끝");
 		
 		model.addAttribute("list", list);
 		model.addAttribute("actiStartDate", activityStartDate);

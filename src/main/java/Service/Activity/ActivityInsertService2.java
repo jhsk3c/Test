@@ -21,9 +21,10 @@ public class ActivityInsertService2 {
 	private ActivityRepository activityRepository;
 	
 	public Integer activityPro(String memNum, ActivityInsertCommand2 activityCommand2, HttpSession session, Errors errors) {
-			System.out.println("접근_service_actiInsert2");
-			System.out.println("접근_service_actiInsert2");
-			System.out.println("접근_service_actiInsert2");
+				System.out.println("접근_service_actiInsert2");
+				System.out.println("접근_service_actiInsert2");
+				System.out.println("접근_service_actiInsert2");
+			
 		ActivityDTO acti = new ActivityDTO();
 			acti.setMemNum(memNum);		
 			acti.setActivityCost(Integer.parseInt(activityCommand2.getActivityCost()));
@@ -42,14 +43,15 @@ public class ActivityInsertService2 {
 					System.out.println(acti.getRecruitEndDate());
 					
 			} catch (Exception e) {	e.printStackTrace();}
-			System.out.println("멤넘~");
-			System.out.println(acti.getMemNum());
-			System.out.println(acti.getMemNum());
-			System.out.println(acti.getMemNum());
-			System.out.println("가격 " + acti.getActivityCost());
-			System.out.println("사용물품 " + acti.getActivityProduct());
-			System.out.println("모집기간 " + acti.getRecruitStartDate());
-			System.out.println("모집기간 " + acti.getRecruitEndDate());
+			
+					System.out.println("멤넘~");
+					System.out.println(acti.getMemNum());
+					System.out.println(acti.getMemNum());
+					System.out.println(acti.getMemNum());
+					System.out.println("가격 " + acti.getActivityCost());
+					System.out.println("사용물품 " + acti.getActivityProduct());
+					System.out.println("모집기간 " + acti.getRecruitStartDate());
+					System.out.println("모집기간 " + acti.getRecruitEndDate());
 		Integer result = activityRepository.activityInsert2(acti);
 		return result;
 	}

@@ -20,8 +20,14 @@
 
 
 
+
+
 <bean id="activityRepository"  class="Repository.Activity.ActivityRepository" />
 <bean id="soreRepository" class="Repository.Activity.StoreRepository" />
+<bean id="paymentRepository" class="Repository.Activity.PaymentRepository" />
+
+
+
 
 
 
@@ -33,14 +39,16 @@
 <bean id="activityStoreInsertService" class="Service.ComManagement.ActivityStoreInsertService" />		<!-- 상점 등록 -->
 <bean id="activityStoreListService" class="Service.ComManagement.ActivityStoreListService" />			<!-- 상점 목록 -->
 <bean id="activityProductInsertService" class="Service.ComManagement.ActivityProductInsertService" />	<!-- 물품등록 -->
-
 <!-- 프로필 -->
 <bean id="memberProfileService" class="Service.Activity.MemberProfileService" />
 <!-- 관리자 활동 상점 상세 -->
 <bean id="activityStoreDetailService" class="Service.ComManagement.ActivityStoreDetailService" />
 <!-- 관리자 상점 상세보기_물품 -->
 <bean id="activityProductListInDetailService" class="Service.ComManagement.ActivityProductListInDetailService" />
-
-
-
+<!-- 상점 삭제 -->
+<bean id="activityDeleteStoreService" class="Service.ComManagement.ActivityDeleteStoreService" />
+<!-- 상점과 함께 물품 삭제 -->
+<bean id="activityDeleteStoreProductService" class="Service.ComManagement.ActivityDeleteStoreProductService" />
+<!-- 물품등록때 어디 상점에 등록하는지 -->
+<bean id="activityWhichStoreService" class="Service.ComManagement.ActivityWhichStoreService" />
 </beans>

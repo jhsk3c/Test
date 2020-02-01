@@ -18,6 +18,10 @@
 <jsp:include page="../Main/admintop.jsp" />
 
 <!-- 중단 -->
+<div style="margin-top:120px">
+<div class="jumbotron" style="border-radius:25px;background:white;border:1px solid lightgrey;width:90%;margin:20px auto;padding-top:60px	">
+
+	
 	<table class="w3-table-all w3-hoverable" style="width:80%;" align="center">
 		<thead>
 			<tr>
@@ -32,11 +36,11 @@
 				<th> 구분 </th>
 			</tr>
 		</thead>
-		
 		<c:forEach var="list" items="${list}" varStatus="status"> 
+			
 			<tr align="center">
-				<td> <a href="Detail?num=${list.activityNum }">${status.count } </a></td>
-				<td> ${list.activityName} </td>
+				<td> <a href="Detail?num=${list.activityNum }"> ${status.count } </a></td>
+				<td> <a href="ActivityDetail?actiNum=${list.activityNum}"> ${list.activityName } </a></td>
 				<td> ${list.sortOfActivity} </td>
 				<td> ${list.memNum } </td>
 				
@@ -46,7 +50,6 @@
 				</td>
 			</tr>
 		</c:forEach>
-	
 		<tfoot>
 		 	<tr align=center height=20 >
 				<td colspan = 8>
@@ -73,11 +76,10 @@
 	</table>
 
 
+</div>
 
-<input type="button" value="활동 승인" onClick="location.href='activityAccept?&page=${page}';"/> 	<!-- Controller에 적을 필요? -->
 
-<!-- 하단 -->
-
+</div>
 
 </body>
 </html>
